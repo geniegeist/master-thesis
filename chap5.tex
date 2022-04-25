@@ -1,0 +1,234 @@
+
+\chapter{Proof Continued for \texorpdfstring{$\gamma > 0$}{gamma > 0}}\label{chapter:proof-gamma-positive}
+
+\section{Step 4: \texorpdfstring{$\sum |g_k''|$ converges for $\gamma > 0$}{sum g''k converges for gamma > 0}}\label{step4}
+
+In Step 3, we showed that the first sum $\sum_{k=1}^\infty g_k'$ in $f_n = f_1 + \sum_{k=1}^\infty g_k' + \sum_{k=1}^\infty g_k''$ is finite, but what about the other sum? The answer is simple: it is indeed finite \emph{if} $\gamma > 0$. The proof is short, and uses a \emph{compact support} argument and the \emph{coherence condition} \eqref{coherence-hat}.
+
+Let $\psi \in \mathcal{D}(\overline K_1)$. We start with $g_k''(\psi) \coloneqq \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z$. The tweaked test function $\check \varphi^{\epsilon_k}$ has compact support in $B(0,\epsilon_k)$, and $\psi$ has compact support in $\overline K_1$. So, we have 
+\begin{align*}
+    |g_k''(\psi)| 
+    &\leq \sup_{\substack{z \in \overline{K}_1 \\ |y-z|\leq \epsilon_k}}
+    \left( |(F_z -F_y)(\hat \varphi^{\epsilon_k}_y)| \right) \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1}\\
+    &\leq \sup_{\substack{z \in \overline{K}_1 \\ |y-z|\leq \epsilon_k}}
+    \left( |(F_z -F_y)(\hat \varphi^{\epsilon_k}_y)| \right) \lVert \check \varphi^{\epsilon_k} \rVert_{L^1} \lVert \psi \rVert_{L^1}.
+\end{align*}
+Using the coherence condition \eqref{coherence-hat}, we get
+\begin{align}
+    |g_k''(\psi)| 
+    \leq \hat C \epsilon_k^\alpha (|y-z| + \epsilon_k)^{\gamma - \alpha} \lVert \check \varphi^{\epsilon_k} \rVert_{L^1} \lVert \psi \rVert_{L^1}
+    &\leq \hat C \epsilon_k^\alpha (2\epsilon_k)^{\gamma - \alpha} \lVert \check \varphi^{\epsilon_k} \rVert_{L^1} \lVert \psi \rVert_{L^1}\nonumber\\
+    &= \left(\hat C  2^{\gamma - \alpha} \lVert \check \varphi \rVert_{L^1} \lVert \psi \rVert_{L^1}\right) \epsilon_k^\gamma. \label{Mustermaus}
+\end{align}
+Thus, $\sum |g_k''|$ converges if $\gamma > 0$.
+
+\section{Step 5: \texorpdfstring{$f^K$ is a local reconstruction}{fK satisfies the reconstruction theorem}}
+
+In Step 3 and Step 4 we showed that $\lim\limits_{n \to \infty}f_n(\psi)$ exists for all $\psi \in \mathcal{D}(\overline{K}_1)$. Hence, we define
+\begin{align*}
+    f^K \coloneqq \lim\limits_{n \to \infty}f_n \overset{\eqref{approximating-distributions-alternative}}{=} f_1 + \sum^{n-1}_{k=1} g_k' + \sum^{n-1}_{k=1} g_k''.
+\end{align*}
+The notation $f^K$ explicitly emphasizes that $\lim\limits_{n \to \infty}f_n$ depends on the compact set $K$ that we fixed in \emph{Step 0: Setup}; recall that the construction of the mollifier $\rho$  depends on $K$ (see Remark \ref{remark:fk-depends}).
+ 
+In this step, we prove for $\gamma > 0$ that $f^K$ is a reconstruction in the following sense: (1) $f^K$ is a distribution, and (2) there exists a constant $C < \infty$ such that 
+\begin{gather*}
+    |(f^K - F_x)(\psi^\lambda_x)| \leq C \lambda^\gamma \tag{\ref{reconstruction-theorem}
+    }\\ 
+    \text{uniformly for $\psi \in \mathcal{B}_r$, $x \in K$, $\lambda \in (0,1]$}.
+\end{gather*}
+The constant $C$ will be explicitly computed in \eqref{constant:rec-gamma-bigger-zero}. 
+
+Step 5 is the forelast step. As mentioned in the beginning, $f^K$ depends on $K$; so it is only a \emph{local} reconstruction. Finding a \emph{global} reconstruction will be done in the next step.
+
+\subsection*{$f^K$ is a distribution} 
+
+We want to show that $f^K \in \mathcal{D}'(\bar K_1)$. $f_1$ is a distribution. So, we find a constant such that $|f_1(\psi)| \leq \mathrm{constant} \cdot \lVert \psi \rVert_{C^r}$ for all $\psi \in \mathcal{D}(\bar K_1)$. Then, we use the upper bounds for $\sum |g_k'|$ and $\sum |g_k''|$ established in Step 3 and Step 4 (see  \eqref{Mustermkatze} and  \eqref{Mustermaus}) to find a constant such that  
+\begin{align*}
+    |f^K(\psi)| \leq \mathrm{constant} \cdot \left\{ \lVert \psi\rVert_{L^1} + \lVert \psi\rVert_{C^r} \right\} \leq  \mathrm{constant} \cdot \left\{  \mathrm{Vol}(\bar K_{3/2}) + 1) \right\} \lVert \psi \rVert_{C^r}.
+\end{align*}
+This proves that $f^K$ is a distribution. 
+
+
+\subsection*{Setup} 
+
+We fix $\psi \in \mathcal{B}_r, x \in K$ and $\lambda \in (0,1]$. We define a function $\tilde f$ that measures the error of the reconstruction $f^K$ to $F_x$:  
+\begin{align*}
+    \tilde f(\phi) &= f^K(\phi) - F_x(\phi), \quad \qquad \phi \in \mathcal{D}(\overline{K}_1)\\
+    \tilde f_n(\phi) &= f_n(\phi) - F_x(\phi * \rho^{\epsilon_n}), \quad n \in \mathbb{N}.
+\end{align*}
+By Lemma \ref{mollifier-lemma}, $\tilde f_n(\phi)$ converges to $\tilde f(\phi)$ as $n \to \infty$.
+
+Let $N \in \mathbb{N}$ be the smallest index such that $\epsilon_N \leq \lambda$, i.e. $N = \min \left\{ k \in \mathbb{N} : \epsilon_k \leq \lambda  \right\}$. Using the triangle inequality, we then write 
+\begin{align*}
+    |\tilde f (\psi^\lambda_x)| \leq  |\tilde f_N (\psi^\lambda_x)| + |(\tilde f - \tilde f_N) (\psi^\lambda_x)|.
+\end{align*}
+
+\subsection*{Bounding $|\tilde f_N (\psi^\lambda_x)|$} 
+
+We start with
+\begin{align*}
+    |\tilde f_N (\psi^\lambda_x) |
+    = |f_N(\psi^\lambda_x) - F_x(\psi^\lambda_x * \rho^{\epsilon_N}) |
+    &= |\int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy} - F_x(\psi^\lambda_x * \rho^{\epsilon_N})| \\
+    &\Downarrow \text{Lemma \ref{lemma:mollified-distribution}} \\
+    &= |\int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy} - \int_{\mathbb{R}^d} F_x(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy}| \\
+    &= |\int_{\mathbb{R}^d} (F_y - F_x)((\hat \varphi^{2\epsilon_N} * \hat \varphi^{\epsilon_N})(\cdot - y)) \psi^{\lambda}_x(y) \, \mathrm{dy}|\\
+    &\Downarrow \text{Lemma \ref{lemma:mollified-distribution}} \\
+    &= |\iint (F_y - F_x)(\hat \varphi^{\epsilon_N}_z) \hat \varphi^{2 \epsilon_N}(z-y)\psi^\lambda_x(y) \, \mathrm{d}z \, \mathrm{d}y| \\
+    &\leq\sup_{\substack{y \in \overline K_1,\\|z-y|\leq\epsilon_N}} |(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)| \cdot \lVert \hat \varphi^{2\epsilon_N}\rVert_{L^1} \, \lVert \psi^{\lambda}_x\rVert_{L^1}.
+\end{align*}
+In the last line, we used a \emph{compact support} argument as in step 4. Note that we have the term $\sup|(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)|$, which subtly indicates that we need to use \eqref{coherence-hat}. To do so, we write for all $y \in  B(x,\epsilon),|z-y|\leq\epsilon_N$
+\begin{align*}
+    |(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)| &\leq |(F_y - F_z)(\hat \varphi^{\epsilon_N}_z)| + |(F_z - F_x)(\hat \varphi^{\epsilon_N}_z)| \\
+    &\leq \hat C \epsilon_N^\alpha(|z-y| + \epsilon_N)^{\gamma - \alpha} + \hat C \epsilon_N^\alpha(|z-x| + \epsilon_N)^{\gamma - \alpha} \\
+    &\leq \hat C \epsilon_N^\alpha (2\epsilon_N)^{\gamma - \alpha} + \hat C \epsilon_N^\alpha (|z-y| + |y-x| + \epsilon_N)^{\gamma - \alpha} \\
+    &\leq \hat C  2^{\gamma - \alpha} \lambda^{\gamma} +  \hat C  \lambda^\alpha(3\lambda)^{\gamma - \alpha} \\
+    &= 2 \hat C 3^{\gamma - \alpha}\lambda^\gamma.
+\end{align*}
+So, we obtain
+\begin{align*}
+    |\tilde f_N (\psi^\lambda_x) | 
+    &\leq 2 \hat C 3^{\gamma - \alpha}\lambda^\gamma \lVert \hat \varphi^{2\epsilon_N}\rVert_{L^1} \, \lVert \psi^{\lambda}_x\rVert_{L^1}\\
+     &= 2 \hat C 3^{\gamma - \alpha}\lambda^\gamma \lVert \hat \varphi\rVert_{L^1} \, \lVert \psi^{\lambda}_x\rVert_{L^1} \\
+     &\Downarrow \text{$\lVert \psi^{\lambda}_x\rVert_{L^1} \leq 2^d$, see \eqref{bound-psi-l1}} \\
+     &\leq \left \{ 3^{\gamma - \alpha} 2^{d+1} \hat C  \lVert \hat \varphi\rVert_{L^1} \right \} \lambda^\gamma.
+\end{align*}
+
+\subsection*{Bounding $|(\tilde f - \tilde f_N) (\psi^\lambda_x)|$} 
+
+We begin with
+\begin{align*}
+    |(\tilde f - \tilde f_N) (\psi^\lambda_x)| = |\lim_{n \to \infty} (\tilde f_n - \tilde f_N) (\psi^\lambda_x)| \leq \sum_{k \geq N}|(\tilde f_{k+1} - \tilde f_k)(\psi^\lambda_x)|.
+\end{align*}
+By definition $\tilde f_k(\psi) = f_k(\psi) - F_x(\psi * \rho^{\epsilon_k})$, we then obtain 
+\begin{align*}
+    |(\tilde f - \tilde f_N) (\psi^\lambda_x)| 
+    &\leq \sum_{k \geq N} |(f_{k+1} - f_k)(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| \\
+    &\Downarrow \text{by definition $f_k = f_1 + \sum^{k-1}_{j=1} g_j' + \sum^{k-1}_{j=1}g_j''$}\\
+    &\leq
+    \sum_{k \geq N} |(g_k' + g_k'')(\psi^{\lambda}_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| \\
+    &\leq \sum_{k \geq N} \underbrace{|g_k''(\psi^{\lambda}_x)|}_{\text{(A)}} + \underbrace{ |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))|}_{\text{(B)}}.
+\end{align*}
+We are going to bound (A) and (B) separately. Our short-term goal is to find a constant such that $|(\tilde f - \tilde f_N) (\psi^\lambda_x)| \leq \{\mathrm{constant}\} \cdot \lambda^{\gamma}$. 
+
+\vspace{0.5em}
+
+\begin{itemize}
+    \item (A): We start with (A) that follows almost immediately from Step 4. In Chapter \ref{step4}: Step 4 we showed that $|g_k''(\psi^{\lambda}_x)| 
+    {\leq}  \left(\hat C  2^{\gamma - \alpha} \lVert \check \varphi \rVert_{L^1} \lVert \psi^{\lambda}_x \rVert_{L^1}\right) \epsilon_k^\gamma$. We also know that $\lVert \psi^\lambda_x \rVert_{L^1} = \lVert \psi \rVert_{L^1} \leq 2^d$ by \eqref{bound-psi-l1}.  Then, we have
+    \begin{align*}
+        \sum_{k \geq N} |g_k''(\psi^{\lambda}_x)|  \leq 
+        \left(\hat C  2^{\gamma - \alpha} \lVert \check \varphi \rVert_{L^1} \lVert \psi^{\lambda}_x \rVert_{L^1}\right) \sum_{k \geq N}  \epsilon_k^\gamma 
+        \leq \left(\hat C  2^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1} \right) \sum_{k \geq N}  \epsilon_k^\gamma.
+    \end{align*}
+    The geometric series $\sum\limits_{k \geq N}  \epsilon_k^\gamma$ converges because $\gamma > 0$, and therefore
+    \begin{align*}
+        \sum_{k \geq N} |g_k''(\psi^{\lambda}_x)| \leq 
+        \frac{\hat C  2^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1}}{1-2^{-\gamma}} \epsilon_N^{\gamma}
+        \leq
+        \left\{\frac{\hat C  2^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1}}{1-2^{-\gamma}}\right\} \lambda^{\gamma}.
+    \end{align*}
+ 
+    \item (B): Next, we bound $|g_k'(\psi^\epsilon_x) - F_x(\psi^\epsilon_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))|$. For that we need a technical lemma that also turns out to be useful in the case $\gamma \leq 0$. Hence, we state it as a lemma here, so we can refer to it in later chapters.
+    
+
+    \begin{lemma}\label{technical-lemma-2}
+        For any $\gamma \in \mathbb{R}$ we have 
+        \begin{align*}
+            |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| \leq 4^{d + \gamma - \alpha} \hat C \lVert \check \varphi \rVert_{L^1} \begin{cases}
+                \lambda^{\gamma - \alpha - r} \epsilon_k^{\alpha + r}  \quad &\text{if $\epsilon_k < \lambda$ }\\
+                \epsilon_k^\gamma & \text{if $\epsilon_k \geq \lambda$ }
+            \end{cases}
+        \end{align*}
+        and 
+        \begin{align*}
+            \sum_{k \geq N} |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))|
+            \leq
+            \left \{ \frac{\hat C 4^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1} }{1-2^{-\alpha - r}} \right \} \lambda^{\gamma}.
+        \end{align*}
+        Recall that $\epsilon_k = 2^{-k}$ and $N = \min\left\{ k \in \mathbb{N}: \epsilon_k \leq \epsilon \right\}$.
+    \end{lemma}
+
+    \begin{proof}
+        By \eqref{rho-dif} and Corollary \ref{cor:minosokoad}, we obtain 
+        \begin{align*}
+            F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k})) &= \iint F_x(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi^{\lambda}_x(z) \, \mathrm{d}y \mathrm{d}z\\
+             &= \int F_x(\hat \varphi^{\epsilon_k}_y) ( \check\varphi^{\epsilon_k} * \psi^{\lambda}_x)(y) \, \mathrm{d}y.
+        \end{align*}
+        By definition of $g'_k$ (see \eqref{gk-formular}), we have 
+        \begin{align*}
+            g_k'(\psi^\lambda_x) = \int F_y(\hat \varphi^{\epsilon_k}_y) (\check \varphi^{\epsilon_k}* \psi^\lambda_x)(y) \, \mathrm{d}y.
+        \end{align*}
+        Hence, we get
+        \begin{align}\label{temp:klwmrlkewmrw}
+            |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| 
+            &= \int (F_y-F_x)(\hat \varphi^{\epsilon_k}_y) (\check \varphi^{\epsilon_k}* \psi^\lambda_x)(y) \, \mathrm{d}y,
+        \end{align}
+        for which we find an upper bound using the second inequality of Lemma \ref{lemma:WALFANGER}
+        \begin{align*}
+            \eqref{temp:klwmrlkewmrw} \leq 4^d \lVert \check \varphi \rVert_{L^1} \min \left\{ \frac{\epsilon_k}{\lambda}, 1 \right\}^r \sup_{y \in B(x, \lambda + \epsilon_k)} |(F_y - F_x)(\hat \varphi_y^{\epsilon_k})|.
+        \end{align*}
+        The supremum of $|F_y-F_x|$ is estimated with the coherence condition
+        \begin{align*}
+            \sup_{y \in B(x, \lambda + \epsilon_k)} |(F_y - F_x)(\hat \varphi^{\epsilon_k}_y)| &\overset{\eqref{coherence-hat}}{\leq} \hat C \epsilon_k^{\alpha} \sup_{y \in B(x, \lambda + \epsilon_k)} (|x - y| + \epsilon_k )^{\gamma - \alpha} \\
+            &\;\leq \hat C \epsilon^\alpha_k(\lambda + 2\epsilon_k)^{\gamma - \alpha} \\
+            &\leq \hat C \epsilon^\alpha_k 3^{\gamma - \alpha} \begin{cases}
+                \epsilon_k^{\gamma - \alpha} &\text{if $\epsilon_k > \lambda$ } \\
+                \lambda^{\gamma - \alpha} &\text{if $\epsilon_k \leq \lambda$ }
+            \end{cases}
+        \end{align*}
+        This proves the first claim of the lemma.
+
+        To prove the last line, note that $\sum\limits_{k \geq N} \epsilon_k^{\alpha + r} = \frac{\epsilon_N^{\alpha+ r}}{1 - 2^{-\alpha - r}} \leq \frac{\lambda^{\alpha + r}}{1 - 2^{- \alpha - r}}$  (regarding the last inequality, we chose $r \in \mathbb{N}$ such that  $\alpha + r > 0$). Since $k \geq N$, we have $\epsilon_k < \lambda$. So, we use the first claim of the lemma together with $\sum\limits_{k \geq N} \epsilon_k^{\alpha + r} \leq \frac{\lambda^{\alpha + r}}{1 - 2^{- \alpha - r}}$ to obtain
+        \begin{align*}
+            \sum_{k \geq N} |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| \leq \left\{\frac{4^{d + \gamma - \alpha}}{1-2^{-\alpha - r}} \lVert \check \varphi \rVert_{L^1} \hat C \right\} \lambda^{\gamma}. 
+        \end{align*} 
+    \end{proof}
+    With this lemma proved, we use the second line to find an upper bound for (B).
+\end{itemize}
+
+Finally, we use (A) and (B) to estimate
+\begin{align*}
+    |(\tilde f - \tilde f_N) (\psi^\lambda_x)| 
+    &\leq
+    \left \{ \frac{\hat C 4^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1} }{1-2^{-\alpha - r}} \right \} \lambda^{\gamma} + \left\{\frac{\hat C  2^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1}}{1-2^{-\gamma}}\right\} \lambda^{\gamma} \\
+    &\leq \left\{ 2 \frac{\hat C 4^{\gamma - \alpha + d} \lVert \check \varphi \rVert_{L^1} }{1-2^{-\min\{\alpha + r, \gamma\}}} \right\}\cdot \lambda^{\gamma} \\
+    &\Downarrow \text{$\lVert \check \varphi \rVert_{L^1} \leq 2\lVert \hat \varphi \rVert_{L^1} $ by definition of $\check \varphi$} \\
+    &\leq \left\{ \frac{\hat C 4^{\gamma - \alpha + d + 1} \lVert \hat \varphi \rVert_{L^1} }{1-2^{-\min\{\alpha + r, \gamma\}}} \right\}\cdot \lambda^{\gamma}.
+\end{align*}
+
+\subsection*{Finish}
+
+Now, we are finally able to prove that $f^K$ is a local reconstruction. We show that $f^K$ satisfies \eqref{reconstruction-theorem} uniformly for all $\psi \in \mathcal{B}_r, x \in K$ and $\lambda \in (0,1]$. We have
+\begin{align*}
+    |f^K(\psi^\lambda_x) - F_x(\psi^\lambda_x)| = |\tilde f (\psi^\lambda_x)| 
+    &\leq  |\tilde f_N (\psi^\lambda_x)| + |(\tilde f - \tilde f_N) (\psi^\lambda_x)| \\
+    &\leq \left \{ 3^{\gamma - \alpha} 2^{d+1} \hat C  \lVert \hat \varphi\rVert_{L^1} \right \} \lambda^\gamma +  \left\{ \frac{ 4^{\gamma - \alpha + d + 1} \hat C \lVert \hat \varphi \rVert_{L^1} }{1-2^{-\min\{\alpha + r, \gamma\}}} \right\}\cdot \lambda^{\gamma}  \\
+    &\leq  \left\{2\frac{  4^{\gamma - \alpha + d + 1} \hat C \lVert \hat \varphi \rVert_{L^1}}{1-2^{-\min\{\alpha + r, \gamma\}}} \right\} \lambda^{\gamma}.
+\end{align*}
+This proves that $f^K$ is a local reconstruction of $(F_x)_{x \in \mathbb{R}^d}$.
+
+For completeness, we estimate $\hat C \lVert \hat \varphi \rVert_{L^1}$. Lemma \ref{lemma:tweaked-l1-norm} gives us $\lVert \hat \varphi \rVert_{L^1} \leq \frac{e^2 r \lVert \varphi \rVert_{L^1}}{|\int \varphi(x) \mathrm{d}x |} $. The bound for $\hat C$ in \eqref{constant:hat-c} then yields 
+\begin{align}\label{chatnorml1}
+    \hat C \lVert \hat \varphi \rVert_{L^1} \leq \left(C\frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha\right)\left( \frac{e^2 r}{|\int \varphi(x) \mathrm{d}x |} \lVert \varphi \rVert_{L^1}\right).
+\end{align}
+So, the constant factor in front of $\lambda^\gamma$ reads 
+\begin{align*}
+    \left\{2\frac{  4^{\gamma - \alpha + d + 1}}{1-2^{-\min\{\alpha + r, \gamma\}}} \left(C\frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha\right) \left(\frac{e^2 r}{|\int \varphi(x) \mathrm{d}x |} \lVert \varphi \rVert_{L^1}\right) \right\}.
+\end{align*}
+Finally, we bound $e^2 \leq 4$ to obtain the constant
+\begin{align}\label{constant:rec-gamma-bigger-zero}
+    \left\{C\frac{  4^{\gamma - \alpha + d + 6}r^2}{1-2^{-\min\{\alpha + r, \gamma\}}} \frac{\lVert \varphi \rVert_{L^1}}{2^{\alpha(r+1)} (1+R_\varphi)^{\alpha}|\int \varphi(x) \mathrm{d}x |^2}  \right\},
+\end{align} 
+where $R_\varphi$ is the radius of the ball such that $\mathrm{supp}(\varphi) \subset B(0, R_\varphi)$.  
+
+
+\section{Step 6: \texorpdfstring{$(f^K)$ are consistent}{fK's are consistent}}
+
+In this final step, we construct a global reconstruction $f = \mathcal{R}F$ of $(F_x)_{x \in \mathbb{R}^d}$  using the local reconstructions $f^K$. First, we prove that the family of local reconstructions $(f^K)_{K \subset \mathbb{R}^d, \text{$K$ compact}}$ is consistent in the sense of 
+\begin{align*}
+    \forall \text{compact sets $K$ and $H$ with } K \subset H: \psi \in \mathcal{D}(\bar K_1) \implies f^K(\psi) = f^H(\psi).
+\end{align*}
+To prove this claim, we use the Uniqueness Theorem \ref{theorem:uniqueness-reconstruction}. We have $(f^K - F_x)(\varphi^\lambda_x) \to 0$ and $(g^K - F_x)(\varphi^\lambda_x) \to 0$ as $\lambda \to 0$ uniformly for $x \in \bar K_1$ because of $\gamma > 0$ and \eqref{reconstruction-theorem}. Hence, we apply the Uniqueness Theorem and conclude that $f^K(\psi) = f^H(\psi)$ for all $\psi \in \mathcal{D}(\bar K_1)$.  
+
+With the consistency property being shown, we move on to construct a global reconstruction. Let $\psi \in \mathcal{D}$. Then, we define $\mathcal{R}F: \psi \mapsto f^K(\psi)$ where $K \subset \mathbb{R}^d$ is a compact set large enough such that $\psi$ is supported in $\bar K_1$. The map $\mathcal{R}F$ is well-defined because we showed the consistency property. Moreover, $\mathcal{R}F$ is a reconstruction in the sense of \eqref{reconstruction-theorem} because $f^K$ is a local reconstruction. This ends the proof of the Reconstruction Theorem in the case $\gamma > 0$. 

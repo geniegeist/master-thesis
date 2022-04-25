@@ -1,0 +1,371 @@
+
+
+\chapter{Coherence, Homogeneity and the Reconstruction Theorem}\label{chapter:reconstruction}
+
+The Reconstruction Theorem was originally stated in the context of regularity structures by Hairer \cite{hairer2014theory}. Later, it was revisited by Caravenna and Zambotti \cite{caravenna2021hairer}, where the Reconstruction Theorem was framed in the theory of distributions. In this chapter, we will closely follow the spirit of Caravenna and Zambotti with the advantage being that it allows for an easily accessible and self-contained treatment of the Reconstruction Theorem.
+
+\section{A First Peek at the Reconstruction Theorem}\label{chapter:first-peek-at-reconstruction}
+
+\emph{Problem:} Given a family of distributions $(F_x)_{x \in \mathbb{R}^d}$ we would like to find a distribution $f \in \mathcal{D'}$ that is locally well approximated by $F_x$ around $x$ for every $x \in \mathbb{R}^d$. 
+
+\vspace{0.5cm}
+
+We can think of $(F_x)_{x \in \mathbb{R}^d}$ as a family of local candidate approximations for an unknown distribution $f$. The \emph{Reconstruction Theorem} reconstructs a function $f$ that is well approximated by $F_x$ at any point $x \in \mathbb{R}^d$. Our objective in this section is to find the conditions under which finding a reconstruction $f$ is possible. 
+
+First, we only consider a measurable family of distributions $(F_x)_{x \in \mathbb{R}^d}$ which we call \emph{germs} --- a notion first introduced in \cite{caravenna2021hairer}.
+
+\begin{definition}[Germ]
+    A family of distributions $(F_x)_{x \in \mathbb{R}^d}$ is called a \emph{germ} if for all test functions $\psi \in \mathcal{D}$ the map $x \mapsto F_x(\psi)$ is measurable.
+\end{definition}
+
+Next, being \emph{locally well approximated} by a germ $(F_x)_{x \in \mathbb{R}^d}$ means that there exists a test function $\psi \in \mathcal{D}, \int \psi(x)\, \mathrm{d}x \neq 0$ such that for all compact sets $K \subset \mathbb{R}^d$ we have 
+\begin{align}\label{peek:well-approximated}
+    \lim_{\epsilon \to 0} |(f - F_x)(\psi^\epsilon_x)| = 0 \quad \text{uniformly for $x \in K$ }.
+\end{align} 
+
+The reconstruction theorem states that \emph{under some condition} we can find a reconstruction $f \in \mathcal{D}'$ that satisfies \eqref{peek:well-approximated}.
+
+\begin{conjecture}\label{peek:conjecture}
+    Let $(F_x)_{x \in \mathbb{R}^d}$ be a germ that satisfies some yet unknown condition \emph{\texttt{???}}. Then, there exists a reconstruction $f \in \mathcal{D}'$ and $\gamma > 0$ such that for every test function $\psi \in \mathcal{D}$ there exists $C < \infty$ with
+    \begin{gather}\label{peek:eq:conjecture}
+        |(f-F_x)(\psi^\epsilon_x)| \leq C \epsilon^{\gamma} \\
+        \text{uniformly for $x$ in compact sets and $\epsilon \in (0,1]$} \nonumber.
+    \end{gather}
+    
+\end{conjecture}
+
+Note that the distribution $f$ is indeed a reconstruction of the germ $(F_x)_{x \in \mathbb{R}^d}$ in the sense of \eqref{peek:well-approximated} because $|(f-F_x)(\psi^\epsilon_x)| \leq C  \epsilon^{\gamma} \to 0$ as $\epsilon \to 0$.
+
+\vspace{0.4cm} 
+
+We would like to find a condition \texttt{???} that leads to the above conjecture. Let $(F_x)_{x \in \mathbb{R}^d}$ be a germ. Equation \eqref{eq:starting-point} will be our starting point for our search of \texttt{???}. For any $x \in \mathbb{R}^d$ and any test funtion $\psi$, the distribution $F_x$ evaluated for $\psi$ can be approximated by the mollified distribution $F_x(\psi * \rho^\epsilon)$ for some mollifier $\rho$, i.e.
+\begin{align*}
+    \lim_{\epsilon \to 0}F_x(\psi * \rho^\epsilon) \overset{\eqref{lemma:mollified-distribution}}{=} \lim_{\epsilon \to 0} \int F_x(\rho_y^\epsilon) \psi(y)\, \mathrm{d}y \overset{\eqref{eq:starting-point}}{=} F_x(\psi).
+\end{align*}
+This observation inspires us to replace $F_x$ under the integral by $F_y$ so that we obtain the map $f_\epsilon: \psi \mapsto \int F_y(\rho_y^\epsilon) \psi(y)\, \mathrm{d}y$. The motivation for $f_\epsilon$ is that we hope for 
+\begin{align*}
+    \lim_{\epsilon \to 0}f_\epsilon = \mathcal{R}f \quad \text{where } \mathcal{R}f \text{ is approximated by $F_x$ around any $x \in \mathbb{R}^d$}.
+\end{align*}
+\begin{definition}[Approximating distributions]\label{def:approximating-distributions}
+        Let $(F_x)_{x \in \mathbb{R}^d}$ be a germ and $\epsilon_n = 2^{-n}$ for $n \in \mathbb{N}$. The \emph{approximating distribution} $f_n \in \mathcal{D}'$ is defined as 
+        \begin{align*}
+                f_n: \psi \mapsto \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_n}) \psi(y)\, \mathrm{d}y
+        \end{align*}
+        for some mollifier $\rho$. 
+\end{definition}
+It is now our task to find $\texttt{???}$ such that (H1) the limit $\lim_{n \to \infty}f_n$ exists, and (H2) that this limit satisfies \eqref{peek:eq:conjecture}. This is an easier task since now we are only required to find a promising condition $\texttt{???}$ such that (H1) and (H2) hold. We further simplify this problem by ignoring (H2) for the beginning. So, the question becomes: \emph{Under which condition does $f_n$ converge?}
+
+To discuss this question in more depth, we write $f_n$ as a telescopic sum $f_n = f_1 + \sum^{n-1}_{k=1}g_k$ with $g_k = f_{k+1} - f_k$. So, the limit $\lim_{n \to \infty} f_n$ exists if and only if $\sum^\infty_{k=1}g_k < \infty$. By definition of $f_{k}$, the term $g_k$ can be written as  
+\begin{align*}
+        g_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y.
+\end{align*}
+Here, we encounter our very first obstacle. What is an appropriate choice for our mollifier $\rho$? It turns out that if we can write the \emph{difference} of two mollifiers as a \emph{convolution} of two nice test functions $\hat \varphi$ and $\check \varphi$ , i.e. $ \rho^{\epsilon_{k+1}}_y - \rho^{\epsilon_k}_y = (\hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k})_y$, 
+we can write with the help of Corollary \ref{cor:minosokoad}
+\begin{align*}
+    g_k(\psi) = \int_{\mathbb{R}^d} F_z((\hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k})_z) \psi(z)\, \mathrm{d}z
+    = \iint_{\mathbb{R}^{d \times d}} F_z(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z.
+\end{align*}
+We are intentionally vague about what \emph{nice test functions} are in this context; we will discuss them in depth in Chapter \ref{chapter:step-1-tweaking}, where these nice test functions are called \emph{tweaked test functions}.
+
+Taking a closer look at $F_z(\hat \varphi^{\epsilon_k}_y)$ \label{sec:motiadsd}, we recognize a problem when we let $k$ approach zero: the support of $\hat \varphi^{\epsilon_k}_y$ shrinks to some small compact set around $y$, but $F_z$ is a local candidate approximation around $z$; so $F_z$ cannot capture the behaviour around the point of interest $y$. We circumvent this problem with the triangle inequality: $F_z(\hat \varphi^{\epsilon_k}_y) = F_y(\hat \varphi^{\epsilon_k}_y) + \left(F_z(\hat \varphi^{\epsilon_k}_y) - F_y(\hat \varphi^{\epsilon_k}_y)\right)$. 
+Therefore, we can write $g_k$ as 
+\begin{align*}
+        g_k(\psi) = \iint F_y(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z 
+        + \iint (F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z .
+\end{align*}
+Remember that we are interested in finding a condition \texttt{???} for the germ $(F_x)_{x \in \mathbb{R}^d}$  such that $\sum^\infty_{k=1} g_k < \infty$. 
+
+To find \texttt{???} we let us guide by a closely related problem in another branch of mathematics: rough differential equations. There, one would like to make sense of an integral $I_t$  of the form $I_t = \int^t_0 X_s \, \mathrm{d}Y_s$ where $X_s$ and $Y_s$ are paths of low regularity. For instance, let $G \in \mathcal{V}^p$ and $F \in \mathcal{V}^q$ with $\frac{1}{p} + \frac{1}{q} > 1$, where $\mathcal{V}^j$ is the space of all functions with finite $j$-variation for $j \in \left\{ p,q \right\}$. Then, there exists a canonical integration theory for this setting (the so called \emph{Young} regime \cite{Young1936AnIO}) such that the integral $I_t = \int^t_0 G \, \mathrm{d}F$ is defined. The idea is that for very small $|t-s|$ we approximate 
+\begin{align*}
+    \int^t_s G \, \mathrm{d}F \approx G(s)(F(t) - F(s)) \eqqcolon A_{s,t}.
+\end{align*}
+We use this approximation to give a meaning to the integral $\int^t_0 G \, \mathrm{d}F$.
+The \emph{Sewing Lemma} \cite{GUBINELLI200486}, an analytical tool, which let integrals of low regularity to be defined in a meaningful sense, allows us to sew the approximations $A_{s,t}$ together to obtain an integral as a Riemann-type sum
+\begin{align}\label{sewing-lemma-integral}
+    I_t = \int^t_0 G \, \mathrm{d}F \coloneqq \lim\limits_{|\pi| \to 0} \sum\limits_{i=0}^{\# \pi - 1} A_{t_i,t_{i+1}}
+\end{align}
+for arbitrary partitions\footnote{Here, a partition of $[0,t]$ is an ordered set $\pi = \left\{ 0 = t_0 < t_1 < ... < t_k = t  \right\}$, $\# \pi = k$ and $|\pi| = \max\limits_{i=0,...,\# \pi - 1} |t_{i+1} - t_{i}|$.} $\pi$ of $[0,t]$ with $|\pi| \to 0$ as $n \to 0$.
+\begin{lemma}[Sewing Lemma \cite{broux2021sewing}]
+    Let $\gamma > 1$ and $\Delta = \left\{ (s,t) :  0 \leq s \leq t \leq T\right\}$ for some fixed $T > 0$. Let $A: \Delta \to \mathbb{R}$ be a continuous function such that there exists $C <\infty$ with
+    \begin{gather}
+        \delta A_{s,u,t} \coloneqq |A_{s,t} - A_{s,u} - A_{u,t}| \leq C (\max\{|u-s|,|t-u|\})^\gamma \label{sewing-lemma-condition}\\
+        \text{uniformly for $0 \leq s \leq u \leq t \leq T$}. \nonumber
+    \end{gather} 
+    Then, there exists a unique function $I: [0,T] \to \mathbb{R}$ and $\tilde C < \infty$  such that $I_0 = 0$ and 
+    \begin{gather*}
+        |I_t - I_s - A_{s,t}| \leq \tilde C|t-s|^\gamma\\
+        \text{uniformly over $0 \leq s \leq t \leq T$.}
+    \end{gather*}  
+    Furthermore, $I$ is the limit of Riemann-type sums as in \eqref{sewing-lemma-integral}.  
+\end{lemma}
+The connection to the Reconstruction Theorem can be seen in the following way: From a distributional viewpoint, we approximate the integral $I_t$ by $F_x$: 
+\begin{align*}
+    G(x)\int^t_0 \psi \, \mathrm{d}F \eqqcolon F_x(\psi)  \leadsto I_t(\psi) \coloneqq \int^t_0 G \psi \, \mathrm{d}F
+\end{align*}
+If we let $\psi = 1_{[s,t]}$, we get
+\begin{align*}
+    F_s(1_{[s,t]}) = G(s) \int^t_s \mathrm{d}F = G(s)(F(t) - F(s)) = A_{s,t}.
+\end{align*}
+If we further assume that $F_s(1_{[s,t]})$ satisfies \eqref{sewing-lemma-condition}, we have by the Sewing Lemma
+\begin{align*}
+    (F_x - F_u)((1_{[0,1]})^{y-u}_u) = \frac{(F_x - F_u)(1_{[u,y]})}{y-u} &= \frac{(G(x) - G(u))(F(y) - F(u))}{y-u} \\
+    &= \frac{\delta A_{x,u,y}}{y-u}\\
+    &\leq C \frac{ (|u-x| + |y-u|)^\gamma}{y-u}.
+\end{align*} 
+Hence the germ $(F_x)_{x \in \mathbb{R}^d}$ satisfies 
+\begin{align*}
+    (F_x - F_u)((1_{[0,1]})^{\epsilon}_u) \leq C \epsilon^{-1}(|u-x| + \epsilon)^\gamma
+\end{align*}
+for $\epsilon = y-u$ as long as $A_{s,t} = F_s(1_{[s,t]})$ satisfies the Sewing Lemma condition \eqref{sewing-lemma-condition}. This inspires us to define a property coined \emph{coherence} --- an optimal condition for the Reconstruction Theorem that was found by Caravenna and Zambotta in \cite{caravenna2021hairer}. Coherence states that a germ satisfies
+\begin{gather}\label{pre-condition-coherence}
+    |(F_z - F_y)(\varphi^\epsilon_y)| \leq C\epsilon^{a}(|z-y| + \epsilon)^{c - a}  \\ \text{uniformly for $z,y$ in compact sets and $\epsilon \in (0,1]$} \nonumber.
+\end{gather}
+for some test function $\varphi$, constants  $c$ and $a$.
+The precise definition will occur in Chapter \ref{chapter:coherence}. In our previous example $A_{s,t} = F_s(1_{[s,t]})$, we have $a = -1$ and $c = \gamma - 1$ for our coherence condition. 
+
+Returning to our problem of finding a bound for $g_k$ (recall that we aim to show that $\sum^\infty_{k=1} g_k < \infty$):
+\begin{align*}
+    g_k(\psi) = \iint F_y(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z 
+    + \iint (F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z,
+\end{align*}
+we now have the condition of \emph{coherence} \eqref{pre-condition-coherence} to control $g_k$. It is not difficult to show that the second term in $g_k$ can be bounded with coherence. As we let $k \to \infty$, we have $\epsilon_k \to 0$. Moreover by coherence, $(F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \leq C \epsilon_k^{a} (|z-y| + \epsilon_k)^{c-a}$. If $|z-y| < \epsilon_k$, then $(F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \leq C2^{c-y} \epsilon_k^c \to 0$ as $k \to \infty$; this is great news because the remaining part of the second term $\check \varphi^{\epsilon_k}(y-z) \psi(z)$ is easily bounded.
+
+Regarding the first term, we want $F_y(\hat \varphi^{\epsilon}_y) \to 0$ as $\epsilon \to 0$. One way to achieve this is by imposing a condition which we will call \emph{homogeneity}: if $F_y(\hat \varphi^{\epsilon}_y) \leq B \epsilon^{\beta}$ for some constant $B < \infty$ , we will say that the germ $(F_x)_{x \in \mathbb{R}^d}$ has homogeneity bound $\beta$. If $\beta > 0$, then   $F_y(\hat \varphi^{\epsilon}_y) \leq B \epsilon^\beta \to 0$ as $\epsilon \to 0$. Hence, the first term in $g_k$ can be controlled thanks to homogeneity; this condition in turn with coherence will allow us to show $\sum^\infty_{k=1} g_k < \infty$. 
+
+It seems that we need a germ to satisfy the coherence and homogeneity condition. Fortunately, we get the homogeneity for free if a germ is coherent\footnote{A germ is said to be coherent if it satisfies the coherence condition in \eqref{pre-condition-coherence}. The precise definition will be given in Chapter \ref{chapter:coherence}.}. So, requiring a germ to be coherent is all we need to get the Reconstruction Theorem going! It gets even better: so far we showed with the help of coherence that a limiting sequence $f_n$ exists that converges to some $f$ which we \emph{might} call our reconstruction. However, it is not clear if $f$ is a reconstruction in the sense of \eqref{peek:eq:conjecture}. We will see that coherence suffices to show that $f$ is indeed a reconstruction.
+
+\section{Coherence and Homogeneity}\label{chapter:coherence}
+
+In this chapter we will rigorously introduce the notion of \emph{coherence} and \emph{homogeneity}. We will later see that coherence is sufficient and even necessary for the Reconstruction Theorem. Moreover, homogeneity follows from coherence.
+
+We gave a heuristic motivation for the coherence condition in Chapter \ref{chapter:first-peek-at-reconstruction}, where we started with the Sewing Lemma and ended up with the following definition for a germ to be \emph{coherent}.
+
+\begin{definition}[$\gamma$-coherent germs]\label{definition:coherence}
+   Let $\gamma \in \mathbb{R}$. A germ $(F_x)_{x \in \mathbb{R}^d}$ is called \emph{$\gamma$-coherent} if there exists a test function $\varphi \in \mathcal{D}$ with $\int \varphi(x) \, \mathrm{d}x \neq 0$ such that for every compact set $K \subset \mathbb{R}^d$ there exists a non-positive real number $\alpha_K \leq \min\left\{ 0, \gamma \right\}$ and a constant $C < \infty$ with
+   \begin{gather}\label{coherence}
+        |(F_z - F_y)(\varphi^\lambda_y)| \leq C\lambda^\alpha(|z-y| + \lambda)^{\gamma - \alpha}  \\ \text{uniformly for $z,y \in K$, $|y-z| \leq 2$  and $\lambda \in (0,1]$} \nonumber.
+   \end{gather}
+\end{definition}
+Note that we require $|y-z| \leq 2$ to hold which appears rather arbitrary. Indeed, one could also define coherence with $|y-z| \leq R$ for any $R \in \mathbb{R}$ instead; they are both equivalent. We can even drop the constraint $|y-z| \leq 2$ entirely, see Proposition \ref{proposition:cutoff}. In the end, we choose $|y-z| \leq 2$ because it is convenient for our purpose of proving the Reconstruction Theorem.
+
+Sometimes it is useful to explicitly mention the family $(\alpha_K)$. So, we say that  $(F_x)_{x \in \mathbb{R}^d}$ is $(\bm{\alpha}, \gamma)$-coherent if $\bm \alpha = (\alpha_K)$ and $\alpha_K$ is the exponent required for the coherence condition \eqref{coherence} to hold for the compact set $K$. 
+
+Fix $K, \varphi, \alpha, \gamma$. The \emph{semi-norm $\vertiii{\cdot}^{\mathrm{coh}}_{K,\varphi,\alpha,\gamma}$} is the smallest constant $C \in \mathbb{R} \cup \left\{ \infty \right\}$ such that the coherence condition \eqref{coherence} holds for $K, \varphi, \alpha, \gamma$. Concretely, we define
+\begin{align*}
+    \vertiii{F}^{\mathrm{coh}}_{K,\varphi,\alpha,\gamma} = \sup \left\{ \frac{(F_z - F_y)(\varphi^\lambda_y)}{\lambda^\alpha(|z-y| + \epsilon)^{\gamma - \alpha}} : y,z \in K, |z-y| \leq 2, \lambda \in (0,1] \right\}.
+\end{align*}
+
+We briefly discuss the meaning of coherence. For some constant $C' < \infty$ we rewrite the inequality \eqref{coherence} in the coherence assumption as
+\begin{align}\label{EspressoHouse}
+    |(F_z - F_y)(\varphi^\epsilon_y)| \leq C' \begin{cases}
+        \epsilon^\gamma \quad & \text{if $|z-y| \leq \epsilon$} \\
+        \epsilon^{\alpha} |z-y|^{\gamma - \alpha} \quad & \text{otherwise}
+    \end{cases}.
+\end{align}
+\begin{itemize}
+    \item First, note that $\epsilon^{\gamma} \leq \epsilon^{\alpha}$ because of $\epsilon \in (0,1]$ and $\gamma \geq \alpha$. As $|z-y|$ decreases to $\epsilon$, the difference between the two distributions $F_z$ and $F_y$ (evaluated at $\varphi^\epsilon_y$) changes from magnitude $\epsilon^\alpha$ to $\epsilon^{\gamma}$. This change becomes very dramatic when $\gamma > 0$ and $\alpha < 0$. Then, $\epsilon^{\alpha}$ diverges while $\epsilon^{\gamma}$ vanishes as $\epsilon \to 0$.
+    \item Second, observe that the right hand side of \eqref{EspressoHouse} shrinks as $\alpha \nearrow 0$ for fixed $\gamma, y$ and $z$. In other words, the larger $\alpha$ (remember that $\alpha < 0$), the better the estimate gets. Hence, without loss of generality we assume that the map $K \mapsto \alpha_K$ is \emph{monotone}, i.e. 
+    \begin{align}\label{alpha-monotone}
+        K \subset K' \implies \alpha_K \geq \alpha_{K'}.
+    \end{align}
+    This is achieved by choosing the exponents $\alpha_K$ in the following way: for balls $K = B(0,n)$ of radius $n \in \mathbb{N}$ choose $\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}$; otherwise for general compact sets $K$ choose $\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}$ with $n \in \mathbb{N}$ such that  $B(0,n) \supset K$. This ensures that the family of exponents $(\alpha_K)$ is montone. It will play an important role in the proof of the Reconstruction Theorem in case $\gamma < 0$, see Chapter \ref{chapter:step6gammaNegative}.
+\end{itemize}
+
+To conclude, for fixed $y \in \mathbb{R}^d$ and distribution $F_y$
+\begin{enumerate}
+    \item we know more about distributions $F_z$ if $|z - y | \leq \epsilon$ because then $|(F_z - F_y)(\varphi^\epsilon_y)|$ is smaller than for $|z - y| > \epsilon$, and
+    \item in case of $\gamma > 0$ and $\alpha < 0$ we obtain even more information about $F_z$ where $|z - y | \leq \epsilon$  as $\epsilon$ decreases.
+\end{enumerate}
+
+Next, we discuss how we need to utilize the coherence condition $\eqref{coherence}$ to get the most out of it. Remember, we want to control the $(**)-$part of $g_k$ which is $ \iint (F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z$. As we found out, the coherence property gives us the most information when $|z - y| \leq \epsilon_k$. This means that we need to carefully select $\check \varphi$ such that its support $\mathrm{supp}(\check \varphi)$ has diameter smaller or equal $\epsilon_k$ as this implies $|z-y| \leq \epsilon_k$. When we then apply the coherence condition $\eqref{coherence}$, we can bound 
+\begin{align*}
+    \iint &(F_z - F_y)(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z 
+    \\ & \leq \sup_{|y-z|\leq \epsilon_k}|(F_z -F_y)(\hat \varphi^{\epsilon_k}_y)| \iint  \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z    \\
+    &\Downarrow \text{coherence condition}
+    \\ &\leq C' \epsilon_k^{\gamma} \cdot \left\{ \text{constant} \right\}.
+\end{align*}
+As we sum $\sum^\infty_{k=1} g_k$, we want $\sum^\infty_{k=1} C' \epsilon_k^{\gamma} \cdot \left\{ \text{constant} \right\}$, which is a geometric sum (since $\epsilon_k \coloneqq 2^{-k}$), to be finite. That is the case when $\gamma > 0$. Thus, we can bound one part of $\sum^\infty_{k=1} g_k$, and the coherence condition \eqref{coherence} helped us successfully to show that the approximating distributions $f_n$ do converge.
+
+To control the $(*)$-part of $g_k$, we have introduced the notion of \emph{homogeneity bound}. We could demand that the germ $(F_x)_{x \in \mathbb{R}^d}$ needs to satisfy the homogeneity bound on top of the coherence condition \eqref{coherence}, but luckily we get it for free when the germ $(F_x)_{x \in \mathbb{R}^d}$ is $\gamma$-coherent. The following lemma is definition and lemma at the same time.
+
+\begin{lemma}[Homogeneity bound]
+   Let $(F_x)_{x \in \mathbb{R}^d}$ be a $\gamma$-coherent germ. Then, for every compact set $K \subset \mathbb{R}^d$ there exists a real number $\beta < \gamma$ and a constant $B < \infty$ such that the \emph{homogeneity bound} holds, i.e. 
+   \begin{gather*}\label{homogeneity}
+                |F_y(\varphi^\epsilon_y)| \leq B\epsilon^\beta \quad
+                \text{uniformly for $y \in K$ and $\epsilon \in (0,1]$} \tag{\texttt{HOMB}}.
+   \end{gather*}
+   We say the germ $(F_x)_{x \in \mathbb{R}^d}$ has \emph{local homogeneity bound} $\bm \beta = (\beta_K)$ if $\beta_K$ is the exponent such that \eqref{homogeneity} holds for the compact set $K \subset \mathbb{R}^d$. We say the germ $(F_x)_{x \in \mathbb{R}^d}$ has \emph{global homogeneity bound} $\beta$ if $\beta_K = \beta$ for all compact sets $K \subset \mathbb{R}^d$.
+\end{lemma}
+
+\begin{proof}
+    We know how to bound $|(F_y - F_z)(\varphi^\epsilon_y)|$ by the coherence condition \eqref{coherence}. If we can bound $|F_z(\varphi^\epsilon_y)|$, then we can easily obtain 
+    \begin{align*}
+        |F_y(\varphi^\epsilon_y)| \leq |(F_y - F_z)(\varphi^\epsilon_y) + F_z(\varphi^\epsilon_y)| \leq \left\{ \mathrm{constant} \right\} \cdot \epsilon^{\beta}
+    \end{align*}
+    for some $\beta$.
+    
+    Fix any compact set $K \subset \mathbb{R}^d$ and $z \in K$. We use the coherence condition to estimate $|(F_y - F_z)(\varphi^\epsilon_y)| \leq  C \epsilon^{\alpha}(|z-y|+\epsilon)^{\gamma - \alpha} \leq \{ C (\mathrm{diam}(K) + 1)^{\gamma - \alpha} \} \cdot  \epsilon^{\alpha}$ uniformly for $y \in K$ and $\epsilon \in (0,1]$ (where $\mathrm{diam}(K) \coloneqq \sup_{y,z \in K}|y-z| $).
+
+    To estimate $|F_z(\varphi^\epsilon_y)|$, we know there exist $\tilde C < \infty$ and $r \in \mathbb{N}_0$ such that $|F_z(\varphi^\epsilon_y)| \leq \tilde C \lVert \varphi^\epsilon_y \rVert_{C^r}$ for all $y \in K$ and $\epsilon \in (0,1]$ because $F_z$ is a distribution. Also, we have $\lVert \partial^k\varphi^\epsilon_y \rVert_\infty \leq \epsilon^{-|k|- d} \lVert \partial^k\varphi \rVert_\infty \leq \epsilon^{-r - d} \lVert \varphi \rVert_{C^r}$. Thus, $\lVert \varphi^\epsilon_y \rVert_{C^r} \leq \epsilon^{-r-d}\lVert \varphi \rVert_{C^r}$ follows. In the end, we obtain 
+    $|F_z(\varphi^\epsilon_y)| \leq \{ \tilde C  \lVert \varphi \rVert_{C^r}  \} \cdot \epsilon^{-r-d}$.
+
+    All we have to do is to chose $B \coloneqq C (\mathrm{diam}(K) + 1)^{\gamma - \alpha} +  \tilde C  \lVert \varphi \rVert_{C^r}  $ and $\beta \leq \min \left\{ \alpha, -r-d, \gamma \right\}$.
+\end{proof}
+
+Similar to $(\alpha_K)$, the family $(\beta_K)$ is \emph{monotone} in the sense that 
+\begin{align}\label{beta-monotone}
+    K \subset K' \implies \beta_K \geq \beta_{K'}.
+\end{align} 
+
+
+We are ready to state a preliminary version of the reconstruction theorem. 
+
+\begin{theorem}[Preliminary reconstruction theorem]\label{peek:prelim-reconstruction-theorem}
+    Let $\gamma \in \mathbb{R}$.
+   Let $F = (F_x)_{x \in \mathbb{R}^d}$ be a $\gamma$-coherent germ. Then, there exists a distribution $f \in \mathcal{D}'$ such that for every test function $\psi \in \mathcal{D}$ and compact set $K \subset \mathbb{R}^d$ there exists a constant $C < \infty$ with  
+   \begin{gather*}
+           |(f-F_x)(\psi^\epsilon_x)| \leq C \begin{cases}
+                   \epsilon^\gamma \quad &\text{if $\gamma \neq 0$} \\
+                   1+|\log\epsilon| & \text{if $\gamma = 0$}
+           \end{cases} \\ \text{uniformly for $x \in K$ and $\epsilon \in (0,1]$}.
+   \end{gather*}
+   If $\gamma > 0$, the distribution $f$ is unique, and we say $f = \mathcal{R}F$ (in words: $f$ is the \emph{reconstruction of $F$}).
+\end{theorem}
+
+
+
+
+
+
+\section{The Reconstruction Theorem in Detail}
+
+We state the Reconstruction Theorem of Hairer \cite{hairer2014theory} in the language of {distribution theory}.
+
+\begin{theorem}[Reconstruction theorem]\label{theorem:reconstruction-theorem}
+   Let $\gamma \in \mathbb{R}$ be a real number. Let $(F_x)_{x \in \mathbb{R}^d}$ be a $(\bm{\alpha}, \gamma)$-coherent germ with local homogeneity bounds $\bm \beta$. Then, there exists a distribution $f \in \mathcal{D}'$ such that for every compact set $K \subset \mathbb{R}^d$ and all $r \in \mathbb{N}$, $r> \max \left\{ -\alpha_{\bar K_2}, -\beta_{\bar K_2} \right\}$ we have TO-DO: there exists $C > 0$ 
+   \begin{align*}\label{reconstruction-theorem}
+        |(f-F_x)(\psi^\epsilon_x)| \leq C \cdot \begin{cases}
+            \epsilon^\gamma \quad & \text{if $\gamma \neq 0$}\\
+            1 + |\log \epsilon| \quad & \text{if $\gamma = 0$}
+        \end{cases}\tag{\texttt{REC}}
+        \\ \text{uniformly for $\psi \in \mathcal{B}_r$, $x \in K$, $\epsilon \in (0,1]$.} 
+   \end{align*}
+\end{theorem}
+
+\begin{remark} 
+   We gather some remarks about the reconstruction theorem.
+\begin{enumerate}
+   \item As usual, $\varphi$ denotes the test function defined in the coherence property \eqref{coherence}.
+   \item $C$ is a constant, which must \emph{not} depend on $\psi,x$ and $\epsilon$. Precisely, it is given by \begin{align*}
+           C = \mathrm{const}(\alpha_{\bar K_2}, \gamma, r, d, \varphi) \cdot \vertiii{F}^{\mathrm{coh}}_{\bar K_2, \varphi, \alpha_{\bar K_2}, \gamma}.
+   \end{align*}
+   The constant $\mathrm{const}(\alpha_{\bar K_2}, \gamma, r, d, \varphi) \in \mathbb{R}$ depends on $\alpha_{\bar K_2}, \gamma, r, d$ and $\varphi$.
+   \item For $\gamma > 0$, $f = \mathcal{R}F$ is unique and we call it the \emph{reconstruction} of $F = (F_x)_{x \in \mathbb{R}^d}$. Moreover, the map $F \mapsto \mathcal{R}F$ is linear.
+   \item For $\gamma \leq 0$, the distribution $f$ need not be unique, but for any fixed $\alpha \leq \min\left\{ 0, \gamma \right\}$, we can choose $f$ in such a way that the map $F \mapsto \mathcal{R}F$ is linear on the vector space of $(\alpha,\gamma)$-coherent germs with global homogeneity bound $\beta$.
+   \item The \hyperref[peek:prelim-reconstruction-theorem]{preliminary reconstruction theorem} found in the previous section is a special case of the reconstruction theorem stated here. Proof. TO-DO ...
+\end{enumerate}
+\end{remark}
+
+In the subsequent chapters, we will prove that the Reconstruction Theorem given that a germ is coherent (see Theorem \ref{theorem:reconstruction-theorem}). So, coherence is a \emph{sufficient} condition. But, there is more to that: coherence is also \emph{necessary} for a germ to be reconstructable in the sense of Theorem \ref{theorem:reconstruction-theorem}. We say that coherence is an \emph{optimal} condition.
+
+\begin{theorem}[Coherence is necessary]\label{theorem:coherence-is-necessary}
+   Fix any $\gamma \in \mathbb{R}$.  Let $(F_x)_{x \in \mathbb{R}^d}$ be a germ. Let $f \in \mathcal{D}'$ be a distribution such that for every compact set $K \subset \mathbb{R}^d$ there exists $C < \infty$ and $r \in \mathbb{N}$ with
+   \begin{gather}\label{thm:coh-necessary}
+        |(f-F_y)(\psi^\lambda_y)| \leq C \lambda^\gamma \\
+        \text{for all $y \in K, \lambda \in (0,1]$ and $\psi \in \mathcal{B}_r$. \nonumber  }
+   \end{gather}
+   Then, $(F_x)_{x \in \mathbb{R}^d}$ is $\gamma$-coherent.  
+\end{theorem}
+
+\begin{proof}
+   To show that $(F_x)_{x \in \mathbb{R}^d}$ is $\gamma$-coherent, it suffices to show that there exists $\alpha \leq \min\left\{ 0, \gamma \right\}$ and a constant $\hat C < \infty$ such that the following slightly modified coherence property holds 
+   \begin{gather*}
+       |(F_x - F_y)(\psi^\lambda_y)| \leq \hat C \lambda^\alpha(|x-y| + \lambda)^{ \gamma - \alpha} \\
+       \text{$\forall x,y \in K$ with $|x-y| \leq \frac{1}{2}, \lambda \in (0, \frac{1}{2}]$ and $\psi \in \mathcal{B}_r$}.
+   \end{gather*}  
+   Together with TO-DO CUTOFF PROPERTY we then see that $(F_x)_{x \in \mathbb{R}^d}$ is $\gamma$-coherent.  
+
+   Fix a compact set $K \subset \mathbb{R}^d$. Let $x,y \in K$ with $|x-y| \leq \frac{1}{2}$, $\lambda \in (0, \frac{1}{2}]$ and $\psi \in \mathcal{B}_r$. We begin with
+   \begin{align*}
+    |(F_x - F_y)(\psi^\lambda_y)| \leq |(F_x - f)(\psi^\lambda_y)| + |(f - F_y)(\psi^\lambda_y)| \overset{\eqref{thm:coh-necessary}}{\leq} |(F_x - f)(\psi^\lambda_y)| + C \lambda^\gamma.
+   \end{align*}
+   Next, estimating $|(F_x - f)(\psi^\lambda_y)|$ is a nontrivial task because $\psi_y^\lambda$ is centered around $y$ and not $x$. We overcome this obstacle by doing the substitution $\psi^\lambda_y \leadsto \xi^{\lambda_1}_x$, where 
+   \begin{gather*}
+       \xi \coloneqq \psi^{\lambda_2}_w, \quad w \coloneqq \frac{y-x}{|x-y| + \lambda}, \\
+    \lambda_1 \coloneqq |x-y| + \lambda, \;\text{ and } \; \lambda_2 \coloneqq \frac{\lambda}{|x-y|  + \lambda}.
+   \end{gather*}
+   We quickly verify that this substitution is correct
+   \begin{align*}
+    \xi^{\lambda_1}_x = \frac{\psi\left(
+        \lambda_2^{-1}\left(\frac{\cdot - x}{|x-y| + \lambda} - w\right)
+    \right) }{\left((|x-y| + \lambda)\frac{\lambda}{|x-y| + \lambda}\right)^d}
+    =
+    \frac{\psi\left(
+        \frac{\cdot - x - (y-x)}{\lambda}
+    \right) }{\lambda^d} = \lambda^{-d}\psi\left( \frac{\cdot - y}{\lambda} \right) = \psi^\lambda_{y}.
+   \end{align*}
+   Hence, 
+   \begin{align}
+    |(F_x - f)(\psi^\lambda_y)| = |(F_x - f)\left( \xi^{\lambda_1}_x \lVert \xi \rVert_{C^{r}}^{-1} \right)| \cdot  \lVert \xi \rVert_{C^{r}} &\overset{\eqref{thm:coh-necessary}}{\leq} C\lambda_1^\gamma\lVert \xi \rVert_{C^{r}}. \label{SponsoredByGilette}
+   \end{align}
+   To justify that we can indeed use $\eqref{thm:coh-necessary}$, observe that $\lambda_1 \in (0, 1]$ and $\xi^{\lambda_1}_x \lVert \xi \rVert_{C^{r}}^{-1} \in \mathcal{B}_{r}$. The latter observation comes from $\lambda_2 + |w| = 1$ and $\mathrm{supp}(\psi) \subset B(0,1)$; both imply that $\xi = \psi^{\lambda_2}_w$ is supported in $B(0,1)$, and the scaling factor $\lVert \xi \rVert_{C^{r}}^{-1}$ ensures that the $C^r$ norm is always one.
+   
+   Additionally, $\lVert \xi \rVert_{C^{r}} = \max_{k \leq r}\lVert \partial^k \psi^{\lambda_2}_w \rVert_\infty = \max_{k \leq r} \lambda_2^{-d-k} \lVert \partial^k \psi \rVert_{\infty} \leq \lambda_2^{-d - r}$. So,
+   \begin{align*}
+    |(F_x - f)(\psi^\lambda_y)| \leq C\lambda_1^\gamma \lambda_2^{-d-r} &= C(|x-y| + \lambda)^\gamma\left(\frac{\lambda}{|x-y|  + \lambda}\right)^{-d-r} \\
+    &\leq C  (|x-y| + \lambda)^{\gamma - \alpha} \lambda^\alpha,
+   \end{align*}
+    where we define $\alpha = \min\left\{ -d-r , \gamma \right\}$. 
+    
+    At last, 
+    \begin{align*}
+        |(F_x - F_y)(\psi^\lambda_y)| &\leq C  (|x-y| + \lambda)^{\gamma - \alpha} \lambda^\alpha + C \lambda^\gamma \\
+        &\Downarrow \text{where $\lambda^\gamma = \lambda^{\gamma - \alpha} \lambda^\alpha \leq (|x-y| + \lambda)^{\gamma - \alpha} \lambda^\alpha$} \\
+        &\leq 2C  (|x-y| + \lambda)^{\gamma - \alpha} \lambda^\alpha.
+    \end{align*}
+\end{proof}
+
+We slightly modify the previous proof to prove that the constraint $|z-y| \leq 2$ in the coherence condition (see Defintion \ref{definition:coherence}) can be dropped, i.e. if \eqref{coherence} holds uniformly for any $y,z \in K$ with $|z-y| \leq 2$, then it also holds for any $\tilde y, \tilde z \in K$ with $|\tilde z- \tilde y| > 2$ (possibly with another multiplicate constant $C$). Hence, we could also define coherence by
+\begin{gather}\label{better-coherence}
+    |(F_z - F_y)(\varphi^\lambda_y)| \leq C\lambda^\alpha(|z-y| + \lambda)^{\gamma - \alpha}  \\ \text{uniformly for $z,y \in K$ and $\lambda \in (0,1]$} \nonumber
+\end{gather}
+since it is equivalent to Defintion \ref{definition:coherence} as the next proposition shows. 
+
+\begin{proposition}\label{proposition:cutoff}
+    Let $F$ be a $\gamma$-coherent germ as in Definition \ref{definition:coherence}. Then, it satisfies \eqref{better-coherence} for any compact set $K$ provided the multiplicative constant $C$ is adjusted.
+\end{proposition}
+
+\begin{proof}
+    Let $F$ be a $\gamma$-coherent germ and $\varphi$ be as in Definition \ref{definition:coherence}. Fix a compact set $K \subset \mathbb{R}^d$. Assume $y,z \in K$ with $|y-z| > 2$. Let $A$ be a finite family of points in $\mathbb{R}^d$ such that $K$ is covered by $A$ and for each point $x \in K$ there exists $a_x \in A$ with $|x-a| < 2$. Such $A$ exists because $K$ is compact. Then, we have $|(F_z - F_y)(\varphi^\lambda_z)| \leq |(F_z - F_{a_z})(\varphi^\lambda_z)| + |(F_{a_z} - F_y)(\varphi^\lambda_z)|$. The first summand is bounded by \eqref{coherence}. Bounding the second summand is nontrivial since $\varphi$ is centered around $z$ and not $a_z$ or $y$. This is the same situation as in the proof of Theorem \ref{theorem:coherence-is-necessary}. So, we write
+    \begin{align*}
+        |(F_{a_z} - F_y)(\varphi^\lambda_z)| \leq |(F_{a_z} - f)(\varphi^\lambda_z)| + |(f - F_y)(\varphi^\lambda_z)|,
+    \end{align*}
+    where $f$ is the reconstruction of the germ $F$; note that $f$ exists by the Reconstruction Theorem and the Reconstruction Theorem only requires $F$ to be coherent in the sense of Definition \ref{definition:coherence}. Next, we use the same substitution as in \eqref{SponsoredByGilette} to obtain an upper bound for both summands. These upper bounds only depend on $|a_z - z|$, $|y - z|$ and $\lambda$, which ends the proof.  
+\end{proof}
+
+Next, we show uniqueness of the reconstruction. 
+
+\begin{theorem}[Uniqueness]\label{theorem:uniqueness-reconstruction}
+   Let $F = (F_x)_{x \in \mathbb{R}^d}$ be a germ and $\varphi \in \mathcal{D}$ be a test function with $\int \varphi(x) \mathrm{d}x \neq 0$. Let $K \subset \mathbb{R}^d$ be a compact set, and let $f, g \in \mathcal{D}'$ be any two distributions such that
+   \begin{align*}
+       \lim_{\lambda \to 0} |(f-F_x)(\varphi^\lambda_x)| &= 0 \quad \text{uniformly for $x$ in $K$} \\ 
+       \quad \lim_{\lambda \to 0} |(g-F_x)(\varphi^\lambda_x)| &= 0 \quad \text{uniformly for $x$ in $K$}
+   \end{align*} 
+    Then, $f(\psi) = g(\psi)$ for all test functions $\psi \in \mathcal{D}(K)$.  
+\end{theorem}
+
+ss
+
+\begin{proof}
+    Define $F, \varphi, K, f$ and $g$ as in the theorem. Next, we define $T \coloneqq f - g$, fix $\psi \in \mathcal{D}(K)$ and show $T(\psi) = 0$.
+   
+    We assume that $\int \varphi(x) \mathrm{d} x = 1$ (otherwise we replace $\varphi$ by $(\int \varphi(x) \mathrm{d}x)^{-1}\varphi$). Then, the family $(\varphi^\lambda)_{\lambda \in (0,1]}$ is a mollifier, and thus $T(\psi) = \lim_{\lambda \to 0}T(\psi * \varphi^\lambda)$. This allows us to estimate 
+    \begin{align*}
+        |T(\psi * \varphi^\lambda)| = \left|\int T(\varphi^\lambda_x) \psi(x) \mathrm{d}x\right| \leq \lVert \psi \rVert_{L^1} \, \sup_{x \in K}|T(\varphi^\lambda_x)|,
+    \end{align*}
+    where for the last inequality we recall that $\psi$ has compact support in $K$. Using the triangle inequality, we bound 
+    $$
+        |T(\varphi^\lambda_x)| = |(f-g)(\varphi^\lambda_x)| \leq |(f-F_x)(\varphi^\lambda_x)| + |(g-F_x)(\varphi^\lambda_x)|.
+    $$ 
+    Taking the limit $\lambda \to 0$ proves the uniqueness theorem. 
+\end{proof}

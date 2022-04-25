@@ -1,0 +1,386 @@
+
+\chapter{Proof of the Reconstruction Theorem}\label{chapter:general-proof}
+
+From chapter 1 ... that given a germ $(F_x)_{x \in \mathbb{R}^d}$ we introduced the \emph{approximating distributions} 
+\begin{align*}
+    f_n(\psi) \coloneqq \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_n}) \psi(y) \, \mathrm{d}y \tag{Approximating distributions},
+\end{align*}
+which was motivated by $F_x(\psi * \rho^\epsilon) \to F_x(\psi)$. We \emph{guessed} that if the \emph{coherence condition} \eqref{coherence} holds, i.e. the germ $(F_x)_{x \in \mathbb{R}^d}$ is $(\bm \alpha, \gamma)$-coherent, then
+\begin{enumerate}[label=(H\arabic*)]
+    \item $\lim_{n \to \infty}f_n$ exists, and
+    \item  $\lim_{n \to \infty}f_n$ satisfies the inequality \eqref{reconstruction-theorem} of the reconstruction theorem
+ \end{enumerate}
+ Then, we \emph{decomposed} the approximating distributions $f_n$ using a telescopic into 
+ \begin{align*}
+    f_n = f_1 + \sum^{n-1}_{k=1}
+    g_k, \quad g_k(\psi) \coloneqq f_{k+1}(\psi) - f_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y.
+ \end{align*}
+For (H1) to hold, the series must therefore be finite. When proving the reconstruction theorem, we will largely be concerned with showing (H1) and (H2). However, there is one caveat that we need to be aware of: the limit $\lim_{n \to \infty}f_n$ of claim (H1) need not exist for $\gamma \leq 0$, and we need to divide the proof into two cases $\gamma >0$ and $\gamma \leq 0$. Fortunately, claim (H1) for $\gamma \leq 0$ can be fixed in a simple way (TO-DO...), and both cases share a large part of the proof. 
+
+In the following sections, we prove the reconstruction theorem in several steps. As mentioned, a large part of the proof for the case $\gamma > 0$ holds for the case $\gamma \leq 0$, too; so the steps we will be presenting now \emph{hold for both cases}; only in the latest steps we divide the proof. We will specifically mention in later steps when we need $\gamma > 0$ or $\gamma\leq 0$, but for now we do not worry about it.
+
+\section{Step 0: Setup}\label{setup} First, we lay the foundation of the proof. We have already given an informal ansatz how we wanted to approach the proof. Specifically, the proof is centered around showing that the limit of the approximating distributions $\lim_{n \to \infty} f_n$ do exist and satisfy the inequality \eqref{reconstruction-theorem} of the reconstruction theorem.
+
+Let $\gamma \in \mathbb{R}$ and $F = (F_x)_{x \in \mathbb{R}^d}$ be a $(\bm \alpha, \gamma)$-coherent germ with local homogeneity bounds $\bm \beta$ and test function $\varphi$. Without loss of generality, we assume that $\bm \alpha$ and $\bm \beta$ are monotone. Let $K \subset \mathbb{R}^d$ be a compact set. Define 
+\begin{align*}
+    \alpha \coloneqq \alpha_{\bar K_{3/2}} \quad \text{and} \quad  \beta \coloneqq \beta_{\bar K_{3/2}}
+\end{align*}
+ such that the coherence condition \eqref{coherence} with homogeneity bound \eqref{homogeneity} holds for the $\frac{3}{2}$-enlargement $\bar K_{3/2}$, i.e. there exist constants $C,B < \infty$ such that
+\begin{gather}\label{starter-coherence}
+    |(F_z - F_y)(\varphi^\epsilon_y)| \leq C \, \epsilon^\alpha(|z-y| + \epsilon)^{\gamma - \alpha} \quad \text{ and } \quad
+    |F_y(\varphi^\epsilon_y)| \leq B \epsilon^\beta \\
+    \text{for all } y,z \in \bar K_{3/2} \text{ with } |z-y| \leq 2,  \epsilon \in (0,1] \nonumber
+\end{gather}
+
+We define a sequence $(\epsilon_k)_{k \in \mathbb{N}}$ by $\epsilon_k = 2^{-k}$. Next define $r \in \mathbb{N}$ such that
+\begin{align}\label{setup:r}
+    r > \max\left\{ -\alpha, -\beta \right\} \tag{\texttt{R}}.
+\end{align}
+This particular choice will allow us to bound $\sum^\infty_{k=0} g_k$. 
+
+\section{Step 1: Tweaking}\label{chapter:step-1-tweaking}
+
+We briefly discuss the motivation and concept of tweaking: in previous chapters we wrote $f_n = f_1 + \sum^{n-1}_{k=1}g_k$ where
+\begin{align*}
+    g_k(\psi) = f_{k+1}(\psi) - f_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y
+\end{align*} 
+for some mollifier $\rho$. Finding a suitable $\rho$ is the task that we confront ourselves with in this step, which we shall call \emph{tweaking}. 
+
+We will see that it turns out to be quite useful if we can write $\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}$ as a difference of two test functions $\hat \varphi$ and $\check \varphi$:
+\begin{align*}\label{rho-dif}
+    \rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k} = (\hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k} )_y \tag{\texttt{MOL}}.
+\end{align*}
+Additionally, we want $\hat \varphi$ and $\check \varphi$ to possess some advantageous properties that are listed in the following table.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{50mm}|p{50mm}}
+    \hline
+    \\[-0.5em]
+    $\mathrm{supp}(\hat \varphi) = B(0,\frac{1}{2})$ &  $\mathrm{supp}(\check \varphi) = B(0,1)$\\
+    \\[-0.5em]
+    $\int \hat \varphi(x) \, \mathrm{d}x = 1$&  $\int \check \varphi(x) \, \mathrm{d}x = 0$\\
+    \\[-0.5em]
+    $\hat \varphi$ annihilates monomials \newline of degree from $1$ to $r-1$ & $\check \varphi $ annihilates monomials  \newline of degree from $0$ to $r-1$\\
+    \\[-0.5em]
+    $\hat \varphi$ satisfies the coherence \\condition \eqref{starter-coherence}& \\[0.5em]
+    \hline
+\end{tabular}
+\caption{Properties of $\hat \varphi$ and $\check \varphi$}
+\label{table:properties-tweak}
+\end{table}
+
+\begin{definition}
+    A function $g \in \mathcal{D}$ is said to \emph{annihilate monomials} of degree $j \in \mathbb{N}$ if for all $n \in \mathbb{N}^d_0$ with $|n| = j$ we have
+    \begin{align*}
+        \int_{\mathbb{R}^d} y^n g (y) \, \mathrm{d}y = 0.
+    \end{align*}
+\end{definition}
+
+\emph{Tweaking} $\varphi$ allows us to construct such nice test functions $\hat \varphi$ and $\check \varphi$.
+
+\begin{lemma}[Tweaking]\label{tweaking-lemma}
+    Let $r \in \mathbb{N}$, and let $\lambda_0,...,\lambda_{r-1} \in \mathbb{R}_{>0}$ be pairwise distinct. Define 
+    \begin{align*}
+        c_0 = 1 \quad \text{and} \quad 
+        c_i = \prod_{k \in \{0,...,r-1\} \setminus\left\{ i \right\} } \frac{\lambda_k}{\lambda_k - \lambda_i}, \quad i > 0.
+    \end{align*}
+    Then, for every measurable and compactly supported function $\varphi: \mathbb{R}^d \to \mathbb{R}$ and every $a \in \mathbb{R}$ the \emph{tweaked function}  
+    \begin{align*}
+        \mathcal{T}_{\varphi}: x \mapsto a\sum^{r-1}_{i=0}c_i\varphi^{\lambda_i}(x)
+    \end{align*}
+    has integral equal to $a \int \varphi(x) \, \mathrm{d}x$ and annihilates monomials of degree from $1$ to $r-1$.
+\end{lemma}
+
+\begin{proof}
+    The case for $r = 1$ is simple: $\int \mathcal{T}_{\varphi}(x) \mathrm{d}x = a \int \varphi^{\lambda_0}(x) \mathrm{d}x = a \int \varphi(x) \mathrm{d}x$.  
+
+    Let $r \geq 2$. Given all $\lambda_i$'s we solve for the variables $c_i$'s such that the desired properties hold. Luckily for us, this is a simple system of linear equations. Write
+    \begin{align*}
+        \int y^k \mathcal{T}_{\varphi}(y) \, \mathrm{d}y = a \sum^{r-1}_{i=0} c_i \int y^k \varphi^{\lambda_i}(y) \, \mathrm{d}y =  a \sum^{r-1}_{i=0} c_i \lambda_i^{|k|} \int x^k \varphi(x) \, \mathrm{d}x, \quad \forall k \in \mathbb{N}^d
+    \end{align*}
+    where we substituted $y \leadsto \lambda_i x$. Now observe that for $k = 0$ we get
+    \begin{align*}
+        \int \mathcal{T}_{\varphi}(y) \, \mathrm{d}y = a \sum^{r-1}_{i=0} c_i \lambda_i^{|k|} \int \varphi(x) \, \mathrm{d}x.
+    \end{align*} 
+    Thus, if we find $c_i$'s  such that the constraint $\sum^{r-1}_{i=0} c_i \lambda_i= 1$ holds, the tweaked function $\mathcal{T}_{\varphi}$ has integral equal to $a \int \varphi(x) \mathrm{d}x$. Next, if we let $1 \leq |k| \leq r - 1$, we want $\int y^k \mathcal{T}_{\varphi}(y) = 0$; so the constraint $\sum^{r-1}_{i=0} c_i \lambda_i^{|k|} = 0$ needs to be satisfied.
+
+    In the language of linear algebra, we try to solve
+    \begin{align*}
+        \begin{pmatrix}
+            1 & ... & 1 \\
+            \lambda_0 & ... & \lambda_{r-1} \\
+            \lambda_0^2 & ... & \lambda_{r-1}^2 \\
+            & & \\
+            \lambda_0^{r-1} & ... & \lambda_{r-1}^{r-1}
+        \end{pmatrix}
+        \begin{pmatrix}
+            c_0 \\ c_1 \\ c_2 \\ \\ c_{r-1}
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+            1 \\ 0 \\ 0 \\ \\ 0
+        \end{pmatrix}.
+    \end{align*}
+    The matrix on the left is a \emph{Vandermonde matrix} for which it is easy to compute the determinant: $\det = \prod_{1 \leq i < j \leq r - 1} \lambda_j  - \lambda_i$. Therefore, a solution $c$ exists if and only if the determinant does not vanish if and only if all $\lambda_i$'s are distinct. If we let $A$ denote the left hand side matrix, the inverse of $A$  can be explicitly stated 
+    \begin{align*}
+        (A^{-1})_{i=0,...,r-1}^{j=0,...,r-1} = (-1)^j \frac{\sum\limits_{\substack{U \subset \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\} \\ |U| = r - 1 -j}} \; \prod\limits_{u \in U} \lambda_u}{\prod\limits_{v \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)},
+    \end{align*}
+    see equation (7) in \cite{klinger1965vandermonde} for more details. We left-multiply the linear system with this inverse
+    \begin{align*}
+        \begin{pmatrix}
+            c_0 \\ c_1 \\ c_2 \\ \\ c_{r-1}
+        \end{pmatrix}
+        = A^{-1}\begin{pmatrix}
+            1 \\ 0 \\ 0 \\ \\ 0
+        \end{pmatrix},
+    \end{align*}
+    and we finally confirm that the vector $c$ is a solution if and only if  
+    \begin{align*}
+        c_i = \frac{\prod\limits_{u \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\} }\lambda_u}{\prod\limits_{v \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)} = \prod\limits_{k \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\}} \frac{\lambda_k}{\lambda_k - \lambda_i}.
+    \end{align*}
+\end{proof}
+
+We define $\hat \varphi$ to be $\hat \varphi = \mathcal{T}_{\varphi}$ for $a = \frac{1}{\int \varphi(x) \, \mathrm{d}x}$ and $\lambda_i = \frac{2^{-(i+1)}}{1+R_\varphi}$ for all $i = 0,...,r-1$ (the constant $r$ is defined in Step 0: Setup).   
+    
+\begin{lemma}\label{lemma:hat-phi-satisfies-table}
+    $\hat \varphi$ satisfies the properties in Table \ref{table:properties-tweak}.
+\end{lemma}
+\begin{proof}
+    By the tweaking lemma, $\hat \varphi$ integrates to one and annihilates all monomials from degree $1$ to $r-1$. 
+    We also have $\mathrm{supp}(\hat \varphi) = B(0,\frac{1}{2})$ because the support of $\hat \varphi$ depends on the largest $\lambda_i$, and $\lambda_i = \frac{1}{2^{i+1}(1+R_\varphi)} \leq \frac{1}{2R_\varphi}$. 
+    
+    It remains to show that the coherence inequality 
+    \eqref{starter-coherence} holds if $\varphi$ is replaced by $\hat \varphi$ (possibly with different constants $C$ and $B$). By definition of $\hat \varphi = \mathcal{T}_\varphi$ we have $|(F_z - F_y)(\hat \varphi^\epsilon_y)| = a\sum^{r-1}_{i=0} |c_i| \, |(F_z - F_y)(\varphi_y^{\lambda_i \epsilon})|$. Next, we bound
+    \begin{align*}
+        |(F_z - F_y)(\varphi_y^{ \epsilon \lambda_i})| &\overset{\eqref{starter-coherence}}{\leq}  C(\epsilon\lambda_i)^\alpha(|z-y| + \epsilon\lambda_i)^{\gamma-\alpha} \\
+        &\Downarrow \text{because $\alpha < 0$ and $\lambda_i > \frac{2^{-(r+1)}}{1+R_\varphi}$}\\
+        &\leq  \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha C\epsilon^\alpha(|z-y| + \epsilon\lambda_i)^{\gamma - \alpha} \\
+        &\Downarrow \text{because $\gamma - \alpha \geq 0$ and $\lambda_i \leq 1$}\\
+        &\leq   \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha C \epsilon^\alpha(|z-y| + \epsilon)^{\gamma - \alpha}.
+    \end{align*}
+    To estimate the constants $c_i$, we use $|c_i| \leq e^2$ --- this fact will be proved in the next lemma (see equation \eqref{jsknfjkewfwhiru}), but we can already use it here. Altogether, we have  
+    \begin{align*}
+        |(F_z - F_y)(\hat \varphi^\epsilon_y)| &\leq \frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha C \, \epsilon^\alpha(|z-y| + \epsilon)^{\gamma - \alpha}.
+    \end{align*}
+    Analogously, 
+    \begin{align*}
+        |F_y(\hat \varphi^\epsilon_y)| \leq \frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} B \epsilon^\beta\lambda_i^\beta \leq  \frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|}  \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^{\min\left\{ \beta, 0 \right\} }B\epsilon^\beta
+    \end{align*}
+    Therefore, the coherence and homogeneity condition still hold if we do the following replacements:
+    \begin{align}
+        \varphi &= \hat \varphi, \nonumber
+        \\
+        \hat C &= C\frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha \label{constant:hat-c}
+        \\
+        \hat B &= B\frac{e^2 r}{\int \varphi(x)\, \mathrm{d}x} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^{\min\left\{ \beta, 0 \right\} } \nonumber.
+    \end{align}
+\end{proof}
+
+What we have just proven is of elementary importance for the next steps; in other words the existence of the tweaked function $\hat \varphi$ does a lot of heavylifting for us. The main takeaway is the following fact: if $\varphi$ satisfies the coherence condition, so does $\hat \varphi$:
+\begin{gather}\label{coherence-hat}
+    |(F_z - F_y)(\hat \varphi^\epsilon_y)| \leq \hat C \epsilon^\alpha(|z-y| + \epsilon)^{\gamma - \alpha} \quad \text{and} \quad |F_y(\hat \varphi^\epsilon_y)| \leq \hat B\epsilon^\beta \tag{${\widehat{\texttt{COH}}}$} \\
+    \text{for all } y,z \in \bar K_{3/2} \text{ with } |z-y| \leq 2,  \epsilon \in (0,1] .\nonumber
+\end{gather}
+
+Next, we define $\check \varphi \coloneqq \hat \varphi^{\frac{1}{2}} - \hat \varphi^2$, and quickly verify the properties in Table \ref{table:properties-tweak}.
+\begin{itemize}
+    \item First, $\mathrm{supp}(\check \varphi) \subset B(0,1)$ because $\mathrm{supp}(\hat \varphi) \subset B(0,\frac{1}{2})$.
+    \item Second, $\int \check \varphi(x) \, \mathrm{d}x = 0$ because $\int \hat \varphi^{\frac{1}{2}}(x) \, \mathrm{d}x = \int \hat \varphi^2(x) \, \mathrm{d}x$.
+    \item Third, $\check \varphi$ annihilates monomials of degree $1$ to $r-1$ because  $\hat \varphi$ annihilates monomials of degree $1$ to $r-1$.
+\end{itemize}
+
+Finally, we set $\rho = \hat \varphi^2 * \hat \varphi$. This is a mollifier because $\int \hat \varphi^2(x) \, \mathrm{d}x = \int \hat \varphi(x)  \, \mathrm{d}x = 1$.  Then, $\rho^{\frac{1}{2}} - \rho = (\hat \varphi^2 * \hat \varphi)^{\frac{1}{2}} - (\hat \varphi^2 * \hat \varphi) = (\hat \varphi * \hat \varphi^{\frac{1}{2}})- (\hat \varphi^2 * \hat \varphi) = \hat \varphi * (\hat \varphi^{\frac{1}{2}} - \hat \varphi^{2}) = \hat \varphi * \check \varphi$. Hence, we get $\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k} = (\rho^{\frac{1}{2}} - \rho)^{\epsilon_k} = (\hat \varphi * \check \varphi)^{\epsilon_k} = \hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k}$ --- this is exactly what we want: \emph{we found a mollifier whose difference is the convolution of two tweaked test functions}.
+
+The remaining chapter is devoted to three technical lemmas that involve estimating the tweaked test functions $\hat \varphi$ and $\check \varphi$. They are only used in some minor parts of the proofs that are about to come. You can either skip to chapter \ref{step2:decomposition}: Step 2 right away and come back when the lemmas are actually needed.
+
+Unsuprisingly, many of the upcoming proofs will involve many estimations; so knowing the $L^1$-norm of $\hat \varphi$ comes in useful. We have already used it in Lemma \ref{lemma:hat-phi-satisfies-table}.
+\begin{lemma}\label{lemma:tweaked-l1-norm}
+We estimate
+\begin{align}\label{tweaked-l1-norm}
+    \lVert \hat \varphi \rVert_{L^1} \leq \frac{e^2 r}{|\int \varphi(x) \mathrm{d}x |} \lVert \varphi \rVert_{L^1}.
+\end{align}
+\end{lemma}
+
+\begin{proof}
+    We start with 
+    \begin{align*}
+        \lVert \hat \varphi \rVert_{L^1} = \int |\hat \varphi(x)| \mathrm{d}x = \int |\mathcal{T}_{\varphi}(x)| \; \mathrm{d}x \leq |a| \sum^{r-1}_{i=0} |c_i| \int |\varphi^{\lambda_i}(x)| \mathrm{d}x
+    \end{align*}
+    where $c_i = \prod_{k \in \{0,...,r-1\} \setminus\left\{ i \right\} } \frac{\lambda_k}{\lambda_k - \lambda_i}$ and $\lambda_k = \frac{2^{-(k+1)}}{1+R_\varphi}$. So, 
+    \begin{align*}
+        |c_i| = \left|\prod_{k \in \{0,...,r-1\} \setminus\left\{ i \right\} } \frac{2^{-(k+1)}}{2^{-(k+1)} - 2^{-(i+1)}}\right| = \prod_{k \in \{0,...,r-1\} \setminus\left\{ i \right\} } \frac{1}{|1 - 2^{k - i}|}.
+    \end{align*} 
+    Since $|1 - 2^{k - i}| \geq 1$ for all $k > i$, we have   
+    \begin{align*}
+        |c_i| = \prod_{k \in \{0,...,r-1\} \setminus\left\{ i \right\} } \frac{1}{|1 - 2^{k - i}|} \leq \prod^\infty_{k=1} \frac{1}{1 - 2^{-m}}
+    \end{align*}
+    Note that $(1-x)^{-1} \leq 1 + 2x \leq e^{2x}$ for $x \in [0,\frac{1}{2}]$. So, by substituting $2^{-m} \leadsto x$, we finally get 
+    \begin{align}\label{jsknfjkewfwhiru}
+        |c_i| \leq \prod^\infty_{m=1} 1 + 2^{-m} \leq e^2
+    \end{align}
+    Then, using $a = \frac{1}{\int \varphi(x)\mathrm{d}x}$ and $ \lVert \varphi^{\lambda_i} \rVert_{L^1} =  \lVert \varphi \rVert_{L^1} $  we end up with 
+    \begin{align*}
+        \lVert \hat \varphi \rVert_{L^1} \leq |a| \sum^{r-1}_{i=0} |c_i| \int |\varphi^{\lambda_i}(x)| \mathrm{d}x \leq \frac{1}{|\int \varphi(x) \mathrm{d}x|} e^2r \lVert \varphi \rVert_{L^1}.
+    \end{align*}
+\end{proof}
+
+Estimating the convolution of the tweaked test function $\check \varphi$ with some test function $g$ is also of interest for us (especially in Step 3). 
+
+\begin{lemma}\label{step3:lemma}
+    Let $K \subset \mathbb{R}^d$ be a compact set, and let $g \in \mathcal{D}(K)$. For any $\epsilon > 0$, the function $\check \varphi^\epsilon * g$ is supported in $\enlarg{H}{\epsilon}$, and we estimate     
+    \begin{align*}
+        \lVert \check \varphi^{\epsilon} * g \rVert_{L^1} \leq \mathrm{Vol}(\enlarg{H}{\epsilon})  \lVert \check \varphi \rVert_{L^1} \lVert g \rVert_{C^r} \epsilon^r.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+The core idea is to utilize the annihilation property of $\check \varphi$. Let $\epsilon > 0$, and let $T_yg$ be the Taylor polynomial of $g$ of order $(r-1)$ at $y \in \mathbb{R}^d$, i.e. $T_yg(x) = \sum\limits_{|k| \leq r - 1}\frac{1}{k!}\partial^kg(y)(x-y)^k$. We estimate the error term of the Taylor polynomial to be bounded by 
+\begin{align*}
+    |g(x) - T_yg(x)| \leq \lVert g \rVert_{C^r} |x-y|^r.
+\end{align*}
+This follows from the fact that the error term can be explicitly given by $\frac{1}{r!}\partial^{r}g(\xi)(x - y)^r$ for some $\xi$ between $x$ and $y$. Next, by the annihilation property of $\check \varphi$ we have 
+\begin{align*}
+    \int\check \varphi^{\epsilon}(x - y)T_xg(y)  \, \mathrm{d}y = 0.
+\end{align*}
+Hence, we write 
+\begin{align*}
+        |\check \varphi^{\epsilon}* g(x)|  = \left|  \int\check \varphi^{\epsilon}(x - y) (g(y) - T_xg(y) )  \, \mathrm{d}y \right|
+        &\leq \int |\check \varphi^{ \epsilon }(x-y)| \lVert g \rVert_{C^r} |x-y|^r \, \mathrm{d}y \\
+        &\Downarrow \text{$\mathrm{supp}(\check \varphi^{\epsilon}) \subset B(0,\epsilon)$} \\
+        &\leq \lVert \check \varphi \Vert_{L^1 } \lVert g \rVert_{C^r} \epsilon^r.
+\end{align*}
+Since $g$ has compact support in $H$ and $\check \varphi$ in $B(0,1)$, $\check \varphi^{\epsilon}* g$ is supported in $\enlarg{H}{\epsilon}$. So, we integrate $|\check \varphi^{\epsilon}* g|$ over $\enlarg{H}{\epsilon}$, and we obtain the claim.
+\end{proof}
+
+For the last lemma, consider the problem of finding an upper bound for the convolution of any test function $\psi$ with $\hat \varphi$ or $\check \varphi$ against some aribtrary function $G$.   
+
+\begin{lemma}\label{lemma:WALFANGER}
+    Let $\lambda, \epsilon \in (0,1]$, $K \subset \mathbb{R}^d$ be compact and $G: \mathbb{R}^d \to \mathbb{R}$ be measurable. Then, for any $x \in K$ and $\psi \in \mathcal{B}_r$ we have 
+    \begin{align} 
+        &\Big| \int_{\mathbb{R}^d} G(y) \left( \hat \varphi^{2\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq 2^d \lVert \hat \varphi \rVert_{L^1} \, \sup_{B(x, \lambda + \epsilon)}|G|, \\
+        &\Big| \int_{\mathbb{R}^d} G(y) \left( \check \varphi^{\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq 4^d \lVert \check \varphi \rVert_{L^1} \, \min\left\{ \left(\frac{\epsilon}{\lambda}\right)^r, 1 \right\}  \sup_{B(x, \lambda + \epsilon)}|G| \label{eq:WALFANGER}
+    \end{align}  
+\end{lemma}
+
+\begin{proof}
+    Regarding the first inequality, note that $\hat \varphi^{2\epsilon} * \psi^\lambda_x$ has support in $B(x, \lambda + \epsilon)$ because $\psi$ is supported in $B(0,1)$ (due to $\psi \in \mathcal{B}_r$) and $\hat \varphi \in B(0, \frac{1}{2})$. So, 
+    \begin{align*}
+        \Big| \int_{\mathbb{R}^d} G(y) \left( \hat \varphi^{2\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq \lVert \hat \varphi^{2\epsilon} * \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G| \overset{\eqref{inequality:convolution-l1-norm}}{\leq} \lVert \hat \varphi^{2\epsilon} \rVert_{L^1} \lVert \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G|.
+    \end{align*}
+    $\lVert \psi \rVert_{L^1}$ is bounded by the volume of the unit ball in $\mathbb{R}^d$ because $\lVert \psi \rVert_{\infty} \leq 1$ and $\psi$ has support in $B(0,1)$. Hence, 
+    \begin{align}\label{bound-psi-l1}
+        \lVert \psi \rVert_{L^1} \leq 2^d.
+    \end{align}
+    With $\lVert \hat \varphi^{2\epsilon} \rVert_{L^1} = \lVert \hat \varphi\rVert_{L^1}$, we obtain the first inequality.
+
+    For the second inequality, we use the exact same argument as for the first inequality to obtain $\Big| \int_{\mathbb{R}^d} G(y) \left( \check \varphi^{\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq 2^d \lVert \check \varphi \rVert_{L^1} \,  \sup\limits_{B(x, \lambda + \epsilon)}|G|$. This yields the case $\lambda \leq \epsilon$. 
+    
+    If $\epsilon < \lambda$, we get an even sharper bound. We use Lemma \ref{step3:lemma} to get  
+    \begin{align*}
+        \lVert \check \varphi^{\epsilon} * \psi^\lambda_x \rVert_{L^1} \leq \mathrm{Vol}(B(x, \lambda + \epsilon)) \lVert \psi^\lambda_x \rVert_{C^r} \epsilon^r \lVert \check \varphi \rVert_{L^1}.
+    \end{align*}
+    The ball $B(x,\lambda  + \epsilon)$ has diameter $2(\lambda + \epsilon)$, so its volume is smaller than $(2(\lambda + \epsilon))^d$. Since $\epsilon < \lambda$, we get $\mathrm{Vol}(B(x,\lambda  + \epsilon)) \leq 4^d \lambda^d$. The $C^r$-norm of $\psi^\lambda_x$ can be computed by
+    \begin{align*}
+        \lVert \psi^\lambda_x \rVert_{C^r} = \max_{|k| \leq r} \lVert \partial^k \psi^\lambda_x \rVert_{\infty} =  \max_{|k| \leq r} \frac{1}{\lambda^{d + |k|}} \lVert \psi \rVert_{\infty} \leq \frac{1}{\lambda^{d + r}}.
+    \end{align*}    
+    This completes the proof of the second inequality.
+\end{proof}
+
+\section{Step 2: Decomposition}\label{step2:decomposition}
+
+Let $\psi \in \mathcal{D}$ be any test function. With the right mollifier in our toolkit, we can decompose the approximating distribution $f_n(\psi) = \int_{\mathbb{R}^d} F_z(\rho_z^{\epsilon_n}) \psi(z)\, \mathrm{d}z$ into $f_n(\psi) = f_1(\psi) + \sum^{n-1}_{k=1} g_k(\psi)$, where
+\begin{align*}
+    g_k(\psi) \coloneqq f_{k+1}(\psi) - f_k(\psi) 
+    &= \int_{\mathbb{R}^d} F_z(\rho_z^{\epsilon_{k+1}} - \rho_z^{\epsilon_k}) \psi(z)\, \mathrm{d}z \\
+    &\overset{\eqref{rho-dif}}{=} \int_{\mathbb{R}^d} F_z((\hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k} )_z) \psi(z)\, \mathrm{d}z \\
+    &= \int_{\mathbb{R}^d} \int_{\mathbb{R}^{d}} F_z(\hat{\varphi}^{\epsilon_k}_{y+z}) \check \varphi^
+    {\epsilon_k}(y) \psi(z) \, \mathrm{d}y \, \mathrm{d}z \\
+    \\[-1.2em]
+    &\Downarrow \text{substitute $y+z$ by a new variable} \\
+    \\[-1.2em]
+    &= \int_{\mathbb{R}^d} \int_{\mathbb{R}^{d}} F_z(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z
+\end{align*}
+As our last decomposition step, we write $F_z = F_y + (F_z - F_y)$ (just as we described it in \hyperref[sec:motiadsd]{chapter 1})
+\begin{align*}
+    g_k(\psi) &= \iint F_z(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z \\
+    &=  \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z +  \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z
+\end{align*}
+Thus, we have decomposed $g_k$ into $g_k = g_k' + g_k''$ where 
+\begin{align*}
+    g_k'(\psi) &\coloneqq \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z \\
+    g_k''(\psi) & \coloneqq \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z,
+\end{align*}
+and we finally write 
+\begin{align}\label{approximating-distributions-alternative}
+    f_n(\psi) = f_1 + \sum^{n-1}_{k=1} g_k'(\psi) + \sum^{n-1}_{k=1} g_k''(\psi).
+\end{align}
+Our goal is to show that $\lim_{n \to \infty}f_n(\psi)$ exists for all $\psi \in \mathcal{D}$; hence, we want to prove that $ \sum^{\infty}_{k=1} g_k'(\psi)$ and $ \sum^{\infty}_{k=1} g_k''(\psi)$ are bounded. By the homogeneity condition and the coherence condition \eqref{coherence-hat} we can control $|g_k'|$ and $|g_k''|$.
+
+\begin{remark}\label{remark:fk-depends}
+    The choice of our mollifier $\rho$ depends on $K$ since $\rho \coloneqq \hat \varphi^2 * \hat \varphi$, and $\hat \varphi \coloneqq $. Thus, the approximating distributions depend on TO-DO
+\end{remark}
+
+We will give a brief overview over the next steps because now we must be careful about $\gamma$. Remember that we have fixed a compact set $K$. Furthermore, notice that the approximating distributions $f_n$ depend on $K$ since our mollifier $\rho$ depends on $\hat \varphi$, which depends on $r$, and the value of $r$ depends on $\alpha = \alpha_{\bar K_{3/2}}$ and $\beta = \beta_{\bar K_{3/2}}$.
+\begin{itemize}
+    \item In step 3, we show that for every $\gamma \in \mathbb{R}$ the series $\sum^{\infty}_{k=1} g_k'(\psi)$ converges for all test functions $\psi \in \mathcal{D}(\bar K_1)$.
+    \item In step 4, we show that for $\gamma > 0$ the series $\sum^{\infty}_{k=1} g_k''(\psi)$ converges for all test functions $\psi \in \mathcal{D}(\bar K_1)$. Thus, $\lim_{n \to \infty} f_n(\psi)$ is well defined for $\gamma > 0$, and we define 
+    \begin{align*}
+        f^K \coloneqq \lim_{n \to \infty}f_n.
+    \end{align*}
+    \item In step 5, we show that for all $\gamma > 0$ the function $f^K$ is a distribution on $\bar K_1$ which satisfies \eqref{reconstruction-theorem}
+    \begin{gather*}
+        |(f^K - F_x)(\psi^\epsilon_x)| \leq C \epsilon^\gamma \\ 
+        \text{uniformly for $\psi \in \mathcal{B}_r$, $x \in K$, $\epsilon \in (0,1]$},
+    \end{gather*}
+    where $C \coloneqq \mathrm{const}(\alpha, \gamma, r, d, \varphi) \cdot \vertiii{F}^{\mathrm{coh}}_{\bar K_{3/2}, \varphi, \alpha, \gamma}$.
+    \item In step 6, we show that for all $\gamma > 0$, the distributions $f^K$ are consistent, i.e.
+    \begin{align*}
+        \text{for } K \subset K': f^{K}(\psi) = f^{K'}(\psi) \quad \forall \psi \in \mathcal{D}(\bar K_1).
+    \end{align*}
+    This will allow us to build a global distribution $f \in \mathcal{D}'$.
+\end{itemize}
+We see that we need to divide the proof in two cases $\gamma > 0$ and $\gamma \leq 0$ when we reach step 4. Fortunately, step 4 can be fixed for $\gamma \leq 0$ and thus the proof for $\gamma \leq 0$ resembles that of $\gamma > 0$.
+
+
+\section{Step 3: \texorpdfstring{$\sum |g_k'|$ converges for all $\gamma \in \mathbb{R}$}{Sum gk converges for all real gamma}}\label{chapter:step-3}
+
+In this step, we want to show that $\sum |g_k'(\psi)|$ converges for all test functions $\psi \in \mathcal{D}(\bar K_1)$. To estimate $g_k'(\psi) \coloneqq \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z$, we use three arguments: 
+\begin{enumerate}
+    \item a \emph{compact support} argument for $\check \varphi^{\epsilon_k}$ and $\psi$, 
+    \item a \emph{local homogeneity bound} argument \eqref{coherence-hat}, and
+    \item an \emph{annihilation} argument due to $\check \varphi$.
+\end{enumerate}
+
+Let, $\psi \in \mathcal{D}(\bar K_1)$. First, we rewrite $g'_k$ as 
+\begin{align}\label{gk-formular}
+    g_k'(\psi) = \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z = \int F_y(\hat \varphi^{\epsilon_k}_y) \, (\check \varphi^{\epsilon_k} * \psi)(y) \, \mathrm{d}y.
+\end{align}
+The compact support argument for $\check \varphi^{\epsilon_k}$ and $\psi$ works as follows: 
+\begin{itemize}
+    \item the tweaked test function $\check \varphi^{\epsilon_k}$ has a compact support in $B(0, \epsilon_k)$ because $\check \varphi$ has a compact support in the unit ball $B(0,1)$; since $\epsilon_k = 2^{-k} \leq \frac{1}{2}$ for all $k \in \mathbb{N}$, we have $\mathrm{supp} \left( \check \varphi^{\epsilon_k} \right) \subset B(0,\frac{1}{2})$;
+    \item by assumption $\psi \in \mathcal{D}(\bar K_1)$, the compact support of $\psi$ lies in $\bar K_1$.
+\end{itemize}
+Thus by Lemma \ref{lemma:convolution-compact-support}, we have $\mathrm{supp} \left( \check \varphi^{\epsilon_k} * \psi \right) \subset \bar K_{3/2}.$ We therefore obtain 
+\begin{align*}
+    |g_k'(\psi)| = \left|\int F_y(\hat \varphi^{\epsilon_k}_y) \, (\check \varphi^{\epsilon_k} * \psi)(y) \, \mathrm{d}y\right| 
+    \leq \sup_{y \in \overline K_{3/2}} \left(|F_y(\hat \varphi^{\epsilon_k}_y)| \right) \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1}.
+\end{align*}
+Next, by {local homogeneity bound} argument we have $
+    \sup_{y \in \overline K_{3/2}} |F_y(\hat \varphi^{\epsilon_k}_y)|  \overset{\eqref{coherence-hat}}{\leq}  \hat B \epsilon_k^\beta$. 
+So, we have 
+\begin{align*}
+    |g_k'(\psi)| \leq \hat B \epsilon_k^\beta \, \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1}
+\end{align*}
+With Lemma \ref{step3:lemma}, we finalize step 3 as follows 
+\begin{align}
+    |g_k'(\psi)| \leq \hat B \epsilon_k^\beta \, \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1} &\leq \hat B \epsilon_k^\beta \,  \mathrm{Vol}(\overline K_{3/2})  \lVert \check \varphi \rVert_{L^1} \lVert \psi \rVert_{C^r} \epsilon^r_k \nonumber \\
+    &= \left( \hat B \, \mathrm{Vol}(\overline K_{3/2})  \lVert \check \varphi \rVert_{L^1} \lVert \psi \rVert_{C^r} \right)\epsilon^{\beta + r}_k. \label{Mustermkatze}
+\end{align}
+In \emph{Step 0: Setup}, we chose $r$ such that  $\beta + r > 0$; hence $\sum_{k=1}^\infty \epsilon_k^{\beta + r} < \infty$. Thus, $\sum^\infty_{k=1} g_k'(\psi)$ is finite for all $\gamma \in \mathbb{R}$ and all $\psi \in \mathcal{D}(\enlarg{K}{1})$.
+
+\begin{remark}
+One might wonder why we even needed Lemma \ref{step3:lemma} if we can just estimate $\lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1} \leq \lVert \check \varphi^{\epsilon_k} \rVert_{L^1} \lVert \psi \rVert_{L^1}$. However, this estimate does not make use of the scaling of $\check \varphi^{\epsilon_k}$. If we had used that estimate, we would have ended up with $|g_k'(\psi)| \leq \mathrm{constant} \cdot \epsilon_k^{\beta}$. Since $\beta$ could be negative, the series need not converge.
+\end{remark}
+
+It is worth noting that Step 3 works for $\gamma > 0$ and $\gamma \leq 0$. This is not the case for the subsequent steps.  
