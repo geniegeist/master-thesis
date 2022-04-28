@@ -1,5 +1,69 @@
-\chapter*{Applications}
+\chapter{Applications}
 
 \section{Negative Hölder Spaces}
 
-sssº
+In Chapter~\ref{chapter:notation} we introduced the space of locally \( \alpha  \)-Hölder functions \( \mathcal{C}^\alpha \) for positive exponents \( \alpha > 0 \). Using very similar techniques as in the proof of the Reconstruction Theorem, we extend the space \( \mathcal{C}^\alpha \) to non-positive exponents \( \alpha \leq 0 \) in this chapter. In the case of \( \alpha \leq 0 \), \( \mathcal{C}^k \) is not a space of continuously differentiable functions but a space of \emph{distributions}. We will also see that the reconstruction \( \mathcal{R}F \) of any germ \( F \) with non-positive homogeneity bound \( \beta \leq 0 \) lies in \( \mathcal{C}^\beta \).
+
+\begin{definition}[Hölder Space]
+  Let \( \alpha \leq 0 \) and let \( r_\alpha = \min\left\{ n \in \mathbb{N} : r > -\alpha \right\} \). We define the Hölder space \( C^\alpha \) as the space of all distributions \( T \) such that for any compact set \( K \subset \mathbb{R}^d \) there exists \( C < \infty \) with 
+  \begin{gather}
+    |T(\psi^\epsilon_x)| \leq C \epsilon^\alpha \label{eq:negative-hoelder-spaces} \\
+    \text{for all \(x \in K,  \epsilon \in (0,1] \) and \( \psi \in \mathcal{B}_{r_\alpha} \)}. \nonumber 
+  \end{gather}
+  The semi-norm \( \lVert \cdot \rVert_{\mathcal{C}^\alpha(K)} \) is defined as 
+  \begin{align*}
+    \lVert T \rVert_{\mathcal{C}^\alpha(K)} 
+    = \sup_{
+      \substack{
+        x \in K,\\
+        \lambda \in (0,1],\\
+        \psi \in \mathcal{B}_{r_\alpha}
+      }
+    } \frac{|T(\psi^\lambda_x)|}{\lambda^\alpha} \hspace{4em} \forall T \in \mathcal{D}'.
+  \end{align*}
+  Clearly, \( T \in \mathcal{C}^\alpha \iff \lVert T \rVert_{\mathcal{C}^\alpha(K)} < \infty \) for all compact sets \( K \subset \mathbb{R}^d \).
+\end{definition}
+
+We present our main result. Let \( \alpha \leq 0 \) and \( T \in \mathcal{D}' \). Then, \( T \) already lies in \( \mathcal{C}^\alpha \) if inequality~\eqref{eq:negative-hoelder-spaces} holds for a \emph{single} arbitrary test function \( \varphi \in \mathcal{D} \) with \( \int \varphi(x) \, \mathrm{d}x \) rather for all \( \psi \in \mathcal{B}_{r_\alpha} \). This characterization of negative Hölder spaces is obtained from the following proposition, which is proved in a similar fashion as the Reconstruction Theorem.
+
+\begin{proposition}\label{proposition:spiderman}
+  Let \( T \in \mathcal{D}' \). If there exists a set \( K \subset \mathbb{R}^d \) and a test function \( \varphi \in \mathcal{D}, \int \varphi(x) \, \mathrm{d}x \neq 0 \) such that 
+  \begin{gather}\label{equation:spiderman}
+    \forall x \in K, \epsilon \in \left\{ 2^{k} \right\}_{k \in \mathbb{N}}: \quad |T(\varphi^\epsilon_x)| \leq \epsilon^\alpha f(\epsilon, x) \\
+    \text{for some \( \alpha \leq 0 \) and \( f: (0,1] \times \enlarg{K}{2} \to [0, \infty) \)}, \nonumber
+  \end{gather}
+  then the above inequality~\eqref{equation:spiderman} also holds for \emph{every} test function \( \psi \in \mathcal{B}_r \) and integer \( r > -\alpha \) in the following sense: for every \( \psi \in \mathcal{B}_r \) and \(r > -\alpha\) we have
+  \begin{align*}
+    \forall x \in K, \epsilon \in (0,1]: \quad |T(\psi^\epsilon_x)| \leq \{ \mathrm{constant} \} \cdot \epsilon^\alpha \sup_{\substack{\epsilon' \in (0, \epsilon]\\x' \in B(x, 2\epsilon)}} f(\epsilon', x').
+  \end{align*}
+\end{proposition}
+
+\begin{proof}
+  Let \( T, \varphi, K, \alpha \) and \( f \) be as above. Fix an integer \( r > -\alpha \). As in the proof of the Reconstruction Theorem (see~\eqref{definition:tweakedvarphi}), we define \( \hat \varphi = T_\varphi \) for \(a = \frac{1}{\int \varphi(x) \, \mathrm{d}x}\) and \(\lambda_i = \frac{2^{-(i+1)}}{1+R_\varphi}\), \(i = 0,\ldots,r-1\). 
+  
+  We claim that the tweaked test function \( \hat \varphi \) satisfies~\eqref{equation:spiderman}, just like in the proof of the Reconstruction Theorem (see Lemma~\ref{lemma:hat-phi-satisfies-table}).
+\end{proof}
+
+As a corollary, we get the following characterization of negative Hölder spaces.
+
+\begin{corollary}[Characterization of Negative Hölder Spaces]
+  Let \( \alpha \leq 0 \) and \( T \in \mathcal{D}' \). Then, the following conditions are equivalent 
+  \begin{enumerate}
+    \item \( T \in \mathcal{C}^\alpha \);
+    \item There exists an integer \( r > - \alpha \) such that~\eqref{eq:negative-hoelder-spaces} holds for all test functions \( \psi \in \mathcal{B}_r \);
+    \item There exists \( \varphi \in \mathcal{D} \) with \( \int \varphi(x) \, \mathrm{d}x  \neq 0 \) such that for any compact set \( K \subset \mathbb{R}^d \) there exists a constant \( \tilde C < \infty \) with 
+    \begin{gather*}
+      |T(\varphi^\epsilon_x)| \leq \tilde C \epsilon^\alpha \\
+      \text{for all \( x \in K \)and \( \epsilon \in \left\{ 2^{-k} \right\}_{k \in \mathbb{N}} \)}.
+    \end{gather*}
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}\(  \)
+
+  \begin{itemize}
+    \item \( 1. \implies 2. \) This holds because \( \mathcal{B}_r \subset \mathcal{B}_{r_\alpha} \) for \( r \geq r_\alpha \).
+    \item \( 2. \implies 3. \) Choose any \( \varphi \in \mathcal{B}_{r} \) with \( \int \varphi(x) \, \mathrm{d}x \).
+    \item \( 3. \implies 1. \) Apply Proposition~\ref{proposition:spiderman} with \( f \equiv \tilde C \).
+  \end{itemize}
+\end{proof}
