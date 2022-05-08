@@ -28,7 +28,7 @@ In Step 3 and Step 4 we showed that \(\lim\limits_{n \to \infty}f_n(\psi)\) exis
 \begin{align*}
     f^K \coloneqq \lim\limits_{n \to \infty}f_n \overset{\eqref{approximating-distributions-alternative}}{=} f_1 + \sum^{n-1}_{k=1} g_k' + \sum^{n-1}_{k=1} g_k''.
 \end{align*}
-The notation \(f^K\) explicitly emphasizes that \(\lim\limits_{n \to \infty}f_n\) depends on the compact set \(K\) that we fixed in \emph{Step 0: Setup}; recall that the construction of the mollifier \(\rho\)  depends on \(K\) (see Remark \ref{remark:fk-depends}).
+The notation \(f^K\) explicitly emphasizes that \(\lim\limits_{n \to \infty}f_n\) depends on the compact set \(K\) that we fixed in \emph{Step 0: Setup}; recall that the construction of the mollifier \(\rho\)  depends on \(K\) (see Remark~\ref{remark:fk-depends}).
  
 In this step, we prove for \(\gamma > 0\) that \(f^K\) is a reconstruction in the following sense: (1) \(f^K\) is a distribution, and (2) there exists a constant \(C < \infty\) such that 
 \begin{gather*}
@@ -54,7 +54,7 @@ We fix \(\psi \in \mathcal{B}_r, x \in K\) and \(\lambda \in (0,1]\). We define 
     \tilde f(\phi) &= f^K(\phi) - F_x(\phi), \quad \qquad \phi \in \mathcal{D}(\overline{K}_1)\\
     \tilde f_n(\phi) &= f_n(\phi) - F_x(\phi * \rho^{\epsilon_n}), \quad n \in \mathbb{N}.
 \end{align*}
-By Lemma \ref{mollifier-lemma}, \(\tilde f_n(\phi)\) converges to \(\tilde f(\phi)\) as \(n \to \infty\).
+By Lemma~\ref{mollifier-lemma}, \(\tilde f_n(\phi)\) converges to \(\tilde f(\phi)\) as \(n \to \infty\).
 
 Let \(N \in \mathbb{N}\) be the smallest index such that \(\epsilon_N \leq \lambda\), i.e. \(N = \min \left\{ k \in \mathbb{N} : \epsilon_k \leq \lambda  \right\}\). Using the triangle inequality, we then write 
 \begin{align*}
@@ -68,10 +68,10 @@ We start with
     |\tilde f_N (\psi^\lambda_x) |
     = |f_N(\psi^\lambda_x) - F_x(\psi^\lambda_x * \rho^{\epsilon_N}) |
     &= |\int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy} - F_x(\psi^\lambda_x * \rho^{\epsilon_N})| \\
-    &\Downarrow \text{Lemma \ref{lemma:mollified-distribution}} \\
+    &\Downarrow \text{Lemma~\ref{lemma:mollified-distribution}} \\
     &= |\int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy} - \int_{\mathbb{R}^d} F_x(\rho_y^{\epsilon_N}) \psi^{\lambda}_x(y) \, \mathrm{dy}| \\
     &= |\int_{\mathbb{R}^d} (F_y - F_x)((\hat \varphi^{2\epsilon_N} * \hat \varphi^{\epsilon_N})(\cdot - y)) \psi^{\lambda}_x(y) \, \mathrm{dy}|\\
-    &\Downarrow \text{Lemma \ref{lemma:mollified-distribution}} \\
+    &\Downarrow \text{Lemma~\ref{lemma:mollified-distribution}} \\
     &= |\iint (F_y - F_x)(\hat \varphi^{\epsilon_N}_z) \hat \varphi^{2 \epsilon_N}(z-y)\psi^\lambda_x(y) \, \mathrm{d}z \, \mathrm{d}y| \\
     &\leq\sup_{\substack{y \in \overline K_1,\\|z-y|\leq\epsilon_N}} |(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)| \cdot \lVert \hat \varphi^{2\epsilon_N}\rVert_{L^1} \, \lVert \psi^{\lambda}_x\rVert_{L^1}.
 \end{align*}
@@ -112,7 +112,7 @@ We are going to bound (A) and (B) separately. Our short-term goal is to find a c
 \vspace{0.5em}
 
 \begin{itemize}
-    \item (A): We start with (A) that follows almost immediately from Step 4. In Chapter \ref{step4}: Step 4 we showed that \(|g_k''(\psi^{\lambda}_x)| 
+    \item (A): We start with (A) that follows almost immediately from Step 4. In Chapter~\ref{step4}: Step 4 we showed that \(|g_k''(\psi^{\lambda}_x)| 
     {\leq}  \left(\hat C  2^{\gamma - \alpha} \lVert \check \varphi \rVert_{L^1} \lVert \psi^{\lambda}_x \rVert_{L^1}\right) \epsilon_k^\gamma\). We also know that \(\lVert \psi^\lambda_x \rVert_{L^1} = \lVert \psi \rVert_{L^1} \leq 2^d\) by~\eqref{bound-psi-l1}. Then, we have
     \begin{align*}
         \sum_{k \geq N} |g_k''(\psi^{\lambda}_x)|  \leq 
@@ -148,7 +148,7 @@ We are going to bound (A) and (B) separately. Our short-term goal is to find a c
     \end{lemma}
 
     \begin{proof}
-        By~\eqref{rho-dif} and Corollary \ref{cor:minosokoad}, we obtain 
+        By~\eqref{rho-dif} and Corollary~\ref{cor:minosokoad}, we obtain 
         \begin{align*}
             F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k})) &= \iint F_x(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi^{\lambda}_x(z) \, \mathrm{d}y \mathrm{d}z\\
              &= \int F_x(\hat \varphi^{\epsilon_k}_y) ( \check\varphi^{\epsilon_k} * \psi^{\lambda}_x)(y) \, \mathrm{d}y.
@@ -162,7 +162,7 @@ We are going to bound (A) and (B) separately. Our short-term goal is to find a c
             |g_k'(\psi^\lambda_x) - F_x(\psi^\lambda_x * (\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k}))| 
             &= \int (F_y-F_x)(\hat \varphi^{\epsilon_k}_y) (\check \varphi^{\epsilon_k}* \psi^\lambda_x)(y) \, \mathrm{d}y,
         \end{align}
-        for which we find an upper bound using the second inequality of Lemma \ref{lemma:WALFANGER}
+        for which we find an upper bound using the second inequality of Lemma~\ref{lemma:WALFANGER}
         \begin{align*}
            ~\eqref{temp:klwmrlkewmrw} \leq 4^d \lVert \check \varphi \rVert_{L^1} \min \left\{ \frac{\epsilon_k}{\lambda}, 1 \right\}^r \sup_{y \in B(x, \lambda + \epsilon_k)} |(F_y - F_x)(\hat \varphi_y^{\epsilon_k})|.
         \end{align*}
@@ -206,7 +206,7 @@ Now, we are finally able to prove that \(f^K\) is a local reconstruction. We sho
 \end{align*}
 This proves that \(f^K\) is a local reconstruction of \((F_x)_{x \in \mathbb{R}^d}\).
 
-For completeness, we estimate \(\hat C \lVert \hat \varphi \rVert_{L^1}\). Lemma \ref{lemma:tweaked-l1-norm} gives us \(\lVert \hat \varphi \rVert_{L^1} \leq \frac{e^2 r \lVert \varphi \rVert_{L^1}}{|\int \varphi(x) \mathrm{d}x |} \). The bound for \(\hat C\) in~\eqref{constant:hat-c} then yields 
+For completeness, we estimate \(\hat C \lVert \hat \varphi \rVert_{L^1}\). Lemma~\ref{lemma:tweaked-l1-norm} gives us \(\lVert \hat \varphi \rVert_{L^1} \leq \frac{e^2 r \lVert \varphi \rVert_{L^1}}{|\int \varphi(x) \mathrm{d}x |} \). The bound for \(\hat C\) in~\eqref{constant:hat-c} then yields 
 \begin{align}\label{chatnorml1}
     \hat C \lVert \hat \varphi \rVert_{L^1} \leq \left(C\frac{e^2 r}{|\int \varphi(x)\, \mathrm{d}x|} \left(\frac{2^{-(r+1)}}{1+R_\varphi}\right)^\alpha\right)\left( \frac{e^2 r}{|\int \varphi(x) \mathrm{d}x |} \lVert \varphi \rVert_{L^1}\right).
 \end{align}
@@ -227,6 +227,6 @@ In this final step, we construct a global reconstruction \(f = \mathcal{R}F\) of
 \begin{align*}
     \forall \text{compact sets \(K\) and \(H\) with } K \subset H: \psi \in \mathcal{D}(\bar K_1) \implies f^K(\psi) = f^H(\psi).
 \end{align*}
-To prove this claim, we use the Uniqueness Theorem \ref{theorem:uniqueness-reconstruction}. We have \((f^K - F_x)(\varphi^\lambda_x) \to 0\) and \((g^K - F_x)(\varphi^\lambda_x) \to 0\) as \(\lambda \to 0\) uniformly for \(x \in \bar K_1\) because of \(\gamma > 0\) and~\eqref{reconstruction-theorem}. Hence, we apply the Uniqueness Theorem and conclude that \(f^K(\psi) = f^H(\psi)\) for all \(\psi \in \mathcal{D}(\bar K_1)\).  
+To prove this claim, we use the Uniqueness Theorem~\ref{theorem:uniqueness-reconstruction}. We have \((f^K - F_x)(\varphi^\lambda_x) \to 0\) and \((g^K - F_x)(\varphi^\lambda_x) \to 0\) as \(\lambda \to 0\) uniformly for \(x \in \bar K_1\) because of \(\gamma > 0\) and~\eqref{reconstruction-theorem}. Hence, we apply the Uniqueness Theorem and conclude that \(f^K(\psi) = f^H(\psi)\) for all \(\psi \in \mathcal{D}(\bar K_1)\).  
 
 With the consistency property being shown, we move on to construct a global reconstruction. Let \(\psi \in \mathcal{D}\). Then, we define \(\mathcal{R}F: \psi \mapsto f^K(\psi)\) where \(K \subset \mathbb{R}^d\) is a compact set large enough such that \(\psi\) is supported in \(\bar K_1\). The map \(\mathcal{R}F\) is well-defined because we showed the consistency property. Moreover, \(\mathcal{R}F\) is a reconstruction in the sense of~\eqref{reconstruction-theorem} because \(f^K\) is a local reconstruction. This ends the proof of the Reconstruction Theorem in the case \(\gamma > 0\). 

@@ -121,7 +121,7 @@ Additionally, we want \(\hat \varphi\) and \(\check \varphi\) to possess some ad
             1 \\ 0 \\ 0 \\ \\ 0
         \end{pmatrix}.
     \end{align*}
-    The matrix on the left is a \emph{Vandermonde matrix} for which it is easy to compute the determinant: \(\det = \prod_{1 \leq i < j \leq r - 1} \lambda_j  - \lambda_i\). Therefore, a solution \(c\) exists if and only if the determinant does not vanish if and only if all \(\lambda_i\)'s are distinct. If we let \(A\) denote the left hand side matrix, the inverse of \(A\)  can be explicitly stated 
+    The matrix on the left is a \emph{Vandermonde matrix} for which it is easy to compute the determinant: \(\det = \prod_{1 \leq i < j \leq r - 1} \lambda_j  - \lambda_i\). Therefore, a solution \(c\) exists if and only if the determinant does not vanish if and only if all \(\lambda_i\)'s are distinct. If we let \(A\) denote the left-hand side matrix, the inverse of \(A\)  can be explicitly stated 
     \begin{align*}
         (A^{-1})_{i=0,\ldots,r-1}^{j=0,\ldots,r-1} = (-1)^j \frac{\sum\limits_{\substack{U \subset \left\{ 0,\ldots,r-1 \right\} \setminus \left\{ i \right\} \\ |U| = r - 1 -j}} \; \prod\limits_{u \in U} \lambda_u}{\prod\limits_{v \in \left\{ 0,\ldots,r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)},
     \end{align*}
@@ -179,7 +179,7 @@ for \(a = \frac{1}{\int \varphi(x) \, \mathrm{d}x}\) and \(\lambda_i = \frac{2^{
     \end{align}
 \end{proof}
 
-What we have just proven is of elementary importance for the next steps; in other words the existence of the tweaked function \(\hat \varphi\) does a lot of heavylifting for us. The main takeaway is the following fact: if \(\varphi\) satisfies the coherence condition, so does \(\hat \varphi\):
+What we have just proven is of elementary importance for the next steps; in other words the existence of the tweaked function \(\hat \varphi\) does a lot of heavy lifting for us. The main takeaway is the following fact: if \(\varphi\) satisfies the coherence condition, so does \(\hat \varphi\):
 \begin{gather}\label{coherence-hat}
     |(F_z - F_y)(\hat \varphi^\epsilon_y)| \leq \hat C \epsilon^\alpha(|z-y| + \epsilon)^{\gamma - \alpha} \quad \text{and} \quad |F_y(\hat \varphi^\epsilon_y)| \leq \hat B\epsilon^\beta \tag{\({\widehat{\texttt{COH}}}\)} \\
     \text{for all } y,z \in \bar K_{3/2} \text{ with } |z-y| \leq 2,  \epsilon \in (0,1] .\nonumber
@@ -196,7 +196,7 @@ Finally, we set \(\rho = \hat \varphi^2 * \hat \varphi\). This is a mollifier be
 
 The remaining chapter is devoted to three technical lemmas that involve estimating the tweaked test functions \(\hat \varphi\) and \(\check \varphi\). They are only used in some minor parts of the proofs that are about to come. You can either skip to Chapter~\ref{step2:decomposition}: Step 2 right away and come back when the lemmas are actually needed.
 
-Many upcoming proofs require estimating the \(L^1\)-norm of \(\hat \varphi\). We even used an estimate in Lemma~\ref{lemma:hat-phi-satisfies-table}.
+Many upcoming proofs require estimating the \(L^1\)-norm of \(\hat \varphi\).
 \begin{lemma}\label{lemma:tweaked-l1-norm}
 We estimate
 \begin{align}\label{tweaked-l1-norm}
@@ -326,7 +326,7 @@ Our goal is to show that \(\lim\limits_{n \to \infty}f_n(\psi)\) exists for all 
 We will give a brief overview over the next steps because now we must be careful about \(\gamma\). Remember that we have fixed a compact set \(K\). Furthermore, notice that the approximating distributions \(f_n\) depend on \(K\) since our mollifier \(\rho\) depends on \(\hat \varphi\), which depends on \(r\), and the value of \(r\) depends on \(\alpha = \alpha_{\bar K_{3/2}}\) and \(\beta = \beta_{\bar K_{3/2}}\).
 \begin{itemize}
     \item In step 3, we show that for every \(\gamma \in \mathbb{R}\) the series \(\sum^{\infty}_{k=1} g_k'(\psi)\) converges for all test functions \(\psi \in \mathcal{D}(\bar K_1)\).
-    \item In step 4, we show that for \(\gamma > 0\) the series \(\sum^{\infty}_{k=1} g_k''(\psi)\) converges for all test functions \(\psi \in \mathcal{D}(\bar K_1)\). Thus, \(\lim_{n \to \infty} f_n(\psi)\) is well defined for \(\gamma > 0\), and we define 
+    \item In step 4, we show that for \(\gamma > 0\) the series \(\sum^{\infty}_{k=1} g_k''(\psi)\) converges for all test functions \(\psi \in \mathcal{D}(\bar K_1)\). Thus, \(\lim_{n \to \infty} f_n(\psi)\) is well-defined for \(\gamma > 0\), and we define 
     \begin{align*}
         f^K \coloneqq \lim_{n \to \infty}f_n.
     \end{align*}
@@ -363,7 +363,7 @@ The compact support argument for \(\check \varphi^{\epsilon_k}\) and \(\psi\) wo
     \item the tweaked test function \(\check \varphi^{\epsilon_k}\) has a compact support in \(B(0, \epsilon_k)\) because \(\check \varphi\) has a compact support in the unit ball \(B(0,1)\); since \(\epsilon_k = 2^{-k} \leq \frac{1}{2}\) for all \(k \in \mathbb{N}\), we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} \right) \subset B(0,\frac{1}{2})\);
     \item by assumption \(\psi \in \mathcal{D}(\bar K_1)\), the compact support of \(\psi\) lies in \(\bar K_1\).
 \end{itemize}
-Thus by Lemma~\ref{step3:lemma}, we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} * \psi \right) \subset \bar K_{3/2}\). We therefore obtain 
+Thus, we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} * \psi \right) \subset \bar K_{3/2}\)by Lemma~\ref{step3:lemma}. We therefore obtain 
 \begin{align*}
     |g_k'(\psi)| = \left|\int F_y(\hat \varphi^{\epsilon_k}_y) \, (\check \varphi^{\epsilon_k} * \psi)(y) \, \mathrm{d}y\right| 
     \leq \sup_{y \in \overline K_{3/2}} \left(|F_y(\hat \varphi^{\epsilon_k}_y)| \right) \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1}.

@@ -494,7 +494,7 @@ The \@dissertation of {\@author}, titled {\@title}, is approved:
 }
 \vfil
 \begin{center}
-{\fmfont University of California, {\@campus}}
+{\fmfont Technische Universität Berlin}
 \end{center}
 \end{alwayssingle}
 }
@@ -507,7 +507,7 @@ The \@dissertation of {\@author}, titled {\@title}, is approved:
 
 \def\copyrightpage{
 \begin{alwayssingle}
-
+\pagenumbering{gobble}
 \section*{Eidesstattliche Erklärung}
 
 Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und eigenhändig sowie ohne unerlaubte fremde Hilfe und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe. \\
@@ -531,21 +531,13 @@ Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und eigenh�
     \setlength{\parindent}{0pt}
     \setlength{\parskip}{\baselineskip}
     \setcounter{page}{1}
+    \pagenumbering{gobble}
     \begin{center}
       \abstractname \par
       \@title\par
       by\par
       \@author\par
-      {\@degree} in \@field\par
-          \ifdefined\@emphasis
-            and the Designated Emphasis in\par
-            {\@emphasis}\par
-          \fi
-      University of California, {\@campus}\par
-      {\@chair}, \@chairtitle \par
-      \ifdefined\@cochair
-        {\@cochair}, Co-chair\par
-      \fi
+      Technische Universität Berlin\par
     \end{center}
     \setlength{\parskip}{.6\baselineskip}
     \vspace{.4\baselineskip}

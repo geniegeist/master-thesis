@@ -54,7 +54,7 @@ This allows us to give an alternative characterization of distributions: a distr
 \end{lemma}
 
 \begin{proof}
-    Let \(u\) be a distribution and \(\varphi_j \to \varphi\) in \(\mathcal{D}\). Then, there exist \(C\) and \(r\) such that \(|u(\varphi_j -\varphi)| \leq C \lVert \varphi_j - \varphi \rVert_{C^r} \to 0\) as \(j \to \infty\) . By linearity, it follows \(u(\varphi_j) \to u(\varphi)\).
+    Let \(u\) be a distribution and \(\varphi_j \to \varphi\) in \(\mathcal{D}\). Then, there exist \(C\) and \(r\) such that \(|u(\varphi_j -\varphi)| \leq C \lVert \varphi_j - \varphi \rVert_{C^r} \to 0\) as \(j \to \infty\). By linearity, it follows \(u(\varphi_j) \to u(\varphi)\).
 
     For the converse direction, we argue by contradiction. Let \(\varphi_j \to \varphi\) in \(\mathcal{D}\) imply \(u(\varphi_j) \to u(\varphi)\) for all test functions \(\varphi_j\) and \(\varphi\). Assume, there is a compact set \(K \subset \mathbb{R}^d\) such that for all \(r \in \mathbb{N}_0\) and \(C < \infty\) the inequality \(|u(\varphi)| \leq C \lVert\varphi\rVert_{C^r}\) is violated for some \(\varphi \in \mathcal{D}\). Then, we can find \(\varphi_n\) with \(|u(\varphi_n)| > n \lVert \varphi_n \rVert_{C^n}\) for all \(n \in \mathbb{N}\). Next, we define \(\phi_n \coloneqq \frac{\varphi_n}{n \lVert \varphi_n \rVert_{C^n}}\). So, we get \(u(\phi_n) > 1\). However, \(\phi_n \to 0\) in \(\mathcal{D}\) as \(n \to \infty\) because \(\lVert \phi_n \rVert_{C^r} \leq \frac{1}{n}\) for all \(n \geq r\).
 \end{proof}
@@ -82,12 +82,12 @@ Constructing a sequence \((\varphi_j)\) such that \(\varphi_j \to \varphi\) in \
 \begin{proof}
     We can safely assume \(f\) and \(g\) to be representatives of the equivalence classes, because we  treat \(\int f(x) \; \mathrm{d}x\) as Lebesgue integrals and these integrals are independent of the chosen representatives.
 
-    First, we check that \((x,y) \mapsto f(x-y)g(y) \in L^1(\mathbb{R}^d \times \mathbb{R}^d)\) in order to apply Fubini. From Tonelli's theorem and the translation invariance of the Lebesgue integral we obtain
+    First, we check that \((x,y) \mapsto f(x-y)g(y) \in L^1(\mathbb{R}^d \times \mathbb{R}^d)\) in order to apply Fubini. By Tonelli's theorem and the translation invariance of the Lebesgue integral, we obtain
     \begin{align*}
         \int_{\mathbb{R}^d \times \mathbb{R}^d}|f(x-y)g(y)| \, \mathrm{d}(x,y) = \int_{\mathbb{R}^d}\int_{\mathbb{R}^d} |f(x-y)g(y)| \, \mathrm{d}x \, \mathrm{d}y = \lVert f \rVert_{1} \lVert g \rVert_{1} < \infty.
     \end{align*}
 
-    Then, by Fubini's theorem we obtain that \(y \mapsto f(x-y)g(y)\) is integrable for almost every \(x \in \mathbb{R}^d\). Thus, \((f*g)(x) = \int f(x-y)g(y) \, \mathrm{d}y\) is well-defined for almost every \(x \in \mathbb{R}^d\). Also by Fubini, \(f*g\) is integrable (if we assign zero in the points of the null set where it is not defined).
+    Then, by Fubini's theorem we obtain that \(y \mapsto f(x-y)g(y)\) is integrable for almost every \(x \in \mathbb{R}^d\). Thus, \((f*g)(x) = \int f(x-y)g(y) \, \mathrm{d}y\) is well-defined for almost every \(x \in \mathbb{R}^d\). Also, \(f*g\) is integrable by Fubini (if we assign zero in the points of the null set where it is not defined).
 \end{proof}
 Additionally, the proof also tells us that
 \begin{align}
@@ -110,7 +110,7 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
     \begin{align*}
         \frac{(\varphi * \rho^\epsilon)(x + te_j) - (\varphi * \rho^\epsilon)(x)}{t} = \int \frac{\varphi(x+te_j - y) - \varphi(x-y)}{t}\rho^{\epsilon}(y) \mathrm{d}y.
     \end{align*}
-    By the mean value inequality (Theorem \ref{mean-value-inequality}), we can bound
+    By the mean value inequality (Theorem \ref{mean-value-inequality}), we bound
     \begin{align*}
         \frac{\varphi (x + te_j - y) - \varphi (x-y)}{t} \leq \max_{\xi \in [0,t]}\frac{\partial}{\partial x_j}\varphi(x - y + \xi e_j) \leq C
     \end{align*}

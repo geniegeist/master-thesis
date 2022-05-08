@@ -30,7 +30,7 @@ Let us extend \( \mathcal{C}^\alpha \) to negative exponents \( \alpha < 0 \). I
   Clearly, \( T \in \mathcal{C}^\alpha \iff \lVert T \rVert_{\mathcal{C}^\alpha(K)} < \infty \) for all compact sets \( K \subset \mathbb{R}^d \).
 \end{definition}
 
-We present our main result. A distribution \( T \in \mathcal{D}' \) lies in \( \mathcal{C}^\alpha \) if inequality~\eqref{eq:negative-hoelder-spaces} holds for a \emph{single} arbitrary test function \( \varphi \in \mathcal{D} \) rather for all \( \psi \in \mathcal{B}_{r_\alpha} \). This characterization of negative Hölder spaces is obtained from the following theorem, which we prove in a similar fashion as in the proof of the Reconstruction Theorem.
+We present our main result. A distribution \( T \in \mathcal{D}' \) lies in \( \mathcal{C}^\alpha \) if inequality~\eqref{eq:negative-hoelder-spaces} holds for a \emph{single} arbitrary test function \( \varphi \in \mathcal{D} \) rather for all \( \psi \in \mathcal{B}_{r_\alpha} \). This characterization of negative Hölder spaces is obtained from the following theorem, which we prove similarly as in the proof of the Reconstruction Theorem.
 
 \begin{theorem}\label{proposition:spiderman}
   Let \( T \in \mathcal{D}' \). If there exists a set \( K \subset \mathbb{R}^d \) and a test function \( \varphi \in \mathcal{D}, \int \varphi(x) \, \mathrm{d}x \neq 0 \) such that 
@@ -131,8 +131,7 @@ We further exploit that negative Hölder-continuity is based on a single test fu
 \end{corollary}
 
 \begin{proof}
-  By Corollary~\ref{corollary:negative-hoelder-spaces} there exists a test function \( \varphi \in \mathcal{D} \) such that \( |T(\varphi^\epsilon_x)| \leq \tilde C \epsilon^\alpha  \) uniformly for \( x \) in compact sets and \( \epsilon \in \left\{ 2^{-k} \right\}_{k \in \mathbb{N}} \) with some constant \( \tilde C \). Thus, we apply Theorem~\ref{proposition:spiderman} with \( \tilde C = \sup\limits_{\substack{x \in \enlarg{K}{2} \\ \epsilon \in (0,1]}} \frac{|T(\varphi^{\epsilon}_x)|}{\epsilon^\alpha} \) and we obtain
-
+  By Corollary~\ref{corollary:negative-hoelder-spaces} there exists a test function \( \varphi \in \mathcal{D} \) such that \( |T(\varphi^\epsilon_x)| \leq \tilde C \epsilon^\alpha  \) uniformly for \( x \) in compact sets and \( \epsilon \in \left\{ 2^{-k} \right\}_{k \in \mathbb{N}} \) with some constant \( \tilde C \). Thus, we apply Theorem~\ref{proposition:spiderman} with \( \tilde C = \sup\limits_{\substack{x \in \enlarg{K}{2} \\ \epsilon \in (0,1]}} \frac{|T(\varphi^{\epsilon}_x)|}{\epsilon^\alpha} \), and we obtain
 
   \begin{align*}
     \lVert T \rVert_{\mathcal{C}^\alpha(K)} 
@@ -162,7 +161,7 @@ We further exploit that negative Hölder-continuity is based on a single test fu
 To the end of this chapter, we prove that  \( \mathcal{R}F \) lies in a negative Hölder-space if the germ \( F \) has \emph{global} homogeneity bound. Local homogeneity bound, that we get for free by the coherence condition (Lemma~\ref{lemma:homogeneity-bound}), does not suffice. This fact is later important to see why the Sewing Lemma is slightly more general than the Reconstruction Theorem.
 
 \begin{theorem}[Reconstruction Theorem and Hölder Spaces]\label{theorem:rec-and-negative-hoelder}
-  Let \( F = (F_x)_{x \in \mathbb{R}^d} \) be \( (\alpha, \gamma) \)-coherent germ with global homogeneity bound \( \beta < \gamma \). If \( \beta > 0 \), then \( \mathcal{R}F = 0 \). If \( \beta \leq 0 \), then \( \mathcal{R}F \in \mathcal{C}^\beta \). Additionally in case of \( \beta \leq 0 \), the reconstruction operator \( \mathcal{R} \) which maps coherent germs \( F \) to their reconstruction \( \mathcal{R}F \) is continuous in the following sense: there exists a constant such that for every compact set \( K \subset \mathbb{R}^d \) the operator \( \mathcal{R} \) satisfies
+  Let \( F = (F_x)_{x \in \mathbb{R}^d} \) be \( (\alpha, \gamma) \)-coherent germ with global homogeneity bound \( \beta < \gamma \). If \( \beta > 0 \), then \( \mathcal{R}F = 0 \). If \( \beta \leq 0 \), then \( \mathcal{R}F \in \mathcal{C}^\beta \). Additionally, in case of \( \beta \leq 0 \), the reconstruction operator \( \mathcal{R} \) which maps coherent germs \( F \) to their reconstruction \( \mathcal{R}F \) is continuous in the following sense: there exists a constant such that for every compact set \( K \subset \mathbb{R}^d \) the operator \( \mathcal{R} \) satisfies
   \begin{gather}\label{equation:rec-and-negative-hoelder}
     \lVert \mathcal{R}F \rVert_{\mathcal{C}^\beta(K)} \leq \left\{ \mathrm{constant} \right\} \cdot \left( 
         \vertiii{F}^{\mathrm{coh}}_{\enlarg{K}{4}, \varphi, \alpha, \gamma} + \vertiii{F}^{\mathrm{\hom}}_{\enlarg{K}{2}, \varphi, \beta}
@@ -185,7 +184,7 @@ To the end of this chapter, we prove that  \( \mathcal{R}F \) lies in a negative
     \sup_{\substack{x \in \enlarg{K}{2} \\ \lambda \in (0,1]}} 
     \frac{|\mathcal{R}F(\varphi^{\lambda}_x)|}{\lambda^\beta} \leq \left\{  \mathrm{constant} \right\} \left( \vertiii{F}^{\mathrm{coh}}_{\enlarg{K}{4}, \varphi, \alpha, \gamma} + \vertiii{F}^{\mathrm{\hom}}_{\enlarg{K}{2}, \varphi, \beta} \right).
   \end{align*}
-  We choose \( \bar r = \min\left\{ r \in \mathbb{N} : r > \max\left\{ -\alpha, -\beta \right\}\right\} \). We apply the Reconstruction Theorem (Theorem~\ref{theorem:reconstruction-theorem}) for \( r = \bar r \) and \( K = \enlarg{K}{2} \). Let \( x \in \enlarg{K}{2} \) and \( \lambda \in (0,1] \). Note that \( \varphi \in \mathcal{D} \) does not necessarily lie in \( \mathcal{B}_{\bar r} \). However, it is easy to find parameters \( c, z \) and \( \eta \) such that the test function \( \xi: x \mapsto c \varphi^{\eta}(x - z) \) lies in \( \mathcal{B}_{\bar r} \); the parameter \( c \) scales the \( C^{\bar r} \)-norm to one, and \( \eta \) and \( z \) shift the compact support of \( \varphi \) to \( B(0,1) \). Using the Reconstruction Theorem, we obtain
+  We choose \( \bar r = \min\left\{ r \in \mathbb{N} : r > \max\left\{ -\alpha, -\beta \right\}\right\} \), and apply the Reconstruction Theorem (Theorem~\ref{theorem:reconstruction-theorem}) for \( r = \bar r \) and \( K = \enlarg{K}{2} \). Let \( x \in \enlarg{K}{2} \) and \( \lambda \in (0,1] \). Note that \( \varphi \in \mathcal{D} \) does not necessarily lie in \( \mathcal{B}_{\bar r} \). However, it is easy to find parameters \( c, z \) and \( \eta \) such that the test function \( \xi: x \mapsto c \varphi^{\eta}(x - z) \) lies in \( \mathcal{B}_{\bar r} \); the parameter \( c \) scales the \( C^{\bar r} \)-norm to one, and \( \eta \) and \( z \) shift the compact support of \( \varphi \) to \( B(0,1) \). Using the Reconstruction Theorem, we obtain
   \begin{align*}
     |(f - F_x)(\varphi^\lambda_x)| \leq \frac{1}{c}|(f - F_x)(\xi^{\eta^{-1}\lambda}_{x - z})| &\leq \frac{1}{c}(|(f - F_{x- z})(\xi^{\eta^{-1}\lambda}_{x - z})| + |(F_{x -z} - F_x)(\xi^{\eta^{-1}\lambda}_{x - z})|) \\
     &\leq \frac{1}{c}\left\{ \mathrm{constant} \right\} \vertiii{F}^{\mathrm{coh}}_{\enlarg{K}{4}, \varphi, \alpha, \gamma} \begin{cases}
@@ -201,7 +200,7 @@ To the end of this chapter, we prove that  \( \mathcal{R}F \) lies in a negative
       1 + |\log(\lambda)| & \text{if \( \gamma = 0 \)}
     \end{cases}.
   \end{align*}
-  Next, observe that \( \lambda^\gamma < \lambda^\beta \) because \( \gamma > \beta \). Moreover, a lengthy computations shows \( 1 + |\log(\lambda)| \leq \left\{ -\beta^{-1}e^{-(1 + \beta)} \right\}\lambda^\beta \) for all \( \lambda \in (0,1] \) and \( \beta \leq 0 \), see Theorem 12.7 in~\cite{caravenna2021hairer}. Hence,
+  Next, observe that \( \lambda^\gamma < \lambda^\beta \) because \( \gamma > \beta \). Moreover, a lengthy computation shows \( 1 + |\log(\lambda)| \leq \left\{ -\beta^{-1}e^{-(1 + \beta)} \right\}\lambda^\beta \) for all \( \lambda \in (0,1] \) and \( \beta \leq 0 \), see Theorem 12.7 in~\cite{caravenna2021hairer}. Hence,
   \begin{align*}
     |(f - F_x)(\varphi^\lambda_x)| \leq \left\{ \mathrm{constant} \right\} \cdot (1 + \left\{ -\beta^{-1}e^{-(1 + \beta)}\right \}) \cdot \vertiii{F}^{\mathrm{coh}}_{\enlarg{K}{4}, \varphi, \alpha, \gamma}  \lambda^\beta.
   \end{align*}
@@ -253,7 +252,7 @@ We return to the coherence condition and homogeneity bound. In the previous chap
 We stress that our definition of coherence requires only a single test function \( \varphi \in \mathcal{D} \) with \( \int \varphi(x) \, \mathrm{d}x  \neq 0\) to be tested.
 
 \begin{proof}
-  The proof is straighforward and uses Theorem~\ref{proposition:spiderman}.
+  The proof is straightforward and uses Theorem~\ref{proposition:spiderman}.
 
   Let \( K \subset \mathbb{R}^d \) be a compact set and \( z,y \in K \). We choose a third point \( x \in \enlarg{K}{2} \) just for the purpose of applying Theorem~\ref{proposition:spiderman}. Using the triangle inequality, we have for all \( \lambda \in (0,1] \) that
   \begin{align*}
@@ -286,13 +285,13 @@ In the proof we replaced \( \alpha_{K} \) by \( \alpha_{\enlarg{K}{2}} \) to pro
 
 Clearly, enhanced coherence implies coherence, and enhanced homogeneity implies homogeneity. At first sight, the converse seems false. However, we proved that our initial definition of coherence and homogeneity offers as much as information as the enhanced versions. The proof was simple and relied on the Reconstruction Theorem.
 
-\section{Sewing Lemma}
+\section{Sewing Lemma}\label{section:sewing-lemma}
 
-The Sewing Lemma is closely related to the Reconstruction Theorem; often it is called the \( 1 \)-dimensional analogue of the Reconstruction Theorem. Originally, introduced by ... HISTORY
+The Sewing Lemma is closely related to the Reconstruction Theorem; often it is called the \( 1 \)-dimensional analogue of the Reconstruction Theorem. Originally, Gubinelli introduced the Sewing Lemma~\cite{gubinelli2004controlling} to study rough paths.
 
-Our goal is to prove the Sewing Lemma with the Reconstruction Theorem. We closely follow the proof of~\cite[Chapter 5]{broux2021sewing}. We will see that the Sewing Lemma is slightly more general than the Reconstruction Theorem in the \( 1 \)-dimensional setting \( \mathbb{R} \). That is, it is no hurdle to show that Sewing implies the Reconstruction Theorem. Proving the converse is nontrivial without additional assumptions. We need to assume a \emph{global homogeneity bound}. To date, a proof that the Sewing Lemma implies the Reconstruction Theorem without any additional assumption is still missing. 
+Our goal is to prove the Sewing Lemma with the Reconstruction Theorem. We closely follow the proof of Broux and Zambotti~\cite[Chapter 5]{broux2021sewing}. We will see that the Sewing Lemma is slightly more general than the Reconstruction Theorem in the one-dimensional setting \( \mathbb{R} \). That is, it is no hurdle to show that Sewing implies the Reconstruction Theorem. Proving the converse is nontrivial without additional assumptions. We need to assume a \emph{global homogeneity bound}. To date, a proof that the Sewing Lemma implies the Reconstruction Theorem without any additional assumption is still missing. 
 
-Yet, the Sewing Lemma has a drawback. It is not applicable in the multi-dimensional setting \( \mathbb{R}^d \) in contrast to the Reconstruction Theorem. Here, the distributional view begins to shine.
+Yet, the Sewing Lemma has a drawback. It is not applicable in the multidimensional setting \( \mathbb{R}^d \) in contrast to the Reconstruction Theorem. Here, the distributional view begins to shine.
 
 We state the Sewing Lemma. Recall that in Chapter~\ref{chapter:first-peek-at-reconstruction}, we have already introduced the Sewing Lemma by Lemma~\ref{first-sewing-lemma}. We were trying to find a suitable assumption for the Reconstruction Theorem, which ultimately led to coherence.
 
@@ -458,9 +457,9 @@ We give a proof but omit minor technical details to keep this section concise; a
   \begin{align*}
     \int I_{s + \lambda2^{-N}u}\eta_N(u) \, \mathrm{d}u = I_s + \int (I_{s + \lambda2^{-N}u} - I_s)\eta_N(u) \, \mathrm{d}u.
   \end{align*}
-  By assumption, \( I \) is continuous. Hence, the integrand \( (I_{s + \lambda2^{-N} \cdot} - I_s)\eta_N(\cdot) \to 0 \) converges pointwise to \( 0 \) as \( N \to \infty \) if \( \eta_N \) is continuous. If we further assume that \( \eta_N \in \mathcal{D}(B(0,1)) \), then the integrand is bounded by a constant. We can then apply the dominated convergence theorem, which shows that the first summand converges to \( -I_s \).  It remains to prove that \( \eta_N \in \mathcal{D}(B(0,1)) \), for which we use the properties of the dyadic approximation. It is not difficult to show but we omit this part.
+  By assumption, \( I \) is continuous. Hence, the integrand \( (I_{s + \lambda2^{-N} \cdot} - I_s)\eta_N(\cdot) \to 0 \) converges point wise to \( 0 \) as \( N \to \infty \) if \( \eta_N \) is continuous. If we further assume that \( \eta_N \in \mathcal{D}(B(0,1)) \), then the integrand is bounded by a constant. We can then apply the dominated convergence theorem, which shows that the first summand converges to \( -I_s \).  It remains to prove that \( \eta_N \in \mathcal{D}(B(0,1)) \), for which we use the properties of the dyadic approximation. It is not difficult to show, but we omit this part.
 
-  Similarly, we show that the other three summands converge to \( I_{s + \lambda} \) or \( A_{s, s+\lambda} \) or they vanishes. We then obtain 
+  Similarly, we show that the other three summands converge to \( I_{s + \lambda} \) or \( A_{s, s+\lambda} \), or they vanish. We then obtain 
   \begin{align*}
     \Delta^N_{s, \lambda} = I_{s + \lambda} - I_s - A_{s, s+ \lambda} + o_{N \to \infty}(1).
   \end{align*}
@@ -515,7 +514,7 @@ Hence, \( \mathcal{R}F \in \mathcal{C}^{\beta - 1} \). This proves the existence
   Let \( \beta, \gamma > 0 \) with \( \beta < 1 \). Let \( A \in C([0,1] \times [0,1]) \) be a function that satisfies 
   \begin{align*}
     |\delta A_{s,u,t}| &\leq \left\{ \mathrm{constant} \right\} (\max\left\{  |t-u|, |u-s|\right\})^\gamma,\\
-    |A_{s,t}| &\leq \{ \mathrm{constant} \} |t-s|^\beta.
+    |A_{s,t}| &\leq \{ \mathrm{constant} \} |t-s|^\beta
   \end{align*}
   uniformly for \( s,u,t \in [0,T] \). Then, there exists \( I \in \mathcal{C}^\beta \) such that 
   \begin{align*}

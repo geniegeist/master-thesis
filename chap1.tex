@@ -1,18 +1,18 @@
 \chapter{Introduction} 
 
-The Reconstruction Theorem allows to construct a distribution \(f\) from a family of distributions \({(F_{x})}_{x \in \mathbb{R}^d}\) such that \(f\) is locally well-approximated by \(F_x\) around \(x \in \mathbb{R}^d\). It may be viewed as a converse to Taylor's Theorem if \(F_x\) is a Taylor polynomial. However, this view fails to capture the true importance. The Reconstruction Theorem is the most fundamental theorem in the theory of regularity structures --- a novel theory proposed by Hairer~\cite{hairer2014theory} that provides a robust solution theory to many ill-posed stochastic partial differential equations. In fact, the theory of regularity structures was so groundbreaking that Hairer was awarded the Fields medal for his \emph{``creation of regularity structures''} in 2014~\cite{FieldsMedalHairer}. It is the Reconstruction Theorem, a purely deterministic tool from analysis, that enables the theory of regularity structures.
+The Reconstruction Theorem allows to construct a distribution \(f\) from a family of distributions \({(F_{x})}_{x \in \mathbb{R}^d}\) such that \(f\) is locally well-approximated by \(F_x\) around \(x \in \mathbb{R}^d\). Intuitively, we may view it as a converse to Taylor's Theorem if we let \(F_x\) be a Taylor polynomial. The Reconstruction Theorem is the most fundamental theorem in the theory of regularity structures --- a novel theory proposed by Hairer~\cite{hairer2014theory} that provides a robust solution theory to many ill-posed stochastic partial differential equations. In fact, the theory of regularity structures was so groundbreaking that Hairer was awarded the Fields medal for his \emph{``creation of regularity structures''} in 2014~\cite{FieldsMedalHairer}.
 
-The original proof of the Reconstruction Theorem relied heavily on wavelet analysis; since then numerous proofs have been published~\cite{hairer2017reconstruction, otto2019quasilinear, gubinelli2015paracontrolled, martin2020littlewood, singh2018elementary}. All of these proofs required profound knowledge of regularity structures, rough path theory or paracontrolled distributions. A concise treatment of the Reconstruction Theorem for a broader audience was not available until Caravenna and Zambotti gave a proof in 2020 based on elementary distribution theory~\cite{caravenna2021hairer}. 
+The original proof of the Reconstruction Theorem relied heavily on wavelet analysis~\cite{hairer2017reconstruction}. Since then numerous, more self-contained proofs have been published; for example Otto and coauthors~\cite{otto2019quasilinear} used semigroup methods, or Friz and Hairer gave a purely local proof~\cite{friz2020course}, which generalizes to any domains. Other proofs include~\cite{gubinelli2015paracontrolled, martin2020littlewood, singh2018elementary}. Still all of these proofs require profound knowledge of regularity structures or stochastic analysis. In 2020 Caravenna and Zambotti~\cite{caravenna2021hairer} gave a truly elementary proof of the Reconstruction Theorem that uses distribution theory. 
 
-The aim of this thesis is to give a self-contained proof of the Reconstruction Theorem. Hence, we mimic the proof by Caravenna and Zambotti, which requires no prior knowledge. We hope that this thesis introduces the Reconstruction Theorem to a broader audience. Since the Reconstruction Theorem is a purely analytical tool, it may find applications outside regularity structures or stochastic partial differential equations.
+The aim of this thesis is to give a self-contained proof of the Reconstruction Theorem. Hence, we mimic the proof by Caravenna and Zambotti. We hope that this thesis introduces the Reconstruction Theorem to a broader audience. Since the Reconstruction Theorem is a purely analytical tool, it may find applications outside regularity structures or stochastic partial differential equations. This thesis is aimed towards readers who are familiar with multivariable calculus. Knowledge of distribution theory is helpful but not mandatory since we give a concise overview of distribution theory.
 
-The thesis is structured in the following way: Chapter~\ref{chapter:notation} introduces notation. Chapter~\ref{chapter:distributions} gives a concise overview of the theory of distributions. In Chapter~\ref{chapter:reconstruction} we state the Reconstruction Theorem with its assumptions. This leads to the central notion of \emph{coherence}, an optimal assumption coined by Caravenna and Zambotti. In Chapter~\ref{chapter:general-proof},~\ref{chapter:proof-gamma-positive} and~\ref{chapter:proof-gamma-negative} we prove the Reconstruction Theorem. We split the proof into three parts because we consider two cases: \(\gamma > 0\) and \(\gamma \leq 0\), where \({\gamma}\) is a parameter occuring in the Reconstruction Theorem. A major part of the proof holds for all \(\gamma \in \mathbb{R}\) and is presented in Chapter~\ref{chapter:general-proof}. We continue the proof for \(\gamma > 0\) in Chapter~\ref{chapter:proof-gamma-positive}, and the proof for \(\gamma \leq 0\) in Chapter~\ref{chapter:proof-gamma-negative}. In Chapter 6 we give an application of the Reconstruction Theorem, where we extend Hölder spaces to negative exponents. In Chapter 7, we end the thesis with a discussion of the relationship between the Reconstruction Theorem and the Sewing Lemma, another analytical tool from Rough Path theory that is often considered as the one-dimensional analogue of the Reconstruction Theorem.
+The thesis is structured in the following way: Chapter~\ref{chapter:notation} introduces notation. Chapter~\ref{chapter:distributions} gives a concise overview of the theory of distributions. In Chapter~\ref{chapter:reconstruction} we state the Reconstruction Theorem with its assumptions. This leads to the central notion of \emph{coherence}, an optimal assumption coined by Caravenna and Zambotti. In Chapter~\ref{chapter:general-proof},~\ref{chapter:proof-gamma-positive} and~\ref{chapter:proof-gamma-negative} we prove the Reconstruction Theorem. We split the proof into three parts because we consider two cases: \(\gamma > 0\) and \(\gamma \leq 0\), where \({\gamma}\) is a parameter occurring in the Reconstruction Theorem. A major part of the proof holds for all \(\gamma \in \mathbb{R}\) and is presented in Chapter~\ref{chapter:general-proof}. We continue the proof for \(\gamma > 0\) in Chapter~\ref{chapter:proof-gamma-positive}, and the proof for \(\gamma \leq 0\) in Chapter~\ref{chapter:proof-gamma-negative}. In Chapter 6 we present applications of the Reconstruction Theorem, where we extend Hölder spaces to negative exponents, and prove the Sewing Lemma from rough path theory.
 
 % ------------------------------------------
 
 \section{Notation}\label{chapter:notation}
 
-Throughout this thesis, the symbol \( \mathbb{R}^d \) denotes the \( d \)-dimensional Euclidean space with the Euclidean norm \( |\cdot| \) for some \( d \in \mathbb{N} \). The \emph{open ball} \(B(x_0, r)\)  centered around \(x_0 \in \mathbb{R}^d\) with radius \(r > 0\) is defined as \(B(x_0,r) = \{ x \in \mathbb{R}^d : |x - x_0| \leq r \} \). We write \(\enlarg{A}{\epsilon}\) to enlarge a set \(A \subset \mathbb{R}^d\) by some \(\epsilon \in \mathbb{R} \): 
+Let \( \mathbb{N} = \left\{ 1,2, \ldots \right\} \). Throughout this thesis, the symbol \( \mathbb{R}^d \) denotes the \( d \)-dimensional Euclidean space with the Euclidean norm \( |\cdot| \) for some \( d \in \mathbb{N} \). The \emph{open ball} \(B(x_0, r)\)  centered around \(x_0 \in \mathbb{R}^d\) with radius \(r > 0\) is defined as \(B(x_0,r) = \{ x \in \mathbb{R}^d : |x - x_0| \leq r \} \). We write \(\enlarg{A}{\epsilon}\) to enlarge a set \(A \subset \mathbb{R}^d\) by some \(\epsilon \in \mathbb{R} \): 
 \begin{align*}
     \enlarg{A}{\epsilon} \coloneqq A + B(0, \epsilon) \coloneqq \{ x \in \mathbb{R}^d : |x - a| \leq \epsilon \text{ for some \(a \in A\)} \}.
 \end{align*}
@@ -23,10 +23,10 @@ The \emph{multi-index notation} makes many theorems for functions in multiple va
     k! = k_1! k_2! \cdots k_d!, \qquad
     \binom{k}{l} = \binom{l_1}{k_1} \cdots \binom{l_d}{k_d} = \frac{k!}{l! (k - l)!}.
 \end{gather*}
-A polynomial \(f(x)\) with real coefficients \(\alpha_k \in \mathbb{R}\) of degree \(m \in \mathbb{N}_0\) in \(d\) variables can be written as 
+A polynomial \(f(x)\) of degree \(m \in \mathbb{N}_0\) with its partial derivatives are written as 
 \begin{align*}
-    f(x) = \sum\limits_{|k| \leq m} \alpha_{k}x^k  \quad \text{and} \quad
-    \partial^k f(x) = \partial^{k_1}_{1} \cdots \partial^{k_d}_{d} f(x).
+    f(x) &= \sum\limits_{|k| \leq m} \alpha_{k}x^k \qquad \quad \alpha_k \in \mathbb{R}  \text{ for all multi-indexes \( k \)} ,\\
+    \partial^k f(x) &= \partial^{k_1}_{1} \cdots \partial^{k_d}_{d} f(x).
 \end{align*}
 We say 
 \begin{itemize}
@@ -34,20 +34,36 @@ We say
     \item \(f \in C^k\) if \(f\) is {\(k\)-times continuously differentiable} for \(k \in \mathbb{N}\), and
     \item \(f\) is {smooth} if \( f \in C^\infty \).
 \end{itemize}
-We define the \emph{\(C^k\)-norm} as \(\lVert f \rVert_{C^k} = \max\limits_{|i| \leq k} \lVert \partial^i f \rVert_{\infty}\) where \(\lVert f \rVert_{\infty} = \sup_{x \in \mathbb{R}^d} |f(x)|\). Next, we state classical results from analysis without their proofs; the proofs can be found in any standard analysis book, for example~\cite{MR0055409}.
+We define the \emph{\(C^k\)-norm} for \( f \in {C}^k \) as 
+\begin{align*}
+    \lVert f \rVert_{C^k} = \max\limits_{|i| \leq k} \lVert \partial^i f \rVert_{\infty},
+\end{align*}
+where \(\lVert f \rVert_{\infty} = \sup_{x \in \mathbb{R}^d} |f(x)|\). 
+
+The {support} of a function \(f: \mathbb{R}^d \to \mathbb{R}\) is defined as \(\mathrm{supp}(f) = \overline{\left \{ x \in \mathbb{R}^d : f(x) \neq 0 \right \}}\), where the bar over the set denotes its closure.
+
+Next, we state classical results from analysis in multi-index notation. We skip the proofs, and instead refer to Rudin~\cite{MR0055409}.
 \begin{theorem}[Taylor's Theorem]
-    Let \(f \in C^{k}(B(x_0, r))\) and \(k \in \mathbb{N}^d_0\). Then, we have \(f(x) = \sum\limits_{|j| \leq k}\partial^{j} f(x_0) \frac{{(x-x_0)}^j}{j!} + R(x)\) with \(\frac{R(x)}{|x-x_0|^{k}} \to 0\) as \(x \to x_0\) for all \(x \in B(x_0, r)\).
+    Let \(f \in C^{k}(B(x_0, r))\) and \(k \in \mathbb{N}^d_0\). Then, for all \(x \in B(x_0, r)\) we have
+    \begin{align*}
+        f(x) = \sum\limits_{|j| \leq k}\partial^{j} f(x_0) \frac{{(x-x_0)}^j}{j!} + R(x),
+    \end{align*}
+    where \(\frac{R(x)}{|x-x_0|^{k}} \to 0\) as \(x \to x_0\).
 \end{theorem}
 
 \begin{theorem}[Leibniz Rule]\label{theorem:leibniz}
-    The Leibniz rule is a generalization of the product rule, that is
+    The Leibniz rule is a generalization of the product rule. Let \( f, g \in {C}^k \). Then, \( fg \in {C}^k \) and for \( \alpha \in \mathbb{N}^d_0, |\alpha| \leq k \) we have
     \begin{align*}
         \partial^\alpha(fg) = \sum_{\beta \leq \alpha} \binom{\alpha}{\beta} (\partial^\beta f) (\partial^{\alpha - \beta} g).
     \end{align*}
 \end{theorem}
 
 \begin{theorem}[Mean Value Inequality]\label{mean-value-inequality}
-    Let \(f: G \to \mathbb{R}\) be differentiable, where \(G\) is an open convex subset of \(\mathbb{R}^n\). Let \(a,b \in G\). Then, \(|f(b) - f(a)| \leq \sup\limits_{x \in \overline{ab}} |f'(x)| \, |b-a|\), where 
+    Let \(f: G \to \mathbb{R}\) be differentiable, where \(G\) is an open convex subset of \(\mathbb{R}^d\). Let \(a,b \in G\). Then,
+    \begin{align*}
+        |f(b) - f(a)| \leq \sup\limits_{x \in \overline{ab}} |f'(x)| \, |b-a|,
+    \end{align*}
+    where 
     \(
         f'(x) = 
         \begin{pmatrix}
@@ -57,7 +73,7 @@ We define the \emph{\(C^k\)-norm} as \(\lVert f \rVert_{C^k} = \max\limits_{|i| 
     is the gradient of \(f\). 
 \end{theorem}
 
-Later, we will consider functions that are said to \emph{annihilate monomials}; they play an essential role in the proof of the Reconstruction Theorem, and we will spend a considerate amount of time constructing such functions. The definition reads as follows.
+Later, we will consider functions that are said to \emph{annihilate monomials}; they play an essential role in the proof of the Reconstruction Theorem. The definition reads as follows.
 
 \begin{definition}[Annihilation of Monomials]
     A function \(g: \mathbb{R}^d \to \mathbb{R}\) \emph{annihilates monomials} of degree \(j \in \mathbb{N}\) if for all \(n \in \mathbb{N}^d_0\) with \(|n| = j\) we have
@@ -66,7 +82,7 @@ Later, we will consider functions that are said to \emph{annihilate monomials}; 
     \end{align*}
 \end{definition}
 
-For later applications of the Reconstruction Theorem, we introduce the space of \emph{locally \({\alpha}\)-Hölder functions} denoted by \(\mathcal{C}^{\alpha}\) for positive exponents \(\alpha > 0\). It will be our task to extend this space to non-positive exponents \({\alpha \leq 0}\). 
+For later applications of the Reconstruction Theorem, we introduce the space of \emph{locally \({\alpha}\)-Hölder functions} \(\mathcal{C}^{\alpha}\) for positive exponents \(\alpha > 0\). It is our goal to extend this space to non-positive exponents \({\alpha \leq 0}\) in later chapters. 
 
 \begin{definition}[Locally \({\alpha}\)-Hölder Functions]\label{definition:hoelder-functions}
     Let \(\alpha > 0\) and \(\varphi: \mathbb{R}^d \to \mathbb{R}\). We say \(\varphi \in \mathcal{C}^{\alpha}\) if
@@ -81,11 +97,9 @@ For non-positive exponents \( \alpha \), the space \( \mathcal{C}^\alpha \) is n
 
 \section{Theory of Distributions}\label{chapter:distributions}
 
-In distribution theory one is interested in 
+The theory of distributions generalizes classical analysis. We no longer consider functions \( f : \mathbb{R}^d \to \mathbb{R} \) but linear forms, called \emph{distributions}, that act on \emph{test functions}. Distributions set up a general theory of partial differential equations, which classical analysis fails to do. Our goal is to quickly introduce distributions to get Reconstruction Theorem going. For a complete treatment we recommend the standard reference by Friedlander and Joshi~\cite{friedlander1998introduction}.
 
-The beauty of~\cite{caravenna2021hairer}, on which this bachelor thesis is based, lies within the fact that the Reconstruction Theorem can be stated in terms of elementary distribution theory without the need of regularity structures. 
-
-The first concept we will encounter is that of a \emph{support} of a function \(\varphi: \mathbb{R}^d \to \mathbb{R}\), which is defined as \(\mathrm{supp}(\varphi) = \overline{\left \{ x \in \mathbb{R}^d : \varphi(x) \neq 0 \right \}}\). 
+There are many classes of test functions. We choose the compactly supported functions \( f \in C^\infty \).
 
 \begin{definition}[Test Function]
     \emph{Test functions} \(\varphi: \mathbb{R}^d \to \mathbb{R}\) are smooth functions that have compact support. The \emph{space of test functions} \(\mathcal{D}\) is the set that contains all test functions:
@@ -95,18 +109,14 @@ The first concept we will encounter is that of a \emph{support} of a function \(
     \end{align*}
 \end{definition}
 
-A standard example for a test function is the \emph{bump function}:
+The following subset of test functions play an important role in subsequent chapters
 \begin{align*}
-    \mathcal{B}(x) = \begin{cases}
-        \exp{\left( -\frac{1}{1 - |x|^2} \right)}, \quad & |x| < 1, \\
-        0, & \text{otherwise}.
-    \end{cases}
+    \mathcal{B}_r = \left\{ \varphi \in \mathcal{D}(B(0,1)) : \lVert \varphi \rVert_{C^r} \leq 1 \right\}.
 \end{align*}
-Clearly, the bump function has compact support in \(B(0,1)\). The proof that it is smooth can be found in any standard analysis book, e.g.\ see (22.2) in~\cite{Forster_2016}.
 
-\emph{Distributions} are the key objects in Distribution Theory.
+To each class of test functions there corresponds a class of distributions.
 \begin{definition}[Distribution]
-A functional \(u: \mathcal{D} \to \mathbb{R}\) is called a \emph{distribution} if \(u\) is linear, and if for every compact set \(K \subset \mathbb{R}^d\) there exist \(r \in \mathbb{N}_0\) and \( C < \infty \) such that 
+A map \(u: \mathcal{D} \to \mathbb{R}\) is called \emph{distribution} if it is linear, and if for every compact set \(K \subset \mathbb{R}^d\) there exist \(r \in \mathbb{N}_0\) and \( C < \infty \) such that 
 \begin{align*}
     |u(\varphi)| \leq C \lVert\varphi\rVert_{C^r}, \quad \forall \varphi \in \mathcal{D}(K).
 \end{align*}
@@ -116,21 +126,19 @@ The \emph{space of all distributions} is denoted
 \).
 \end{definition}
 
-Next, we give \emph{convergence in \(\mathcal{D}\)} a meaning.
+Any continuous function \( f: \mathbb{R}^d \to \mathbb{R} \) can be canonically identified with a distribution by \( \varphi \mapsto \int_{\mathbb{R}^d} f(x) \varphi(x) \, \mathrm{d}x \) for all \( \varphi \in \mathcal{D} \).
+
+We give {convergence in \(\mathcal{D}\)} a meaning.
 
 \begin{definition}[Convergence]
-    Let \((\varphi_j)\) be a sequence in \(\mathcal{D}\) and \(\varphi \in \mathcal{D}\). We say 
+    Let \((\varphi_n)\) be a sequence in \(\mathcal{D}\) and \(\varphi \in \mathcal{D}\). We say 
     \(
-        \varphi_j \to \varphi  \text{ in \(\mathcal{D}\)}
+        \varphi_n \to \varphi  \text{ in \(\mathcal{D}\)}
     \)
-    if 
-    \begin{enumerate}[label=(\roman*)] % chktex 36
-        \item there exists a compact set \(K \in \mathbb{R}^d\) such that \(\mathrm{supp}(\varphi)\) and \(\mathrm{supp}(\varphi_j)\) are contained in \(K\) for all \(j\), and 
-        \item \(\lVert \varphi_j - \varphi \rVert_{C^r} \to 0\) as \(j \to {\infty}\) for all \(r \in \mathbb{N}_0\).
-    \end{enumerate} 
+    if there exists a compact set \(K \in \mathbb{R}^d\) such that \(\mathrm{supp}(\varphi) \subset K\) and \(\mathrm{supp}(\varphi_j) \subset K\) for all \(j\), and \(\lVert \varphi_n - \varphi \rVert_{C^k} \to 0\) as \(n \to {\infty}\) for all \(k \in \mathbb{N}_0\).
 \end{definition}
 
-This allows us to give an alternative characterization of distributions: a distribution is a linear functional that is \emph{continuous}.
+This allows us to give an alternative characterization of distributions: a distribution is a linear functional that is {continuous}.
 
 \begin{lemma}
     Let \(u: \mathcal{D} \to \mathbb{R}\) be a linear functional. Then, \(u\) is a {distribution} if and only if \( \varphi_j \to \varphi \) in \(\mathcal{D}\) implies \(u(\varphi_j) \to u(\varphi)\) for all test functions \(\varphi_j\) and \( \varphi \).
@@ -139,15 +147,12 @@ This allows us to give an alternative characterization of distributions: a distr
 \begin{proof}
     Let \(u\) be a distribution and \(\varphi_j \to \varphi \) in \(\mathcal{D}\). Then, there exist \(C\) and \(r\) such that \(|u(\varphi_j -\varphi)| \leq C \lVert \varphi_j - \varphi \rVert_{C^r} \to 0\) as \(j \to \infty \). By linearity, it follows \(u(\varphi_j) \to u(\varphi)\).
 
-    For the converse direction, we argue by contradiction. Let \( \varphi_j \to \varphi \) in \(\mathcal{D}\) imply \(u(\varphi_j) \to u(\varphi)\) for all test functions \(\varphi_j\) and \(\varphi \). Assume, there is a compact set \(K \subset \mathbb{R}^d\) such that for all \(r \in \mathbb{N}_0\) and \(C < \infty \) the inequality \(|u(\varphi)| \leq C \lVert\varphi\rVert_{C^r}\) is violated for some \(\varphi \in \mathcal{D}\). Then, we can find \(\varphi_n\) with \(|u(\varphi_n)| > n \lVert \varphi_n \rVert_{C^n}\) for all \(n \in \mathbb{N}\). Next, we define \(\phi_n \coloneqq \frac{\varphi_n}{n \lVert \varphi_n \rVert_{C^n}}\). So, we get \(u(\phi_n) > 1\). However, \(\phi_n \to 0\) in \(\mathcal{D}\) as \(n \to {\infty}\) because \(\lVert \phi_n \rVert_{C^r} \leq \frac{1}{n}\) for all \(n \geq r\).
+    For the converse direction, we argue by contradiction. Let \( \varphi_j \to \varphi \) in \(\mathcal{D}\) imply \(u(\varphi_j) \to u(\varphi)\) for all test functions \(\varphi_j\) and \(\varphi \). Assume there is a compact set \(K \subset \mathbb{R}^d\) such that for all \(r \in \mathbb{N}_0\) and \(C < \infty \), the inequality \(|u(\varphi)| \leq C \lVert\varphi\rVert_{C^r}\) is violated for some \(\varphi \in \mathcal{D}\). Then, we can find \(\varphi_n\) with \(|u(\varphi_n)| > n \lVert \varphi_n \rVert_{C^n}\) for all \(n \in \mathbb{N}\). Next, we define \(\phi_n \coloneqq \frac{\varphi_n}{n \lVert \varphi_n \rVert_{C^n}}\). So, we get \(u(\phi_n) > 1\). However, \(\phi_n \to 0\) in \(\mathcal{D}\) as \(n \to {\infty}\) because \(\lVert \phi_n \rVert_{C^r} \leq \frac{1}{n}\) for all \(n \geq r\).
 \end{proof}
 
-Quite often, we are given a test function \({\varphi}\), and we would like to construct a sequence 
-\((\varphi_j)\) such that 
-\(
-    \varphi_j \to \varphi  \text{ in \(\mathcal{D}\)}
-\). 
-\emph{Mollifiers} are an indispensable tool for constructing such sequences, which we will use throughout the paper. First, we need to scale and translate arbitrary functions \(\varphi: \mathbb{R}^d \to \mathbb{R}\):
+Often, we are given a test function \({\varphi}\), and we would like to construct a sequence 
+\((\varphi_j)\) that converges to \( \varphi \) in \( \mathcal{D} \).
+Enter \emph{mollifiers}. First, we define how to scale and translate arbitrary functions \(\varphi: \mathbb{R}^d \to \mathbb{R}\):
 \begin{align*}
     \varphi^\epsilon_y(x) \coloneqq \frac{1}{\epsilon^d} \, \varphi\left(\frac{x-y}{\epsilon}\right), \quad \varphi^\epsilon(x) \coloneqq \varphi^\epsilon_0(x), \quad \varphi_y(x) \coloneqq \varphi^1_y(x).
 \end{align*} 
@@ -155,10 +160,13 @@ Quite often, we are given a test function \({\varphi}\), and we would like to co
 Given a compactly supported function \(\rho: \mathbb{R}^d \to \mathbb{R}\) that integrates to one, a family of scaled and translated versions of \({\rho}\) is called a \emph{mollifier}.
 
 \begin{definition}[Mollifier]
-    Let \(\rho: \mathbb{R}^d \to \mathbb{R}\) be a function with compact support and \(\int_{\mathbb{R}^d} \rho(x) \, \mathrm{d}x = 1\). Then, the family of scaled functions \({(\rho^\epsilon)}_{\epsilon > 0}\) is called a \emph{mollifier}.
+    Let \(\rho: \mathbb{R}^d \to \mathbb{R}\) be a function with compact support and \(\int_{\mathbb{R}^d} \rho(x) \, \mathrm{d}x = 1\). We call the family of scaled functions \({(\rho^\epsilon)}_{\epsilon > 0}\) a \emph{mollifier}.
 \end{definition}
 
-Constructing a sequence \((\varphi_j)\) such that \(\varphi_j \to {\varphi}\) in \(\mathcal{D}\) becomes an easy task with the help of mollifiers and \emph{convolutions}. The \emph{convolution} of two functions \(f,g \in {L}^1(\mathbb{R}^d)\) is defined as \((f*g)(x) = \int_{\mathbb{R}^d} f(x - y)g(y) \, \mathrm{d}y\). 
+We define the \emph{convolution} of two functions \(f,g \in {L}^1(\mathbb{R}^d)\) as
+\begin{align*}
+    (f*g)(x) = \int_{\mathbb{R}^d} f(x - y)g(y) \, \mathrm{d}y.
+\end{align*}
 
 \begin{lemma}
     Let \(f,g \in {L}^1(\mathbb{R}^d)\). Then, 
@@ -170,12 +178,12 @@ Constructing a sequence \((\varphi_j)\) such that \(\varphi_j \to {\varphi}\) in
 \begin{proof}
     We can safely assume \(f\) and \(g\) to be representatives of the equivalence classes, because we  treat \(\int f(x) \; \mathrm{d}x\) as Lebesgue integrals and these integrals are independent of the chosen representatives.
 
-    First, we check that \((x,y) \mapsto f(x-y)g(y) \in L^1(\mathbb{R}^d \times \mathbb{R}^d)\) in order to apply Fubini. From Tonelli's theorem and the translation invariance of the Lebesgue integral we obtain
+    First, we check that \((x,y) \mapsto f(x-y)g(y) \in L^1(\mathbb{R}^d \times \mathbb{R}^d)\) in order to apply Fubini. By Tonelli's theorem and the translation invariance of the Lebesgue integral, we obtain
     \begin{align*}
         \int_{\mathbb{R}^d \times \mathbb{R}^d}|f(x-y)g(y)| \, \mathrm{d}(x,y) = \int_{\mathbb{R}^d}\int_{\mathbb{R}^d} |f(x-y)g(y)| \, \mathrm{d}x \, \mathrm{d}y = \lVert f \rVert_{1} \lVert g \rVert_{1} < \infty.
     \end{align*}
 
-    Then, by Fubini's theorem we obtain that \(y \mapsto f(x-y)g(y)\) is integrable for almost every \(x \in \mathbb{R}^d\). Thus, \((f*g)(x) = \int f(x-y)g(y) \, \mathrm{d}y\) is well-defined for almost every \(x \in \mathbb{R}^d\). Also by Fubini, \(f*g\) is integrable (if we assign zero in the points of the null set where it is not defined).
+    Then by Fubini's theorem, we obtain that \(y \mapsto f(x-y)g(y)\) is integrable for almost every \(x \in \mathbb{R}^d\). Thus, \((f*g)(x) = \int f(x-y)g(y) \, \mathrm{d}y\) is well-defined for almost every \(x \in \mathbb{R}^d\). Also, \(f*g\) is integrable (if we assign zero in the points of the null set where it is not defined) by Fubini.
 \end{proof}
 Additionally, the proof shows that
 \begin{align}\label{inequality:l1-norm}
@@ -188,8 +196,7 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
     Let \((\rho^\epsilon)\) be a mollifier. For all test functions \(\varphi \in \mathcal{D}\), we have
     \begin{enumerate}
         \item \(\varphi * \rho^{\epsilon} \in \mathcal{D}\) for all \(\epsilon > 0\), and
- 
-        \item \(\varphi * \rho^\epsilon \to \varphi  \text{ in \( \mathcal{D} \) as \( \epsilon \to 0 \) }\).
+        \item \(\varphi * \rho^\epsilon \to \varphi  \text{ in \( \mathcal{D} \) as \( \epsilon \to 0 \)}\).
     \end{enumerate}
 \end{lemma}
 
@@ -198,15 +205,18 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
     \begin{align*}
         \frac{(\varphi * \rho^\epsilon)(x + te_j) - (\varphi * \rho^\epsilon)(x)}{t} = \int \frac{\varphi(x+te_j - y) - \varphi(x-y)}{t}\rho^{\epsilon}(y) \mathrm{d}y.
     \end{align*}
-    By the mean value inequality (Theorem~\ref{mean-value-inequality}), we can bound
+    By Theorem~\ref{mean-value-inequality}, we bound
     \begin{align*}
-        \frac{\varphi (x + te_j - y) - \varphi (x-y)}{t} \leq \max_{\xi \in [0,t]}\frac{\partial}{\partial x_j}\varphi(x - y + \xi e_j) \leq C
+        \frac{|\varphi (x + te_j - y) - \varphi (x-y)|}{t} \leq \max_{\xi \in [0,t]}\left |\frac{\partial}{\partial x_j}\varphi(x - y + \xi e_j) \right | \leq C
     \end{align*}
-    for some \(C > 0\) since \({\varphi}\) is continuously differentiable. Thus, we found an integrable function that dominates \(\frac{\varphi(x+te_j - y) - \varphi(x-y)}{t}\rho^{\epsilon}(y)\), and we can apply Lebesgue's dominated convergence theorem to obtain \(\frac{\partial (\varphi * \rho^{\epsilon})}{\partial x_j} = \left(\frac{\partial \varphi}{\partial x_j}\right) * \rho^{\epsilon}\).
+    for some \(C > 0\) since \({\varphi}\) is continuously differentiable. We now have an integrable function that dominates \(\frac{\varphi(x+te_j - y) - \varphi(x-y)}{t}\rho^{\epsilon}(y)\). We apply Lebesgue's dominated convergence theorem to obtain 
+    \begin{align*}
+        \frac{\partial (\varphi * \rho^{\epsilon})}{\partial x_j} = \left(\frac{\partial \varphi}{\partial x_j}\right) * \rho^{\epsilon}
+    \end{align*}
 
-    The convolution \(\varphi * \rho^{\epsilon}\) has compact support because \({\varphi}\) and \(\rho^{\epsilon}\) have also compact support. Therefore, we conclude \(\varphi * \rho^{\epsilon} \in \mathcal{D}\).
+    It remains to prove that \(\varphi * \rho^{\epsilon}\) has compact support. This follows because \({\varphi}\) and \(\rho^{\epsilon}\) have compact support.
 
-    Now, we show \(\varphi * \rho^\epsilon \to \varphi  \text{ in \( \mathcal{D} \) as \( \epsilon \to 0 \)} \). First, there exists a compact set \(K\) that contains the support of \(\varphi * \rho^{\epsilon}\) for all \(\epsilon \in (0,1)\) because \( \varphi \) and \( \rho \) have compact support. Let the support of \({\rho}\) be contained in \(B(0,r)\) for some \(r > 0\). For any multi-index \(k\), \(\epsilon \in (0,1)\) and \(x \in K\), we have
+    Next, we show the second claim. There exists a compact set \(K\) that contains the support of \(\varphi * \rho^{\epsilon}\) for all \(\epsilon \in (0,1)\) because \( \varphi \) and \( \rho \) have compact support. Let the support of \({\rho}\) be contained in \(B(0,r)\) for some \(r > 0\). For any multi-index \(k\), \(\epsilon \in (0,1)\) and \(x \in K\), we have
     \begin{align*}
         \partial^k(\varphi * \rho^\epsilon) (x) - \partial^k\varphi(x) = \int (\partial^k \varphi(x - y) - \partial^k \varphi(x)) \, \rho^{\epsilon}(y) \mathrm{d}y
     \end{align*}
@@ -219,28 +229,16 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
         &\Downarrow \text{Substitution: } y = \epsilon \tilde y \\
         &= \max_{z \in K_r} |\partial^{k+1}\varphi(z)| \, \epsilon  \underbrace{\int  |\tilde y| \, |\rho(\tilde y)| \mathrm{d}\tilde y}_{< \infty}.
     \end{align*}
-    As \(\epsilon \to 0\), we see that \(\sup_{x \in K} |\partial^k(\varphi * \rho^\epsilon) (x) - \partial^k\varphi(x)| \to 0\). 
+    Then, \(\sup_{x \in K} |\partial^k(\varphi * \rho^\epsilon) (x) - \partial^k\varphi(x)| \to 0\) as \(\epsilon \to 0\).
 \end{proof}
 
-Next, we can study the effect of applying a distribution \(F\) on \(\varphi * \rho^{\epsilon}\), where \({\rho}\) is a mollifier. We know that \( \varphi * \rho^{\epsilon} \to \varphi \) in \(\mathcal{D}\) as \(\epsilon \to 0\). Then, \(F(\varphi * \rho^{\epsilon}) \to F(\varphi)\) because \(F\) is a distribution. \(F(\varphi * \rho^{\epsilon})\) is also known as a \emph{mollified distribution}. We have the following result for mollified distributions.
+This lemma implies that \(F(\varphi * \rho^{\epsilon}) \to F(\varphi)\) because \(F\) is a distribution.
 
-\begin{lemma}\label{lemma:lemma-mollified-distribution}
-    Let \(F \in \mathcal{D}'\). Let \(\varphi \in \mathcal{D}\) and \(g\) be locally integrable and compactly supported. Then,
-    \begin{align}\label{lemma:mollified-distribution}
-        F(\varphi * g) = \int_{\mathbb{R}^d} F(\varphi_y)g(y) \, \mathrm{d}y.
-    \end{align}
-\end{lemma}
-
-\begin{proof}
-    This follows from linearity of \(F\) and Riemann sum approximation; see Lemma 4.12 in~\cite{JanKristensenDistribution}.
-    %\begin{align*}
-    %    F(\varphi * g) = F\left(\int_{\mathbb{R}} \varphi(x-y) g(y) \, \mathrm{d}y\right) = F\left( 
-    %        \lim_{N \to \infty} \sum^N_{k=0} \varphi(x - \xi_k)g(\xi_k)(\xi_{k+1} - \xi)
-    %     \right)
-    %\end{align*}
-\end{proof}
-
-If we let \(g = {\rho}\), we obtain the crucial relationship \(\int F(\varphi_y)\rho^{\epsilon}(y) \, \mathrm{d}y \to F(\varphi)\) as \(\epsilon \to 0\); or equivalently
+For some locally integrable function \( g \) observe that 
+\begin{align}\label{lemma:mollified-distribution}
+    F(\varphi * g) = \int_{\mathbb{R}^d} F(\varphi_y)g(y) \, \mathrm{d}y
+\end{align}
+by linearity and Riemann sum approximation. If we let \(g = {\rho}\), we obtain the crucial relationship \(\int F(\varphi_y)\rho^{\epsilon}(y) \, \mathrm{d}y \to F(\varphi)\) as \(\epsilon \to 0\), or equivalently we have
 \begin{align}\label{eq:starting-point}
     \int F(\rho_y^\epsilon) \varphi(y)\, \mathrm{d}y \to F(\varphi) \quad \text{ as } \epsilon \to 0.
 \end{align}
