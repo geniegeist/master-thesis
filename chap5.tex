@@ -3,9 +3,9 @@
 
 \section{Step 4: \texorpdfstring{\(\sum |g_k''|\) converges for \(\gamma > 0\)}{sum g''k converges for gamma > 0}}\label{step4}
 
-In Step 3, we showed that the first sum \(\sum_{k=1}^\infty g_k'\) in \(f_n = f_1 + \sum_{k=1}^\infty g_k' + \sum_{k=1}^\infty g_k''\) is finite, but what about the other sum? The answer is simple: it is indeed finite \emph{if} \(\gamma > 0\). The proof is short, and uses a \emph{compact support} argument and the \emph{coherence condition}~\eqref{coherence-hat}.
+In Step 3, we showed that the partial sum \( \sum g_k' \) converges. Recall that \(f_n = f_1 + \sum g_k' + \sum g_k''\). What about the other partial sum \( \sum g_k'' \)?
 
-Let \(\psi \in \mathcal{D}(\overline K_1)\). We start with \(g_k''(\psi) \coloneqq \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z\). The tweaked test function \(\check \varphi^{\epsilon_k}\) has compact support in \(B(0,\epsilon_k)\), and \(\psi\) has compact support in \(\overline K_1\). So, we have 
+Let \(\psi \in \mathcal{D}(\overline K_1)\). We start with \(g_k''(\psi) = \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z\). The tweaked test function \(\check \varphi^{\epsilon_k}\) has compact support in \(B(0,\epsilon_k)\), and \(\psi\) has compact support in \(\overline K_1\). So, we have 
 \begin{align*}
     |g_k''(\psi)| 
     &\leq \sup_{\substack{z \in \overline{K}_1 \\ |y-z|\leq \epsilon_k}}
@@ -28,9 +28,12 @@ In Step 3 and Step 4 we showed that \(\lim\limits_{n \to \infty}f_n(\psi)\) exis
 \begin{align*}
     f^K \coloneqq \lim\limits_{n \to \infty}f_n \overset{\eqref{approximating-distributions-alternative}}{=} f_1 + \sum^{n-1}_{k=1} g_k' + \sum^{n-1}_{k=1} g_k''.
 \end{align*}
-The notation \(f^K\) explicitly emphasizes that \(\lim\limits_{n \to \infty}f_n\) depends on the compact set \(K\) that we fixed in \emph{Step 0: Setup}; recall that the construction of the mollifier \(\rho\)  depends on \(K\) (see Remark~\ref{remark:fk-depends}).
+
+\begin{remark}
+    The notation \(f^K\) explicitly emphasizes that \(\lim\limits_{n \to \infty}f_n\) depends on the compact set \(K\) that we fixed in \emph{Step 0: Setup} (recall that \(\rho\) depends on \(K\)).
+\end{remark}
  
-In this step, we prove for \(\gamma > 0\) that \(f^K\) is a reconstruction in the following sense: (1) \(f^K\) is a distribution, and (2) there exists a constant \(C < \infty\) such that 
+In this step, we prove for \(\gamma > 0\) that \(f^K\) is a distribution, and there exists a constant \(C < \infty\) such that 
 \begin{gather*}
     |(f^K - F_x)(\psi^\lambda_x)| \leq C \lambda^\gamma \tag{\ref{reconstruction-theorem}
     }\\ 
@@ -49,14 +52,14 @@ This proves that \(f^K\) is a distribution.
 
 \subsection*{Setup} 
 
-We fix \(\psi \in \mathcal{B}_r, x \in K\) and \(\lambda \in (0,1]\). We define a function \(\tilde f\) that measures the error of the reconstruction \(f^K\) to \(F_x\):  
+We fix \(\psi \in \mathcal{B}_r, x \in K\) and \(\lambda \in (0,1]\). We define a function \(\tilde f\) that measures the error of the reconstruction \(f^K\) with respect to \(F_x\):  
 \begin{align*}
     \tilde f(\phi) &= f^K(\phi) - F_x(\phi), \quad \qquad \phi \in \mathcal{D}(\overline{K}_1)\\
     \tilde f_n(\phi) &= f_n(\phi) - F_x(\phi * \rho^{\epsilon_n}), \quad n \in \mathbb{N}.
 \end{align*}
 By Lemma~\ref{mollifier-lemma}, \(\tilde f_n(\phi)\) converges to \(\tilde f(\phi)\) as \(n \to \infty\).
 
-Let \(N \in \mathbb{N}\) be the smallest index such that \(\epsilon_N \leq \lambda\), i.e. \(N = \min \left\{ k \in \mathbb{N} : \epsilon_k \leq \lambda  \right\}\). Using the triangle inequality, we then write 
+Let \(N \in \mathbb{N}\) be the smallest index such that \(\epsilon_N \leq \lambda\); that is \(N = \min \left\{ k \in \mathbb{N} : \epsilon_k \leq \lambda  \right\}\). Using the triangle inequality, we then write 
 \begin{align*}
     |\tilde f (\psi^\lambda_x)| \leq  |\tilde f_N (\psi^\lambda_x)| + |(\tilde f - \tilde f_N) (\psi^\lambda_x)|.
 \end{align*}
@@ -75,7 +78,7 @@ We start with
     &= |\iint (F_y - F_x)(\hat \varphi^{\epsilon_N}_z) \hat \varphi^{2 \epsilon_N}(z-y)\psi^\lambda_x(y) \, \mathrm{d}z \, \mathrm{d}y| \\
     &\leq\sup_{\substack{y \in \overline K_1,\\|z-y|\leq\epsilon_N}} |(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)| \cdot \lVert \hat \varphi^{2\epsilon_N}\rVert_{L^1} \, \lVert \psi^{\lambda}_x\rVert_{L^1}.
 \end{align*}
-In the last line, we used a \emph{compact support} argument as in step 4. Note that we have the term \(\sup|(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)|\), which subtly indicates that we need to use~\eqref{coherence-hat}. To do so, we write for all \(y \in  B(x,\epsilon),|z-y|\leq\epsilon_N\)
+Note that we have the term \(\sup|(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)|\), which subtly indicates that we need to use~\eqref{coherence-hat}. To do so, we write for all \(y \in  B(x,\epsilon),|z-y|\leq\epsilon_N\)
 \begin{align*}
     |(F_y - F_x)(\hat \varphi^{\epsilon_N}_z)| &\leq |(F_y - F_z)(\hat \varphi^{\epsilon_N}_z)| + |(F_z - F_x)(\hat \varphi^{\epsilon_N}_z)| \\
     &\leq \hat C \epsilon_N^\alpha(|z-y| + \epsilon_N)^{\gamma - \alpha} + \hat C \epsilon_N^\alpha(|z-x| + \epsilon_N)^{\gamma - \alpha} \\

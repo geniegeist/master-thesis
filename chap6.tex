@@ -8,18 +8,18 @@ If however \(\gamma \leq 0\), the series \(\sum g_k''(\psi)\) need not converge.
 \begin{align*}
     f^K(\psi) = f_1(\psi) + \lim_{n\to \infty}\sum^{n-1}_{k=1} g_k'(\psi),
 \end{align*}
-which is well-defined because \(\sum g_k'(\psi)\) converges for all \(\gamma \in \mathbb{R}\) (see Chapter~\ref{chapter:step-3}). Next, \(f^K\) is a distribution on \(\bar K_1\) because TO-DO
+which is well-defined because \(\sum g_k'(\psi)\) converges for all \(\gamma \in \mathbb{R}\) (see Chapter~\ref{chapter:step-3}).
 
-In the next steps, we will show that \(f^K\) satisfies~\eqref{reconstruction-theorem}, i.e.
+In the next steps, we will show that \(f^K\) satisfies~\eqref{reconstruction-theorem}; that is
 \begin{gather*}
-    |(f^K - F_x)(\psi_x^\lambda)| \leq \mathfrak{C} \vertiii{F}^{\mathrm{coh}}_{\bar K_{2},\varphi,\alpha,\gamma} \begin{cases}
+    |(f^K - F_x)(\psi_x^\lambda)| \leq \left\{ \mathrm{constant} \right\} \vertiii{F}^{\mathrm{coh}}_{\bar K_{2},\varphi,\alpha,\gamma} \begin{cases}
         \lambda^\gamma  &\text{if \(\gamma < 0\)}\\
         1 + |\log(\lambda)| \quad &\text{if \(\gamma = 0\) } 
     \end{cases}
     \\
     \text{uniformly for \(\psi \in \mathcal{B}_r\), \(x \in K\) and \(\lambda \in(0,1]\),   }
 \end{gather*}
-where the constant \(\mathfrak{C}\) is given by TO-DO and TO-Do. We will then spend another chapter to build a \emph{global} distribution \(f \in \mathcal{D}'\) out of the local distributions \(f^K \in \mathcal{D}(\bar K_1)\) such that \(f\) satisfies~\eqref{reconstruction-theorem}, as well.
+where the constant is given by~\eqref{holy-molly} and~\eqref{holy-mollyl}. We will then spend another chapter to build a \emph{global} distribution \(f \in \mathcal{D}'\) out of the local distributions \(f^K \in \mathcal{D}(\bar K_1)\) such that \(f\) satisfies~\eqref{reconstruction-theorem}, as well.
 
 \section{Step 5: \texorpdfstring{\(f^K\) is a local reconstruction}{fK is a local reconstruction}}
  
@@ -170,10 +170,10 @@ Continuing the estimate~\eqref{AbbaHunter}
 \end{align*}
 The constant before \(\lambda^\gamma\)  then reads
 \begin{align}\label{holy-molly}
-   \left\{ 2^r \lVert \xi \rVert_{C^r} (11 \sqrt d)^d \frac{r^2 2^{-(r+1) \alpha} 4^{d + \gamma - \alpha + 6}}{1-2^{- \min\left\{ \alpha + r, -\gamma \right\}} |\int \varphi(x) \, \mathrm{d}x|^2  (1 + R_\varphi)^{\alpha}} \lVert \varphi \rVert_{L^1} \right\} \quad \text{in the case \(\gamma < 0\) }.
+   \left\{ 2^r \lVert \xi \rVert_{C^r} (11 \sqrt d)^d \frac{r^2 2^{-(r+1) \alpha} 4^{d + \gamma - \alpha + 6}}{1-2^{- \min\left\{ \alpha + r, -\gamma \right\}} |\int \varphi(x) \, \mathrm{d}x|^2  (1 + R_\varphi)^{\alpha}} \lVert \varphi \rVert_{L^1} \right\} \quad \text{if \(\gamma < 0\) }.
 \end{align}
 The proof for the case \(\gamma = 0\) is done similarly and gives the constant 
 \begin{align}\label{holy-mollyl}
-    \left\{ 2^r \lVert \xi \rVert_{C^r} (11 \sqrt d)^d \frac{r^2 2^{-(r+1) \alpha} 4^{d - \alpha + 6}}{1-2^{- \alpha - r} |\int \varphi(x) \, \mathrm{d}x|^2  (1 + R_\varphi)^{\alpha}} \lVert \varphi \rVert_{L^1} \right\} \quad \text{in the case \(\gamma = 0\) }.
+    \left\{ 2^r \lVert \xi \rVert_{C^r} (11 \sqrt d)^d \frac{r^2 2^{-(r+1) \alpha} 4^{d - \alpha + 6}}{1-2^{- \alpha - r} |\int \varphi(x) \, \mathrm{d}x|^2  (1 + R_\varphi)^{\alpha}} \lVert \varphi \rVert_{L^1} \right\} \quad \text{if \(\gamma = 0\) }.
 \end{align}
 This ends the proof of the Reconstruction Theorem for \(\gamma \leq 0\). 
