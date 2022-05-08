@@ -36,7 +36,7 @@ Note that the distribution \(f\) is indeed a reconstruction of the germ \({(F_x)
 
 \vspace{0.4cm} 
 
-We would like to find a condition \texttt{???} that leads to the above conjecture. Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a germ. Equation~\eqref{eq:starting-point} will be our starting point for our search of \texttt{???}. For any \(x \in \mathbb{R}^d\) and any test funtion \({\psi}\), the distribution \(F_x\) evaluated for \({\psi}\) can be approximated by the mollified distribution \(F_x(\psi * \rho^\epsilon)\) for some mollifier \({\rho}\), i.e.
+We would like to find a condition \texttt{???} that leads to the above conjecture. Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a germ. Equation~\eqref{eq:starting-point} will be our starting point for our search of \texttt{???}. For any \(x \in \mathbb{R}^d\) and any test function \({\psi}\), the distribution \(F_x\) evaluated for \({\psi}\) can be approximated by the mollified distribution \(F_x(\psi * \rho^\epsilon)\) for some mollifier \({\rho}\), i.e.
 \begin{align*}
     \lim_{\epsilon \to 0}F_x(\psi * \rho^\epsilon) \overset{\eqref{lemma:mollified-distribution}}{=} \lim_{\epsilon \to 0} \int F_x(\rho_y^\epsilon) \psi(y)\, \mathrm{d}y \overset{\eqref{eq:starting-point}}{=} F_x(\psi).
 \end{align*}
@@ -65,7 +65,7 @@ we can write with the help of Corollary~\ref{cor:minosokoad}
 \end{align*}
 We are intentionally vague about what \emph{nice test functions} are in this context; we will discuss them in depth in Chapter~\ref{chapter:step-1-tweaking}, where these nice test functions are called \emph{tweaked test functions}.
 
-Taking a closer look at \(F_z(\hat \varphi^{\epsilon_k}_y)\), we recognize a problem when we let \(k\) approach zero: the support of \(\hat \varphi^{\epsilon_k}_y\) shrinks to some small compact set around \(y\), but \(F_z\) is a local candidate approximation around \(z\); so \(F_z\) cannot capture the behaviour around the point of interest \(y\). We circumvent this problem with the triangle inequality: \(F_z(\hat \varphi^{\epsilon_k}_y) = F_y(\hat \varphi^{\epsilon_k}_y) + \left(F_z(\hat \varphi^{\epsilon_k}_y) - F_y(\hat \varphi^{\epsilon_k}_y)\right)\). 
+Taking a closer look at \(F_z(\hat \varphi^{\epsilon_k}_y)\), we recognize a problem when we let \(k\) approach zero: the support of \(\hat \varphi^{\epsilon_k}_y\) shrinks to some small compact set around \(y\), but \(F_z\) is a local candidate approximation around \(z\); so \(F_z\) cannot capture the behavior around the point of interest \(y\). We circumvent this problem with the triangle inequality: \(F_z(\hat \varphi^{\epsilon_k}_y) = F_y(\hat \varphi^{\epsilon_k}_y) + \left(F_z(\hat \varphi^{\epsilon_k}_y) - F_y(\hat \varphi^{\epsilon_k}_y)\right)\). 
 Therefore, we can write \(g_k\) as 
 \begin{align*}
         g_k(\psi) = \iint F_y(\hat \varphi^{\epsilon_k}_y) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y\, \mathrm{d}z 
@@ -83,7 +83,7 @@ The \emph{Sewing Lemma}~\cite{GUBINELLI200486}, an analytical tool, which let in
     I_t = \int^t_0 G \, \mathrm{d}F \coloneqq \lim\limits_{|\pi| \to 0} \sum\limits_{i=0}^{\# \pi - 1} A_{t_i,t_{i+1}}
 \end{align}
 for arbitrary partitions\footnote{Here, a partition of \([0,t]\) is an ordered set \(\pi = \left \{ 0 = t_0 < t_1 < \cdots < t_k = t  \right \} \), \( \# \pi = k \) and \(|\pi| = \max\limits_{i=0, \ldots ,\# \pi - 1} |t_{i+1} - t_{i}|\).} \( \pi \) of \([0,t]\) with \(|\pi| \to 0\) as \(n \to 0\).
-\begin{lemma}[Sewing Lemma~\cite{broux2021sewing}]
+\begin{lemma}[Sewing Lemma~\cite{broux2021sewing}]\label{first-sewing-lemma}
     Let \(\gamma > 1\) and \( \Delta = \left \{ (s,t) :  0 \leq s \leq t \leq T\right \} \) for some fixed \(T > 0\). Let \(A: \Delta \to \mathbb{R}\) be a continuous function such that there exists \( C <\infty \) with
     \begin{gather}
         \delta A_{s,u,t} \coloneqq |A_{s,t} - A_{s,u} - A_{u,t}| \leq C {(\max \{|u-s|,|t-u|\})}^\gamma \label{sewing-lemma-condition}\\
@@ -148,7 +148,7 @@ We gave a heuristic motivation for the coherence condition in Chapter~\ref{chapt
     Note that we require \(|y-z| \leq 2\), which appears rather arbitrary. Indeed, one could also define coherence with \(|y-z| \leq R\) for any \(R \in \mathbb{R}\) instead; they are both equivalent. Furthermore, we can even drop the constraint \(|y-z| \leq 2\) entirely, see Proposition~\ref{proposition:cutoff}. In the end, we choose \(|y-z| \leq 2\) because it is convenient for our purpose of proving the Reconstruction Theorem.
 \end{remark}
 
-Sometimes it is useful to explicitly mention the family \((\alpha_K)\). So, we say that  \({(F_x)}_{x \in \mathbb{R}^d}\) is \((\bm{\alpha}, \gamma)\)-coherent if \(\bm \alpha = (\alpha_K)\) and \(\alpha_K\) is the exponent required for the coherence condition~\eqref{coherence} to hold for the compact set \(K\). 
+We say that  \({(F_x)}_{x \in \mathbb{R}^d}\) is \((\bm{\alpha}, \gamma)\)-coherent if \(\bm \alpha = (\alpha_K)\) and \(\alpha_K\) is the exponent required for the coherence condition~\eqref{coherence} to hold for the compact set \(K\). 
 
 Fix \(K, \varphi, \alpha, \gamma\). The \emph{semi-norm \(\vertiii{\cdot}^{\mathrm{coh}}_{K,\varphi,\alpha,\gamma}\)} is the smallest constant \(C \in \mathbb{R} \cup \left\{ \infty \right\}\) such that the coherence condition~\eqref{coherence} holds for \(K, \varphi, \alpha, \gamma\). Concretely, we define
 \begin{align*}
@@ -168,7 +168,7 @@ We briefly discuss the meaning of coherence. For some constant \( C' < \infty \)
     \begin{align}\label{alpha-monotone}
         K \subset K' \implies \alpha_K \geq \alpha_{K'}.
     \end{align}
-    This is achieved by choosing the exponents \(\alpha_K\) in the following way: for balls \(K = B(0,n)\) of radius \(n \in \mathbb{N}\) choose \(\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}\); otherwise for general compact sets \(K\) choose \(\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}\) with \(n \in \mathbb{N}\) such that  \(B(0,n) \supset K\). This ensures that the family of exponents \((\alpha_K)\) is montone. It will play an important role in the proof of the Reconstruction Theorem in case \(\gamma < 0\), see Chapter~\ref{chapter:step6gammaNegative}.
+    This is achieved by choosing the exponents \(\alpha_K\) in the following way: for balls \(K = B(0,n)\) of radius \(n \in \mathbb{N}\) choose \(\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}\); otherwise for general compact sets \(K\) choose \(\alpha_K = \min\left\{ \alpha_{B(0,i)}  : 1\leq i \leq n\right\}\) with \(n \in \mathbb{N}\) such that  \(B(0,n) \supset K\). This ensures that the family of exponents \((\alpha_K)\) is monotone. It will play an important role in the proof of the Reconstruction Theorem in case \(\gamma < 0\), see Chapter~\ref{chapter:step6gammaNegative}.
 \end{itemize}
 
 To conclude, for fixed \(y \in \mathbb{R}^d\) and distribution \(F_y\)
@@ -188,13 +188,13 @@ As we sum \(\sum^\infty_{k=1} g_k\), we want \(\sum^\infty_{k=1} C' \epsilon_k^{
 
 To control the \((*)\)-part of \(g_k\), we have introduced the notion of \emph{homogeneity bound}. We could demand that the germ \({(F_x)}_{x \in \mathbb{R}^d}\) needs to satisfy the homogeneity bound on top of the coherence condition~\eqref{coherence}, but luckily we get it for free when the germ \({(F_x)}_{x \in \mathbb{R}^d}\) is \(\gamma\)-coherent. The following lemma is definition and lemma at the same time.
 
-\begin{lemma}[Homogeneity bound]
-   Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a \(\gamma\)-coherent germ. Then, for every compact set \(K \subset \mathbb{R}^d\) there exists a real number \(\beta < \gamma\) and a constant \(B < \infty\) such that the \emph{homogeneity bound} holds, i.e. 
+\begin{lemma}[Homogeneity bound]\label{lemma:homogeneity-bound}
+   Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a \(\gamma\)-coherent germ. Then, for every compact set \(K \subset \mathbb{R}^d\) there exists a real number \(\beta_K < \gamma\) and a constant \(B < \infty\) such that the \emph{homogeneity bound} holds, i.e. 
    \begin{gather*}\label{homogeneity}
-                |F_y(\varphi^\epsilon_y)| \leq B\epsilon^\beta \quad
-                \text{uniformly for \(y \in K\) and \(\epsilon \in (0,1]\)} \tag{\texttt{HOMB}}. % chktex 9
+                |F_y(\varphi^\epsilon_y)| \leq B\epsilon^{\beta_K} \quad
+                \text{uniformly for \(y \in K\) and \(\epsilon \in (0,1]\)}. % chktex 9
    \end{gather*}
-   We say the germ \({(F_x)}_{x \in \mathbb{R}^d}\) has \emph{local homogeneity bound} \(\bm \beta = (\beta_K)\) if \(\beta_K\) is the exponent such that~\eqref{homogeneity} holds for the compact set \(K \subset \mathbb{R}^d\). We say the germ \({(F_x)}_{x \in \mathbb{R}^d}\) has \emph{global homogeneity bound} \(\beta\) if \(\beta_K = \beta\) for all compact sets \(K \subset \mathbb{R}^d\).
+   We say the germ \({(F_x)}_{x \in \mathbb{R}^d}\) has \emph{local homogeneity bound} \(\bm \beta = (\beta_K)\). We say the germ \({(F_x)}_{x \in \mathbb{R}^d}\) has \emph{global homogeneity bound} \(\beta \in \mathbb{R}\) if \(\beta_K = \beta\) for all compact sets \(K \subset \mathbb{R}^d\).
 \end{lemma}
 
 \begin{proof}
@@ -209,13 +209,17 @@ To control the \((*)\)-part of \(g_k\), we have introduced the notion of \emph{h
     To estimate \(|F_z(\varphi^\epsilon_y)|\), we know there exist \(\tilde C < \infty\) and \(r \in \mathbb{N}_0\) such that \(|F_z(\varphi^\epsilon_y)| \leq \tilde C \lVert \varphi^\epsilon_y \rVert_{C^r}\) for all \(y \in K\) and \(\epsilon \in (0,1]\) because \(F_z\) is a distribution. Also, we have \(\lVert \partial^k\varphi^\epsilon_y \rVert_\infty \leq \epsilon^{-|k|- d} \lVert \partial^k\varphi \rVert_\infty \leq \epsilon^{-r - d} \lVert \varphi \rVert_{C^r}\). Thus, \(\lVert \varphi^\epsilon_y \rVert_{C^r} \leq \epsilon^{-r-d}\lVert \varphi \rVert_{C^r}\) follows. In the end, we obtain 
     \(|F_z(\varphi^\epsilon_y)| \leq \{ \tilde C  \lVert \varphi \rVert_{C^r}  \} \cdot \epsilon^{-r-d}\).
 
-    We choose \(B = C {(\mathrm{diam}(K) + 1)}^{\gamma - \alpha} +  \tilde C  \lVert \varphi \rVert_{C^r}  \) and \(\beta \leq \min \left\{ \alpha, -r-d, \gamma \right\}\).
+    We choose \(B = C {(\mathrm{diam}(K) + 1)}^{\gamma - \alpha} +  \tilde C  \lVert \varphi \rVert_{C^r}  \) and \(\beta \leq \min \left\{ \alpha, -r-d, \gamma \right\}\). We can further decrease \( \beta \) to ensure \( \beta < \gamma \).
 \end{proof}
 
 Similar to \((\alpha_K)\), the family \((\beta_K)\) is \emph{monotone} in the sense that 
 \begin{align}\label{beta-monotone}
     K \subset K' \implies \beta_K \geq \beta_{K'}.
 \end{align} 
+We also introduce a semi-norm that quantifies the homogeneity of a coherent germ \( F  \)
+\begin{align}\label{definition:semi-norm-homogeneity}
+    \vertiii{F}^{\mathrm{\hom}}_{K, \varphi, \beta} = \sup_{\substack{x \in K \\ \epsilon \in (0,1]}} \frac{|F_x(\varphi^\epsilon_x)|}{\epsilon^\beta} \qquad \text{compact set \( K \subset \mathbb{R}^d \)}.
+\end{align}
 
 
 We are ready to state a preliminary version of the Reconstruction Theorem. 
@@ -241,32 +245,29 @@ We are ready to state a preliminary version of the Reconstruction Theorem.
 
 We state the Reconstruction Theorem of Hairer~\cite{hairer2014theory} in the language of {distribution theory}.
 
-\begin{theorem}[Reconstruction theorem]\label{theorem:reconstruction-theorem}
-   Let \(\gamma \in \mathbb{R}\) be a real number. Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a \((\bm{\alpha}, \gamma)\)-coherent germ with local homogeneity bounds \(\bm \beta\). Then, there exists a distribution \(f \in \mathcal{D}'\) such that for every compact set \(K \subset \mathbb{R}^d\) and all \(r \in \mathbb{N}\), \(r> \max \left\{ -\alpha_{\bar K_2}, -\beta_{\bar K_2} \right\}\) we have TO-DO there exists \(C > 0\) 
-   \begin{align*}\label{reconstruction-theorem}
-        |(f-F_x)(\psi^\epsilon_x)| \leq C \cdot \begin{cases}
-            \epsilon^\gamma \quad & \text{if \(\gamma \neq 0\)}\\
-            1 + |\log \epsilon| \quad & \text{if \(\gamma = 0\)}
-        \end{cases}\tag{\texttt{REC}}
-        \\ \text{uniformly for \(\psi \in \mathcal{B}_r\), \(x \in K\), \(\epsilon \in (0,1]\).} 
-   \end{align*}
+\begin{theorem}[Reconstruction Theorem]\label{theorem:reconstruction-theorem}
+   Let \(\gamma \in \mathbb{R}\) and \({(F_x)}_{x \in \mathbb{R}^d}\) be a \((\bm{\alpha}, \gamma)\)-coherent germ with local homogeneity bounds \(\bm \beta\). Then, there exists a distribution \(f \in \mathcal{D}'\) such that for every compact set \(K \subset \mathbb{R}^d\) and all \(r \in \mathbb{N}\) with \(r> \max \left\{ -\alpha_{\bar K_2}, -\beta_{\bar K_2} \right\}\) we have
+   \begin{gather}\label{reconstruction-theorem}
+        |(f-F_x)(\psi^\lambda_x)| \leq \{\mathrm{constant} \} \cdot \vertiii{F}^{\mathrm{coh}}_{\bar K_2, \varphi, \alpha, \gamma} \cdot \begin{cases}
+            \lambda^\gamma \quad & \text{if \(\gamma \neq 0\)}\\
+            1 + |\log \lambda| \quad & \text{if \(\gamma = 0\)}
+        \end{cases}
+        \\ \text{uniformly for \(\psi \in \mathcal{B}_r\), \(x \in K\), \(\lambda \in (0,1]\).} \nonumber
+   \end{gather}
+   The multiplicative constant may only depend on \( \alpha, \gamma, r, d \) and \( \varphi \). It is explicitly computed in~\eqref{constant:rec-gamma-bigger-zero},~\eqref{holy-molly} and~\eqref{holy-mollyl} for the cases \( \gamma > 0 \), \( \gamma < 0 \) and \( \gamma = 0 \) respectively.
 \end{theorem}
 
 \begin{remark} 
    We gather some remarks about the reconstruction theorem.
 \begin{enumerate}
-   \item As usual, \(\varphi\) denotes the test function defined in the coherence property~\eqref{coherence}.
-   \item \(C\) is a constant, which must \emph{not} depend on \(\psi,x\) and \(\epsilon\). Precisely, it is given by \begin{align*}
-           C = \mathrm{const}(\alpha_{\bar K_2}, \gamma, r, d, \varphi) \cdot \vertiii{F}^{\mathrm{coh}}_{\bar K_2, \varphi, \alpha_{\bar K_2}, \gamma}.
-   \end{align*}
-   The constant \(\mathrm{const}(\alpha_{\bar K_2}, \gamma, r, d, \varphi) \in \mathbb{R}\) depends on \(\alpha_{\bar K_2}, \gamma, r, d\) and \(\varphi\).
+   \item As usual, \(\varphi\) denotes the test function in the coherence condition~\eqref{coherence}.
    \item For \(\gamma > 0\), \(f = \mathcal{R}F\) is unique and we call it the \emph{reconstruction} of \(F = {(F_x)}_{x \in \mathbb{R}^d}\). Moreover, the map \(F \mapsto \mathcal{R}F\) is linear.
    \item For \(\gamma \leq 0\), the distribution \(f\) need not be unique, but for any fixed \(\alpha \leq \min\left\{ 0, \gamma \right\}\), we can choose \(f\) in such a way that the map \(F \mapsto \mathcal{R}F\) is linear on the vector space of \((\alpha,\gamma)\)-coherent germs with global homogeneity bound \(\beta\).
    \item The \hyperref[peek:prelim-reconstruction-theorem]{preliminary reconstruction theorem} found in the previous section is a special case of the reconstruction theorem stated here. Proof. TO-DO
 \end{enumerate}
 \end{remark}
 
-In the subsequent chapters, we will prove that the Reconstruction Theorem given that a germ is coherent (see Theorem~\ref{theorem:reconstruction-theorem}). So, coherence is a \emph{sufficient} condition. But, there is more to that: coherence is also \emph{necessary} for a germ to be reconstructable in the sense of Theorem~\ref{theorem:reconstruction-theorem}. We say that coherence is an \emph{optimal} condition.
+Remarkably, coherence is not only \emph{sufficient}, that is coherence implies the Reconstruction Theorem. Coherence is also necessary. We say that coherence is an \emph{optimal} condition because it is necessary and sufficient.
 
 \begin{theorem}[Coherence is necessary]\label{theorem:coherence-is-necessary}
    Fix any \(\gamma \in \mathbb{R}\).  Let \({(F_x)}_{x \in \mathbb{R}^d}\) be a germ. Let \(f \in \mathcal{D}'\) be a distribution such that for every compact set \(K \subset \mathbb{R}^d\) there exists \(C < \infty\) and \(r \in \mathbb{N}\) with
@@ -325,7 +326,7 @@ In the subsequent chapters, we will prove that the Reconstruction Theorem given 
     \end{align*}
 \end{proof}
 
-We slightly modify the previous proof to prove that the constraint \(|z-y| \leq 2\) in the coherence condition (see Defintion~\ref{definition:coherence}) can be dropped, i.e.\ if~\eqref{coherence} holds uniformly for any \(y,z \in K\) with \(|z-y| \leq 2\), then it also holds for any \(\tilde y, \tilde z \in K\) with \(|\tilde z- \tilde y| > 2\) (possibly with different multiplicate constant \(C\)). Hence, we could also define coherence as
+We slightly modify the previous proof to prove that the constraint \(|z-y| \leq 2\) in the coherence condition (see Definition~\ref{definition:coherence}) can be dropped, i.e.\ if~\eqref{coherence} holds uniformly for any \(y,z \in K\) with \(|z-y| \leq 2\), then it also holds for any \(\tilde y, \tilde z \in K\) with \(|\tilde z- \tilde y| > 2\) (possibly with a different multiplicative constant \(C\)). Hence, we could also define coherence as
 \begin{gather}\label{better-coherence}
     |(F_z - F_y)(\varphi^\lambda_y)| \leq C\lambda^\alpha(|z-y| + \lambda)^{\gamma - \alpha}  \\ \text{uniformly for \(z,y \in K\) and \(\lambda \in (0,1]\)} \nonumber.
 \end{gather}

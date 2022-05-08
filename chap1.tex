@@ -2,7 +2,7 @@
 
 The Reconstruction Theorem allows to construct a distribution \(f\) from a family of distributions \({(F_{x})}_{x \in \mathbb{R}^d}\) such that \(f\) is locally well-approximated by \(F_x\) around \(x \in \mathbb{R}^d\). It may be viewed as a converse to Taylor's Theorem if \(F_x\) is a Taylor polynomial. However, this view fails to capture the true importance. The Reconstruction Theorem is the most fundamental theorem in the theory of regularity structures --- a novel theory proposed by Hairer~\cite{hairer2014theory} that provides a robust solution theory to many ill-posed stochastic partial differential equations. In fact, the theory of regularity structures was so groundbreaking that Hairer was awarded the Fields medal for his \emph{``creation of regularity structures''} in 2014~\cite{FieldsMedalHairer}. It is the Reconstruction Theorem, a purely deterministic tool from analysis, that enables the theory of regularity structures.
 
-The original proof of the Reconstruction Theorem relied heavily on wavelet analysis; since then numerous proofs have been published~\cite{hairer2017reconstruction, otto2019quasilinear, gubinelli2015paracontrolled, martin2020littlewood, singh2018elementary}. All of these proofs required profound knowledge of regularity structures, rough path theory or paracontrolled distributions. A concise treatment of the Reconstruction Theorem for a broader audience was not available until Caravenna and Zambotti gave a proof in 2020, which only used elementary distribution theory~\cite{caravenna2021hairer}. 
+The original proof of the Reconstruction Theorem relied heavily on wavelet analysis; since then numerous proofs have been published~\cite{hairer2017reconstruction, otto2019quasilinear, gubinelli2015paracontrolled, martin2020littlewood, singh2018elementary}. All of these proofs required profound knowledge of regularity structures, rough path theory or paracontrolled distributions. A concise treatment of the Reconstruction Theorem for a broader audience was not available until Caravenna and Zambotti gave a proof in 2020 based on elementary distribution theory~\cite{caravenna2021hairer}. 
 
 The aim of this thesis is to give a self-contained proof of the Reconstruction Theorem. Hence, we mimic the proof by Caravenna and Zambotti, which requires no prior knowledge. We hope that this thesis introduces the Reconstruction Theorem to a broader audience. Since the Reconstruction Theorem is a purely analytical tool, it may find applications outside regularity structures or stochastic partial differential equations.
 
@@ -12,18 +12,18 @@ The thesis is structured in the following way: Chapter~\ref{chapter:notation} in
 
 \section{Notation}\label{chapter:notation}
 
-The \emph{open ball} \(B(x_0, r)\)  centered around \(x_0 \in \mathbb{R}^d\) with radius \(r > 0\) is defined as \(B(x_0,r) = \{ x \in \mathbb{R}^d : |x - x_0| \leq r \} \), where \(|\cdot|\) is the \emph{standard Euclidean norm}. We write \(\enlarg{A}{\epsilon}\) to enlarge a set \(A \subset \mathbb{R}^d\) by \(\epsilon \): 
+Throughout this thesis, the symbol \( \mathbb{R}^d \) denotes the \( d \)-dimensional Euclidean space with the Euclidean norm \( |\cdot| \) for some \( d \in \mathbb{N} \). The \emph{open ball} \(B(x_0, r)\)  centered around \(x_0 \in \mathbb{R}^d\) with radius \(r > 0\) is defined as \(B(x_0,r) = \{ x \in \mathbb{R}^d : |x - x_0| \leq r \} \). We write \(\enlarg{A}{\epsilon}\) to enlarge a set \(A \subset \mathbb{R}^d\) by some \(\epsilon \in \mathbb{R} \): 
 \begin{align*}
     \enlarg{A}{\epsilon} \coloneqq A + B(0, \epsilon) \coloneqq \{ x \in \mathbb{R}^d : |x - a| \leq \epsilon \text{ for some \(a \in A\)} \}.
 \end{align*}
 
-The \emph{multi-index notation} makes many theorems for functions of severable indeterminates appear as if there is only one indeterminate. A \emph{multi-index} \(k = (k_1, \ldots ,k_d) \in \mathbb{N}^d_0\) is a \(d\)-tuple of non-negative integers. The \emph{length} of \(k\) is defined as \(|k| = k_1 + \cdots + k_d\). We define for all \(x, k,l \in \mathbb{R}^d\) and \(f: \mathbb{R}^d \to \mathbb{R}\)
+The \emph{multi-index notation} makes many theorems for functions in multiple variables appear as if there is only one variable. A \emph{multi-index} \(k = (k_1, \ldots ,k_d) \in \mathbb{N}^d_0\) is a \(d\)-tuple of non-negative integers. The \emph{length} of \(k\) is defined as \(|k| = k_1 + \cdots + k_d\). We define for all \(x, k,l \in \mathbb{R}^d\) and \(f: \mathbb{R}^d \to \mathbb{R}\)
 \begin{gather*}
     x^k = x_1^{k_1} \cdot \cdots \cdot x_d^{k_d}, \qquad
     k! = k_1! k_2! \cdots k_d!, \qquad
     \binom{k}{l} = \binom{l_1}{k_1} \cdots \binom{l_d}{k_d} = \frac{k!}{l! (k - l)!}.
 \end{gather*}
-A polynomial \(f(x)\) with real coefficients \(\alpha_k \in \mathbb{R}\) of degree \(m \in \mathbb{N}_0\) in \(d\) indeterminates can be written as 
+A polynomial \(f(x)\) with real coefficients \(\alpha_k \in \mathbb{R}\) of degree \(m \in \mathbb{N}_0\) in \(d\) variables can be written as 
 \begin{align*}
     f(x) = \sum\limits_{|k| \leq m} \alpha_{k}x^k  \quad \text{and} \quad
     \partial^k f(x) = \partial^{k_1}_{1} \cdots \partial^{k_d}_{d} f(x).
@@ -34,13 +34,13 @@ We say
     \item \(f \in C^k\) if \(f\) is {\(k\)-times continuously differentiable} for \(k \in \mathbb{N}\), and
     \item \(f\) is {smooth} if \( f \in C^\infty \).
 \end{itemize}
-We define the \emph{\(C^k\)-norm} as \(\lVert f \rVert_{C^k} = \max\limits_{|i| \leq k} \lVert \partial^i f \rVert_{\infty}\) where \(\lVert f \rVert_{\infty} = \sup_{x \in \mathbb{R}^d} |f(x)|\). Next, we state classical results from analysis without their proofs (the proofs can be found in every standard analysis book, e.g.~\cite{MR0055409}).
+We define the \emph{\(C^k\)-norm} as \(\lVert f \rVert_{C^k} = \max\limits_{|i| \leq k} \lVert \partial^i f \rVert_{\infty}\) where \(\lVert f \rVert_{\infty} = \sup_{x \in \mathbb{R}^d} |f(x)|\). Next, we state classical results from analysis without their proofs; the proofs can be found in any standard analysis book, for example~\cite{MR0055409}.
 \begin{theorem}[Taylor's Theorem]
     Let \(f \in C^{k}(B(x_0, r))\) and \(k \in \mathbb{N}^d_0\). Then, we have \(f(x) = \sum\limits_{|j| \leq k}\partial^{j} f(x_0) \frac{{(x-x_0)}^j}{j!} + R(x)\) with \(\frac{R(x)}{|x-x_0|^{k}} \to 0\) as \(x \to x_0\) for all \(x \in B(x_0, r)\).
 \end{theorem}
 
 \begin{theorem}[Leibniz Rule]\label{theorem:leibniz}
-    The Leibniz rule is a generalization of the product rule:
+    The Leibniz rule is a generalization of the product rule, that is
     \begin{align*}
         \partial^\alpha(fg) = \sum_{\beta \leq \alpha} \binom{\alpha}{\beta} (\partial^\beta f) (\partial^{\alpha - \beta} g).
     \end{align*}
@@ -57,24 +57,25 @@ We define the \emph{\(C^k\)-norm} as \(\lVert f \rVert_{C^k} = \max\limits_{|i| 
     is the gradient of \(f\). 
 \end{theorem}
 
-Later, we will need certain functions that \emph{annihilate} monomials. This means the following.
+Later, we will consider functions that are said to \emph{annihilate monomials}; they play an essential role in the proof of the Reconstruction Theorem, and we will spend a considerate amount of time constructing such functions. The definition reads as follows.
 
 \begin{definition}[Annihilation of Monomials]
-    A function \(g: \mathbb{R}^d \to \mathbb{R}\) is said to \emph{annihilate monomials} of degree \(j \in \mathbb{N}\) if for all \(n \in \mathbb{N}^d_0\) with \(|n| = j\) we have
+    A function \(g: \mathbb{R}^d \to \mathbb{R}\) \emph{annihilates monomials} of degree \(j \in \mathbb{N}\) if for all \(n \in \mathbb{N}^d_0\) with \(|n| = j\) we have
     \begin{align*}
         \int_{\mathbb{R}^d} y^n g (y) \, \mathrm{d}y = 0.
     \end{align*}
 \end{definition}
 
-For later applications of the Reconstruction Theorem, we introduce the space of \emph{locally \({\alpha}\)-Hölder functions} denoted by \(\mathcal{C}^{\alpha}\), \(\alpha > 0\). This space is later extended for non-positive exponents \({\alpha}\). 
+For later applications of the Reconstruction Theorem, we introduce the space of \emph{locally \({\alpha}\)-Hölder functions} denoted by \(\mathcal{C}^{\alpha}\) for positive exponents \(\alpha > 0\). It will be our task to extend this space to non-positive exponents \({\alpha \leq 0}\). 
 
 \begin{definition}[Locally \({\alpha}\)-Hölder Functions]\label{definition:hoelder-functions}
-    Let \(\alpha > 0\). Let \(\varphi: \mathbb{R}^d \to \mathbb{R}\). We say \(\varphi \in \mathcal{C}^{\alpha}\) if
+    Let \(\alpha > 0\) and \(\varphi: \mathbb{R}^d \to \mathbb{R}\). We say \(\varphi \in \mathcal{C}^{\alpha}\) if
 \begin{itemize}
     \item \(\varphi \in C^r\) for \(r = \max \left \{ n \in \mathbb{N}_0 : n < \alpha \right \} \), and
-    \item there exists a constant \(C < {\infty}\) such that \(|\varphi(y) - F_x(y)| \leq C |y-x|^{\alpha}\) uniformly for all \(x,y\) in compact sets. Here, \(F_x\) is the Taylor polynomial of \({\varphi}\) of order \(r\) at \(x\).   
+    \item there exists a constant \(C < {\infty}\) such that \(|\varphi(y) - F_x(y)| \leq C |y-x|^{\alpha}\) uniformly for all \(x,y\) in compact sets, where \(F_x\) is the Taylor polynomial of \({\varphi}\) of order \(r\) at \(x\).   
 \end{itemize}
 \end{definition}
+For non-positive exponents \( \alpha \), the space \( \mathcal{C}^\alpha \) is no longer a space of continuously differentiable functions but \emph{a space of distributions}. It is now time to introduce distributions along with test functions.
 
 % ------------------------------------------
 
@@ -103,7 +104,7 @@ A standard example for a test function is the \emph{bump function}:
 \end{align*}
 Clearly, the bump function has compact support in \(B(0,1)\). The proof that it is smooth can be found in any standard analysis book, e.g.\ see (22.2) in~\cite{Forster_2016}.
 
-The main object of study of Distribution Theory is unsuprisingly a \emph{distribution}.
+\emph{Distributions} are the key objects in Distribution Theory.
 \begin{definition}[Distribution]
 A functional \(u: \mathcal{D} \to \mathbb{R}\) is called a \emph{distribution} if \(u\) is linear, and if for every compact set \(K \subset \mathbb{R}^d\) there exist \(r \in \mathbb{N}_0\) and \( C < \infty \) such that 
 \begin{align*}
@@ -176,8 +177,8 @@ Constructing a sequence \((\varphi_j)\) such that \(\varphi_j \to {\varphi}\) in
 
     Then, by Fubini's theorem we obtain that \(y \mapsto f(x-y)g(y)\) is integrable for almost every \(x \in \mathbb{R}^d\). Thus, \((f*g)(x) = \int f(x-y)g(y) \, \mathrm{d}y\) is well-defined for almost every \(x \in \mathbb{R}^d\). Also by Fubini, \(f*g\) is integrable (if we assign zero in the points of the null set where it is not defined).
 \end{proof}
-Additionally, the proof also tells us that
-\begin{align}
+Additionally, the proof shows that
+\begin{align}\label{inequality:l1-norm}
     \lVert f*g \rVert_1 \leq \lVert f \rVert_{1} \lVert g \rVert_{1}.
 \end{align}
 
@@ -223,7 +224,7 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
 
 Next, we can study the effect of applying a distribution \(F\) on \(\varphi * \rho^{\epsilon}\), where \({\rho}\) is a mollifier. We know that \( \varphi * \rho^{\epsilon} \to \varphi \) in \(\mathcal{D}\) as \(\epsilon \to 0\). Then, \(F(\varphi * \rho^{\epsilon}) \to F(\varphi)\) because \(F\) is a distribution. \(F(\varphi * \rho^{\epsilon})\) is also known as a \emph{mollified distribution}. We have the following result for mollified distributions.
 
-\begin{lemma}
+\begin{lemma}\label{lemma:lemma-mollified-distribution}
     Let \(F \in \mathcal{D}'\). Let \(\varphi \in \mathcal{D}\) and \(g\) be locally integrable and compactly supported. Then,
     \begin{align}\label{lemma:mollified-distribution}
         F(\varphi * g) = \int_{\mathbb{R}^d} F(\varphi_y)g(y) \, \mathrm{d}y.

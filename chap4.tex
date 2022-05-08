@@ -17,7 +17,7 @@ which was motivated by \(F_x(\psi * \rho^\epsilon) \to F_x(\psi)\). We \emph{gue
  \end{align*}
 For (H1) to hold, the series must therefore be finite. When proving the reconstruction theorem, we will largely be concerned with showing (H1) and (H2). However, there is one caveat that we need to be aware of: the limit \(\lim_{n \to \infty}f_n\) of claim (H1) need not exist for \(\gamma \leq 0\), and we need to divide the proof into two cases \(\gamma >0\) and \(\gamma \leq 0\). Fortunately, claim (H1) for \(\gamma \leq 0\) can be fixed in a simple way (TO-DO), and both cases share a large part of the proof. 
 
-In the following sections, we prove the reconstruction theorem in several steps. As mentioned, a large part of the proof for the case \(\gamma > 0\) holds for the case \(\gamma \leq 0\), too; so the steps we will be presenting now \emph{hold for both cases}; only in the latest steps we divide the proof. We will specifically mention in later steps when we need \(\gamma > 0\) or \(\gamma\leq 0\), but for now we do not worry about it.
+In the following sections, we prove the reconstruction theorem in multiple steps. As mentioned, a large part of the proof for the case \(\gamma > 0\) holds for the case \(\gamma \leq 0\), too; so the steps we will be presenting now \emph{hold for both cases}; only in the latest steps we divide the proof. We will specifically mention in later steps when we need \(\gamma > 0\) or \(\gamma\leq 0\), but for now we do not worry about it.
 
 \section{Step 0: Setup}\label{setup} First, we lay the foundation of the proof. We have already given an informal ansatz how we wanted to approach the proof. Specifically, the proof is centered around showing that the limit of the approximating distributions \(\lim_{n \to \infty} f_n\) do exist and satisfy the inequality~\eqref{reconstruction-theorem} of the reconstruction theorem.
 
@@ -107,11 +107,11 @@ Additionally, we want \(\hat \varphi\) and \(\check \varphi\) to possess some ad
     In the language of linear algebra, we try to solve
     \begin{align*}
         \begin{pmatrix}
-            1 & ... & 1 \\
-            \lambda_0 & ... & \lambda_{r-1} \\
-            \lambda_0^2 & ... & \lambda_{r-1}^2 \\
+            1 & \cdots & 1 \\
+            \lambda_0 & \cdots & \lambda_{r-1} \\
+            \lambda_0^2 & \cdots & \lambda_{r-1}^2 \\
             & & \\
-            \lambda_0^{r-1} & ... & \lambda_{r-1}^{r-1}
+            \lambda_0^{r-1} & \cdots & \lambda_{r-1}^{r-1}
         \end{pmatrix}
         \begin{pmatrix}
             c_0 \\ c_1 \\ c_2 \\ \\ c_{r-1}
@@ -125,7 +125,7 @@ Additionally, we want \(\hat \varphi\) and \(\check \varphi\) to possess some ad
     \begin{align*}
         (A^{-1})_{i=0,\ldots,r-1}^{j=0,\ldots,r-1} = (-1)^j \frac{\sum\limits_{\substack{U \subset \left\{ 0,\ldots,r-1 \right\} \setminus \left\{ i \right\} \\ |U| = r - 1 -j}} \; \prod\limits_{u \in U} \lambda_u}{\prod\limits_{v \in \left\{ 0,\ldots,r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)},
     \end{align*}
-    see equation (7) in \cite{klinger1965vandermonde} for more details. We left-multiply the linear system with this inverse
+    see equation (7) in~\cite{klinger1965vandermonde} for more details. We left-multiply the linear system with this inverse
     \begin{align*}
         \begin{pmatrix}
             c_0 \\ c_1 \\ c_2 \\ \\ c_{r-1}
@@ -136,11 +136,11 @@ Additionally, we want \(\hat \varphi\) and \(\check \varphi\) to possess some ad
     \end{align*}
     and we finally confirm that the vector \(c\) is a solution if and only if  
     \begin{align*}
-        c_i = \frac{\prod\limits_{u \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\} }\lambda_u}{\prod\limits_{v \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)} = \prod\limits_{k \in \left\{ 0,...,r-1 \right\} \setminus \left\{ i \right\}} \frac{\lambda_k}{\lambda_k - \lambda_i}.
+        c_i = \frac{\prod\limits_{u \in \left\{ 0, \ldots, r-1 \right\} \setminus \left\{ i \right\} }\lambda_u}{\prod\limits_{v \in \left\{ 0, \ldots, r-1 \right\} \setminus \left\{ i \right\}} (\lambda_v - \lambda_i)} = \prod\limits_{k \in \left\{ 0, \ldots , r-1 \right\} \setminus \left\{ i \right\}} \frac{\lambda_k}{\lambda_k - \lambda_i}.
     \end{align*}
 \end{proof}
 
-We define \(\hat \varphi\) to be 
+We define \(\hat \varphi\) as
 \begin{align}\label{definition:tweakedvarphi}
     \varphi = \mathcal{T}_{\varphi}
 \end{align}
@@ -153,8 +153,7 @@ for \(a = \frac{1}{\int \varphi(x) \, \mathrm{d}x}\) and \(\lambda_i = \frac{2^{
     By the tweaking lemma, \(\hat \varphi\) integrates to one and annihilates all monomials from degree \(1\) to \(r-1\). 
     We also have \(\mathrm{supp}(\hat \varphi) = B(0,\frac{1}{2})\) because the support of \(\hat \varphi\) depends on the largest \(\lambda_i\), and \(\lambda_i = \frac{1}{2^{i+1}(1+R_\varphi)} \leq \frac{1}{2R_\varphi}\). 
     
-    It remains to show that the coherence inequality 
-   ~\eqref{starter-coherence} holds if \(\varphi\) is replaced by \(\hat \varphi\) (possibly with different constants \(C\) and \(B\)). By definition of \(\hat \varphi = \mathcal{T}_\varphi\) we have \(|(F_z - F_y)(\hat \varphi^\epsilon_y)| = a\sum^{r-1}_{i=0} |c_i| \, |(F_z - F_y)(\varphi_y^{\lambda_i \epsilon})|\). Next, we bound
+    It remains to show that the coherence inequality~\eqref{starter-coherence} holds if \(\varphi\) is replaced by \(\hat \varphi\) (possibly with different constants \(C\) and \(B\)). By definition of \(\hat \varphi = \mathcal{T}_\varphi\) we have \(|(F_z - F_y)(\hat \varphi^\epsilon_y)| = a\sum^{r-1}_{i=0} |c_i| \, |(F_z - F_y)(\varphi_y^{\lambda_i \epsilon})|\). Next, we bound
     \begin{align*}
         |(F_z - F_y)(\varphi_y^{ \epsilon \lambda_i})| &\overset{\eqref{starter-coherence}}{\leq}  C(\epsilon\lambda_i)^\alpha(|z-y| + \epsilon\lambda_i)^{\gamma-\alpha} \\
         &\Downarrow \text{because \(\alpha < 0\) and \(\lambda_i > \frac{2^{-(r+1)}}{1+R_\varphi}\)}\\
@@ -195,9 +194,9 @@ Next, we define \(\check \varphi \coloneqq \hat \varphi^{\frac{1}{2}} - \hat \va
 
 Finally, we set \(\rho = \hat \varphi^2 * \hat \varphi\). This is a mollifier because \(\int \hat \varphi^2(x) \, \mathrm{d}x = \int \hat \varphi(x)  \, \mathrm{d}x = 1\).  Then, \(\rho^{\frac{1}{2}} - \rho = (\hat \varphi^2 * \hat \varphi)^{\frac{1}{2}} - (\hat \varphi^2 * \hat \varphi) = (\hat \varphi * \hat \varphi^{\frac{1}{2}})- (\hat \varphi^2 * \hat \varphi) = \hat \varphi * (\hat \varphi^{\frac{1}{2}} - \hat \varphi^{2}) = \hat \varphi * \check \varphi\). Hence, we get \(\rho^{\epsilon_{k+1}} - \rho^{\epsilon_k} = (\rho^{\frac{1}{2}} - \rho)^{\epsilon_k} = (\hat \varphi * \check \varphi)^{\epsilon_k} = \hat \varphi^{\epsilon_k} * \check \varphi^{\epsilon_k}\) --- this is exactly what we want: \emph{we found a mollifier whose difference is the convolution of two tweaked test functions}.
 
-The remaining chapter is devoted to three technical lemmas that involve estimating the tweaked test functions \(\hat \varphi\) and \(\check \varphi\). They are only used in some minor parts of the proofs that are about to come. You can either skip to chapter~\ref{step2:decomposition}: Step 2 right away and come back when the lemmas are actually needed.
+The remaining chapter is devoted to three technical lemmas that involve estimating the tweaked test functions \(\hat \varphi\) and \(\check \varphi\). They are only used in some minor parts of the proofs that are about to come. You can either skip to Chapter~\ref{step2:decomposition}: Step 2 right away and come back when the lemmas are actually needed.
 
-Unsuprisingly, many of the upcoming proofs will involve many estimations; so knowing the \(L^1\)-norm of \(\hat \varphi\) comes in useful. We have already used it in Lemma~\ref{lemma:hat-phi-satisfies-table}.
+Many upcoming proofs require estimating the \(L^1\)-norm of \(\hat \varphi\). We even used an estimate in Lemma~\ref{lemma:hat-phi-satisfies-table}.
 \begin{lemma}\label{lemma:tweaked-l1-norm}
 We estimate
 \begin{align}\label{tweaked-l1-norm}
@@ -218,7 +217,7 @@ We estimate
     \begin{align*}
         |c_i| = \prod_{k \in \{0,\ldots,r-1\} \setminus\left\{ i \right\} } \frac{1}{|1 - 2^{k - i}|} \leq \prod^\infty_{k=1} \frac{1}{1 - 2^{-m}}
     \end{align*}
-    Note that \((1-x)^{-1} \leq 1 + 2x \leq e^{2x}\) for \(x \in [0,\frac{1}{2}]\). So, by substituting \(2^{-m} \leadsto x\), we finally get 
+    Note that \((1-x)^{-1} \leq 1 + 2x \leq e^{2x}\) for \(x \in [0,\frac{1}{2}]\). So, by substituting \(2^{-m} \leadsto x\), we get 
     \begin{align}\label{jsknfjkewfwhiru}
         |c_i| \leq \prod^\infty_{m=1} 1 + 2^{-m} \leq e^2
     \end{align}
@@ -256,7 +255,7 @@ Hence, we write
 Since \(g\) has compact support in \(H\) and \(\check \varphi\) in \(B(0,1)\), \(\check \varphi^{\epsilon}* g\) is supported in \(\enlarg{H}{\epsilon}\). So, we integrate \(|\check \varphi^{\epsilon}* g|\) over \(\enlarg{H}{\epsilon}\), and we obtain the claim.
 \end{proof}
 
-For the last lemma, consider the problem of finding an upper bound for the convolution of any test function \(\psi\) with \(\hat \varphi\) or \(\check \varphi\) against some aribtrary function \(G\).   
+For the last lemma, consider the problem of finding an upper bound for the convolution of any test function \(\psi\) with \(\hat \varphi\) or \(\check \varphi\) against some arbitrary function \(G\).   
 
 \begin{lemma}\label{lemma:WALFANGER}
     Let \(\lambda, \epsilon \in (0,1]\), \(K \subset \mathbb{R}^d\) be compact and \(G: \mathbb{R}^d \to \mathbb{R}\) be measurable. Then, for any \(x \in K\) and \(\psi \in \mathcal{B}_r\) we have 
@@ -269,7 +268,7 @@ For the last lemma, consider the problem of finding an upper bound for the convo
 \begin{proof}
     Regarding the first inequality, note that \(\hat \varphi^{2\epsilon} * \psi^\lambda_x\) has support in \(B(x, \lambda + \epsilon)\) because \(\psi\) is supported in \(B(0,1)\) (due to \(\psi \in \mathcal{B}_r\)) and \(\hat \varphi \in B(0, \frac{1}{2})\). So, 
     \begin{align*}
-        \Big| \int_{\mathbb{R}^d} G(y) \left( \hat \varphi^{2\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq \lVert \hat \varphi^{2\epsilon} * \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G| \overset{\eqref{inequality:convolution-l1-norm}}{\leq} \lVert \hat \varphi^{2\epsilon} \rVert_{L^1} \lVert \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G|.
+        \Big| \int_{\mathbb{R}^d} G(y) \left( \hat \varphi^{2\epsilon} * \psi^\lambda_x \right) (y) \, \mathrm{d}y \Big| \leq \lVert \hat \varphi^{2\epsilon} * \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G| \overset{\eqref{inequality:l1-norm}}{\leq} \lVert \hat \varphi^{2\epsilon} \rVert_{L^1} \lVert \psi^\lambda_x \rVert_{L^1} \sup_{B(x, \lambda + \epsilon)}|G|.
     \end{align*}
     \(\lVert \psi \rVert_{L^1}\) is bounded by the volume of the unit ball in \(\mathbb{R}^d\) because \(\lVert \psi \rVert_{\infty} \leq 1\) and \(\psi\) has support in \(B(0,1)\). Hence, 
     \begin{align}\label{bound-psi-l1}
@@ -304,21 +303,21 @@ Let \(\psi \in \mathcal{D}\) be any test function. With the right mollifier in o
     \\[-1.2em]
     &= \int_{\mathbb{R}^d} \int_{\mathbb{R}^{d}} F_z(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z
 \end{align*}
-As our last decomposition step, we write \(F_z = F_y + (F_z - F_y)\) (just as we described it in \hyperref[sec:motiadsd]{chapter 1})
+Note that \( \hat \varphi \) is centered around \( y \) and not \( z \). So, we use the triangle inequality and write 
 \begin{align*}
     g_k(\psi) &= \iint F_z(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z \\
-    &=  \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z +  \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z
+    &=  \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z +  \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z.
 \end{align*}
 Thus, we have decomposed \(g_k\) into \(g_k = g_k' + g_k''\) where 
 \begin{align*}
     g_k'(\psi) &\coloneqq \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z \\
-    g_k''(\psi) & \coloneqq \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z,
+    g_k''(\psi) & \coloneqq \iint (F_z - F_y)(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z.
 \end{align*}
-and we finally write 
+This allows us to use the coherence condition for \( g''_k \) and the homogeneity bound for \( g'_k \). Finally, we write
 \begin{align}\label{approximating-distributions-alternative}
-    f_n(\psi) = f_1 + \sum^{n-1}_{k=1} g_k'(\psi) + \sum^{n-1}_{k=1} g_k''(\psi).
+    f_n(\psi)= f_1(\psi) + \sum^{n-1}_{k=1} g_k(\psi) = f_1 + \sum^{n-1}_{k=1} g_k'(\psi) + \sum^{n-1}_{k=1} g_k''(\psi).
 \end{align}
-Our goal is to show that \(\lim_{n \to \infty}f_n(\psi)\) exists for all \(\psi \in \mathcal{D}\); hence, we want to prove that \( \sum^{\infty}_{k=1} g_k'(\psi)\) and \( \sum^{\infty}_{k=1} g_k''(\psi)\) are bounded. By the homogeneity condition and the coherence condition~\eqref{coherence-hat} we can control \(|g_k'|\) and \(|g_k''|\).
+Our goal is to show that \(\lim\limits_{n \to \infty}f_n(\psi)\) exists for all \(\psi \in \mathcal{D}\). Hence, our goal for the subsequent chapters is to prove that the series \( \sum g_k'(\psi)\) and \( \sum g_k''(\psi)\) converge.
 
 \begin{remark}\label{remark:fk-depends}
     The choice of our mollifier \(\rho\) depends on \(K\) since \(\rho \coloneqq \hat \varphi^2 * \hat \varphi\), and \(\hat \varphi \coloneqq \). Thus, the approximating distributions depend on TO-DO
@@ -348,7 +347,7 @@ We see that we need to divide the proof in two cases \(\gamma > 0\) and \(\gamma
 
 \section{Step 3: \texorpdfstring{\(\sum |g_k'|\) converges for all \(\gamma \in \mathbb{R}\)}{Sum gk converges for all real gamma}}\label{chapter:step-3}
 
-In this step, we want to show that \(\sum |g_k'(\psi)|\) converges for all test functions \(\psi \in \mathcal{D}(\bar K_1)\). To estimate \(g_k'(\psi) \coloneqq \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z\), we use three arguments: 
+In this step, we want to show that \(\sum |g_k'(\psi)|\) converges for all test functions \(\psi \in \mathcal{D}(\bar K_1)\). To show this, we estimate \(g_k'(\psi) \coloneqq \iint F_y(\hat{\varphi}^{\epsilon_k}_{y}) \check \varphi^{\epsilon_k}(y-z) \psi(z) \, \mathrm{d}y \, \mathrm{d}z\). We make use of the following three facts: 
 \begin{enumerate}
     \item a \emph{compact support} argument for \(\check \varphi^{\epsilon_k}\) and \(\psi\), 
     \item a \emph{local homogeneity bound} argument~\eqref{coherence-hat}, and
@@ -364,7 +363,7 @@ The compact support argument for \(\check \varphi^{\epsilon_k}\) and \(\psi\) wo
     \item the tweaked test function \(\check \varphi^{\epsilon_k}\) has a compact support in \(B(0, \epsilon_k)\) because \(\check \varphi\) has a compact support in the unit ball \(B(0,1)\); since \(\epsilon_k = 2^{-k} \leq \frac{1}{2}\) for all \(k \in \mathbb{N}\), we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} \right) \subset B(0,\frac{1}{2})\);
     \item by assumption \(\psi \in \mathcal{D}(\bar K_1)\), the compact support of \(\psi\) lies in \(\bar K_1\).
 \end{itemize}
-Thus by Lemma~\ref{lemma:convolution-compact-support}, we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} * \psi \right) \subset \bar K_{3/2}\). We therefore obtain 
+Thus by Lemma~\ref{step3:lemma}, we have \(\mathrm{supp} \left( \check \varphi^{\epsilon_k} * \psi \right) \subset \bar K_{3/2}\). We therefore obtain 
 \begin{align*}
     |g_k'(\psi)| = \left|\int F_y(\hat \varphi^{\epsilon_k}_y) \, (\check \varphi^{\epsilon_k} * \psi)(y) \, \mathrm{d}y\right| 
     \leq \sup_{y \in \overline K_{3/2}} \left(|F_y(\hat \varphi^{\epsilon_k}_y)| \right) \lVert \check \varphi^{\epsilon_k} * \psi \rVert_{L^1}.

@@ -423,16 +423,16 @@
       {\@emphasis}\par
     \fi
     in the \par
-    Graduate Division \par
-    of the \par
-    University of California, {\expandafter{\@campus}}\par
+    Mathematics Department \par
+    of \par
+    Technische Universität Berlin\par
     \vspace{34pt minus 8pt}
     {
       \fmsmallfont
-      Committee in charge: \par
-      {\@chair}, \@chairtitle \\
+      Supervisors: \par
+      {\@chair} \\
       \ifdefined\@cochair
-        {\@cochair}, Co-chair \\
+        {\@cochair} \\
       \fi
       {\@othermembers}\par
       \vspace{14pt minus 4pt}
@@ -507,15 +507,13 @@ The \@dissertation of {\@author}, titled {\@title}, is approved:
 
 \def\copyrightpage{
 \begin{alwayssingle}
-\thispagestyle{empty}
-\begin{center}
-{\fmfont
-\@title\par
-\vspace{1in}
-Copyright \@degreeyear\par
-by\par
-\@author}
-\end{center}
+
+\section*{Eidesstattliche Erklärung}
+
+Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und eigenhändig sowie ohne unerlaubte fremde Hilfe und ausschließlich unter Verwendung der aufgeführten Quellen und Hilfsmittel angefertigt habe. \\
+
+\noindent Berlin, den
+
 \end{alwayssingle}}
 
 
