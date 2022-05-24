@@ -10,7 +10,7 @@ which was motivated by \(F_x(\psi * \rho^\epsilon) \to F_x(\psi)\). Then, we wro
     f_n = f_1 + \sum^{n-1}_{k=1}
     g_k, \quad g_k(\psi) \coloneqq f_{k+1}(\psi) - f_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y.
  \end{align*}
-We want to show that \( \sum g_k \) converges for all test functions \( \psi \in \mathcal{D} \). Unfortunately, the limit does not always exist, for example if \( F \) is a coherent germ with \( \gamma \leq 0 \). Therefore, we are forced to split up the proof at some point to deal with \( \gamma > 0 \) and \( \gamma \leq 0 \).
+We want to show that the approximating distributions \( (f_n)_{n \in \mathbb{N}} \) converge for all test functions \( \psi \in \mathcal{D} \) because then \( \mathcal{R}F = \lim_{n \to \infty} f_n \). Unfortunately, the limit does not always exist, for example if \( F \) is a coherent germ with \( \gamma \leq 0 \). Therefore, we are forced to split up the proof at some point to deal with \( \gamma > 0 \) and \( \gamma \leq 0 \). However, the proof is the same at the beginning. We will explicitly mention when we have to deal with different \( \gamma > 0 \)  and \( \gamma \leq 0 \).
 
 \section{Step 0: Setup}\label{setup} 
 
@@ -25,11 +25,11 @@ Let \(\gamma \in \mathbb{R}\) and \(F = (F_x)_{x \in \mathbb{R}^d}\) be a \((\bm
     \text{for all } y,z \in \bar K_{3/2} \text{ with } |z-y| \leq 2,  \lambda \in (0,1]. \nonumber
 \end{gather}
 
-We define \(\epsilon_k = 2^{-k}\). Next choose an integer \( r \) such that \( r > \max\left\{ -\alpha, -\beta \right\} \). This particular choice will allow us to prove the convergence of \(\sum g_k\). 
+We define \(\epsilon_k = 2^{-k}\). Next choose an integer \( r \) such that \( r > \max\left\{ -\alpha, -\beta \right\} \). This particular choice is later responsible for finding an upper bound for several infinite series. 
 
 \section{Step 1: Tweaking}\label{chapter:step-1-tweaking}
 
-We briefly discuss the motivation and concept of \emph{tweaking}: in previous chapters we wrote \(f_n = f_1 + \sum^{n-1}_{k=1}g_k\), where \( g_k(\psi) = f_{k+1}(\psi) - f_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y \) for some mollifier \(\rho\). Finding a suitable mollifier \(\rho\) is the task that we confront ourselves with.
+We briefly discuss the motivation and concept of \emph{tweaking}: in previous chapters we wrote \(f_n = f_1 + \sum^{n-1}_{k=1}g_k\), where \( g_k(\psi) = f_{k+1}(\psi) - f_k(\psi) = \int_{\mathbb{R}^d} F_y(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}) \psi(y)\, \mathrm{d}y \) for some mollifier \(\rho\). Our goal is to find a suitable mollifier \(\rho\).
 
 It turns out to be very useful if we can write \(\rho_y^{\epsilon_{k+1}} - \rho_y^{\epsilon_k}\) as a difference of two test functions \(\hat \varphi\) and \(\check \varphi\). Concretely, we want
 \begin{align}\label{rho-dif}

@@ -1,12 +1,13 @@
 \chapter{Introduction} 
 
-The Reconstruction Theorem allows to construct a distribution \(f\) from a family of distributions \({(F_{x})}_{x \in \mathbb{R}^d}\) such that \(f\) is locally well-approximated by \(F_x\) around \(x \in \mathbb{R}^d\). Intuitively, we may view it as a converse to Taylor's Theorem if we let \(F_x\) be a Taylor polynomial. The Reconstruction Theorem is the most fundamental theorem in the theory of regularity structures --- a novel theory proposed by Hairer~\cite{hairer2014theory} that provides a robust solution theory to many ill-posed stochastic partial differential equations. In fact, the theory of regularity structures was so groundbreaking that Hairer was awarded the Fields medal for his \emph{``creation of regularity structures''} in 2014~\cite{FieldsMedalHairer}.
+The Reconstruction Theorem allows to construct a distribution \(f\) from a family of distributions \({(F_{x})}_{x \in \mathbb{R}^d}\) such that \(f\) is locally well-approximated by \(F_x\) around \(x \in \mathbb{R}^d\). Intuitively, we may view it as a converse to Taylor's Theorem if we let \(F_x\) be a Taylor polynomial. The Reconstruction Theorem is the most fundamental theorem in the theory of regularity structures --- a novel theory proposed by Hairer~\cite{hairer2014theory} that provides a robust solution theory to ill-posed stochastic partial differential equations.
 
-The original proof of the Reconstruction Theorem relied heavily on wavelet analysis~\cite{hairer2017reconstruction}. Since then numerous, more self-contained proofs have been published; for example Otto and coauthors~\cite{otto2019quasilinear} used semigroup methods, or Friz and Hairer gave a purely local proof~\cite{friz2020course}, which generalizes to any domain. Although the proofs are self-contained, they still require deep knowledge in stochastic analysis or other branches. In 2020 Caravenna and Zambotti~\cite{caravenna2021hairer} gave a truly elementary proof of the Reconstruction Theorem that uses distribution theory. 
+The original proof of the Reconstruction Theorem relied on wavelet analysis~\cite{hairer2017reconstruction}. Other more self-contained proofs have been published since then; for example Otto and coauthors~\cite{otto2019quasilinear} used semigroup methods, or Friz and Hairer gave a purely local proof~\cite{friz2020course}, which generalizes to any domain. Although the proofs are self-contained, they still require deep knowledge in stochastic analysis or other mathematical domains. In 2020 Caravenna and Zambotti~\cite{caravenna2021hairer} gave an elementary proof of the Reconstruction Theorem that used distribution theory. 
 
-The aim of this thesis is to give a self-contained proof of the Reconstruction Theorem. Hence, we mimic the proof by Caravenna and Zambotti. We hope that this thesis introduces the Reconstruction Theorem to a broader audience. Since the Reconstruction Theorem is a purely analytical tool, it may find applications outside regularity structures or stochastic partial differential equations. This thesis is aimed towards readers who are familiar with multivariable calculus. Knowledge of distribution theory is helpful but not mandatory since we give a concise overview of distribution theory.
+The aim of this thesis is to give a self-contained and accessible proof of the Reconstruction Theorem. Hence, we mimic the proof by Caravenna and Zambotti. The thesis is aimed towards readers who are familiar with multivariable calculus. Knowledge of distribution theory is helpful but not mandatory since we give a concise overview of distribution theory.
+Being a purely analytical tool, the Reconstruction Theorem may find applications outside regularity structures or stochastic partial differential equations. 
 
-The thesis is structured in the following way: Chapter~\ref{chapter:notation} introduces notation. Chapter~\ref{chapter:distributions} gives a concise overview of the theory of distributions. In Chapter~\ref{chapter:reconstruction} we state the Reconstruction Theorem with its assumptions. This leads to the central notion of \emph{coherence}, an optimal assumption coined by Caravenna and Zambotti. In Chapter~\ref{chapter:general-proof},~\ref{chapter:proof-gamma-positive} and~\ref{chapter:proof-gamma-negative} we prove the Reconstruction Theorem. We split the proof into three parts because we consider two cases: \(\gamma > 0\) and \(\gamma \leq 0\), where \({\gamma}\) is a parameter occurring in the Reconstruction Theorem. A major part of the proof holds for all \(\gamma \in \mathbb{R}\) and is presented in Chapter~\ref{chapter:general-proof}. We continue the proof for \(\gamma > 0\) in Chapter~\ref{chapter:proof-gamma-positive}, and the proof for \(\gamma \leq 0\) in Chapter~\ref{chapter:proof-gamma-negative}. In Chapter 6 we present applications of the Reconstruction Theorem, where we extend Hölder spaces to negative exponents, and prove the Sewing Lemma from rough path theory.
+The thesis is structured in the following way: Chapter~\ref{chapter:notation} introduces notation and the theory of distributions. In Chapter~\ref{chapter:reconstruction} we state the Reconstruction Theorem with its assumptions. This leads to the central notion of \emph{coherence}, an optimal assumption coined by Caravenna and Zambotti. In Chapter~\ref{chapter:general-proof},~\ref{chapter:proof-gamma-positive} and~\ref{chapter:proof-gamma-negative} we prove the Reconstruction Theorem. We split the proof into three parts because we consider two cases: \(\gamma > 0\) and \(\gamma \leq 0\), where \({\gamma}\) is a parameter occurring in the Reconstruction Theorem. A major part of the proof holds for all \(\gamma \in \mathbb{R}\) and is presented in Chapter~\ref{chapter:general-proof}. We continue the proof for \(\gamma > 0\) in Chapter~\ref{chapter:proof-gamma-positive}, and the proof for \(\gamma \leq 0\) in Chapter~\ref{chapter:proof-gamma-negative}. In Chapter 6 we present applications of the Reconstruction Theorem, where we extend Hölder spaces to negative exponents, and prove the Sewing Lemma from rough path theory.
 
 % ------------------------------------------
 
@@ -17,7 +18,7 @@ Let \( \mathbb{N} = \left\{ 1,2, \ldots \right\} \). Throughout this thesis, the
     \enlarg{A}{\epsilon} \coloneqq A + B(0, \epsilon) \coloneqq \{ x \in \mathbb{R}^d : |x - a| \leq \epsilon \text{ for some \(a \in A\)} \}.
 \end{align*}
 
-The \emph{multi-index notation} makes many theorems for functions in multiple variables appear as if there is only one variable. A \emph{multi-index} \(k = (k_1, \ldots ,k_d) \in \mathbb{N}^d_0\) is a \(d\)-tuple of non-negative integers. The \emph{length} of \(k\) is defined as \(|k| = k_1 + \cdots + k_d\). We define for all \(x, k,l \in \mathbb{R}^d\) and \(f: \mathbb{R}^d \to \mathbb{R}\)
+The \emph{multi-index notation} makes many theorems for functions in multiple variables appear as if there is only one variable. A \emph{multi-index} \(k = (k_1, \ldots ,k_d) \in \mathbb{N}^d_0\) is a \(d\)-tuple of non-negative integers. The \emph{length} of \(k\) is defined as \(|k| = k_1 + \cdots + k_d\). For all \(x, k,l \in \mathbb{R}^d\) and \(f: \mathbb{R}^d \to \mathbb{R}\) we set
 \begin{gather*}
     x^k = x_1^{k_1} \cdot \cdots \cdot x_d^{k_d}, \qquad
     k! = k_1! k_2! \cdots k_d!, \qquad
@@ -97,9 +98,9 @@ For non-positive exponents \( \alpha \), the space \( \mathcal{C}^\alpha \) is n
 
 \section{Theory of Distributions}\label{chapter:distributions}
 
-The theory of distributions generalizes classical analysis. We no longer consider functions \( f : \mathbb{R}^d \to \mathbb{R} \) but linear forms, called \emph{distributions}, that act on \emph{test functions}. Distributions set up a general theory of partial differential equations, which classical analysis fails to do. Our goal is to quickly introduce distributions to get Reconstruction Theorem going. For a complete treatment we recommend the standard reference by Friedlander and Joshi~\cite{friedlander1998introduction}.
+The theory of distributions generalizes classical analysis. We no longer consider functions \( f : \mathbb{R}^d \to \mathbb{R} \) but linear forms, called \emph{distributions}, that act on \emph{test functions}. Distributions set up a general theory of partial differential equations, which classical analysis fails to do. Our goal is to quickly introduce distributions to get Reconstruction Theorem going. For a complete treatment of distribution theory, we recommend the standard reference by Friedlander and Joshi~\cite{friedlander1998introduction}.
 
-There are many classes of test functions. We choose the compactly supported functions \( f \in C^\infty \).
+There are many classes of test functions. We choose the class of compactly supported, smooth functions \( f \in C^\infty \).
 
 \begin{definition}[Test Function]
     \emph{Test functions} \(\varphi: \mathbb{R}^d \to \mathbb{R}\) are smooth functions that have compact support. The \emph{space of test functions} \(\mathcal{D}\) is the set that contains all test functions:
@@ -109,7 +110,7 @@ There are many classes of test functions. We choose the compactly supported func
     \end{align*}
 \end{definition}
 
-The following subset of test functions play an important role in subsequent chapters
+The following subset of test functions plays an important role in subsequent chapters
 \begin{align*}
     \mathcal{B}_r = \left\{ \varphi \in \mathcal{D}(B(0,1)) : \lVert \varphi \rVert_{C^r} \leq 1 \right\}.
 \end{align*}
@@ -126,7 +127,10 @@ The \emph{space of all distributions} is denoted
 \).
 \end{definition}
 
-Any continuous function \( f: \mathbb{R}^d \to \mathbb{R} \) can be canonically identified with a distribution by \( \varphi \mapsto \int_{\mathbb{R}^d} f(x) \varphi(x) \, \mathrm{d}x \) for all \( \varphi \in \mathcal{D} \).
+Any continuous function \( f: \mathbb{R}^d \to \mathbb{R} \) can be canonically identified with a distribution by
+\begin{align*}
+    \varphi \mapsto \int_{\mathbb{R}^d} f(x) \varphi(x) \, \mathrm{d}x \qquad \quad \forall \varphi \in \mathcal{D}.
+\end{align*}
 
 We give {convergence in \(\mathcal{D}\)} a meaning.
 
@@ -150,14 +154,14 @@ This allows us to give an alternative characterization of distributions: a distr
     For the converse direction, we argue by contradiction. Let \( \varphi_j \to \varphi \) in \(\mathcal{D}\) imply \(u(\varphi_j) \to u(\varphi)\) for all test functions \(\varphi_j\) and \(\varphi \). Assume there is a compact set \(K \subset \mathbb{R}^d\) such that for all \(r \in \mathbb{N}_0\) and \(C < \infty \), the inequality \(|u(\varphi)| \leq C \lVert\varphi\rVert_{C^r}\) is violated for some \(\varphi \in \mathcal{D}\). Then, we can find \(\varphi_n\) with \(|u(\varphi_n)| > n \lVert \varphi_n \rVert_{C^n}\) for all \(n \in \mathbb{N}\). Next, we define \(\phi_n \coloneqq \frac{\varphi_n}{n \lVert \varphi_n \rVert_{C^n}}\). So, we get \(u(\phi_n) > 1\). However, \(\phi_n \to 0\) in \(\mathcal{D}\) as \(n \to {\infty}\) because \(\lVert \phi_n \rVert_{C^r} \leq \frac{1}{n}\) for all \(n \geq r\).
 \end{proof}
 
-Often, we are given a test function \({\varphi}\), and we would like to construct a sequence 
-\((\varphi_j)\) that converges to \( \varphi \) in \( \mathcal{D} \).
-Enter \emph{mollifiers}. First, we define how to scale and translate arbitrary functions \(\varphi: \mathbb{R}^d \to \mathbb{R}\):
+Let's define how to scale and translate arbitrary functions \(\varphi: \mathbb{R}^d \to \mathbb{R}\):
 \begin{align*}
     \varphi^\epsilon_y(x) \coloneqq \frac{1}{\epsilon^d} \, \varphi\left(\frac{x-y}{\epsilon}\right), \quad \varphi^\epsilon(x) \coloneqq \varphi^\epsilon_0(x), \quad \varphi_y(x) \coloneqq \varphi^1_y(x).
 \end{align*} 
 
-Given a compactly supported function \(\rho: \mathbb{R}^d \to \mathbb{R}\) that integrates to one, a family of scaled and translated versions of \({\rho}\) is called a \emph{mollifier}.
+Often, we are given a test function \({\varphi}\), and we would like to construct a sequence 
+\((\varphi_j)\) that converges to \( \varphi \) in \( \mathcal{D} \).
+Enter \emph{mollifiers}. 
 
 \begin{definition}[Mollifier]
     Let \(\rho: \mathbb{R}^d \to \mathbb{R}\) be a function with compact support and \(\int_{\mathbb{R}^d} \rho(x) \, \mathrm{d}x = 1\). We call the family of scaled functions \({(\rho^\epsilon)}_{\epsilon > 0}\) a \emph{mollifier}.
@@ -232,9 +236,7 @@ When we convolute a test function \(\varphi \in \mathcal{D}\) against a mollifie
     Then, \(\sup_{x \in K} |\partial^k(\varphi * \rho^\epsilon) (x) - \partial^k\varphi(x)| \to 0\) as \(\epsilon \to 0\).
 \end{proof}
 
-This lemma implies that \(F(\varphi * \rho^{\epsilon}) \to F(\varphi)\) because \(F\) is a distribution.
-
-For some locally integrable function \( g \) observe that 
+An important consequence is that \(F(\varphi * \rho^{\epsilon}) \to F(\varphi)\) since \(F\) is a distribution. This leads to the following central observation. For some locally integrable function \( g \) observe that 
 \begin{align}\label{lemma:mollified-distribution}
     F(\varphi * g) = \int_{\mathbb{R}^d} F(\varphi_y)g(y) \, \mathrm{d}y
 \end{align}
