@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\begin{document}
+
+\author{Viet Duc Nguyen}
+\title{Fundamental Models}
+\maketitle
+
+\section{Operations on Outcomes}
+
+\begin{proposition}
+ The sum of two outcomes is an outcome. 
+\end{proposition}
+
+\begin{proof}
+  Let $w,v \in \mathbb{Z}^{V_{d}}$ be outcomes. Let $p$ be a pascal form. Then $p(w + v) = p(v) + p(w) = 0$ because $p(w) = 0$ and $p(v) = 0$. This proves that $w + v$ is an outcome.
+\end{proof}
+
+
+\begin{definition}
+  Let $w \in \mathbb{Z}^{V_{d}}$ be an outcome. Let $v \in \mathbb{Z}^{d+2}$ be some vector. We define $[v \mid w]$ to be the configuration obtained by left-appending $v$ to $w$ in the following way:
+\begin{align*}
+  \begin{matrix*}[l]
+    v_{d + 1} & &  \\
+    v_{d} &  w_{0,d} & \\
+  v_{d-1}  &  w_{0,d-1}  &  w_{1,d - 1} \\
+  \vdots & \vdots & \vdots & \ddots \\
+  v_0  & 0 & w_{1,0}  & \dots & w_{d,0}
+ \end{matrix*} 
+\end{align*}
+Bottom-appending $\begin{bmatrix} w \\ \hline v\end{bmatrix}$is defined in the following way:
+\begin{align*}
+  \begin{matrix*}[l]
+    w_{0,d} & & & \\
+      w_{0,d-1} & w_{1,d - 1} &  &   \\
+    \vdots & \vdots & \ddots & \\
+    0 & w_{1,0}  & \dots &  w_{d,0} \\
+    v_{0} & v_{1} & \dots & v_{d} & v_{d + 1}
+ \end{matrix*}
+\end{align*}
+\end{definition}
+
+
+\begin{proposition}
+  Left-appending the vector $v = \begin{bmatrix} -1 & 1 & 0 & \dots & 0 \end{bmatrix}\in \mathbb{Z}^{d + 2}$ to a valid outcome $w \in \mathbb{Z}^{V_{d}}$ with $w_{00} = -1$ yields a valid outcome. 
+\end{proposition}
+
+\begin{proof}
+  We consider diagonal pascal forms in $\mathbb{Z}^{V_{d + 2}}$ to show that $[v \mid w]$ is an outcome. Let $p_{k}$ be the $k$-th diagonal pascal form. The case $k = 0$ is clear since $p_{0}([v \mid w]) = 0$ is easy to be seen. For $k = 1, \dots, d + 1$, we have
+  \begin{align*}
+    p_{k}([v \mid w]) &= - {d + 1 \choose k} + {d  \choose k} + \sum_{(i,j) \in V_{d + 1}, i > 0} {d + 1 - (i + j) \choose k - i}  w_{i - 1,j}  \\
+                        &= - {d + 1 \choose k} + {d \choose k} + \sum_{(i,j) \in V_{d}}  {d - i - j \choose k - (i + 1)} w_{i,j} .
+  \end{align*}
+  By substituting $k = \tilde k + 1$ we obtain that
+  \[
+    \sum_{(i,j) \in V_{d}}  {d - i - j \choose \tilde k - i}  w_{i,j}  = 
+     {d \choose \tilde k} \quad \forall \tilde k = 0, \dots, d
+  \]
+  since $w$ is an outcome. Plugging this expression back into $p_{k}([v \mid w])$ and using Pascal's rule yields $p_{k}([v \mid w]) = 0$. Hence, $[v \mid w]$ is an outcome.
+
+  Finally, $[v \mid w]$ is clearly valid because $w$ is valid.
+\end{proof}
+
+\begin{corollary}
+  Left-appending the vector $v = \begin{bmatrix} w_{00} & 1 & 0 & \dots & 0  \end{bmatrix}\in \mathbb{Z}^{d + 2}$ to a valid non-initial outcome $w \in \mathbb{Z}^{V_{d}}$ yields a valid outcome. 
+\end{corollary}
+
+\begin{proof}
+  The proof is similar to the previous one except that we carry some coefficient $w_{00}$ through the calculations.
+\end{proof}
+
+\begin{corollary}
+  Bottom-appending the vector $v = \begin{bmatrix} w_{00} & 1 & 0 & \dots & 0  \end{bmatrix}\in \mathbb{Z}^{d + 2}$ to a valid non-initial outcome $w \in \mathbb{Z}^{V_{d}}$ yields a valid outcome. 
+\end{corollary}
+
+\begin{proof}
+ We use symmetry. 
+\end{proof}
+
+\section{Binomial Models are Fundamental}
+Fix some degree $d \in \mathbb{Z}_{\geq 0}$.
+
+\begin{definition}
+Define $T_{d} = \{ (i,j) \in \mathbb{Z}^2_{\geq 0} \mid i + j = d \}$.  
+\end{definition}
+
+\begin{lemma}
+  Let $w \in \mathbb Z^{V_{d}}$ be a nonzero valid outcome. If $\mathrm{supp}^+(w) \subset T_{d}$, then we have equality, i.e. $\mathrm{supp}^+(w) = T_{d}$.
+\end{lemma}
+
+\begin{proof}
+ Fix some vertex $(i,j) \in T_d$. Define $p$ to be the $i$-th diagonal pascal form. Since $w$ is an outcome, we have that $p(w) = p_{0,0} w_{0,0} + p_{i,j}w_{i,j} = 0$. This is only the case if $w_{i,j} > 0$ because $w$ is nonzero and valid. Hence, $T_{d} \subset \mathrm{supp}^+(w)$.
+\end{proof}
+
+\begin{proposition}
+  Binomial configurations are fundamental.
+\end{proposition}
+
+\begin{proof}[Proof by Contradiction]
+  Let $w \in \mathbb Z^{V_{d}}$ be a binomial configuration. Suppose $w$ is not fundamental, i.e. $w = \alpha x + \beta y$ for valid outcomes $x$ and $y$ with $\mathrm{supp}^+(x), \mathrm{supp}^+(y) \subsetneq \mathrm{supp}^+(w) = T_{d}$ and positive $\alpha, \beta \in \mathbb Q_{>0}$. 
+  If $x = 0$, then $y = \beta^{-1}w$. Otherwise by the previous Lemma, we have $\mathrm{supp}^+(x) = T_{d}$. 
+  In either case, we have a contradiction to $\mathrm{supp}^+(x), \mathrm{supp}^+(y) \subsetneq T_{d}$. 
+\end{proof}
+
+\begin{example}
+  Here is an example of a binomial configuration.
+ \begin{verbatim}
+  1
+  *  3
+  *  *  3
+ -1  *  *  1
+ \end{verbatim} 
+\end{example}
+
+\section{Invariant Operations}
+
+
+\begin{proposition}
+  Let $w \in \mathbb{Z}^{V_{d}}$ be a fundamental outcome. Then, $\lambda w$ is fundamental for all $\lambda \in \mathbb Q_{>0}$.
+\end{proposition}
+
+
+\begin{proof}[Proof by Contraposition]
+  Assume $\lambda w$ is not fundamental. Then, $\lambda w = \alpha x + \beta y$ for positive $\alpha, \beta \in \mathbb Q_{>0}$ and valid outcomes $x$, $y$ with $\mathrm{supp}^+(x), \mathrm{supp}^+(y) \subsetneq \mathrm{supp}^+(\lambda w)$. Write $w = \frac{\alpha}{\lambda} x + \frac{\beta}{\lambda}y$, which shows that $w$ is not fundamental.
+\end{proof}
+
+\begin{proposition}
+  Let $w \in \mathbb{Z}^{V_{d}}$ be a fundamental outcome, and let $v \in \mathbb{Z}^{V_{d}}$ be a valid outcome. 
+  If $\mathrm{supp}^+(w) = \mathrm{supp}^+(v)$, then $v = \lambda w$ for some $\lambda \in \mathbb Q_{>0}$.
+\end{proposition}
+
+\begin{proof}
+  Assume that $\mathrm{supp}^+(w) = \mathrm{supp}^+(v)$. Then there exist fundamental statistical models $\mathcal M_{1} = (w_{v}, i_{v}, j_{v})_{v = 0}^n$ and $\mathcal M_{2} = (w'_v, i_{v}, j_{v})_{v=0}^n$ that are associated to $w$ and $v$ respectively. Since $\mathcal M_{1}$ is fundamental, the values $(w_{v})_{v=0}^n$ are uniquely determined given the values $(i_{v}, j_{v})_{v=0}^n$. Thus, we conclude that $w'_v = w_{v}$ for all $v = 0, ..., n$. The rest follows from Proposition 4.5.
+\end{proof}
+
+\begin{corollary}
+  Let $w \in \mathbb{Z}^{V_{d}}$ be a fundamental outcome, and let $v \in \mathbb{Z}^{V_{d}}$ be a valid outcome. 
+  If $\mathrm{supp}^+(w) = \mathrm{supp}^+(v)$, then $v$ is fundamental.
+\end{corollary}
+
+Next, we show that certain unsplitting moves preserve the fundamental property.
+
+\begin{example}
+  Consider the fundamental outcome below.
+ \begin{verbatim}
+   1
+   *  3
+   *  *  3
+  -1  *  *  1
+ \end{verbatim}
+  An unsplitting move at vertex $(0,2)$ yields the outcome below.
+ \begin{verbatim}
+   * 
+   1  2 
+   *  *  3
+  -1  *  *  1
+ \end{verbatim}
+ This outcome is fundamental as we will show in the next proposition.
+\end{example}
+
+\begin{proposition}
+  Let $w \in \mathbb{Z}^{V_{d}}$ be a fundamental integral outcome. Let $u$ be an unsplitting move at vertex $(i,j)$. If $u(w)$ is valid and $\vert \mathrm{supp}^+(u(w))\vert = \vert \mathrm{supp}^+(w) \vert$, then $u(w)$ is fundamental.
+\end{proposition}
+
+\begin{proof}[Proof by Contradiction]
+  Let $w \in \mathbb{Z}^{V_{d}}$ be fundamental. For the sake of contradiction, assume $u(w)$ is not fundamental, i.e. $u(w) = \alpha x + \beta y$ for valid outcomes $x$ and $y$ with $\mathrm{supp}^+(x), \mathrm{supp}^+(y) \subsetneq \mathrm{supp}^+(u(w))$. If we denote the splitting move at vertex $(i,j)$ by $s$, then $w = s(u(w)) = s(\alpha x + \beta y) = \alpha s(x) + \beta y = \alpha x + \beta s(y) $.
+
+  Without loss of generality, we assume that $s(x)$ is valid, the reason being that $u(w)$ is valid, which implies $w_{i,j} \geq 1$, and in turn $x_{i,j} \geq 1$ or $y_{i,j} \geq 1$. Thus, we found a decomposition $w = \alpha s(x) + \beta y$ into valid outcomes. 
+
+ Further examination of this decomposition reveals that $\mathrm{supp}^+(y) \subsetneq \mathrm{supp}^+(w)$ because $\vert \mathrm{supp}^+(u(w))\vert = \vert \mathrm{supp}^+(w) \vert$ leads to one of the following three cases: (A) we have $\mathrm{supp}^+(u(w)) = \mathrm{supp}^+(w)$, or (B) we have $w_{i,j} = 0$ and $w_{i,j+1} = 1$, which implies $(s(x))_{i,j}$, so $(s(x))_{i,j} = 1$ and therefore $y_{i,j} = 0$.
+\end{proof}
+
+Left-appending is also an invariant operation. 
+
+\begin{proposition}
+  Left-appending the unit vector $\begin{bmatrix}0 & 1 & 0 & \dots & 0\end{bmatrix} \in \mathbb{Z}^{d + 2}$ to a fundamental outcome $w \in \mathbb{Z}^{V_{d}}$ yields a fundamental outcome.
+\end{proposition}
+
+\begin{proof}
+  
+\end{proof}
+
+\end{document}
+
+

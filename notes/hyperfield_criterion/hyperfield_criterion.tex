@@ -1,0 +1,888 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\begin{document}
+
+\author{Viet Duc Nguyen}
+\title{Hyperfield Criterion}
+\maketitle
+
+\section{A Necessary Condition}
+The Hyperfield Criterion is a necessary condition for a \emph{valid} outcome.
+
+\begin{proposition}[Hyperfield Criterion]
+ Let $w$ be a valid outcome. Then $\mathrm{sign}(w)$ is a hyperfield root of $\mathrm{sign}(p)$ for every pascal form $p$.
+\end{proposition}
+
+With the Hyperfield Criterion, we can exclude many supports from consideration when searching for valid outcomes; more precisely, supports that are not hyperfield roots of some pascal form cannot be the support of a valid outcome. Hence, we just need to check the supports that are common roots of all hyperfield pascal forms. Since these hyperfield pascal forms are just linear forms, we are essentially solving a homogeneous linear system in a hyperfield.
+
+
+\section{Solving Homogeneous Hyperfield Linear Systems}
+
+\textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $V(A) \coloneqq \{ x \in H^{V_{d}} : 0 \in \mathrm{sign}(p_{i})(x)  \quad \forall i = 1, \dots, k \}$.
+
+\vspace{0.3cm}
+
+We further simplify the problem by only considering solutions $x$ with $\mathrm{supp}^-(x) = \{ (0,0) \}$ and $\vert \mathrm{supp}^+(x) \vert = n$ for some fixed $n \in \mathbb N$.
+
+\vspace{0.3cm}
+
+\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ x \in H^{V_{d}} : \text{$\mathrm{supp}^-(x) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(x) \vert = n$} \}$.
+
+\vspace{0.3cm}
+
+Note that $S_{n}(A)$ is a superset of valid outcomes of positive support size $n$, which will be useful in finding all valid outcomes.
+
+\subsection*{A Naive Approach}
+
+To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate over all positive support size $n$ supports and check if they are hyperfield roots of some pascal basis.
+
+\begin{algorithm}
+\caption{Brute Force Algorithm}\label{alg:hyperfield_criterion:brute_force}
+  \begin{algorithmic}[1]
+    \Require Positive support size $n$, a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$
+    \Ensure $S_{n}(A)$
+
+    \Function{solve}{$A, n$}
+    \State initialize empty list \texttt{solutions}
+    \For{$n$-combination $S = \{(c_{i}, r_{i}) : i = 1, \dots, n\}$ of $V_{d}$}
+      \State initialize $x \in H^{V_{d}}$ with positive support $S$ and $x_{0,0} = -1$ 
+      \If{$x$ is a hyperfield root of every $p \in A$} 
+        \State add $S$ to \texttt{solutions}
+      \EndIf
+    \EndFor
+    \State \Return \texttt{solutions}
+    \EndFunction
+  \end{algorithmic}  
+\end{algorithm}
+
+The naive approach has an exponential time complexity since we need to check $\binom{(d+1)(d + 2)/2}{n}$ many supports.
+
+\subsection*{Efficient Algorithm}
+
+For a specific type of system of linear forms $A$, we can greatly speed up the computation of $S_{n}(A)$.
+
+\begin{definition}[Trivial Root]
+  Let $p(x) = \sum_{i=1}^n \lambda_{i} x_{i}$ be a linear form, and let $x = (x_{1}, \dots, x_{n})$ be some root of $p$, i.e. $p(x) = 0$. If $\mathrm{supp}(x) \cap \mathrm{supp}(p) = \emptyset$, then the root $x$ is called a \textbf{trivial root} of $p$. Otherwise, the root $x$ is called a \textbf{non-trivial root} of $p$.
+
+  Let $A$ be a system of linear forms. We say $S_{n}(A)$ is \textbf{non-trivial} if $S_{n}(A) \neq \emptyset$ and every $x \in S_{n}(A)$ is a non-trivial root for every form $p \in A$. We say $A$ is \textbf{non-trivial} if $S_{n}(A)$ is non-trivial.
+\end{definition}
+
+\begin{proposition}
+  Let $A$ be a system of linear forms, $p \in A$ and $x \in S_{n}(A)$. Then, the following statements hold:
+  \begin{enumerate}
+    \item If $(0,0) \in \mathrm{supp}^+(p)$, then $x_{i} = 1$ for some $i \in \mathrm{supp}^+(p)$. 
+    \item If $(0,0) \in \mathrm{supp}^-(p)$, then $x_{i} = 1$ for some $i \in \mathrm{supp}^-(p)$. 
+  \end{enumerate}
+
+\end{proposition}
+
+\begin{proof}
+  Assume $(0,0) \in \mathrm{supp}^+(p)$. Since $x_{0,0} = -1$, we have $-1 \in \mathrm{sign}(p)(x)$. By assumption, $x$ is a hyperfield root of $p$, so $0 \in \mathrm{sign}(p)(x)$. This can only happen if $x_{i} = 1$ for some $i \in \mathrm{supp}^+(p)$. The case $(0,0) \in \mathrm{supp}^-(p)$ is similar.
+\end{proof}
+
+The next proposition assumes that $A$ is non-trivial. 
+
+\begin{proposition}
+  Let $A$ be a non-trivial system of linear forms, $p \in A$ and $x \in S_{n}(A)$. 
+  If $(0,0) \notin \mathrm{supp}(p)$, then $\mathrm{supp}^+(p) \neq \emptyset$, $\mathrm{supp}^-(p) \neq \emptyset$ as well as $x_{i} = x_{j} = 1$ for some $i \in \mathrm{supp}^+(p)$ and $j \in \mathrm{supp}^-(p)$.
+\end{proposition}
+
+\begin{proof}
+  Assume $(0,0) \notin \mathrm{supp}(p)$. First, $\mathrm{supp}(p) \neq \emptyset$ because $S_{n}(A)$ is non-empty and consists only of non-trivial roots. If $\mathrm{supp}^+(p) = \emptyset$, then $\mathrm{supp}^+(x) \subset \mathrm{supp}^-(p) = \mathrm{supp}(p) \neq \emptyset$. Hence, $\mathrm{sign}(p)(x) = \{ -1 \}$, which contradicts $x$ being a root. Thus, $\mathrm{supp}^+(p)$ is non-empty. Similarly, $\mathrm{supp}^-(p)$ is non-empty.
+
+  By non-triviality, $x_{i} = 1$ for some $i \in \mathrm{supp}(p)$. Assume $i \in \mathrm{supp}^+(p)$. Hence, $1 \in \mathrm{sign}(p)(x)$.  Since $x$ is a root, we also have $0 \in \mathrm{sign}(p)(x)$. This can only occur if $x_{j} = 1$ for some $j \in \mathrm{supp}^-(p)$. The case $i \in \mathrm{supp}^-(p)$ is similar. 
+\end{proof}
+
+
+Both propositions allow us to interpret linear forms in a non-trivial system $A$ as constraints on the positive supports of roots in $S_{n}(A)$.
+
+\begin{example}
+  Fix the degree $d = 3$.
+  Assume a system $A$ and some linear form $p \in A$. Further assume $p$ is a diagonal pascal equation of order $0$. The support of $p$ is represented by the following diagram:
+ \begin{verbatim}
+  + 
+  +  . 
+  +  .  .
+  +  .  .  .
+ \end{verbatim} 
+  We see that any hyperfield root $x \neq 0$ of $A$ satisfies $x_{i} = 1$ for some $i \in \{ (0,0), (0,1), (0,2), (0,3) \}$ because $x_{00}$ is negative.
+
+  Now, assume $A$ is non-trivial. Consider a row pascal equation $q \in A$ of order $3$. Its support is depicted by the following diagram:
+ \begin{verbatim}
+  - 
+  .  + 
+  .  .  -
+  .  .  .  +
+ \end{verbatim} 
+ For some $x$ with $\mathrm{supp}^-(x) = \{ (0,0) \}$ to be a hyperfield root of $q$, we must have either
+ \begin{enumerate}
+  \item $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \{ (0,3), (2, 1) \}$ and $(i',j') \in \{ (3,0), (1,2) \}$, or 
+  \item $\mathrm{supp}(x) \subset V_{3} \setminus \mathrm{supp}(q)$.
+ \end{enumerate}
+ Considering only non-trivial roots $x$ lets us exclude the latter case.
+
+ Thus, if we have a non-trivial system $A$ with $p,q \in A$, to compute $S_{n}(A)$, it suffices to check only those hyperfield roots whose support intersected with each of the three following regions is non-empty:
+ \begin{verbatim}
+  + 
+  +  . 
+  +  .  .
+  +  .  .  .
+
+  + 
+  .  . 
+  .  .  +
+  .  .  .  .
+
+  . 
+  .  + 
+  .  .  .
+  .  .  .  + 
+ \end{verbatim}
+ Here are examples of such roots:
+ \begin{verbatim}
+  +               
+  .  +           
+  .  .  .
+  .  .  .  .
+
+  . 
+  .  . 
+  +  .  +
+  .  .  .  +
+ \end{verbatim}
+\end{example}
+
+\begin{definition}[Constraints of a linear form]
+  To each linear form $p$ we can associate a finite set of supports, which we call $\mathrm{constraints}(p) \subset 2^{V_{d}} \coloneqq \{\mathrm{supp}^+(p) \setminus \{0\}, \mathrm{supp}^-(p) \{ 0 \} \}$. 
+
+\end{definition}
+
+The name is justified by the following proposition.
+
+\begin{proposition}\label{prop:hyperfield_criterion:constraints}
+  Let $p$ be a linear form in a hyperfield, and $x \in H^{V_{d}}$ with $\mathrm{supp}^-(x) = \{ (0,0) \}$. Then, $x$ is a non-trivial hyperfield root of $p$ if and only if $\mathrm{supp}^+(x) \cap S \neq \emptyset$ for all $S \in \mathrm{constraints}(p)$. 
+\end{proposition}
+
+\begin{proof}
+  Since $x$ is non-trivial, we clearly have non-empty intersection of $\mathrm{supp}^+(x)$ and $S \in \mathrm{constraints}(p)$. The converse direction is also clear since $p(x) = 1 - 1 = H$ in a hyperfield.
+\end{proof}
+
+We present an algorithm for computing $S_{n}(A)$ of non-trivial systems $A$.
+
+\begin{algorithm}
+\caption{Algorithm for Non-Trivial Systems}\label{alg:hyperfield_criterion:efficient}
+  \begin{algorithmic}[1]
+    \Require Positive support size $n$, non-trivial system $A$ 
+    \Ensure $S_{n}(A)$
+
+    \Function{solve}{$A, n$}
+      \State C $\gets \bigcup_{p \in A}\mathrm{constraints}(p)$
+      \State \texttt{solutions} $\gets \{ x \in H^{V_{d}} \mid \forall S \in C: \mathrm{supp}^+(x) \cap S \neq \emptyset, \vert \mathrm{supp}^+(x) \vert = n,  \mathrm{supp}^-(x) = \{(0,0)\}   \}$
+      \State \Return \texttt{solutions}
+    \EndFunction
+  \end{algorithmic}  
+\end{algorithm}
+
+\begin{proof}[Proof of correctness]
+  The correctness of $\texttt{solutions} = S_{n}(A)$ follows from Proposition \ref{prop:hyperfield_criterion:constraints} and the assumption that $A$ is non-trivial. 
+\end{proof}
+
+\section{Implementing the Hyperfield Criterion}
+
+The Hyperfield Criterion states that only the common hyperfield roots of all pascal forms can be supports of valid outcomes. The system of all pascal forms is a-priori an infinite and non-trivial system. However, we found out that several bases of pascal forms exist such as the row, col and diag pascal basis, which let us consider finite systems. Define the finite system $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$.
+
+
+\begin{proposition}
+  The system $A$ is non-trivial.
+\end{proposition}
+
+\begin{proof}
+  First, $S_{n}(A)$ is non-empty because $x = (x_{i})_{i=0}^n$ defined as $x_{i, d-i} = {n \choose i}$ is a solution of the system $A$. 
+
+  Let $x \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following cases.
+  \begin{itemize}
+    \item Assume, $x \notin \mathrm{supp}(\mathrm{diag}(i))$; then $\mathrm{diag}(i)(x) < 0$; we found a contradiction to $x$ being a root. 
+    \item Assume, $x \notin \mathrm{supp}(\mathrm{row}(i))$. If $i = d$, then $x$ is not of degree $n$. Therefore, we assume $i < d$. Then, either $x$ is a trivial root for $\mathrm{row}(i+1)$ or we have $\mathrm{row}(i+1)(x) \neq 0$. In the latter case, we found a contradiction to $x$ being a root. For the former case that $x$ is a trivial root, we conclude that there exists nonzero $x_{u, d-u}$ for some $u = i+2, \dots, d$ since $x$ is of degree $n$; now we just repeat the argument for $\mathrm{row}(i+1)$. More precisely, if $x$ is again a trivial root for $\mathrm{row}(i+2)$, we repeat the argument for $\mathrm{row}(i+2)$ until we will end up with a contradiction $\mathrm{row}(u)(x) \neq 0$.
+    \item For the case $\mathrm{col}$, we can argue by symmetry.
+  \end{itemize}
+\end{proof}
+
+\begin{corollary}
+  Configurations $x \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(x) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } i > k + 1 \}$ are not valid outcomes for any $k = 0, \dots, d-1$. Neither are configurations $x \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(x) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } j > k + 1 \}$ for $k = 0, \dots, d-1$ due to symmetry.
+\end{corollary}
+
+\begin{proof}
+  Since the previously defined system $A$ is non-trivial, we must have that supports of valid outcomes intersect the support of $\mathrm{row}(k+1)$ non-trivially (i.e. the intersection is non-empty).
+\end{proof}
+
+\begin{example}
+ This is not a valid outcome:
+
+  \begin{verbatim}
+  .               
+  .  .           
+  .  .  .
+  .  .  .  *
+  *  .  .  *  *
+  *  *  .  *  *  *
+ \end{verbatim}
+\end{example}
+
+Now that we have shown that $A$ is a trivial system, we have found an efficient way to apply the Hyperfield Criterion. Here is a detailed breakdown of an implementation of the algorithm.
+
+To-Do...
+
+\section{Contractions}
+
+The Hyperfield Criterion is useful to narrow down the search space for valid outcomes $w \in \mathbb{Z}^{V_{d}}$ for \emph{fixed} $d \in \mathbb{N}$. However, it is our goal to show that certain outcomes in $\mathbb{Z}^{V_{d}}$ cannot exist for all $d \geq d'$ for some fixed $d' \in \mathbb{N}$; it remains unclear how to apply the Hyperfield Criterion in this case, where infinitely many degrees need to be checked. To solve this problem, we introduce the notion of contractions.
+
+\begin{definition}
+  Let $k \in \mathbb{N}$ be a positive integer that we will call \emph{contraction size}. Let $d \in \mathbb{N}$. Let $p: H^{V_{d}} \to 2^H, x \mapsto \sum \lambda_{ij}x_{ij}$ be a linear form in a hyperfield. We say that $p$ is $k$-contractable in $H^{V_{d}}$ if $p$ can be expressed in the following way:
+\begin{align*}
+  p(x) = \sum_{\substack{(i,j) \in V_{d} \\ 0 \leq i + j < k}}\lambda_{ij}x_{ij} +
+  \sum_{\substack{(i,j) \in V_{d} \\ 0 \leq i < k \\ i + j > d - k }}\lambda_{ij}x_{ij} +
+  \sum_{\substack{(i,j) \in V_{d} \\ 0 \leq j < k \\ i + j > d - k }}\lambda_{ij}x_{ij} \\
+  +
+  \sum_{i=0}^{k-1} \beta_{i} b_{i} +
+  \sum_{i=0}^{k-1} \gamma_{i} c_{i} +
+  \sum_{i=0}^{k-1} \delta_{i} d_{i} +
+  \sum_{i=0}^{k-1} \epsilon_{i} e_{i} \quad \forall x \in H^{V_{d}},
+\end{align*}
+where $\beta_{i}, \gamma_{i}, \delta_{i}, \epsilon_{i} \in H$ and 
+\begin{align*}
+  b_{i} &\coloneqq \sum_{j=k}^{d - i - k} x_{ij}, \quad c_{i} \coloneqq \sum_{j=k}^{d - i - k} x_{ji}, \\ 
+  d_{i} &\coloneqq x_{k, d - k - i} + x_{k+2, d-(k + 2)-i} + \dots + x_{d - k - i, k},\\
+  e_{i} &\coloneqq x_{k + 1, d - (k + 1) - i} + x_{k+3, d-(k + 3)-i} + \dots + x_{d - k - i, k}.
+\end{align*}
+\end{definition}
+
+\begin{definition}
+  We say that $p$ is $k$-contractable if there exists $d' \in \mathbb{N}$ such that $p$ is $k$-contractable in $H^{V_{d}}$ for all $d \geq d'$. 
+\end{definition}
+
+\begin{definition}
+  Let $i = 0, \dots, k-1$.
+  We say that $p$ is $k$-contractable on $b_{i}$ if $\lambda_{i,k} = \lambda_{i,k+1} = \dots = \lambda_{i,d-i-k}$. TODO: add definition for c,d, e.
+\end{definition}
+
+To simplify notation, we introduce some more notations.
+
+\begin{definition}
+  Let $k$ be some contraction size.
+  Let $p(x) = \sum \lambda_{ij} x_{ij}$ be any hyperfield linear form. For $i = 0, \dots, k-1$ we write
+\begin{align*}
+  p_{c_{i}} \coloneqq \begin{bmatrix} \lambda_{i, k} & \dots & \lambda_{i,d-i-k} \end{bmatrix}. 
+\end{align*}
+We call this the $i$-th $c$-column of $p$.
+
+ Similarly, we define $p_{b_{i}}$, $p_{d_{i}}$ and $p_{e_{i}}$ to denote the $i$-th $b$-row, $d$-diagonal and $e$-diagonal of $p$, respectively.
+\end{definition}
+
+\begin{proposition}
+  Let $p$ be a linear combination of $\{ \mathrm{row}(i), \mathrm{col}(i), \mathrm{diag}(i) : i \in \{ 0, \dots, k-1\} \cup \{ d-k+1, \dots, d \} \}$ in the hyperfield $H^{V_{d}}$. Then, the following statements hold:
+\begin{itemize}
+\item The $c$-columns of $p$ only depend on $\{ \mathrm{row}(i), \mathrm{diag}(i) \}_{i = 0, \dots, k-1}$.
+\item The $b$-rows of $p$ only depend on $\{ \mathrm{col}(i), \mathrm{diag}(d-i) \}_{i = 0, \dots, k-1}$.
+\item The $d$-diagonals and $e$-diagonals of $p$ only depend on $\{ \mathrm{row}(d-i), \mathrm{col}(d-i) \}_{i = 0, \dots, k-1}$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+ This follows easily from the definition of $\mathrm{row}, \mathrm{col}, \mathrm{diag}$.
+\end{proof}
+
+\begin{proposition}
+  The following statements hold:
+  \begin{itemize}
+  \item Let $p \in \{ \mathrm{row}(i), \mathrm{diag}(i) \}_{i = 0, \dots, k-1}$. For any $i = 0, \dots, k-1$ the $c_{i}$-column of $p$ is a constant vector, i.e. $p_{c_{i}} \in \{ -1, 0, 1 \}$. 
+
+  \item Let $p \in \{ \mathrm{col}(i), \mathrm{diag}(d-i) \}_{i = 0, \dots, k-1}$. For any $i = 0, \dots, k-1$ the $b_{i}$-row of $p$ is a constant vector, i.e. $p_{b_{i}} \in \{ -1, 0, 1 \}$. 
+
+  \item Let $p \in \{ \mathrm{row}(d-i), \mathrm{col}(d-i) \}_{i = 0, \dots, k-1}$. For any $i = 0, \dots, k-1$ the $d_{i}$-diagonal of $p$ is a constant vector, i.e. $p_{d_{i}} \in \{ -1, 0, 1 \}$; similarly for the $e_{i}$-diagonal. 
+  \end{itemize}
+\end{proposition}
+
+\begin{proof}
+  This also follows easily from the definition of $\mathrm{row}, \mathrm{col}, \mathrm{diag}$. 
+\end{proof}
+
+To-do: DOnt need this lemma.
+\begin{lemma}
+  Fix some dimension $d \in \mathbb{N}$. Let $u, q,r \in \mathbb{N}$ with $k \leq q < r$. Define $v$ to be the $c_{u}$-column of $\mathrm{row}(q)$ and $w$ to be the $c_{u}$-column of $\mathrm{row}(r)$ in $H^{V_{d}}$. Then, there exists an index $N \in \mathbb{N}$ such that for all $n geq N$, we have $\lvert v_{n} \rvert < \lvert w_{n} \rvert$. Moreover, this index $N$ is independent of $d$.
+\end{lemma}
+
+\begin{proof}
+  This follows from the definition of $\mathrm{row}(h)$:
+  \begin{align*}
+    \mathrm{row}(h)(x) = (-1)^{h} \sum_{(i,j) \in V_{d}} (-1)^i {j \choose h-i} x_{ij}. 
+  \end{align*}
+  By fixing $i$ in the formula above, we fix the $c_{i}$-column of $\mathrm{row}(h)$; thus only $j$ changes in ${j \choose h-i}$ when we iterate through the $c_{u}$-column of $\mathrm{row}(h)$. Thus if we compare the $c_{u}$-column of $\mathrm{row}(q)$ against $\mathrm{row}(r)$, we compare ${j \choose q-i}$ against ${j \choose r-i}$. We see that for almost all $j$ the latter is larger than the former since $q-i < r -i$.
+\end{proof}
+
+\begin{lemma}
+  Fix some dimension $d \in \mathbb{N}$. Let $u, q,r \in \mathbb{N}$ with $k \leq q < r$. Define $v$ to be the $b_{u}$-row of $\mathrm{col}(q)$ and $w$ to be the $b_{u}$-row of $\mathrm{col}(r)$ in $H^{V_{d}}$. Then, there exists an index $N \in \mathbb{N}$ such that for all $n \geq N$, we have $\lvert v_{n} \rvert < \lvert w_{n} \rvert$. Moreover, this index $N$ is independent of $d$.
+\end{lemma}
+
+\begin{proof}
+  Use symmetry.
+\end{proof}
+
+\begin{proposition}\label{prop:row_extend_d}
+  Let \( p : \mathbb{Z}^{V_d} \to \mathbb{Z},  q: \mathbb{Z}^{V_{d+1}} \to \mathbb{Z}  \) be Pascal forms that can be expressed as \( p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{row}(i) \). Let \( (p_{ij})_{(i,j) \in V_d} \) denote the coefficients of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \), and let \( (q_{ij})_{(i,j) \in V_{d+1}} \) denote the coefficients of the linear form \( q: x \mapsto \sum_{(i,j) \in V_{d+1}} q_{ij}x_{ij} \). Then, \( q_{ij} = p_{ij} \) for all \( (i,j) \in V_d \).
+  
+  In other words, if the visualization of the coefficients \( (p_{ij})_{(i,j) \in V_d} \) of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \) on the grid \( V_d \) looks like this
+  \begin{align*}
+    \begin{matrix}
+      p_{0,d} & & & \\
+      \vdots & p_{1,d-1} & & &    \\
+      \vdots & \vdots & \ddots & &    \\
+      \vdots & \vdots & \vdots & \ddots &    \\
+      \vdots & \vdots & \vdots & \vdots & \ddots &  &\\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots  \\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots\\
+      p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0} \\
+    \end{matrix}.
+  \end{align*}
+  Then, the visualization of the coefficients \( (q_{ij})_{(i,j) \in V_d} \) of the linear form \( q: x \mapsto \sum_{(i,j) \in V_d} q_{ij}x_{ij} \) on the grid \( V_{d+1} \) looks like this
+  \begin{align*}
+    \begin{matrix}
+      q_{0,{d+1}} & & & \\
+      p_{0,d} & q_{1, d} & & \\
+      \vdots & p_{1,d-1} & q_{2, d-1} & &    \\
+      \vdots & \vdots & \ddots & \ddots &    \\
+      \vdots & \vdots & \vdots & \ddots & \ddots    \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \ddots &\\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots & \ddots  \\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots & \ddots \\
+      p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0} & q_{d+1, 0} \\
+    \end{matrix}.
+  \end{align*}
+\end{proposition}
+
+\begin{proof}
+  First, the statement follows immediately for \( p=q= \lambda \mathrm{row}(i) \) for all \( i = 0, \dots, d \) from the definition of \( \mathrm{row}(i) \). 
+  
+  Now, assume \(  p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{row}(i)  \). Let \( (p^{(l)}_{ij})_{(i,j) \in V_d} \) and \( (q^{(l)}_{ij})_{(i,j) \in V_{d+1}} \) denote the coefficients of the linear forms \( \mathrm{row}(l) \). Since we know that \( p^{(l)}_{ij} = q^{(l)}_{ij} \) for all \( l = 0, \dots, d \) and \( (i,j) \in V_d \), we find that \( q_{ij} = q^{(l)}_{ij} = \sum p^{(l)}_{ij} = p_{ij} \) for all \( (i,j) \in V_d \).
+\end{proof}
+
+
+\begin{corollary}
+  The same statement holds for \( p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{col}(i) \).
+\end{corollary}
+
+\begin{proof}
+  Use symmetry.
+\end{proof}
+
+
+
+\begin{example}
+  Consider \( p = q = \mathrm{row}(3) + \mathrm{row}(2) \) in \( \mathbb{Z}^{V_8} \) and \( \mathbb{Z}^{V_9} \), respectively. Then, \( p \) is represented by 
+  \begin{verbatim}
+    -28
+    -14    14
+     -5     9    -5
+      .     5    -4     1
+      2     2    -3     1     .
+      2     .    -2     1     .     .
+      1    -1    -1     1     .     .     .
+      .    -1     .     1     .     .     .     .
+      .     .     1     1     .     .     .     .     .
+  \end{verbatim}
+  and \( q \) is represented by
+  \begin{verbatim}
+    -48
+    -28    20
+    -14    14    -6
+     -5     9    -5     1
+      .     5    -4     1     . 
+      2     2    -3     1     .     .
+      2     .    -2     1     .     .     .
+      1    -1    -1     1     .     .     .     .
+      .    -1     .     1     .     .     .     .     .
+      .     .     1     1     .     .     .     .     .     .
+  \end{verbatim}
+\end{example}
+
+
+\begin{proposition}\label{prop:sign_row_propagation}
+  Assume we have the assumptions as in Proposition \ref{prop:row_extend_d}. Let \( u = 0, \dots, d \). If $\mathrm{sign}(\mathrm{row}(r))_{i,d-i} = \mathrm{sign}(p)_{i,d-i}$ for all \( i = u, \dots, d\), then \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = u, \dots, d\).
+\end{proposition}
+
+\begin{proof}
+  Without loss of generality, we assume that \( \lambda_r > 0 \) (otherwise we multiply \( p \) by \( -1 \)).
+  First, we see that \( q_{r,\cdot} = \lambda_r \cdot \mathbf{1} \) and \( q_{i,\cdot} =  \mathbf{0} \) for all \( i > r \). By the Pascal property, we have \( q_{r-1,d+1-(r-1)} = q_{r-1,d-(r-1)} - q_{r,d+1-r} = q_{r-1,d-(r-1)} - \lambda_r \). This shows \( q_{r-1,d+1-(r-1)} < q_{r-1,d-(r-1)} = p_{r-1,d-(r-1)} < 0 \), where the last inequality follows from assumption. Thus, we have \( \mathrm{sign}(q_{r-1,d+1-(r-1)}) = \mathrm{sign}(q_{r-1,d-(r-1)}) = \mathbf -1\). Next, we again use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). We see that \( q_{r-2,d+1-(r-2)} > 0 \) because \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Thus, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We can continue this argument until we reach \( q_{r-(r-u),d+1-(r-(r-u))} = q_{u,d+1-u} \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = u, \dots, d\).
+\end{proof}
+
+\begin{proposition}\label{prop:same_sign_propagation_easy}
+  Assume we have the assumptions as in Proposition \ref{prop:row_extend_d}. Let \( u = 0, \dots, d \). If $\mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i}$ for all \( i = u, \dots, k-1\), then the \( c_i \)-column of \( q  \) has the same sign as the \( c_i \)-column of \( p \) for all \( i = u, \dots, k-1\).
+\end{proposition}
+
+\begin{proof}
+  Let \( i=u, \dots, k-1 \).
+  If we show \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-k}) \), then $\mathrm{sign}(\mathrm{row}(r))_{i,d-i} = \mathrm{sign}(p)_{i,d-i}$, and we can use Proposition \ref{prop:sign_row_propagation} to prove the statement.
+
+  We will now prove \( p_{i,d-i} = p_{i,d-i-k} \) for all \( i = u, \dots, d\). For that we consider the restriction of \( p \) on \( \mathbb{Z}^{V_{d - k}} \), and call this restriction \( \tilde p \). Note that \( \tilde p_{ij} = p_{ij} \) for all \( (i,j) \in V_{d - k} \). Then, we apply Proposition \ref{prop:sign_row_propagation} on \( \tilde p \) to show that \( \mathrm{sign}(\tilde p_{i,d-i-k}) = \mathrm{sign}(p_{i,d-i-k}) = \mathrm{sign}(p_{i,d-i-k+1}) \). We repeat this argument until we reach \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-k}) \).
+\end{proof}
+
+\begin{proposition}\label{prop:fixed-contraction-homo-row}
+  Let $k$ be some contraction size, $u = 0, \dots, k -1$, and $d' \in \mathbb{N}$. Let $p = \sum_{i=0}^{k-1} \gamma_{i} \mathrm{row}(i)$ with $\gamma_{i} \in H$ be a hyperfield linear form and $r \coloneqq \max\{ i : \gamma_{i} \neq 0 \}$. If $\mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i}$ for all \( i = u, \dots, d'\), then $p$ is $k$-contractable on $c_{i}$ in $H^{V_{d}}$ for all $d \geq d'$ and all \( i=u, \dots, k-1 \).  
+\end{proposition}
+
+\begin{proof}
+  Let \( i = u, \dots, k-1 \).
+  First, it is easy to see that \( p \) is \( k \)-contractable on \( c_i \) in \( H^{V_{d'}} \) because \( \mathrm{row}(r) \) is \( k \)-contractable and \( \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \). By Proposition \ref{prop:same_sign_propagation_easy} the sign does not change when increasing the degree \( d \leadsto d+1 \). Hence, the contractability of \( p \) on \( c_i \) is preserved for all \( d \geq d' \).
+\end{proof}
+
+
+\begin{proposition}
+  Let $k$ be some contraction size, $u = 0, \dots, k -1$, and $d' \in \mathbb{N}$. Let $p = \sum_{i=0}^{k-1} \gamma_{i} \mathrm{row}(i)$ with $\gamma_{i} \in H$ be a hyperfield linear form and $r \coloneqq \max\{ i : \gamma_{i} \neq 0 \}$. The following statements hold for all \( i = u, \dots, d'\):
+
+
+  \begin{itemize}
+    \item If $\mathrm{sign}(\mathrm{row}(r))_{d_i} = \mathrm{sign}(p)_{d_i}$, then $p$ is $k$-contractable on $d_{i}$ in $H^{V_{d}}$ for all $d \geq d'$.
+    \item If $\mathrm{sign}(\mathrm{row}(r))_{e_i} = \mathrm{sign}(p)_{e_i}$, then $p$ is $k$-contractable on $e_{i}$ in $H^{V_{d}}$ for all $d \geq d'$.
+  \end{itemize}
+\end{proposition}
+
+% TO-DO proof
+\begin{proof}
+  We can use the same proof as before, but now the sign of the entire diagonal $d_{u}$ changes whenever we increase the dimension by one. The contractability on $d_{u}$ is not affected by this. 
+
+  For $e_{u}$, we use the same argument. 
+\end{proof}
+
+\begin{corollary}
+  By symmetry, we have an analogous statement for $p = \sum_{i=0}^{k-1} \gamma_{i} \mathrm{col}(i)$ and the $d_{i}$-diagonals as well as the $e_{i}$-diagonals.
+\end{corollary}
+
+% TO-DO for diagonal
+\begin{proposition}\label{prop:col_diag_extend_d}
+  Let \( p : \mathbb{Z}^{V_d} \to \mathbb{Z},  q: \mathbb{Z}^{V_{d+1}} \to \mathbb{Z}  \) be Pascal forms that can be expressed as \( p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{diag}(i) \). Let \( (p_{ij})_{(i,j) \in V_d} \) denote the coefficients of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \), and let \( (q_{ij})_{(i,j) \in V_{d+1}} \) denote the coefficients of the linear form \( q: x \mapsto \sum_{(i,j) \in V_{d+1}} q_{ij}x_{ij} \). Then, \( q_{i,j+1} = p_{i,j} \) for all \( (i,j) \in V_d \).
+  
+  In other words, if the visualization of the coefficients \( (p_{ij})_{(i,j) \in V_d} \) of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \) on the grid \( V_d \) looks like this
+  \begin{align*}
+    \begin{matrix}
+      p_{0,d} & & & \\
+      \vdots & p_{1,d-1} & & &    \\
+      \vdots & \vdots & \ddots & &    \\
+      \vdots & \vdots & \vdots & \ddots &    \\
+      \vdots & \vdots & \vdots & \vdots & \ddots &  &\\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots  \\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots\\
+      p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0} \\
+    \end{matrix}.
+  \end{align*}
+  Then, the visualization of the coefficients \( (q_{ij})_{(i,j) \in V_d} \) of the linear form \( q: x \mapsto \sum_{(i,j) \in V_d} q_{ij}x_{ij} \) on the grid \( V_{d+1} \) looks like this
+  \begin{align*}
+    \begin{matrix}
+      p_{0,d} & & & \\
+      \vdots & p_{1,d-1} &  & &    \\
+      \vdots & \vdots & \ddots &  &    \\
+      \vdots & \vdots & \vdots & \ddots &     \\
+      \vdots & \vdots & \vdots & \vdots & \ddots &  &\\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots &   \\
+      \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots &  \\
+      p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0}  \\
+      q_{0,0} & q_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & q_{d,0} & q_{d+1,0}
+    \end{matrix}.
+  \end{align*}
+\end{proposition}
+
+\begin{proof}
+  As in Proposition \ref{prop:row_extend_d}, we first show it for \( p = \lambda \mathrm{diag}(i) \) and then for the sum.
+\end{proof}
+
+
+% TO-DO
+\begin{example}
+  Consider \( p = q = \mathrm{diag}(3) + \mathrm{diag}(2) \) in \( \mathbb{Z}^{V_8} \) and \( \mathbb{Z}^{V_9} \), respectively. Then, \( p \) is represented by 
+  \begin{verbatim}
+       . 
+       .    . 
+       1    1    1 
+       4    3    2    1 
+      10    6    3    1    . 
+      20   10    4    1    .    . 
+      35   15    5    1    .    .    . 
+      56   21    6    1    .    .    .    . 
+      84   28    7    1    .    .    .    .    .  
+  \end{verbatim}
+  and \( q \) is represented by
+  \begin{verbatim}
+    . 
+    .    . 
+    1    1    1 
+    4    3    2    1 
+   10    6    3    1    . 
+   20   10    4    1    .    . 
+   35   15    5    1    .    .    . 
+   56   21    6    1    .    .    .    . 
+   84   28    7    1    .    .    .    .    . 
+  120   36    8    1    .    .    .    .    .    . 
+  \end{verbatim}
+\end{example}
+
+
+\begin{proposition}[Sufficient condition for FC on \( c \) of uni-diag Pascal forms]\label{prop:fixed-contraction-homo-diag}
+  Let $k$ be some contraction size, $u = 0, \dots, k -1$, and $d' \in \mathbb{N}$. Let $p = \sum_{i=0}^{k-1} \gamma_{i} \mathrm{diag}(i)$ with $\gamma_{i} \in H$ be a hyperfield linear form and $r \coloneqq \max\{ i : \gamma_{i} \neq 0 \}$. If $\mathrm{sign}(\mathrm{diag}(r))_{c_i} = \mathrm{sign}(p)_{c_i}$ for all \( i = u, \dots, d'\), then $p$ is $k$-contractable on $c_{i}$ in $H^{V_{d}}$ for all $d \geq d'$ and all \( i=u, \dots, k-1 \).  
+\end{proposition}
+
+\begin{proof}
+  Using the assumptions it is easy to see that \( \mathrm{sign}(p)_{c_i} = 1 \) for all \( i = u, \dots r \). Therefore, by extending \( p \) from degree \( d' \) to \( d' + 1 \), we see that \( \mathrm{sign}(q_{i,0}) = 1 \) for all \( i \leq r \). Hence, the contractability is preserved.
+\end{proof}
+
+\begin{proposition}[Sufficient condition for FC on \( b \) of uni-diag Pascal forms]\label{prop:fixed-contraction-homo-diag}
+  The same statement holds not only for \( c \)-columns but also for \( b \)-rows.
+\end{proposition}
+
+\begin{proof}
+  Use symmetry.
+\end{proof}
+
+We want to find contractable Pascal forms whose contractions stay fixed for all dimensions.
+
+\begin{definition}
+  We say a hyperfield Pascal form $p$ is fixed-contractable for contraction size \( k \) if there exists $n \in \mathbb{N}$ such that
+  \begin{itemize}
+    \item $p$ is $k$-contractable in $H^{V_{d}}$ for all $d \geq n$,
+    \item \( \mathrm{contr}_{d'}(p) = \mathrm{contr}_{d''}(p) \text{ for all even } d', d'' \geq d \), and 
+    \item \( \mathrm{contr}_{d'}(p) = \mathrm{contr}_{d''}(p) \text{ for all odd } d', d'' \geq d \).
+  \end{itemize}
+  
+\end{definition}
+
+\begin{definition}[Fixed-contractable Pascal forms]
+  Given a set of hyperfield Pascal forms, contraction size $k$ and dimension $d$, define the set of fixed-contractables $\mathrm{FC}(B)$ to be 
+  \begin{align*}
+  \mathrm{FC}(B) \coloneqq \{
+      f \in \mathrm{span}_{H}(B) \mid &f \text{ is $k$-contractable for all $d' \geq d$}, \\ &\mathrm{contr}_{d'}(f) = \mathrm{contr}_{d''}(f) \text{ for all even } d', d'' \geq d  \\
+   &\mathrm{contr}_{d'}(f) = \mathrm{contr}_{d''}(f) \text{ for all odd } d', d'' \geq d   
+ \}.
+  \end{align*}
+\end{definition}
+
+Let \( k = 5 \) be our contraction size from now on. If not otherwise stated, we will consider the degree \( d = 40 \).
+
+\begin{proposition}\label{prop:row_homo_diag}
+  Let \( p = \sum \lambda_i \mathrm{row}(i)\). Assume that \( p_{c_0} \geq \mathbf{2} \) for some degree \( d \in \mathbb{N} \). Then \( (p - \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all degrees greater or equal to \( d \).
+\end{proposition}
+
+\begin{proof}
+  We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( p_{c_0} \geq \mathbf 2 \) for all \( d' \geq d \) by Proposition \ref{prop:row_extend_d}. So, we have \( (p - \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
+\end{proof}
+
+
+\begin{example}
+  Let \( p = \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0)\).
+  Then, \( \mathrm{sign}(p_{c_0}) = \mathbf 1 \) for all dimensions \( d \geq 40 \) by using Proposition \ref{prop:row_homo_diag} and \( d = 40 \).
+
+  Let us visualize \( \mathrm{row}(1) + \mathrm{row}(2) \) for \( d = 18 \):
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    135 
+    119  -16 
+    104  -15    1 
+     90  -14    1    . 
+     77  -13    1    .    . 
+     65  -12    1    .    .    . 
+     54  -11    1    .    .    .    . 
+     44  -10    1    .    .    .    .    . 
+     35   -9    1    .    .    .    .    .    . 
+     27   -8    1    .    .    .    .    .    .    . 
+     20   -7    1    .    .    .    .    .    .    .    . 
+     14   -6    1    .    .    .    .    .    .    .    .    . 
+      9   -5    1    .    .    .    .    .    .    .    .    .    . 
+      5   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+      2   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+      .   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     -1   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     -1    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+      .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
+  \end{verbatim}
+  \endgroup
+  As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column. For comparison, here is the visualization of \( \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0) \) for \( d = 18 \):
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    134 
+    118  -16 
+    103  -15    1 
+     89  -14    1    . 
+     76  -13    1    .    . 
+     64  -12    1    .    .    . 
+     53  -11    1    .    .    .    . 
+     43  -10    1    .    .    .    .    . 
+     34   -9    1    .    .    .    .    .    . 
+     26   -8    1    .    .    .    .    .    .    . 
+     19   -7    1    .    .    .    .    .    .    .    . 
+     13   -6    1    .    .    .    .    .    .    .    .    . 
+      8   -5    1    .    .    .    .    .    .    .    .    .    . 
+      4   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+      1   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+     -1   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     -2   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     -2    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     -1    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     \end{verbatim}
+  \endgroup
+\end{example}
+
+\begin{proposition}\label{prop:row_homo_zero_diag}
+  Let \( p = \sum \lambda_i \mathrm{row}(i)\). Assume that \( p_{c_0} \geq \mathbf{0} \) for some degree \( d \in \mathbb{N} \). Then \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all degrees greater or equal to \( d \).
+\end{proposition}
+
+
+\begin{proof}
+  We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( p_{c_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Proposition \ref{prop:row_extend_d}. So, we have \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
+\end{proof}
+
+
+
+\begin{example}
+  Let \( p = \mathrm{row}(2) + \mathrm{row}(3) - \mathrm{diag}(0) \).
+  Then, \( \mathrm{sign}(p_{c_0}) = \mathbf{-1} \) by using Proposition \ref{prop:row_homo_zero_diag} and \( d = 40 \). Moreover, we can use Proposition \ref{prop:fixed-contraction-homo-row} to show \( \mathrm{sign}(p_{c_1}) = \mathbf{1} \) since for \( d = 40 \) we have that \( p \) is \( k \)-contractable.   
+\end{example}
+
+\begin{proposition}
+  Let \( p = \mathrm{diag}(0) - \mathrm{diag}(1) + \mathrm{row}(1) \).
+  Then, \( \mathrm{sign}(p_{c_0}) = \mathbf{-1} \) and \( \mathrm{sign}(p_{c_1}) = \mathbf{0} \) for all degrees \( d \geq 2 \).
+\end{proposition}
+
+\begin{proof}
+  By using the definition of \( \mathrm{row} \) and \( \mathrm{diag} \) it is easy to see that the \( c_1 \)-column of \( - \mathrm{diag}(1) + \mathrm{row}(1) \) vanishes and that the \( c_0 \)-column is a constant vector of value \( -d \) for all degrees \( d \). Thus, adding \( \mathrm{diag}(0) \) does not affect the sign of the \( c_0 \)-column if \( d \geq 2 \).
+\end{proof}
+
+We have similar statements for the \( d \) and \( e \)-diagonals.
+
+\begin{proposition}\label{prop:col_homo_d_zero_diag}
+  Let \( p = \sum \lambda_i \mathrm{col}(i)\). Assume that \( p_{d_0} \geq \mathbf{0} \) for some degree \( d \in \mathbb{N} \). Then \( (p - \mathrm{col}(d))_{d_0} \geq \mathbf 1 \) for all degrees greater or equal to \( d \).
+\end{proposition}
+
+\begin{proof}
+  We see that \( (\mathrm{col}(d))_{d_0} = -\mathbf 1 \) is a constant vector for all degrees. Note that \( p_{d_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Proposition \ref{prop:col_diag_extend_d}. So, we have \( (p - \mathrm{col}(d))_{d_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
+\end{proof}
+
+
+\begin{example}
+  Let \( p = \mathrm{col}(d-3) + \mathrm{col}(d-2) - \mathrm{col}(d) \).
+  Then, \( \mathrm{sign}(p_{d_0}) = \mathbf{1} \) by using Proposition \ref{prop:col_homo_d_zero_diag} for all degrees \( d \geq 18 \).
+
+  Here is a visualization of \( \mathrm{col}(d-3) + \mathrm{col}(d-2) \) for better understanding:
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    . 
+    .    . 
+    1    1    1 
+    1    .   -1   -2 
+    .   -1   -1    .    2 
+    .    .    1    2    2    . 
+    .    .    .   -1   -3   -5   -5 
+    .    .    .    .    1    4    9   14 
+    .    .    .    .    .   -1   -5  -14  -28 
+    .    .    .    .    .    .    1    6   20   48 
+    .    .    .    .    .    .    .   -1   -7  -27  -75 
+    .    .    .    .    .    .    .    .    1    8   35  110 
+    .    .    .    .    .    .    .    .    .   -1   -9  -44 -154 
+    .    .    .    .    .    .    .    .    .    .    1   10   54  208 
+    .    .    .    .    .    .    .    .    .    .    .   -1  -11  -65 -273 
+    .    .    .    .    .    .    .    .    .    .    .    .    1   12   77  350 
+    .    .    .    .    .    .    .    .    .    .    .    .    .   -1  -13  -90 -440
+  \end{verbatim}
+  \endgroup
+  As we can see its \( d_{0,0} \) value is zero, and thus it is not contractable. Here is a visualization of \( \mathrm{col}(d) \):
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    1 
+    .   -1 
+    .    .    1 
+    .    .    .   -1 
+    .    .    .    .    1 
+    .    .    .    .    .   -1 
+    .    .    .    .    .    .    1 
+    .    .    .    .    .    .    .   -1 
+    .    .    .    .    .    .    .    .    1 
+    .    .    .    .    .    .    .    .    .   -1 
+    .    .    .    .    .    .    .    .    .    .    1 
+    .    .    .    .    .    .    .    .    .    .    .   -1 
+    .    .    .    .    .    .    .    .    .    .    .    .    1 
+    .    .    .    .    .    .    .    .    .    .    .    .    .   -1 
+    .    .    .    .    .    .    .    .    .    .    .    .    .    .    1 
+    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .   -1 
+    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    1 
+  \end{verbatim}
+  \endgroup
+  By subtracting, we get a contractable form:
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+   -1 
+    .    1 
+    1    1    . 
+    1    .   -1   -1 
+    .   -1   -1    .    1 
+    .    .    1    2    2    1 
+    .    .    .   -1   -3   -5   -6 
+    .    .    .    .    1    4    9   15 
+    .    .    .    .    .   -1   -5  -14  -29 
+    .    .    .    .    .    .    1    6   20   49 
+    .    .    .    .    .    .    .   -1   -7  -27  -76 
+    .    .    .    .    .    .    .    .    1    8   35  111 
+    .    .    .    .    .    .    .    .    .   -1   -9  -44 -155 
+    .    .    .    .    .    .    .    .    .    .    1   10   54  209 
+    .    .    .    .    .    .    .    .    .    .    .   -1  -11  -65 -274 
+    .    .    .    .    .    .    .    .    .    .    .    .    1   12   77  351 
+    .    .    .    .    .    .    .    .    .    .    .    .    .   -1  -13  -90 -441   
+  \end{verbatim}
+  \endgroup
+\end{example}
+
+
+\begin{proposition}\label{props:fixed-contractable-unirow-stoer}
+  Let \( i = 0, \dots, k-1 \). Assume \( p = \sum \lambda_i \mathrm{row}(i) \) is fixed-contractable on \( c_i \). Then, \( p + \lambda \mathrm{diag}(j) \) is fixed-contractable on \( c_i \) for all \( j \in \{ 0, \dots, i-1\} \cup \{d-k+1, \dots, d \} \) and \( \lambda \in \mathbb{Z} \).
+\end{proposition}
+
+\begin{proof}
+  It is easy to see that \( \mathrm{diag}(j)_{c_i} = \mathbf{0} \). Hence, contractability on \( c_i \) is preserved.
+\end{proof}
+
+\begin{example}
+  Let \( d = 40 \).
+  Consider \( p = \mathrm{diag}(0) - \mathrm{diag}(d) + \mathrm{row}(3) + \mathrm{row}(4) - \mathrm{row}(1) \). We see that \(  \mathrm{row}(3) + \mathrm{row}(4) - \mathrm{row}(1) \) is fixed-contractable on \( c_1 \) by Proposition \ref{prop:fixed-contraction-homo-row}. By applying Proposition \ref{props:fixed-contractable-unirow-stoer} we see that \( p \) is also \( c_1 \)-fixed-contractable.
+\end{example}
+
+\begin{proposition}\label{props:fixed-contractable-unirow-ui23}
+  Assume \( p = \sum \lambda_i \mathrm{row}(i) \) is fixed-contractable on \( c_0 \) and \( c_1 \). If \( \mathrm{sign}(p)_{c_0} = \mathbf 1 \) and \(p_{c_1} < \mathbf{-1} \), then \( p + \mathrm{diag}(1) \) is fixed-contractable on \( c_0 \) and \( c_1 \).
+\end{proposition}
+
+\begin{proof}
+  Since \( \mathrm{diag}(1)_{c_0} \geq \mathbf 1 \), we have \( (p + \mathrm{diag}(1))_{c_0} > \mathbf{1} \) for all degrees. 
+  Since \( \mathrm{diag}(1)_{c_1} = \mathbf 1 \), we have \( (p + \mathrm{diag}(1))_{c_1} < \mathbf{0} \) for all degrees. 
+\end{proof}
+
+\begin{example}
+  Let \( d = 16 \).
+  Consider \( p = \mathrm{diag}(1) + \mathrm{row}(1) + \mathrm{row}(2)  \). We see that \( \mathrm{row}(1) + \mathrm{row}(2) \) is fixed-contractable on \( c_0 \) and \( c_1 \) by Proposition \ref{prop:fixed-contraction-homo-row}. By applying Proposition \ref{props:fixed-contractable-unirow-ui23} we see that \( p \) is also \( c_0 \) and \( c_1 \)-fixed-contractable.
+
+  Here is \( \mathrm{row}(1) + \mathrm{row}(2) \):
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    104 
+    90  -14 
+    77  -13    1 
+    65  -12    1    . 
+    54  -11    1    .    . 
+    44  -10    1    .    .    . 
+    35   -9    1    .    .    .    . 
+    27   -8    1    .    .    .    .    . 
+    20   -7    1    .    .    .    .    .    . 
+    14   -6    1    .    .    .    .    .    .    . 
+     9   -5    1    .    .    .    .    .    .    .    . 
+     5   -4    1    .    .    .    .    .    .    .    .    . 
+     2   -3    1    .    .    .    .    .    .    .    .    .    . 
+     .   -2    1    .    .    .    .    .    .    .    .    .    .    . 
+    -1   -1    1    .    .    .    .    .    .    .    .    .    .    .    . 
+    -1    .    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+     .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .   
+  \end{verbatim}
+  \endgroup
+
+  Here is \( p \):
+  
+  \begingroup
+  \fontsize{8pt}{10pt}\selectfont
+  \begin{verbatim}
+    104 
+    91  -13 
+    79  -12    1 
+    68  -11    1    . 
+    58  -10    1    .    . 
+    49   -9    1    .    .    . 
+    41   -8    1    .    .    .    . 
+    34   -7    1    .    .    .    .    . 
+    28   -6    1    .    .    .    .    .    . 
+    23   -5    1    .    .    .    .    .    .    . 
+    19   -4    1    .    .    .    .    .    .    .    . 
+    16   -3    1    .    .    .    .    .    .    .    .    . 
+    14   -2    1    .    .    .    .    .    .    .    .    .    . 
+    13   -1    1    .    .    .    .    .    .    .    .    .    .    . 
+    13    .    1    .    .    .    .    .    .    .    .    .    .    .    . 
+    14    1    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+    16    2    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .  
+  \end{verbatim}
+  \endgroup
+\end{example}
+
+\begin{proposition}
+  Let \( d = 40 \), \( k = 5 \) and \( D = \left\{ 0, 1, 2, 3, 4, 36, 37, 38, 39,40 \right\} \).
+  Let \( p \) be a hyperfield Pascal form which satisfies one of the following conditions:
+  \begin{enumerate}
+    \item \( p = \mathrm{row}(i_1) + \mathrm{row}(i_2) \) for \( i \in D^2 \),
+  \end{enumerate}
+  If \( p \) is \( k \)-contractable in \( H^{V_d} \), then \( p \in \mathrm{FC}(B) \). 
+\end{proposition}
+
+
+\begin{algorithm}
+\caption{Computing a subset of \(\mathrm{CC}(B) \)}
+  \begin{algorithmic}[1]
+    \Require Set $B \subset \{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i) \}$, contraction size $k$, dimension $d$
+    \Ensure set $C$ that is a subset of $\mathrm{CC}(B)$ 
+
+    \Function{generate}{$B, k, d$}
+    \State initialize empty list \( C \)
+    \For{$p \in \mathrm{span}_H(B)$}
+    \If{$p$ is $k$-contractable in $H^{V_{d}}$} 
+      \If{\texttt{proveCC(p)}} 
+      \State add $p$ to \( C \)
+      \EndIf
+    \EndIf
+    \EndFor
+
+    \State \Return \( C \)
+    \EndFunction
+
+    \State
+
+    \Function{proveCC}{$p$}
+    \State initialize empty list \( C \)
+    \For{$p \in \mathrm{span}_H(B)$}
+    \If{$p$ is $k$-contractable in $H^{V_{d}}$} 
+      \If{\texttt{proveCC(p)}} 
+      \State add $p$ to \( C \)
+      \EndIf
+    \EndIf
+    \EndFor
+
+    \State \Return \( C \)
+    \EndFunction
+  \end{algorithmic}  
+\end{algorithm}
+
+
+
+
+\end{document}
+ 

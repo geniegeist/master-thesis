@@ -1,0 +1,140 @@
+%% thesis.tex 2014/04/11
+%
+% Based on sample files of unknown authorship.
+%
+% The Current Maintainer of this work is Paul Vojta.
+
+\documentclass[masters]{ucbthesis}
+
+\usepackage{biblatex}
+\usepackage{rotating} % provides sidewaystable and sidewaysfigure
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amssymb}
+
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{marvosym}
+\usepackage[hidelinks]{hyperref}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{url}
+
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{postulate}[theorem]{Postulate}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{observation}{Observation}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert#1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+
+\newcommand*\enlarg[2]{\bar{#1}_{#2}}
+\newcommand*\cohnorm[1]{\vertiii{#1}^{\mathrm{coh}}_{K,\varphi,\alpha,\gamma}}
+
+% To compile this file, run "latex thesis", then "biber thesis"
+% (or "bibtex thesis", if the output from latex asks for that instead),
+% and then "latex thesis" (without the quotes in each case).
+
+% Double spacing, if you want it.  Do not use for the final copy.
+% \def\dsp{\def\baselinestretch{2.0}\large\normalsize}
+% \dsp
+
+% If the Grad. Division insists that the first paragraph of a section
+% be indented (like the others), then include this line:
+% \usepackage{indentfirst}
+
+\addtolength{\abovecaptionskip}{\baselineskip}
+
+\bibliography{references}
+
+\hyphenation{mar-gin-al-ia}
+\hyphenation{bra-va-do}
+
+\begin{document}
+
+% Declarations for Front Matter
+
+\title{Chipsplitting Games: A Combinatorial Approach to Classifying One-Dimensional Discrete Statistical Models with Rational Maximum Likelihood Estimator}
+\author{Viet-Duc Nguyen}
+\degreesemester{Winter}
+\degreeyear{2024}
+\degree{Master of Science}
+\chair{Professor Carlos Améndola}
+\othermembers{Professor Christian Haase}
+% For a co-chair who is subordinate to the \chair listed above
+% \cochair{Professor Benedict Francis Pope}
+% For two co-chairs of equal standing (do not use \chair with this one)
+% \cochairs{Professor Richard Francis Sony}{Professor Benedict Francis Pope}
+\numberofmembers{3}
+% Previous degrees are no longer to be listed on the title page.
+% \prevdegrees{B.A. (University of Northern South Dakota at Hoople) 1978 \\
+%   M.S. (Ed's School of Quantum Mechanics and Muffler Repair) 1989}
+\field{Mathematics}
+% Designated Emphasis -- this is optional, and rare
+% \emphasis{Colloidal Telemetry}
+% This is optional, and rare
+% \jointinstitution{University of Western Maryland}
+% This is optional (default is Berkeley)
+% \campus{Berkeley}
+
+% For a masters thesis, replace the above \documentclass line with
+% \documentclass[masters]{ucbthesis}
+% This affects the title and approval pages, which by default calls this
+% document a "dissertation", not a "thesis".
+
+\maketitle
+% Delete (or comment out) the \approvalpage line for the final version.
+% \approvalpage
+\copyrightpage
+
+\begin{alwayssingle}
+\pagenumbering{gobble}
+\section*{Zusammenfassung in deutscher Sprache}
+
+Die vorliegende Ausarbeitung setzt die Forschung von Arthur Bik und Orlando Marigliano zur Klassifizierung ein-dimensionaler diskreter statistischer Modelle mit rationalen Maximum Likelihood Schätzern unter Verwendung fundamentaler Modelle fort. Wir erzielen bedeutende Fortschritte beim Beweis zur endlichen Anzahl der fundamentalen Modelle im Wahrscheinlichkeitssimplex \( \Delta_5 \). Zudem bestimmen wir die Anzahl der fundamentalen Modelle im Simplex \( \Delta_6 \) mit einem maximalen Grad von 11.
+
+\end{alwayssingle}
+
+\include{abstract}
+
+\begin{frontmatter}
+
+% You can delete the \clearpage lines if you don't want these to start on
+% separate pages.
+
+\tableofcontents
+\clearpage
+%\listoffigures
+%\clearpage
+%\listoftables
+
+
+\end{frontmatter}
+
+\pagestyle{headings}
+
+% (Optional) \part{First Part}
+\pagenumbering{arabic}
+
+\include{chap1}
+\include{chap2}
+\include{chap3}
+
+\printbibliography
+
+% \appendix
+% \chapter{More Monticello Candidates}
+
+\end{document}

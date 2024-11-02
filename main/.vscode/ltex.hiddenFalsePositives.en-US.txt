@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAs before, models refer to one-dimensional discrete statistical models with rational MLE.\\E$"}
