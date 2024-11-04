@@ -1,1 +1,87 @@
-\chapter{Finiteness of Fundamental Models}
+\chapter{Chipsplitting Games}
+
+The notion of a chipsplitting game was introduced by \cite{bik2022classifying} as a combinatorial approach to classifying one-dimensional discrete statistical models with rational maximum likelihood estimator. It was inspired by \emph{chipfiring games} and for a subset of chipfiring games, the chipsplitting game is equivalent to the chipfiring game. We refer to \cite{klivans2018mathematics} for a comprehensive introduction to chipfiring games. 
+
+Let us define the notion of a chipsplitting game.
+
+\begin{definition}
+    Let $(V,E)$ be a directed graph without loops.
+
+    \begin{enumerate}
+        \item A \emph{chip configuration} is a vector \( \mathbf{w} = (w_v)_{v \in V} \in \mathbb{Z}^{V} \) such that there are only finitely many nonzero components \( w_k \).
+        \item The \emph{initial configuration} is the chip configuration \( \mathbf 0 \in \mathbb{Z}^V \).
+        \item A \emph{splitting move} at \( u \in V \) maps a chip configuration \( \mathbf w \) to some chip configuration \( \mathbf{w}' \) defined by 
+        \begin{align*}
+            w'_v \coloneqq \begin{cases}
+                w_v -1 & \text{if } v = u, \\
+                w_v + 1 & \text{if } (u,v) \in E \\
+                w_v & \text{otherwise}.
+            \end{cases}
+        \end{align*}
+        \item An \emph{unsplitting move} at \( u \in V \) maps \( \mathbf w' \) back to \( \mathbf{w} \).
+        \item A \emph{chipsplitting game} is a finite sequence of splitting and unsplitting moves.
+        \item An \emph{outcome of a chipsplitting game} is the chip configuration obtained from applying the sequence of splitting and unsplitting moves defined by the game at the initial configuration.
+        \item Any outcome of a chipsplitting game is called an \emph{outcome}.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}\label{prop:commutativity}
+    The order of the moves in a chipsplitting game does not affect the outcome.
+\end{proposition}
+
+\begin{proof}
+    This follows from commutativity of addition.
+\end{proof}
+
+Note that all moves are reversible. Thus, we obtain the following corollary with Proposition \ref{prop:commutativity}.
+
+\begin{corollary}
+    Let \( \mathbf{w} \) be an outcome. Then, there exists a chipsplitting game whose outcome is \( \mathbf{w} \) and where at no point both a splitting and an unsplitting move are applied at the same vertex.
+\end{corollary}
+
+Games that satisfy the condition in the corollary are called \emph{reduced}. We will only consider reduced games in this thesis for simplicity. The map 
+\begin{align*}
+    \left\{ \text{reduced games on \( (V,E) \)} \right\} / \sim \quad &\to \quad  \left\{ g: V' \to \mathbb{Z} : \# \{ p \in V' : g(p) \neq 0 \} < \infty \right\} \\
+    f &\mapsto (p \mapsto \text{number of moves at \( p \) in game \( f \)})
+\end{align*}
+is a bijection, where \( V' \subset V \) is the subset of vertices with at least one outgoing edge. The equivalence relation \( \sim \) is defined by \( f \sim g \) if \( f \) and \( g \) are the same up to reordering. Unsplitting moves are counted negatively by \( p \mapsto \text{number of moves at \( p \) in game \( f \)} \). Using the map above we identify a chipsplitting game with its corresponding function \( V' \to \mathbb{Z} \). For every outcome \( \mathbf{w} = (w_v)_{v \in V} \) we have 
+\begin{align*}
+    w_v = -f(v) + \sum_{u\in V', (u,v) \in E} f(u),
+\end{align*}
+where we define \( f(v) = 0 \) for \( v \notin V \).
+
+Now, we define the directed graphs that we will consider in this thesis. For \( d \in \mathbb{N} \cup \left\{ \infty \right\} \) we write 
+\begin{align*}
+    V_d &\coloneqq \left\{ (i,j) \in \mathbb{Z}^2_{\geq 0} \mid i+j \leq d \right\},\\
+    E_d &\coloneqq \left\{ (v,v+e) \mid v \in V_{d-1}, e \in \left\{ (1,0), (0,1) \right\} \right\}.
+\end{align*}
+
+\begin{definition}
+    The degree \( \mathrm{deg}(\mathbf{v}) \) of a vertex \( \mathbf{v} = (i,j) \) is defined as \( i + j \).
+\end{definition}
+
+\begin{example}
+    A chip configuration \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \in \mathbb{Z}^{V_d} \) can be illustrated as a triangle of numbers where \( w_{i,j} \) is placed at the position \( (i,j) \) in the triangle. For example, \( w_{2,4} = 4 \) means that the value \( 4 \) is placed in the second column and fourth row of the triangle. The following is an example of a sequence of chip configurations for \( d = 3 \):
+    \begin{verbatim}
+.            .            .            1            1            1
+. .          . .          1 .          . 1          . 1          . .
+. . .        1 . .        . 2 .        . 2 .        . 2 1        . 3 .
+0 . . .     -1 1 . .     -1 . 1 .     -1 . 1 .     -1 . . 1     -1 . . 1
+    \end{verbatim}
+    When \( w_{i,j} = 0 \), we omit the value in the triangle and write a dot instead. The sequence above starts with the initial configuration and then applies a splitting move at the vertex \( (0,0), (1,0), (0,1), (0,2) \) and \( (2,0) \). Finally, we apply an unsplitting move at the vertex \( (1,1) \) to obtain the final configuration.
+
+    Figure \ref{fig:binom-discrete-model-visual} is represented as the third configuration of the triangle above.
+\end{example}
+
+\begin{definition}
+    Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a chip configuration.
+    \begin{enumerate}
+        \item The \emph{positive support} of \( \mathbf{w} \) is defined as \( \mathrm{supp}^+(\mathbf{w}) \coloneqq \left\{ (i,j) \in V_d\mid w_{i,j} > 0 \right\} \).
+        \item The \emph{negative support} of \( \mathbf{w} \) is defined as \( \mathrm{supp}^-(\mathbf{w}) \coloneqq \left\{ (i,j) \in V_d\mid w_{i,j} < 0 \right\} \).
+        \item The \emph{support} of \( \mathbf{w} \) is defined as the union of the positive and negative support.
+        \item The \emph{degree} of \( \mathbf{w} \) is defined as \( \mathrm{deg}(\mathbf{w}) \coloneqq \mathrm{max}\left\{ i+j \mid (i,j) \in \mathrm{supp}(\mathbf{w}) \right\} \).
+        \item We say \( \mathbf{w} \) is \emph{valid} if its negative support is empty or only contains \( (0,0) \).
+    \end{enumerate}
+\end{definition}
+
+%TO-DO: define weakly valid if we havent done so

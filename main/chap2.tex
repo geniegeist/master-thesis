@@ -259,7 +259,7 @@ We are about to show that every reduced model is the composite of finitely many 
 
 By applying the previous proposition with Corollary \ref{cor:reduced-models}, we obtain the following corollary.
 
-\begin{corollary}
+\begin{corollary}\label{cor:fundamental-models-ksmlkdf}
     If \( \Delta_n \) contains a non-fundamental model of degree \( d \), then there exists a fundamental model of degree \( d \) in \( \Delta_m \) for some \( m < n \).
 \end{corollary}
 
@@ -325,4 +325,30 @@ Given Proposition \ref{prop:degree-fundamental-models} it is easy to show the se
     By Proposition \ref{prop:degree-fundamental-models} we know that the degree of a fundamental model is at most \( 2n - 1 \). Since the number of supports of a fundamental model of degree \( 2n - 1 \) is finite, there are only finitely many fundamental models in \( \Delta_n \) for all \( n \leq 4 \).
 \end{proof}
 
-We will now spend the rest of this thesis on proving Proposition \ref{prop:degree-fundamental-models}. Let us lay the groundwork for this proof now, so that we can introduce a combinatorial approach to counting the number of fundamental models in the next chapters.spaopdasodasokp
+We will now spend the rest of this thesis on proving Proposition \ref{prop:degree-fundamental-models}. The idea is to use the building blocks of fundamental models that we have established so far. Namely, it suffices to show the proposition for fundamental models.
+
+\begin{proposition}\label{prop:degree-fundamental-models-reduced}
+    Let \(N \in \mathbb{N} \). If \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\) for all fundamental models in $\Delta_n$ and $n \leq N$, then $\mathrm{deg}(\mathcal{M'}) \leq 2n - 1$ holds for all models in $\Delta_n$.
+\end{proposition}
+
+\begin{proof}
+    Let $N \in \mathbb{N}$ and $n \leq N$.
+    Assume there is some non-fundamental model $\mathcal{M}'$ in $\Delta_n$ of degree greater than $2n - 1$. By Corollary \ref{cor:fundamental-models-ksmlkdf} there exists a fundamental model $\mathcal{M}$ in $\Delta_m$ for some $m < n$ of degree greater than $2m - 1$. This contradicts the assumption that the degree of fundamental models is at most $2n' - 1$ for all $n' \leq N$.
+\end{proof}
+
+Counting all \emph{fundamental} models in $\Delta_n$ for $n \leq 4$ is our guiding objective. As a first step, we introduce a combinatorial game that aids in counting fundamental models. We know that every reduced model can be represented by the sequence of triples $(w_k, i_k, j_k)^{n}_{k=0}$, where $w_k \in \mathbb{R}{>0}$ and $i_k, j_k \in \mathbb{Z}_{\geq 0}$. The model can be visualized in a directed graph with vertices in $\mathbb{Z}^2$, where we can place values $w_k$ on vertices $(i_k, j_k)$. Each vertex $(i,j)$ is connected by directed edges to $(i+1, j)$ and $(i, j+1)$. 
+
+\begin{figure}\label{fig:binom-discrete-model-visual}
+    \centering
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQA6EAX1PU1z5CKMgCZqdJq3Zde-bHgJEAjBQkMWbRJx58QGBUKJll6qVpDLd8wUpSrxNDdO2jr+gYuHJRap+fYrOQ9DO2RVU39NGXcDW29fSMlo7Vk9OK8iX0dklx1gjKMUcj9cizSbTOLSHOdy2M8i5BKkupiCxrCS4jMU-PTOhNIeqLyKkPiVYd6xhtDvMhGy9okYKABzeCJQADMAJwgAWyQyEBwIJGVg-aOTmnOkUWuD48RfM4vEAFZn27f7z4AFl+r1UHyQwL0N1BAKQ5BBcNhiGUPyhL0uXyRykhu3RiAAbFicSBoRCkfiEQSkQB2SnYrHwtF-akMyks8HIq5M0ElDnKJ7cy5gh7IgW4v6ApEADkpUpplMxHIAnArpbKscQ6acRcoueLXkqNZTeSKKZRuEA
+    \begin{tikzcd}
+        . \arrow[r]           & . \arrow[r]           & . \arrow[r]           & .           \\
+        1 \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \\
+        . \arrow[r] \arrow[u] & 2 \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \\
+        . \arrow[u] \arrow[r] & . \arrow[r] \arrow[u] & 1 \arrow[r] \arrow[u] & . \arrow[u]
+    \end{tikzcd}
+    \caption{The binomial model with two trials visualized in a directed graph with vertices in $\left\{0,1,2,3 \right\}^2$.}
+\end{figure}
+
+
+Surprisingly, we can derive a combinatorial game from this graph by defining a specific set of rules. This game, called the \emph{chipsplitting game}, will be rigorously introduced in the next chapter. After that, we will explore the game's properties and show how it can be used to count fundamental models in $\Delta_n$ for $n \leq 4$.
