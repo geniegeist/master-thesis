@@ -291,7 +291,7 @@ We now show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is indeed a ba
     For the second statement we use the same argument.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:pascal-basis-2323}
     The set \( \left\{ \mathrm{col}(k) \right\}_{k=0}^d \) is a basis for all Pascal forms on \( \mathbb{Z}^{V_d} \). The same holds for \( \left\{ \mathrm{row}(k) \right\}_{k=0}^d \). 
 \end{corollary}
 
@@ -403,15 +403,18 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
         ·   2  
        -1   ·   1
     \end{verbatim}
+\end{example}
+
+\begin{example}
     Does the following valid real outcome from Example \ref{ex:dknfkdjsfnsdj} induce a reduced statistical model through the inverse map \( \mathbf w^{-1} \)?
     \begin{verbatim}
         · 
-        · 0.5 
-      0.5   · 2.5 
-        · 2.5   ·   1 
-      0.5   .   . 2.5   . 
-        ·   .   4   .   .   1 
-       -1   ·   .   .   .   1   . 
+        ·   0.5 
+      0.5     ·   2.5 
+        ·   2.5     ·     1 
+      0.5     .     .   2.5     . 
+        ·     .     4     .     .     1 
+       -1     ·     .     .     .     1     . 
     \end{verbatim} 
     The outcome would correspond to the reduced model
     \begin{gather*}
@@ -420,12 +423,71 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
     in the probability simplex \( \Delta_9 \). As it turns out \( \mathcal{M} \) is indeed a reduced statistical model by the next theorem.
 \end{example}
 
-\begin{theorem}
+\begin{theorem}\label{thm:outcome-reduced-model}
     The map \( \mathcal{M} \mapsto w(\mathcal{M}) \) is a bijection between reduced statistical models and valid real outcomes \( \mathbf w \in \mathbb{R}^{V_\infty} \) with \( w_{0,0} = -1 \).
 \end{theorem}
 
-To show this theorem, we need the following lemma.
+\begin{figure}[H]
+    \centering
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12cYAPHYAE4woTAMbCABAFtoMBnAC+IBaXSZc+QigDM5KrUYs2nbn2D0GWKBIhMcoiFPhKF+4QHN4RUADMBjpABGahwIJDIQAAsYOig2HAB3CGjYhBC6LAY2SIgIAGtGHGUKBSA
+\begin{tikzcd}
+    \text{reduced models} &  &  & \text{valid outcomes} \arrow[lll, two heads, hook']
+    \end{tikzcd}
+    \caption{Bijection between reduced models and valid real outcomes \( \mathbf w \) with \( w_{0,0} = -1 \)}
+\end{figure}
 
-\begin{lemma}
-    s
+
+To show this theorem, we need to do some preparations. Let \( \mathbb{R}[\theta]_{\leq d} \) denote the vector space of polynomials in the variable \( \theta \) of degree at most \( d \) with real coefficients. Similarly, we define \( \mathbb{Z}[\theta]_{\leq d} \) and \( \mathbb{Q}[\theta]_{\leq d} \). Next, we introduce the linear map \( \alpha_{d}^{\mathbb R} \) that maps real chip configurations to real polynomials:
+\begin{align*}
+    \alpha_d^{\mathbb R}: \mathbb{R}^{V_d} &\to \mathbb{R}[\theta]_{\leq d}, \\
+    \mathbf{w} &\mapsto \sum_{(i,j) \in V_d} w_{i,j} \theta^{i}(1-\theta)^j.
+\end{align*}
+We define the map \( \alpha_d^{\mathbb Z} \) and \( \alpha_d^{\mathbb Q} \) for integer and rational chip configurations analogously.
+
+\begin{lemma}\label{lem:kernel-noo}
+    The following statements hold true for all \( d \in \mathbb{N} \cup \left\{ \infty \right\} \):
+    \begin{enumerate}
+        \item \( \left\{ \mathbf w \in \mathbb R^{V_d} \mid \text{\( \mathbf{w} \) is an outcome} \right\} = \mathrm{kernel}(\alpha_d^{\mathbb R})\);
+        \item \( \left\{ \mathbf w \in \mathbb Z^{V_d} \mid \text{\( \mathbf{w} \) is an outcome} \right\} = \mathrm{kernel}(\alpha_d^{\mathbb Z})\);
+        \item \( \left\{ \mathbf w \in \mathbb Q^{V_d} \mid \text{\( \mathbf{w} \) is an outcome} \right\} = \mathrm{kernel}(\alpha_d^{\mathbb Q})\).
+    \end{enumerate}
 \end{lemma}
+
+\begin{proof}
+    We only prove the first statement. The other two statements are proven analogously. Note that it suffices to show the statement for \( d < \infty \) since \( \alpha_\infty^\mathbb{R} \) is the direct limit of \( \alpha^{\mathbb R}_0, \alpha^{\mathbb R}_1, \alpha^{\mathbb R}_2, \dots \).
+
+    Let \( d < \infty \). By Corollary \ref{cor:pascal-basis-2323}, the codimension of the outcome space is \( d+1 \), as it is defined by the roots of the Pascal forms \( \mathrm{col}(0), \dots, \mathrm{col}(d) \). ... TO-DO
+\end{proof}
+
+We now show Theorem \ref{thm:outcome-reduced-model}.
+
+\begin{proof}[Proof of Theorem \ref{thm:outcome-reduced-model}]
+    Let \( \mathcal{M} = (w_k,i_k,j_k)_{k=0}^n \) be a reduced model. 
+
+    \begin{itemize}
+        \item First, we need to show that \( \mathbf w \coloneqq w(\mathcal{M}) \) is an outcome; a-priori we only know that it is some chip configuration. By definition of \( w(\mathcal{M}) \), we have that \( w_{0,0} = -1 \). Since \( \mathcal{M} \) is a statistical model, we know that \( \sum_{k=0}^n w_k \theta^{i_k} (1-\theta)^{j_k} \equiv 1 \). Thus, \( \alpha_d^{\mathbb R}(\mathbf w) = \sum_{k=0}^n w_k \theta^{i_k} (1-\theta)^{j_k} -1 \equiv 0 \). Thus, \( \mathbf{w} \in \mathrm{kernel}(\alpha_d^{\mathbb R}) \). By Lemma \ref{lem:kernel-noo}, the chip configuration \( \mathbf w \) is an outcome.
+        
+        \item \textbf{Injectivity:} Let \( \mathcal{M} = (w_k,i_k,j_k)^n_{k=0} \) and \( \mathcal{M}' = (w'_k,i'_k,j'_k)^n_{k=0} \) be two distinct models. Then, \( w(\mathcal{M}) \neq w(\mathcal{M}') \) (see Remark \ref{rem:equivalent-models}). 
+        
+        \item \textbf{Surjectivity:} Let \( \mathbf w \in \mathbb{R}^{V_\infty} \) be a valid real outcome with \( w_{0,0} = -1 \). We define 
+        \begin{align*}
+            w_k &\coloneqq w_{i_k,j_k} \quad \text{for all } k = 0, \dots, n.
+        \end{align*}
+        Then, \( \mathcal{M}= (w_k,i_k,j_k)^n_{k=0} \) is a reduced model by Lemma \ref{lem:kernel-noo}. We see that \( w(\mathcal{M}) = \mathbf w \). Hence, \( \mathcal{M} \mapsto w(\mathcal{M}) \) is surjective.
+    \end{itemize}
+\end{proof}
+
+Next, we collect simple results.
+
+\begin{proposition}
+    The following statements hold for all reduced models \( \mathcal{M} \):
+    \begin{enumerate}
+        \item \( \mathrm{supp}^+(w(\mathcal{M})) = \mathrm{supp}^+(\mathcal{M})\).
+        \item The map \( \mathcal{M} \mapsto w(\mathcal{M}) \) is degree-preserving.
+        \item The outcome \( w(\mathcal{M}) \) is a rational outcome if and only if all the coefficients of \( \mathcal{M} \) are rational.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    All three statements follow directly from definitions.
+\end{proof}

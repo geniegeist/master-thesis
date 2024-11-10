@@ -102,6 +102,10 @@ From now on, we only consider one-dimensional discrete statistical models with r
     The degree \( \mathrm{deg}(\mathcal{M}) \) of a model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
 \end{definition}
 
+\begin{remark}\label{rem:equivalent-models}
+    We view two models \( (w_k,i_k,j_k)_{k=0}^n \) and \( (w_k',i_k',j_k')_{k=0}^n \) as the same model if they are equal up to a permutation of the coordinates.
+\end{remark}
+
 \begin{example}
     The sequence \( ((1,0,2), (2,1,1), (1,2,0)) \) represents the binomial model with two trials. It has degree two. Its parametrization is given by \( \theta \mapsto ((1-\theta)^2, 2\theta(1-\theta),\theta^2) \). Also see Figure \ref{fig:binom-discrete-model} for a visualization of the binomial model within the probability simplex \( \Delta_2 \).
 
