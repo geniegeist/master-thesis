@@ -456,7 +456,22 @@ We define the map \( \alpha_d^{\mathbb Z} \) and \( \alpha_d^{\mathbb Q} \) for 
 \begin{proof}
     We only prove the first statement. The other two statements are proven analogously. Note that it suffices to show the statement for \( d < \infty \) since \( \alpha_\infty^\mathbb{R} \) is the direct limit of \( \alpha^{\mathbb R}_0, \alpha^{\mathbb R}_1, \alpha^{\mathbb R}_2, \dots \).
 
-    Let \( d < \infty \). By Corollary \ref{cor:pascal-basis-2323}, the codimension of the outcome space is \( d+1 \), as it is defined by the roots of the Pascal forms \( \mathrm{col}(0), \dots, \mathrm{col}(d) \). ... TO-DO
+    Let \( d < \infty \). By Corollary \ref{cor:pascal-basis-2323}, the codimension of the outcome space is \( d+1 \), as it is defined by the roots of the Pascal forms \( \mathrm{col}(0), \dots, \mathrm{col}(d) \). 
+
+    Let \( f(\theta) = \lambda_0 + \lambda_1 \theta + \dots + \lambda_d \theta^d  \) be a polynomial in \( \mathbb R \) of degree at most \( d \). Define a chipsplitting configuration \( \mathbf{w} \) by 
+        \begin{align*}
+            w_{i,j} \coloneqq \begin{cases}
+                \lambda_i & \text{if } j=0, \\
+                0 & \text{otherwise}.
+            \end{cases}
+        \end{align*}
+    Then, \( \alpha^\mathbb{R}_d(\mathbf w) = f \), which shows that the map \( \alpha^{\mathbb R}_d \) is surjective. Hence, the kernel of \( \alpha^{\mathbb R}_d \) has codimension \( d+1 \); it has equal codimension as the space of outcomes. 
+
+    Finally, we just need to show that the space of outcomes is contained in the kernel of \( \alpha^{\mathbb R}_d \). Since their codimensions are equal, the two spaces must be equal. Let \( \mathbf{w} \in \mathbb{R}^{V_d} \) be an outcome. The value of \( \alpha^{\mathbb R}_d(\mathbf w) \) remains the same if apply splitting or unsplitting moves at arbitrary vertices \( (i,j) \in V_{d-1} \) because we have 
+    \begin{align*}
+        -\theta^i(1-\theta)^j + \theta^{i+1}(1-\theta)^j + \theta^i(1-\theta)^{j+1} = \theta^i(1-\theta)^j (-1 + \theta + (1 - \theta)) = 0.
+    \end{align*}
+    The remaining claim follows from \( \alpha_d^{\mathbb{R}}(\mathbf 0) = 0 \).
 \end{proof}
 
 We now show Theorem \ref{thm:outcome-reduced-model}.
