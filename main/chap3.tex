@@ -508,7 +508,7 @@ Next, we collect simple results.
     All three statements follow directly from definitions.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:outcome-rational-fluf}
     Let \( \mathbf{w} \in \mathbb{Q}^{V_\infty} \) be a valid rational outcome. Then, there exist positive \( \lambda \in \mathbb{Q} \) and integral valid outcome \( \mathbf{z} \in \mathbb{Z}^{V_\infty} \) such that \( \mathbf{w} = \lambda \mathbf{z} \).
 \end{proposition}
 
@@ -555,6 +555,43 @@ Let us go back to Example \ref{ex:binomial-model-chip-three}.
     However is there an even larger one? Once again, the answer is no: by the following theorem, the degree of a valid real outcome with positive support of size three is at most three.
  \end{example}
 
-\begin{theorem}
-    s
+\begin{theorem}\label{thm:outcome-degree-support-size}
+    Let \( \mathbf{w} \) be a valid integral outcome. Then, the following upper bound holds
+    \begin{align*}
+        \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3
+    \end{align*}
+    for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
 \end{theorem}
+
+Arthur Bik and Marigliano Orlando established this theorem in \cite{bik2022classifying}, and we will provide a proof in the following sections. The question of whether the upper bound extends to cases with larger positive support sizes, \( |\mathrm{supp}^+(\mathbf w)| > 5 \), remains open. A primary contribution of this thesis is the significant advancement in proving this bound for the case \( |\mathrm{supp}^+(\mathbf w)| = 6 \).
+
+\begin{table}[h!] 
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Pos. Support Size} & \textbf{Max Degree} \\
+        \hline
+        \(2\) & \(1\) \\
+        \(3\) & \(3\) \\
+        \(4\) & \(5\) \\
+        \(5\) & \(7\) \\
+        \hline
+    \end{tabular}
+    \caption{    The following table shows the largest degree of a valid real outcome with positive support size \( 2,3,4 \) and \( 5 \).}
+    \label{tab:support_size_degree}
+\end{table}
+
+Theorem \ref{thm:outcome-degree-support-size} is of particular interest because it is equivalent to Theorem \ref{thm:degree-fundamental-models}, i.e. proving that the degree of outcomes is bounded by their positive support size is equivalent to establishing that the degree of statistical models is bounded by their dimension.
+
+\begin{center}
+    degree of outcomes \( \mathbf{w} \) \( \longleftrightarrow \) degree of statistical models \( \mathcal{M} \) \\
+    \( \mathrm{supp}^+(\mathbf w) \) \( \longleftrightarrow \) dimension of \( \mathcal{M} \)
+\end{center}
+
+\begin{proposition}
+    Theorem \ref{thm:degree-fundamental-models} and Theorem \ref{thm:outcome-degree-support-size} are equivalent.
+\end{proposition}
+
+\begin{proof}
+    Assume Theorem \ref{thm:degree-fundamental-models} holds. We want to show Theorem \ref{thm:outcome-degree-support-size}. Let \( \mathbf{w} \) be a valid integral outcome of positive support size \( n \leq 5 \). Normalize \( \mathbf{w} \) such that \( w_{0,0} = -1 \). The degree and positive support size do not change. By Theorem \ref{thm:outcome-reduced-model}, the outcome \( \mathbf{w} \) induces a reduced statistical model \( \mathcal{M} \) in \( \Delta_{n-1} \). Then, \( \mathrm{deg}(\mathcal{M}) \leq 2(n-1) -1 = 2n - 3\). Thus, applying Theorem \ref{thm:outcome-reduced-model} again yields Theorem \ref{thm:outcome-degree-support-size}.
+\end{proof}
