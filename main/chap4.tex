@@ -1,0 +1,101 @@
+\chapter{On the Finiteness of Valid Integral Outcomes}
+
+Let us devote the remaining chapters to the study of Theorem \ref{thm:outcome-degree-support-size}, which for the sake of convenience we restate below.
+
+\begin{theorem*}
+    The following upper bound 
+    \begin{align*}
+        \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3
+    \end{align*}
+    holds for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
+\end{theorem*}
+
+From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outcomes in \( \mathbb{Z}^{V_d} \) for \emph{finite} \( d \in \mathbb{N} \). 
+
+\section{Invertibility Criterion}
+
+Let \( d \in \mathbb{N} \).
+One of the most important tools in the study of valid outcomes is the \emph{invertibility criterion} first introduced in \cite{bik2022classifying}. By Theorem \ref{thm:pascal-outcome} we can characterize \emph{valid} outcomes as the roots of all Pascal forms on \( \mathbb{Z}^{V_d} \). In the previous chapter we have already found two bases for the space of Pascal forms, namely \((\mathrm{row}(0), \dots, \mathrm{row}(d)) \) and \((\mathrm{col}(0), \dots, \mathrm{col}(d)) \) (see Definition \ref{def:row-col}). Let us introduce a \emph{new} basis for the space of Pascal forms.
+
+\begin{definition}
+    Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. We define \( \mathrm{diag}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{k,d-k} = \mathbf e_k \).
+\end{definition}
+
+\begin{example}
+    Fix the degree \( d = 7 \). We visualized \( \mathrm{diag}(3) \) by
+    \begin{verbatim}
+        .
+        .   .
+        .   .   .
+        1   1   1   1
+        4   3   2   1   .
+       10   6   3   1   .   .
+       20  10   4   1   .   .   . 
+       35  15   5   1   .   .   .   .
+    \end{verbatim}
+\end{example}
+
+\begin{proposition}
+    For all integers \( k = 0, \dots, d \) we have:
+    \begin{align*}
+        \mathrm{diag}(k)  &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}.
+    \end{align*} 
+    Note that \( \binom{a}{b} = 0 \) for \( b < 0 \) or \( b > a \).
+\end{proposition}
+
+\begin{proof}
+    Note that for all \( (i,j) \in V_d \) with \( i+j = d \) we have \( \binom{d - i - j}{k-i} = 1 \) if and only if \( k= i \), and in all other cases \( k \neq i \) the binomial coefficient is zero. Thus, it remains to show that \( \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j} \) is a Pascal form. We have 
+    \begin{align*}
+        \binom{d-i-j}{k-i} = \binom{d-i-1-j}{k-i-1} + \binom{d-i-j-1}{k-i}.
+    \end{align*}
+    for all \( (i,j) \in V_{d-1} \) because \( \binom{a+1}{b+1} = \binom{a}{b+1} + \binom{a}{b}\).
+\end{proof}
+
+\begin{proposition}
+    Let \( p \) be a Pascal form on \( \mathbb Z^{V_d} \). There exist unique coefficients \( \mu_0, \dots, \mu_d \in \mathbb{Z} \) such that 
+    \( p = \mu_0 \mathrm{diag}(0) + \dots + \mu_d \mathrm{diag}(d) \).
+\end{proposition}
+
+\begin{proof}
+    Let \( p = \sum c_{i,j}x_{i,j} \). Choose \( \mu_k = c_{k,d-k} \) for \( k=0, \dots, d \). Since \( p \) is a Pascal form, the coefficients \( c_{i,j} \) satisfy the Pascal recurrence relation. Thus, the coefficients \( \mu_k \) are uniquely determined.
+\end{proof}
+
+The invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots, \mathrm{diag}(d)) \) to determine whether a given outcome is valid.
+
+\begin{definition}
+    Let \( E \subset \left\{ 0, \dots, d \right\} \) and \( S \subset V_d \) with \( \lvert E \rvert = \lvert S \rvert \neq 0 \). The \emph{pairing matrix} of \( (E,S) \) is definded as \( A^{(d)}_{E,S} \coloneqq \begin{bmatrix} \binom{d-i-j}{k-i} \end{bmatrix}_{k \in E, (i,j) \in S} \).
+\end{definition}
+
+\begin{example}
+    Let \( d = 2 \), \( S = \left\{ (1,1), (0,0) \right\} \) and \( E = \left\{ 0,1 \right\} \). Then the pairing matrix is
+    \begin{align*}
+        A^{(d)}_{E,S}  = \begin{bmatrix}
+            \binom{2-1-1}{0-1} & \binom{2-0-0}{0-2} \\
+            \binom{2-1-1}{1-1}  & \binom{2-0-0}{1-2}
+        \end{bmatrix} = \begin{bmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{bmatrix}.
+    \end{align*}
+
+    Now, assume \( \mathbf{w} \) is an outcome with support in \( S \). Since it is an outcome, we have \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) for all \( k = 0, 1,2,3 \). Thus, 
+    \begin{align*}
+        A^{(d)}_{E,S} \mathbf w = \mathbf 0.
+    \end{align*}
+    We make the following observation: if the matrix \( A^{(d)}_{E,S} \) were invertible (it is not for the given example), then we would have \( \mathbf w = \mathbf 0 \). This is the invertibility criterion. 
+\end{example}
+
+\begin{proposition}[Invertibility Criterion]
+    Let \( \mathbf{w} \) be an outcome with \( \mathrm{supp}(\mathbf w) \subset S \).
+    If \( A^{(d)}_{E,S} \) is invertible, then \( \mathbf{w} = \mathbf 0 \).
+\end{proposition}
+
+\begin{proof}[Proof by Contraposition]
+    Let \( \mathbf{w} \neq \mathbf 0 \). Its support is non-empty. Then, \( \mathbf w' \coloneqq (w_{i,j})_{(i,j) \in S} \neq \mathbf 0 \). So, \( A^{(d)}_{E,S} \cdot \mathbf w' = \mathbf 0 \). The kernel of the pairing matrix is non-trivial. Hence, the pairing matrix \( A^{(d)}_{E,S} \) is not invertible.
+\end{proof}
+
+Given a non-zero outcome \( \mathbf{w} \) we try to construct sets \( S \supset \mathrm{supp}(\mathbf w) \) and \( E \) such that the pairing matrix \( A_{E,S}^{(d)} \) is invertible. If we succeed, then \( \mathbf{w} \) is not a \emph{valid} outcome since the initial configuration is the only valid outcome with support in \( S \). If we fail, then \( \mathbf{w} \) may be or may not be a valid.
+
+\section{Divide and Conquer}
+
+The invertibility criterion is a powerful tool to determine whether a given outcome is valid. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.

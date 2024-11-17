@@ -187,7 +187,7 @@ By repeatedly applying the two propositions, we can transform any model into a r
 
 As before, models refer to one-dimensional discrete statistical models with rational MLE. The main building blocks for the classification of models are \emph{fundamental models}; we will see that reduced models come from fundamental models.
 
-\begin{definition}
+\begin{definition}\label{def:fundamental-model}
     We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{fundamental} if it is reduced and the equation \( p_0 + \dots p_n \equiv 1 \) for given \( (i_k, j_k)_{k=0}^n \) uniquely determines the weights \( (w_k)_{k=0}^n \).
 \end{definition}
 
@@ -332,7 +332,7 @@ Given Theorem \ref{thm:degree-fundamental-models} it is easy to show the second 
 We will now spend the rest of this thesis on proving Theorem \ref{thm:degree-fundamental-models}. The idea is to use the building blocks of fundamental models that we have established so far. Namely, it suffices to show the theorem for fundamental models.
 
 \begin{theorem}\label{thm:degree-fundamental-models-reduced}
-    Let \(N \in \mathbb{N} \). If \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\) for all fundamental models in $\Delta_n$ and $n \leq N$, then $\mathrm{deg}(\mathcal{M'}) \leq 2n - 1$ holds for all models in $\Delta_n$.
+    Let \(N \in \mathbb{N} \). If for all $n \leq N$ and for all fundamental models \( \mathcal{M} \in \Delta_n\) the upper bound \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\)  holds, then the upper bound also holds for all statistical models in \( \Delta_{n'} \) for all \( n' \leq N \).    
 \end{theorem}
 
 \begin{proof}

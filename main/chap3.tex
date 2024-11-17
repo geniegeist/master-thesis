@@ -208,7 +208,7 @@ To generalize the example above to an arbitrary degree \( d \in \mathbb{N} \) an
 
 Let us define our first two Pascal form bases.
 
-\begin{definition}
+\begin{definition}\label{def:row-col}
     Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. 
     \begin{itemize}
         \item We define \( \mathrm{col}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{0,\cdot} = \mathbf e_k \).
@@ -495,7 +495,7 @@ We now show Theorem \ref{thm:outcome-reduced-model}.
 
 Next, we collect simple results.
 
-\begin{proposition}
+\begin{proposition}\label{prop:outcome-properties-bllaio}
     The following statements hold for all reduced models \( \mathcal{M} \):
     \begin{enumerate}
         \item \( \mathrm{supp}^+(w(\mathcal{M})) = \mathrm{supp}^+(\mathcal{M})\).
@@ -556,11 +556,11 @@ Let us go back to Example \ref{ex:binomial-model-chip-three}.
  \end{example}
 
 \begin{theorem}\label{thm:outcome-degree-support-size}
-    Let \( \mathbf{w} \) be a valid integral outcome. Then, the following upper bound holds
+    The following upper bound
     \begin{align*}
         \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3
     \end{align*}
-    for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
+    holds for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
 \end{theorem}
 
 Arthur Bik and Marigliano Orlando established this theorem in \cite{bik2022classifying}, and we will provide a proof in the following sections. The question of whether the upper bound extends to cases with larger positive support sizes, \( |\mathrm{supp}^+(\mathbf w)| > 5 \), remains open. A primary contribution of this thesis is the significant advancement in proving this bound for the case \( |\mathrm{supp}^+(\mathbf w)| = 6 \).
@@ -588,10 +588,14 @@ Theorem \ref{thm:outcome-degree-support-size} is of particular interest because 
     \( \mathrm{supp}^+(\mathbf w) \) \( \longleftrightarrow \) dimension of \( \mathcal{M} \)
 \end{center}
 
-\begin{proposition}
+\begin{proposition}\label{prop:equivalence-degree-support-size}
     Theorem \ref{thm:degree-fundamental-models} and Theorem \ref{thm:outcome-degree-support-size} are equivalent.
 \end{proposition}
 
 \begin{proof}
-    Assume Theorem \ref{thm:degree-fundamental-models} holds. We want to show Theorem \ref{thm:outcome-degree-support-size}. Let \( \mathbf{w} \) be a valid integral outcome of positive support size \( n \leq 5 \). Normalize \( \mathbf{w} \) such that \( w_{0,0} = -1 \). The degree and positive support size do not change. By Theorem \ref{thm:outcome-reduced-model}, the outcome \( \mathbf{w} \) induces a reduced statistical model \( \mathcal{M} \) in \( \Delta_{n-1} \). Then, \( \mathrm{deg}(\mathcal{M}) \leq 2(n-1) -1 = 2n - 3\). Thus, applying Theorem \ref{thm:outcome-reduced-model} again yields Theorem \ref{thm:outcome-degree-support-size}.
+    Assume Theorem \ref{thm:degree-fundamental-models} holds. We want to show Theorem \ref{thm:outcome-degree-support-size}. Let \( \mathbf{w} \) be a valid integral outcome of positive support size \( n \leq 5 \). Normalize \( \mathbf{w} \) such that \( w_{0,0} = -1 \). The degree and positive support size do not change. By Theorem \ref{thm:outcome-reduced-model}, the outcome \( \mathbf{w} \) induces a reduced statistical model \( \mathcal{M} \) in \( \Delta_{n-1} \). Then, \( \mathrm{deg}(\mathcal{M}) \leq 2(n-1) -1 = 2n - 3\). Thus, applying Theorem \ref{thm:outcome-reduced-model} let us go back to the outcome \( \mathbf w \), and Proposition \ref{prop:outcome-properties-bllaio} establishes \( \mathrm{deg}(\mathbf w) \leq 2n - 3 \).
+
+    For the converse direction, assume Theorem \ref{thm:outcome-degree-support-size} holds. Let \( n \leq 5 \). We want to show Theorem \ref{thm:degree-fundamental-models}. Let \( \mathcal{M} = (w_k, i_k, j_k)_{k=0}^{n-1} \subset \Delta_{n-1} \) be a one-dimensional discrete statistical model with rational MLE. By Theorem \ref{thm:degree-fundamental-models-reduced} we may assume that \( \mathcal{M} \) is fundamental. We use Theorem \ref{thm:outcome-reduced-model} to map \( \mathcal{M} \) to some valid real outcome \( \mathbf{w} = (w_{i,j}) \) with \( w_{0,0} = -1 \). Note that \( \mathbf{w}  \) is even a \emph{rational} outcome because by Definition \ref{def:fundamental-model} the weights \( (w_k)_{k=0}^{n-1} \) of the fundamental model \( \mathcal{M} \) are uniquely determined by the equation \( p_0(\theta) + p_1(\theta) + \dots + p_{n-1}(\theta) - 1 \equiv 0 \), and for some \( \theta \in [0,1] \) this equation becomes rational. Next, we use Proposition \ref{prop:outcome-rational-fluf} to find some integral valid outcome \( \mathbf{z} \) such that \( \mathbf w = \mu \mathbf{z} \) for some positive scalar \( \mu \in \mathbb{Q}_{>0} \). Again, scaling does not affect the degree or size of the positive support. By Proposition the integral valid outcome \ref{prop:outcome-properties-bllaio} \( \mathbf{z} \) has positive support size \( n  \). By Theorem \ref{thm:outcome-degree-support-size} we have \( \mathrm{deg}(\mathbf z) \leq 2n - 3 \). Thus, \( \mathrm{deg}(\mathbf w) = \mathrm{deg}(\mu \mathbf z) = \mathrm{deg}(\mathbf z) \leq 2n - 3 \). Hence, the degree of \( \mathcal{M} \) is smaller or equal to \( 2(n-1) - 1 \) by Proposition \ref{prop:outcome-properties-bllaio}. We proved Theorem \ref{thm:degree-fundamental-models}.
 \end{proof}
+
+Recall that our goal is to demonstrate that only finitely many fundamental statistical models exist in \( \Delta_n \) for \( n \leq 4 \). To achieve this, we originally aimed to prove Theorem \ref{thm:finiteness-fundamental-models} from Chapter 2. However, as established in Chapter 3, we can alternatively prove Theorem \ref{thm:outcome-degree-support-size}, which serves as an equivalent approach to resolving the problem. We have chosen to focus on Theorem \ref{thm:outcome-degree-support-size} because it allows us to address the problem from a combinatorial perspective.
