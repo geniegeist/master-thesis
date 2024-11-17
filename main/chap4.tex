@@ -99,3 +99,39 @@ Given a non-zero outcome \( \mathbf{w} \) we try to construct sets \( S \supset 
 \section{Divide and Conquer}
 
 The invertibility criterion is a powerful tool to determine whether a given outcome is valid. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.
+
+\subsection*{Divide}
+
+Instead of finding one large set \( S \) with \( \mathrm{supp}(\mathbf w) \subset S \), we divide \( S \) into smaller sets \( S_1, \dots, S_l \). These smaller sets \( S_1, \dots, S_k \) will be implicitly defined by integers \( \lambda_1, \dots, \lambda_l \in \mathbb{N} \) as we will shortly see. We choose \( l \in \mathbb{N} \) and integers \( \lambda_1, \dots, \lambda_l \in \mathbb{N} \) such that for all \( i=1, \dots, d \) we have
+\begin{align*}
+    \lvert S_i \rvert &\in \left\{ 0, \lambda_i \right\} \\
+    S_i &\coloneqq \left\{ (i,j) \in \mathrm{supp}(\mathbf w) : i = c_{k-1}, \dots, c_k - 1 \right\} \\
+    c_i &\coloneqq \lambda_1 + \dots + \lambda_i, \\
+    \lambda_1 + \dots + \lambda_l &= d+1.
+\end{align*}
+
+Such decomposition will always work when \( \lvert \left\{ (i,j) \in \mathrm{supp}(\mathbf{w}) : i \geq d-k \right\} \rvert \leq k+1 \) for all \( k = 0, \dots, d \). This is because we can always choose \( \lambda_1  \) minimal such that \( \lvert S_1 \rvert \in \left\{ 0, \lambda_1 \right\} \). We repeat this process until \( c_l = d+1 \). This decomposition is illustrated in the following example.
+
+\begin{example}
+    Fix the degree \( d=6 \). Assume we have some outcome \( \mathbf w \in \mathbb{Z}^{V_6} \) with support in the positions marked with an \texttt{*} below.
+    \begin{verbatim}
+        · 
+        · · 
+        * · · 
+        · · · · 
+        · · · · · 
+        · · · · * · 
+        * · * · · * *
+    \end{verbatim}
+    The first column contains two non-zero entries. So we see \( \lambda_1 = 2 \). Then, we conclude that \( \lambda_2 = \lambda_3 = \lambda_4 = \lambda_5 = \lambda_6 = 1\); otherwise \(     \lvert S_i \rvert \notin \left\{ 0, \lambda_i \right\}     \) for \( i>1 \).
+\end{example}
+
+
+Next with \( S_i \) defined, we define for all \( i=1, \dots, l \) the sets
+\begin{align*}
+    E_i \coloneqq \begin{cases}
+        \left\{ c_{i-1}, \dots, c_i - 1 \right\} & \text{if } \lvert S_i \rvert = \lambda_i, \\
+        \emptyset & \text{if } \lvert S_i \rvert = 0.
+    \end{cases}
+\end{align*}
+We see that \( \lvert E_i \rvert = \lvert S_i \rvert \) for all \( i = 1, \dots, l \). Define \( E \coloneqq E_1 \cup \dots \cup E_l \).
