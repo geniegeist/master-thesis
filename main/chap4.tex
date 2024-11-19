@@ -15,7 +15,7 @@ From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outc
 \section{Invertibility Criterion}
 
 Let \( d \in \mathbb{N} \).
-One of the most important tools in the study of valid outcomes is the \emph{invertibility criterion} first introduced in \cite{bik2022classifying}. By Theorem \ref{thm:pascal-outcome} we can characterize \emph{valid} outcomes as the roots of all Pascal forms on \( \mathbb{Z}^{V_d} \). In the previous chapter we have already found two bases for the space of Pascal forms, namely \((\mathrm{row}(0), \dots, \mathrm{row}(d)) \) and \((\mathrm{col}(0), \dots, \mathrm{col}(d)) \) (see Definition \ref{def:row-col}). Let us introduce a \emph{new} basis for the space of Pascal forms.
+One of the most important tools in the study of outcomes is the \emph{invertibility criterion} first introduced in \cite{bik2022classifying}. By Theorem \ref{thm:pascal-outcome} we can characterize outcomes as the roots of all Pascal forms on \( \mathbb{Z}^{V_d} \). In the previous chapter we have already found two bases for the space of Pascal forms, namely \((\mathrm{row}(0), \dots, \mathrm{row}(d)) \) and \((\mathrm{col}(0), \dots, \mathrm{col}(d)) \) (see Definition \ref{def:row-col}). Let us introduce a \emph{new} basis for the space of Pascal forms.
 
 \begin{definition}
     Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. We define \( \mathrm{diag}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{k,d-k} = \mathbf e_k \).
@@ -60,7 +60,7 @@ One of the most important tools in the study of valid outcomes is the \emph{inve
     Let \( p = \sum c_{i,j}x_{i,j} \). Choose \( \mu_k = c_{k,d-k} \) for \( k=0, \dots, d \). Since \( p \) is a Pascal form, the coefficients \( c_{i,j} \) satisfy the Pascal recurrence relation. Thus, the coefficients \( \mu_k \) are uniquely determined.
 \end{proof}
 
-The invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots, \mathrm{diag}(d)) \) to determine whether a given outcome is valid.
+Given some set of vertices \( S \subset V_d \) the invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots, \mathrm{diag}(d)) \) to determine whether a nonzero outcome with support in \( S \) exists.
 
 \begin{definition}
     Let \( E \subset \left\{ 0, \dots, d \right\} \) and \( S \subset V_d \) with \( \lvert E \rvert = \lvert S \rvert \neq 0 \). The \emph{pairing matrix} of \( (E,S) \) is definded as \( A^{(d)}_{E,S} \coloneqq \begin{bmatrix} \binom{d-i-j}{k-i} \end{bmatrix}_{k \in E, (i,j) \in S} \).
@@ -82,7 +82,7 @@ The invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots,
     \begin{align*}
         A^{(d)}_{E,S} \mathbf w = \mathbf 0.
     \end{align*}
-    We make the following observation: if the matrix \( A^{(d)}_{E,S} \) were invertible (it is not for the given example), then we would have \( \mathbf w = \mathbf 0 \). This is the invertibility criterion. 
+    We make the following observation: if the matrix \( A^{(d)}_{E,S} \) were invertible (it is not for the given example), then we would have \( \mathbf w = \mathbf 0 \); so in this case the initial configuration \( \mathbf{0} \) is the \emph{only} outcome with support in \( S \). This is the invertibility criterion. 
 \end{example}
 
 \begin{proposition}[Invertibility Criterion]
@@ -94,11 +94,11 @@ The invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots,
     Let \( \mathbf{w} \neq \mathbf 0 \). Its support is non-empty. Then, \( \mathbf w' \coloneqq (w_{i,j})_{(i,j) \in S} \neq \mathbf 0 \). So, \( A^{(d)}_{E,S} \cdot \mathbf w' = \mathbf 0 \). The kernel of the pairing matrix is non-trivial. Hence, the pairing matrix \( A^{(d)}_{E,S} \) is not invertible.
 \end{proof}
 
-Given a non-zero outcome \( \mathbf{w} \) we try to construct sets \( S \supset \mathrm{supp}(\mathbf w) \) and \( E \) such that the pairing matrix \( A_{E,S}^{(d)} \) is invertible. If we succeed, then \( \mathbf{w} \) is not a \emph{valid} outcome since the initial configuration is the only valid outcome with support in \( S \). If we fail, then \( \mathbf{w} \) may be or may not be a valid.
+Given a non-zero configuration \( \mathbf{w} \) we try to construct sets \( S \supset \mathrm{supp}(\mathbf w) \) and \( E \) such that the pairing matrix \( A_{E,S}^{(d)} \) is invertible. If we succeed, then \( \mathbf{w} \) is \emph{not} an outcome since the initial configuration is the only valid outcome with support in \( S \). 
 
 \section{Divide and Conquer}
 
-The invertibility criterion is a powerful tool to determine whether a given outcome is valid. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.
+The invertibility criterion is a powerful tool to determine whether a given configuration is an outcome. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.
 
 \subsection*{Divide}
 
@@ -112,8 +112,8 @@ Instead of finding one large set \( S \) with \( \mathrm{supp}(\mathbf w) \subse
 
 Such decomposition will always work when \( \lvert \left\{ (i,j) \in \mathrm{supp}(\mathbf{w}) : i \geq d-k \right\} \rvert \leq k+1 \) for all \( k = 0, \dots, d \). This is because we can always choose \( \lambda_1  \) minimal such that \( \lvert S_1 \rvert \in \left\{ 0, \lambda_1 \right\} \). We repeat this process until \( c_l = d+1 \). This decomposition is illustrated in the following example.
 
-\begin{example}
-    Fix the degree \( d=6 \). Assume we have some outcome \( \mathbf w \in \mathbb{Z}^{V_6} \) with support in the positions marked with an \texttt{*} below.
+\begin{example}\label{ex:decomposition-nsjkfnje}
+    Fix the degree \( d=6 \). Assume we have some configuration \( \mathbf w \in \mathbb{Z}^{V_6} \) with support in the positions marked with an \texttt{*} below.
     \begin{verbatim}
         · 
         · · 
@@ -134,4 +134,217 @@ Next with \( S_i \) defined, we define for all \( i=1, \dots, l \) the sets
         \emptyset & \text{if } \lvert S_i \rvert = 0.
     \end{cases}
 \end{align*}
-We see that \( \lvert E_i \rvert = \lvert S_i \rvert \) for all \( i = 1, \dots, l \). Define \( E \coloneqq E_1 \cup \dots \cup E_l \).
+We see that \( \lvert E_i \rvert = \lvert S_i \rvert \) for all \( i = 1, \dots, l \). 
+
+\subsection*{Conquer}
+
+Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \) as described above. We also define sets \( E_1, \dots, E_l \). Write \( E \coloneqq E_1 \cup \dots \cup E_l \).
+
+\begin{proposition}
+    We have 
+    \begin{align*}
+        A_{E,S}^{(d)} = 
+        \begin{bmatrix}
+            A_{E_1,S_1}^{(d)} & 0 & \dots & 0 \\
+            A_{E_2,S_1}^{(d)} & A_{E_2,S_2}^{(d)} & \dots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            A_{E_l,S_1}^{(d)} & A_{E_l,S_2}^{(d)} & \dots & A_{E_l,S_l}^{(d)}
+        \end{bmatrix}.
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    We have 
+    \begin{align*}
+        A_{E,S}^{(d)} = 
+        \begin{bmatrix}
+            A_{E_1,S_1}^{(d)} & A_{E_1,S_2}^{(d)} & \dots & A_{E_1,S_l}^{(d)} \\
+            A_{E_2,S_1}^{(d)} & A_{E_2,S_2}^{(d)} & \dots & A_{E_2,S_l}^{(d)} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            A_{E_l,S_1}^{(d)} & A_{E_l,S_2}^{(d)} & \dots & A_{E_l,S_l}^{(d)}
+        \end{bmatrix}.
+    \end{align*}
+    Let \( x,y = 1, \dots , l \) such that \( x < y \). Let \( k \in E_x \) and \( (i,j) \in S_y \).
+    Then, \( k \leq c_x - 1 < c_x \leq c_{y - 1} \leq i \); so \( k - i < 0 \). Thus, \( \binom{d-i-j}{k-i} = 0 \). This implies that the upper off-diagonal blocks are zero.
+\end{proof}
+
+\begin{corollary}
+    The pairing matrix \( A^{(d)}_{E,S} \) is invertible if and only if \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible.
+\end{corollary}
+
+\begin{corollary}[Invertibility Criterion, Divide and Conquer]
+    Let \( \mathbf{w} \) be an outcome with \( \mathrm{supp}(\mathbf w) \subset S \).
+    If \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible, then \( \mathbf{w} = \mathbf 0 \).
+\end{corollary}
+
+\begin{example}
+    We continue Example \ref{ex:decomposition-nsjkfnje}. 
+    \begin{verbatim}
+        · 
+        · · 
+        * · · 
+        · · · · 
+        · · · · · 
+        · · · · * · 
+        * · * · · * *
+    \end{verbatim}
+    With \( \lambda = (2,1,1,1,1,1) \) we obtain the following decomposition
+    \begin{align*}
+        S_1 = \left\{ (0,0), (0,4) \right\}, S_2 = \left\{ (2,0) \right\}, S_3 = \emptyset, S_4 = \left\{ (4,1) \right\}, S_5 = \left\{ (5,0) \right\}, S_6 = \left\{ (6,0) \right\},
+    \end{align*}
+    and
+    \begin{align*}
+        E_1 = \left\{ 0, 1 \right\}, E_2 = \left\{ 2 \right\}, E_3 = \emptyset, E_4 = \left\{ 4 \right\}, E_5 = \left\{ 5 \right\}, E_6 = \left\{ 6 \right\}.
+    \end{align*}
+    Then, the pairing matrix reads 
+    \begin{align*}
+        A^{(d)}_{E,S} = \begin{bmatrix}
+            1 & 1 & 0 & 0 & 0 & 0 \\
+            6 & 2 & 0 & 0 & 0 & 0 \\
+            * & * & 1 & 0 & 0 & 0 \\
+            * & * & * & 1 & 0 & 0 \\
+            * & * & * & * & 1 & 0 \\
+            * & * & * & * & * & 1
+        \end{bmatrix},
+    \end{align*}
+    where \( * \) stands for arbitrary entries. The matrix is invertible, so no nonzero outcome with support in \( S = \left\{ (0,0), (0,4), (2,0), (4,1), (5,0), (6,0) \right\} \) exists.
+\end{example}
+
+\section{Impossible Supports}
+
+Now, we show that specific supports cannot be the supports of valid integral outcomes. Hence, the title of this section \emph{Impossible Supports}. For instance, can we have an outcome whose support is only contained in \( S = \left\{ (0,0), (0,i) \right\} \) for some \( i \in \mathbb{N} \)? We will show that this is not possible.
+
+
+
+\begin{proposition}
+    Let \( d \in \mathbb{N} \), and \( i=0, \dots, d \). If \( S = \left\{ (0,i) \right\} \) and \( E = \left\{ 0 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
+\end{proposition}
+
+\begin{proof}
+    We have \( A^{(d)}_{E,S} = \begin{bmatrix}
+        1
+    \end{bmatrix} \), which is invertible.
+\end{proof}
+
+\begin{proposition}
+    Let \( d \in \mathbb{N} \). Assume \( i,j=0, \dots, d \) with \( i < j \). If \( S = \left\{ (0,i), (0,j) \right\} \) and \( E = \left\{ 0,1 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
+\end{proposition}
+
+\begin{proof}
+    We have \( A^{(d)}_{E,S} = \begin{bmatrix}
+        1 & 1 \\ d-i & d-j
+    \end{bmatrix} \), which is invertible.
+\end{proof}
+
+\begin{proposition}\label{prop:impossible-support-2}
+    Let \( d \in \mathbb{N} \). Assume \( i,j,k=0, \dots, d \) with \( i < j < k \). If \( S = \left\{ (0,i), (0,j), (0,k) \right\} \) and \( E = \left\{ 0,1,2 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
+\end{proposition}
+
+\begin{proof}
+    We have 
+    \begin{align*}
+        A^{(d)}_{E,S} = \begin{bmatrix}
+            \binom{d-i}{0} & \binom{d-j}{0} & \binom{d-k}{0} \\
+            \binom{d-i}{1} & \binom{d-j}{1} & \binom{d-k}{1} \\
+            \binom{d-i}{2} & \binom{d-j}{2} & \binom{d-k}{2}
+        \end{bmatrix} = \begin{bmatrix}
+            1 & 1 & 1 \\
+            d-i & d-j & d-k \\
+            \frac{(d-i)(d-i-1)}{2} & \frac{(d-j)(d-j-1)}{2} & \frac{(d-k)(d-k-1)}{2}
+        \end{bmatrix}.
+    \end{align*}
+    We substitute 
+    \begin{align*}
+        x &= d - i, \\
+        y &= d - j, \\
+        z &= d - k.
+    \end{align*}
+    Then, we see
+    \begin{align*}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 1 & 2
+        \end{bmatrix}A^{(d)}_{E,S} = \begin{bmatrix}
+            1 & 1 & 1 \\
+            x & y & z \\
+            x^2 & y^2 & z^2
+        \end{bmatrix}.
+    \end{align*}
+    The matrix on the right-hand side is invertible because it is a Vandermonde matrix. Thus, the pairing matrix \( A^{(d)}_{E,S} \) is invertible.
+\end{proof}
+
+\begin{proposition}
+    Let \( d \in \mathbb{N} \). Assume \( i,j,=0, \dots, d \) with \( i < j \). Moreover, let \( k=0, \dots, d-1 \). If \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
+\end{proposition}
+
+\begin{proof}
+    We have 
+    \begin{align*}
+        A^{(d)}_{E,S} = \begin{bmatrix}
+            \binom{d-i}{0} & \binom{d-j}{0} & \binom{d-k-1}{-1} \\
+            \binom{d-i}{1} & \binom{d-j}{1} & \binom{d-k-1}{0} \\
+            \binom{d-i}{2} & \binom{d-j}{2} & \binom{d-k-1}{1}
+        \end{bmatrix} = \begin{bmatrix}
+            1 & 1 & 0 \\
+            d-i & d-j & d-k-1 \\
+            \frac{(d-i)(d-i-1)}{2} & \frac{(d-j)(d-j-1)}{2} & \frac{(d-k-1)(d-k-2)}{2}
+        \end{bmatrix}.
+    \end{align*}
+    We substitute 
+    \begin{align*}
+        x &= d - i, \\
+        y &= d - j, \\
+        z &= d - k - 1.
+    \end{align*}
+    Then, we see 
+    \begin{align*}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 1 & 2
+        \end{bmatrix}
+        A^{(d)}_{E,S} \begin{bmatrix}
+            1 & 1 & 0 \\
+            0 & -1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \frac{1}{x-y} & 0 \\
+            0 & 0 & 1
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            x & 1 & 1 \\
+            x^2 & x+y & 2z+1
+        \end{bmatrix}.
+    \end{align*}
+    We see that the determinant is nonzero because \( x + y \neq 2z + 1 \) by \( i+j \neq 2k+1 \).
+\end{proof}
+
+Without loss of generality, we may assume
+\begin{align*}
+    S &\subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\}\\
+    E &= \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\}
+\end{align*}
+because the matrices \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) are equal, where \( \rho \coloneqq \min \left\{ E \cup \left\{ i \mid (i,j) \in S \right\} \right\} \) and \( E - \rho \coloneqq \left\{ (i - \rho, j) \mid (i,j) \in E \right\} \). This assumption allows us to apply the previous propostions to more general \( S \) and \( E \).
+
+\begin{example}
+    Assume we have a configuration with support \( S = \left\{ (0,i), (0,j), (0,k) \right\} \) for \( 0 \leq i < j< k \leq d \). By Proposition \ref{prop:impossible-support-2}, we know that no valid integral nonzero outcome can have this support.
+
+    Now, let us consider a configuration \( \mathbf{w} \) with support \( \mathrm{supp}(\mathbf{w}) \subset S \) such that \( S \) can be decomposed into \( S_1, \dots, S_l \) as described before. Let \( \ell = 1, \dots, l \). If \( S_\ell = \left\{ (x,i), (x,j), (x,k) \right\} \) for \( 0 \leq i < j< k \leq d \) and \( x \in \mathbb{N} \), then \( \mathbf{w} = \mathbf 0 \) by Proposition \ref{prop:impossible-support-2} and the previous comment on the generality of \( S \) and \( E \). 
+
+    For instance, this configuration is not an outcome
+    \begin{verbatim}
+        *
+        .  .
+        .  .  *  
+        .  .  .  .  
+        .  .  .  *  .  
+        .  .  .  .  .  .  
+        .  .  .  *  .  .  .  
+        *  .  .  *  .  .  .  .  
+    \end{verbatim}
+    where \( * \) denotes a non-zero entry. This is because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \).
+\end{example}
