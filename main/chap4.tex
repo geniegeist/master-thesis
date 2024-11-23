@@ -1,4 +1,4 @@
-\chapter{On the Finiteness of Valid Integral Outcomes}
+\chapter{Supports of Valid Outcomes}
 
 Let us devote the remaining chapters to the study of Theorem \ref{thm:outcome-degree-support-size}, which for the sake of convenience we restate below.
 
@@ -10,7 +10,17 @@ Let us devote the remaining chapters to the study of Theorem \ref{thm:outcome-de
     holds for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
 \end{theorem*}
 
-From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outcomes in \( \mathbb{Z}^{V_d} \) for \emph{finite} \( d \in \mathbb{N} \). 
+From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outcomes in \( \mathbb{Z}^{V_d} \) for \emph{finite} \( d \in \mathbb{N} \). To show the theorem, we will first study the supports of valid outcomes; knowing that some kinds of supports cannot be the supports of valid outcomes will help us to prove the theorem. For instance, integer configurations that have support in the entries below marked with an \texttt{*} cannot be valid outcomes:
+\begin{verbatim}
+    · 
+    · · 
+    * · · 
+    · · · · 
+    · · · · · 
+    · · · · * · 
+    * · * · · * *
+\end{verbatim}
+This is the key result of this chapter, see Section \ref{sec:impossible-supports}.
 
 \section{Invertibility Criterion}
 
@@ -172,7 +182,7 @@ Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \)
     The pairing matrix \( A^{(d)}_{E,S} \) is invertible if and only if \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible.
 \end{corollary}
 
-\begin{corollary}[Invertibility Criterion, Divide and Conquer]
+\begin{corollary}[Invertibility Criterion, Divide and Conquer]\label{cor:invertibility-criterion-nooos}
     Let \( \mathbf{w} \) be an outcome with \( \mathrm{supp}(\mathbf w) \subset S \).
     If \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible, then \( \mathbf{w} = \mathbf 0 \).
 \end{corollary}
@@ -210,13 +220,13 @@ Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \)
     where \( * \) stands for arbitrary entries. The matrix is invertible, so no nonzero outcome with support in \( S = \left\{ (0,0), (0,4), (2,0), (4,1), (5,0), (6,0) \right\} \) exists.
 \end{example}
 
-\section{Impossible Supports}
+\section{Impossible Supports}\label{sec:impossible-supports}
 
 Now, we show that specific supports cannot be the supports of valid integral outcomes. Hence, the title of this section \emph{Impossible Supports}. For instance, can we have an outcome whose support is only contained in \( S = \left\{ (0,0), (0,i) \right\} \) for some \( i \in \mathbb{N} \)? We will show that this is not possible.
 
 
 
-\begin{proposition}
+\begin{proposition}\label{prop:impossible-support-23233243243423}
     Let \( d \in \mathbb{N} \), and \( i=0, \dots, d \). If \( S = \left\{ (0,i) \right\} \) and \( E = \left\{ 0 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
 \end{proposition}
 
@@ -226,7 +236,7 @@ Now, we show that specific supports cannot be the supports of valid integral out
     \end{bmatrix} \), which is invertible.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:impossible-support-232423}
     Let \( d \in \mathbb{N} \). Assume \( i,j=0, \dots, d \) with \( i < j \). If \( S = \left\{ (0,i), (0,j) \right\} \) and \( E = \left\{ 0,1 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
 \end{proposition}
 
@@ -323,12 +333,14 @@ Now, we show that specific supports cannot be the supports of valid integral out
     We see that the determinant is nonzero because \( x + y \neq 2z + 1 \) by \( i+j \neq 2k+1 \).
 \end{proof}
 
-Without loss of generality, we may assume
+\begin{remark}\label{rem:generality-jfknwejn}
+    Without loss of generality, we may assume
 \begin{align*}
     S &\subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\}\\
     E &= \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\}
 \end{align*}
 because the matrices \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) are equal, where \( \rho \coloneqq \min \left\{ E \cup \left\{ i \mid (i,j) \in S \right\} \right\} \) and \( E - \rho \coloneqq \left\{ (i - \rho, j) \mid (i,j) \in E \right\} \). This assumption allows us to apply the previous propostions to more general \( S \) and \( E \).
+\end{remark}
 
 \begin{example}
     Assume we have a configuration with support \( S = \left\{ (0,i), (0,j), (0,k) \right\} \) for \( 0 \leq i < j< k \leq d \). By Proposition \ref{prop:impossible-support-2}, we know that no valid integral nonzero outcome can have this support.
@@ -346,5 +358,27 @@ because the matrices \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) are
         .  .  .  *  .  .  .  
         *  .  .  *  .  .  .  .  
     \end{verbatim}
-    where \( * \) denotes a non-zero entry. This is because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \).
+    where \( * \) denotes a non-zero entry. This is because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \). Similarly, this configuration is not an outcome
+    \begin{verbatim}
+        *
+        .  .
+        .  .  *  
+        .  .  .  .  
+        .  .  .  .  .  
+        .  .  .  *  .  .  
+        .  .  .  *  .  .  .  
+        *  .  .  *  .  .  .  .  
+    \end{verbatim}
+    as well as 
+    \begin{verbatim}
+        *
+        .  .
+        .  .  *  
+        .  .  .  .  
+        .  .  .  .  .  
+        .  .  .  .  .  *  
+        .  .  .  .  .  *  .  
+        *  .  .  .  .  *  .  .  
+    \end{verbatim}
+    Of course, there are many more examples of impossible supports.
 \end{example}
