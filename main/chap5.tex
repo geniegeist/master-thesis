@@ -1,6 +1,6 @@
 \chapter{Valid Outcomes of Positive Support Size \( \leq 3 \)}
 
-We have all the tools ready to show the following three theorems. 
+All the tools are ready to show the following three theorems, which were first proved in \cite{bik2022classifying}. 
 
 \begin{theorem}\label{thm:outcome-degree-support-size-232323}
     No valid integral outcomes of positive support size one exists.
@@ -10,7 +10,7 @@ We have all the tools ready to show the following three theorems.
     For valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 2 \) we have \( \mathrm{deg}(\mathbf w) = 1 \).
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{thm:sfnjksnfjkwenjfk}
     For valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 3 \) we have \( \mathrm{deg}(\mathbf w) \leq 3 \).
 \end{theorem}
 
@@ -18,7 +18,7 @@ This proves our Main Theorem \ref{thm:outcome-degree-support-size} for the case 
 \begin{align*}
     \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3
 \end{align*}
-for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 3 \). The proof of all the theorems were first presented in \cite{bik2022classifying}. 
+for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 3 \). 
 
 We start with the proof of the first theorem.
 
@@ -48,14 +48,108 @@ Next, we prove the second theorem.
         \item If the degree \( d \) is even, we have \( c_{d,0} = c_{0,d} = 1 \). Thus, \( \mathrm{row}(d)(\mathbf w) \neq 0 \) for all \( j = 0, \dots, d \). Hence, valid outcomes with positive support size two do not exist for even degrees.
     \end{itemize}
 
-    From now on, we assume 
-    \begin{align*}
-        \mathrm{supp}^+({\mathbf{w}}) = \left\{  (0,d), (d,0) \right\}.
-    \end{align*}
+    From now on, we assume \(         \mathrm{supp}^+({\mathbf{w}}) = \left\{  (0,d), (d,0) \right\}    \).
+    We could further assume that the degree \( d \) is odd, but we do not need it.
 
-    For sake of contradiction, let \( d \geq 2 \) (we can even assume that \( d \) is odd, but we do not need it). Then, we can divide the support 
+    For sake of contradiction, let \( d \geq 2 \). Then, we can divide the support 
     \begin{align*}
         \mathrm{supp}({\mathbf{w}}) = \left\{  (0,0) , (0,d), (d,0) \right\},
     \end{align*}
-    via \( \lambda = (2,1,\dots,1) \) to obtain \( S_1 = \left\{ (0,0), (0,d) \right\} \), \( S_k = \emptyset \), and \( S_l = \left\{ (d,0) \right\} \). By Proposition \ref{prop:impossible-support-232423}, the pairing matrix induced by \( S_1 \) and \( E_1 = \left\{ 0,1 \right\} \) is invertible. For \( S_l \) we apply Proposition \ref{prop:impossible-support-23233243243423} and Remark \ref{rem:generality-jfknwejn} to get that the induced pairing matrix is invertible. By Corollary \ref{cor:invertibility-criterion-nooos}, the outcome \( \mathbf{w} \) is zero. This is a contradiction to the assumption that the positive support size is two. Hence, the degree \( d \) equals one.
+    via \( \lambda = (2,1,\dots,1) \) as in Chapter \ref{sec:divide-and-conquer} to obtain \( S_1 = \left\{ (0,0), (0,d) \right\} \), \( S_k = \emptyset \), and \( S_l = \left\{ (d,0) \right\} \). By Proposition \ref{prop:impossible-support-232423}, the pairing matrix induced by \( S_1 \) and \( E_1 = \left\{ 0,1 \right\} \) is invertible. For \( S_l \) we apply Proposition \ref{prop:impossible-support-23233243243423} and Remark \ref{rem:generality-jfknwejn} to get that the induced pairing matrix is invertible. By Corollary \ref{cor:invertibility-criterion-nooos}, the outcome \( \mathbf{w} \) is zero, which has an empty positive support. This is a contradiction to the assumption that the positive support size is two. Hence, the degree \( d \) equals one.
+\end{proof}
+
+\begin{example}
+    The previous theorem shows that the only valid integral outcomes with positive support size two are multiples of
+    \begin{verbatim}
+         1
+        -1  1.
+    \end{verbatim}
+\end{example}
+
+It remains to prove Theorem \ref{thm:sfnjksnfjkwenjfk}. For that consider the following lemma which characterizes the possible supports of valid integral outcomes with positive support size three.
+
+\begin{proposition}\label{lemma:wmrkwjnr3w}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). If the positive support size of \( \mathbf{w} \) is three, then one of the following holds:
+    \begin{enumerate}
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,j) \right\} \) for some \( i,j > 0 \) with \( i+j < d \).
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,d-i) \right\} \) for some \( i = 1, \dots, d-1 \).
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,0) \right\} \) for some \( i = 1, \dots, d-1 \).
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (0,i) \right\} \) for some \( i = 1, \dots, d-1 \).
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
+        \item We have \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). Assume  \(  \left\{ (0,0), (d,0), (0,d) \right\} \subset \mathrm{supp}(\mathbf{w}) \). Clearly, statement 1, 2, 3, or 4 must hold.
+
+    So assume \( (0,d) \notin \mathrm{supp}(\mathbf{w}) \) and  \( (d,0) \notin \mathrm{supp}(\mathbf{w}) \). As in the proof of Theorem \ref{thm:outcome-degree-support-size-232323}, consider the Pascal form \( \mathrm{diag}(0) = \sum c_{i,j} x_{i,j} \). We have \( c_{0, \cdot} = \mathbf 1 \) and \( c_{i,j} = 0 \) for everything else. Similarly, we have for the Pascal form \( \mathrm{diag}(d) = \sum c'_{i,j} x_{i,j} \) that \( c'_{\cdot, 0} = \mathbf 1 \) and \( c'_{i,j} = 0 \) for everything else. Since outcomes are roots of Pascal forms, we have \( \mathrm{diag}(0)(\mathbf w) = \mathrm{diag}(d)(\mathbf w) = 0 \).
+    Due to \( w_{0,0} < 0 \), we conclude \( w_{0,j} > 0 \) and \( w_{i, 0} > 0 \) for some \( i,j > 0 \). Thus, we have 
+    \begin{align*}
+         \left\{ (i,0), (0,j) \right\} \subset \mathrm{supp}(\mathbf{w})
+    \end{align*}
+    for some \( i,j = 1, \dots, d-1 \) using the assumption  \( (0,d) \notin \mathrm{supp}(\mathbf{w}) \) and  \( (d,0) \notin \mathrm{supp}(\mathbf{w}) \). Since \( \mathbf{w} \) is of degree \( d \), there exists \( w_{k,d-k} > 0 \) for some \( k = 1, \dots, d-1 \). However, \( \mathrm{row}(d)(\mathbf{w}) = 0 \) implies that there must be some \( w_{h,d-h} > 0\) for some \( h \neq k \); this \( h \) cannot equal \( 0 \) or \( d \). Thus, the positive support size of \( \mathbf{w} \) is at least four, which is a contradiction. Hence, we must have \( (d,0) \in \mathrm{supp}(\mathbf{w}) \) or \( (0,d) \in \mathrm{supp}(\mathbf{w}) \).
+
+    Let \( (d,0) \in \mathrm{supp}(\mathbf{w}) \) and \( (e, 0) \in \mathrm{supp}(\mathbf{w}) \) for some \( e = 1, \dots, d-1 \). Now using the same argument as before, there must exist some \( w_{f,d-f} > 0 \) for some \( f = 1, \dots, d-1 \); otherwise \( \mathrm{row}(d)(\mathbf{w}) > 0 \) which is a contradiction since \( \mathbf{w} \) is a root of all Pascal forms. This proves statement 5. 
+    
+    The proof for statement 6 is analogous.
+\end{proof}
+
+Knowing the possible supports of valid integral outcomes with positive support size three, we apply the Invertibility Criterion \ref{cor:invertibility-criterion-nooos} to each possible support to prove Theorem \ref{thm:sfnjksnfjkwenjfk}.
+
+\begin{proposition}\label{prop:32j23rj3289}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). If \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,j) \right\} \) for some \( i,j > 0 \) with \( i+j < d \), then \( d = 3 \) and \( (i,j) = (1,1) \).
+\end{proposition}
+
+\begin{proof}
+    Let \( i > 1 \). Choose \( \lambda = (2,1, \dots, 1) \). Then, \( E_1 = \left\{ 0,1 \right\}, S_1 = \left\{ (0,0), (0,d) \right\} \), \( E_{i-1} = \left\{ i \right\}, S_{i-1} = \left\{ (i,j) \right\}\), \( E_{d-1} = \left\{ d \right\}, S_{d-1} = \left\{ (d,0) \right\} \) and, \( E_k = S_k = \emptyset \) for all \( k \in \left\{ 1, \dots, d-1 \right\} \setminus \left\{ 1, i-1, d-1 \right\} \). The pairing matrices \( A^{(d)}_{E_n, S_n} \) are all invertible for \( n = 1, \dots, d-1 \). Hence, the pairing matrix \( A^{(d)}_{\left\{ 0,1,i,d \right\}, \mathrm{supp}(\mathbf{w})} \) is also invertible. By the Invertibility Criterion, \( \mathbf{w} \) is the zero configuration, which is a contradiction. Thus, we have \( i = 1 \).
+
+    Now, we assume \( j > 1 \). The configuration \( \tilde{\mathbf w} = (w_{ji})_{(i,j) \in V_d} \) is an outcome by Proposition \ref{prop:symmetry} because \( \mathbf{w} \) is an outcome. Then \( \tilde{\mathbf{w}} \) has support \( \left\{ (0,0), (d,0), (0,d), (1,\cdot) \right\} \) by the previous argument. However, then we have \( j = 1 \) which is a contradiction. So, we have \( j = 1 \).
+
+    Finally, we need to show that the degree \( d \) equals three. For the sake of contradiction, assume \( d > 3 \). Then, we can choose \( \lambda = (3,1,\dots, 1) \). We obtain \( E_1 = \left\{ 0,1,2 \right\} \) and \( S_1 = \left\{ (0,0), (0,d), (1,1) \right\} \). By Proposition \ref{prop:impossible-support-2324223423123123} this pairing matrix \( A^{(d)}_{E_1, S_1} \) is invertible. The other relevant pairing matrix \( A^{(d)}_{\left\{ d \right\}, \left\{ (d,0) \right\}} \) is also invertible. Thus, the pairing matrix \( A^{(d)}_{\left\{ 0,1,2,d \right\}, \mathrm{supp}(\mathbf{w})} \) is invertible. By the Invertibility Criterion, the configuration \( \mathbf{w} \) is the zero configuration, which is a contradiction. Hence, we have \( d = 3 \).
+\end{proof}
+
+\begin{proposition}\label{prop:symmetry-34234324}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). Assume the outcome \( \mathbf{w} \) satisfies one of the following conditions:
+    \begin{enumerate}
+        \item \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,d-i) \right\} \) for some \( i = 1, \dots, d-1 \),
+        \item \(\mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (i,0) \right\} \) for some \( i = 1, \dots, d-1 \),
+        \item \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,d), (0,i) \right\} \) for some \( i = 1, \dots, d-1 \).
+    \end{enumerate}
+    Then, \( d = 2 \) and \( i = 1 \) hold.
+\end{proposition}
+
+\begin{proof}
+    %Let \( \mathbf{w} \) be a valid integral outcome of degree \( d \) that satisfies the first or second condition. Let \( i > 1 \). Choose \( \lambda = (2,1, \dots, 1) \). Then, as in the proof of Proposition \ref{prop:32j23rj3289}, we obtain that the pairing matrix \( A^{(d)}_{\left\{ 0,1,i,d \right\}, \mathrm{supp}(\mathbf{w})} \) is invertible. By the Invertibility Criterion, the configuration \( \mathbf{w} \) is the zero configuration, which is a contradiction. Thus, we have \( i = 1 \).
+
+    %Assume \( \mathbf{w} \) satisfies the third condition with \( i > 1 \). By symmetry, we have found an outcome \( \tilde{\mathbf{w}} \) that satisfies the second condition with \( i>1 \). By the previous argument however, we have \( i = 1 \). Contradiction; so we have \( i = 1 \).
+
+    Assume \( d > 2 \). Let \( \mathbf{w} \) satisfy the third condition. Choose \( \lambda = (3,1, \dots, 1) \). Then, apply Proposition \ref{prop:impossible-support-2}. So, we have that the pairing matrix is invertible. So, \( \mathbf{w} = 0 \) which is a contradiction. Thus, \( d = 2 \). By symmetry we have the same result for the second condition.
+
+    We want to show \( d=2 \) for all outcomes \( \mathbf{w} \) satisfying the first condition. Let \( \mathbf{w}' \) satisfy the second condition. Then \( \mathbf{w} = (123) \mathbf{w}' \) holds. Assume \( d > 2 \). By Proposition \ref{prop:symmetry-2}, we have found an outcome \( \mathbf{w}' \) of degree at least three. This contradicts Proposition \ref{prop:symmetry-34234324} that we have just shown for the second condition. Thus, \( d = 2 \) holds.
+
+    Finally, we have \( i = 1 \) because \( i = 1, \dots, d-1 \) and \( d = 2 \).
+\end{proof}
+
+\begin{proposition}\label{prop:symmetry-232lkmlksm}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). Assume the outcome \( \mathbf{w} \) satisfies one of the following conditions:
+    \begin{enumerate}
+        \item \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
+        \item  \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
+    \end{enumerate}
+    Then, \( d = 2 \) and \( e = f = 1 \) hold.
+\end{proposition}
+
+\begin{proof}
+    By Proposition \ref{prop:symmetry}, it suffices to show the statement for outcomes \( \mathbf{w} \) satisfying the first condition. % Let \( \mathbf{w} \) be a valid outcome with \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
+
+    Let \( d > 2 \). If \( f = d-1 \), then choose \( \lambda = (3,1,\dots,1) \). This allows us to apply Proposition \ref{prop:impossible-support-2324223423123123} because \( 0 + e \neq 2d - 1 \) for \( d > 1 \). So, \( \mathbf{w} = \mathbf 0\) which is a contradiction. Thus, we have \( f < d-1 \). Then, we can choose \( \lambda = (2, 1, \dots, 1) \). Use Proposition \ref{prop:impossible-support-232423} to get that \( \mathbf{w} = \mathbf{0} \). This is a contradiction. Hence, we have \( d = 2 \).
+
+    Let \( d = 2 \). Then, we have \( e = f = 1 \) by definition of \( e \) and \( f \).
+\end{proof}
+
+Finally, we can prove Theorem \ref{thm:sfnjksnfjkwenjfk}.
+
+\begin{proof}[Proof of Theorem \ref{thm:sfnjksnfjkwenjfk}]
+    Use Proposition \ref{lemma:wmrkwjnr3w}. For each case, either apply Proposition \ref{prop:32j23rj3289}, Proposition \ref{prop:symmetry-34234324}, or Proposition \ref{prop:symmetry-232lkmlksm} to show that the degree \( d \) equals two or three.
 \end{proof}

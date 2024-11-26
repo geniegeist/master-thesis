@@ -106,7 +106,7 @@ Given some set of vertices \( S \subset V_d \) the invertibility criterion uses 
 
 Given a non-zero configuration \( \mathbf{w} \) we try to construct sets \( S \supset \mathrm{supp}(\mathbf w) \) and \( E \) such that the pairing matrix \( A_{E,S}^{(d)} \) is invertible. If we succeed, then \( \mathbf{w} \) is \emph{not} an outcome since the initial configuration is the only valid outcome with support in \( S \). 
 
-\section{Divide and Conquer}
+\section{Divide and Conquer}\label{sec:divide-and-conquer}
 
 The invertibility criterion is a powerful tool to determine whether a given configuration is an outcome. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.
 
@@ -220,6 +220,88 @@ Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \)
     where \( * \) stands for arbitrary entries. The matrix is invertible, so no nonzero outcome with support in \( S = \left\{ (0,0), (0,4), (2,0), (4,1), (5,0), (6,0) \right\} \) exists.
 \end{example}
 
+\section{Symmetry}
+
+With the Invertibility Criterion we can exclude certain supports from being the supports of valid outcomes. We will now show that the supports of valid outcomes are symmetric with respect to the main diagonal.
+
+\begin{proposition}\label{prop:symmetry}
+    Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a configuration in \( \mathbb{Z}^{V_d} \). Then \( \mathbf{w} \) is an outcome if and only if \(  \tilde{\mathbf{w}} \coloneqq (w_{j,i})_{(i,j) \in V_d} \) is an outcome.
+\end{proposition}
+
+\begin{proof}
+    Observe that
+    \begin{align*}
+        \mathrm{diag}(k)  &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}\\ 
+        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}\\
+        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} x_{i,j}.
+    \end{align*}
+
+    Let \( \mathbf{w} \) be a valid outcome. Then, \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) for all \( k = 0, \dots, d \). Thus, 
+    \begin{align*}
+        \mathrm{diag}(k)(\tilde{\mathbf{w}}) &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-j} w_{j,i} \\
+        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-i} w_{j,i}\\
+        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} w_{i,j} \\
+        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} w_{i,j} \\
+        &= \mathrm{diag}(k)(\mathbf w) = 0 \qquad \forall k = 0, \dots, d.
+    \end{align*}
+\end{proof}
+
+\begin{example}
+    We have already seen that the support below cannot be the support of a valid outcome.
+    \begin{verbatim}
+        · 
+        · · 
+        * · · 
+        · · · · 
+        · · · · · 
+        · · · · * · 
+        * · * · · * *
+    \end{verbatim}
+    By symmetry, the support below cannot be the support of a valid outcome either.
+    \begin{verbatim}
+        * 
+        * · 
+        · * · 
+        · · · · 
+        * · · · · 
+        · · · · · · 
+        * · · · * · ·
+    \end{verbatim}
+\end{example}
+
+Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be a configuration in \( \mathbb{Z}^{V_d} \). We define 
+\begin{align*}
+    \mathbf w \mapsto \hat{\mathbf w} \coloneqq \left( (-1)^{d-j} w_{j, d - i -j} \right)_{(i,j) \in V_d}.
+\end{align*}
+
+\begin{proposition}\label{prop:symmetry-2}
+    Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a configuration in \( \mathbb{Z}^{V_d} \). Then \( \mathbf{w} \) is an outcome if and only if \( \hat{\mathbf w} \coloneqq \left( (-1)^{d-j} w_{j, d - i -j} \right)_{(i,j) \in V_d} \) is an outcome.
+\end{proposition}
+
+\begin{proof}
+    Let \( k = 0, \dots, d \). We have 
+    \begin{align*}
+        \mathrm{col}(k)(\hat{\mathbf w}) &= (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} \\
+        &= (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} \\
+        &= (-1)^{d-k} \mathrm{diag}(k)(\mathbf w)\\
+        &= 0.
+    \end{align*}
+    This proves the statement.
+\end{proof}
+
+The symmetry just introduced can be interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by 
+\begin{align*}
+    (12) \cdot \mathbf w = \tilde{\mathbf w} \quad \text{and} \quad (123) \cdot \mathbf w = \hat{\mathbf w}.
+\end{align*}
+Then, the group actions \( (12) \), \( (13) \) and \( (23) \) can be depicted in Figure \ref{fig:group-action-s3}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/group-action-s3.png}
+    \caption{This illustration is taken from \cite{bik2022classifying}. The left most illustration shows mirroring the configuration with respect to the main diagonal. The middle illustration shows switching the order on the same row while also alternating the signs of the row. The right most illustration shows switching the order on the same column while also alternating the signs of the column.}
+    \label{fig:group-action-s3}
+\end{figure}
+
 \section{Impossible Supports}\label{sec:impossible-supports}
 
 Now, we show that specific supports cannot be the supports of valid integral outcomes. Hence, the title of this section \emph{Impossible Supports}. For instance, can we have an outcome whose support is only contained in \( S = \left\{ (0,0), (0,i) \right\} \) for some \( i \in \mathbb{N} \)? We will show that this is not possible.
@@ -284,7 +366,7 @@ Now, we show that specific supports cannot be the supports of valid integral out
     The matrix on the right-hand side is invertible because it is a Vandermonde matrix. Thus, the pairing matrix \( A^{(d)}_{E,S} \) is invertible.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:impossible-support-2324223423123123}
     Let \( d \in \mathbb{N} \). Assume \( i,j,=0, \dots, d \) with \( i < j \). Moreover, let \( k=0, \dots, d-1 \). If \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
 \end{proposition}
 
@@ -358,7 +440,7 @@ because the matrices \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) are
         .  .  .  *  .  .  .  
         *  .  .  *  .  .  .  .  
     \end{verbatim}
-    where \( * \) denotes a non-zero entry. This is because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \). Similarly, this configuration is not an outcome
+    where \( * \) denotes a non-zero entry. This is because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \). Similarly, these configurations are not outcomes
     \begin{verbatim}
         *
         .  .
@@ -369,7 +451,6 @@ because the matrices \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) are
         .  .  .  *  .  .  .  
         *  .  .  *  .  .  .  .  
     \end{verbatim}
-    as well as 
     \begin{verbatim}
         *
         .  .
