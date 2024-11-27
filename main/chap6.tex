@@ -1,3 +1,45 @@
-\chapter{Hyperfield Criterion}
 
-sdcsc
+\chapter{Valid Outcomes of Positive Support Size \( 4 \)}
+
+We want to show that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have
+\begin{align*}
+    \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3 = 5.
+\end{align*}
+In the previous chapter, we showed that this inequality holds for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 3 \) using the \emph{Invertibility Criterion}. For this chapter, we will need to introduce a new criterion, the \emph{Hyperfield Criterion}.
+
+\section{Hyperfield Criterion}
+
+Let us define the {sign hyperfield}. For some set \( A \), the set \( 2^A \) denotes the power set of \( A \).
+
+\begin{definition}
+    Let \( H \coloneqq \left\{ -1, 0, 1 \right\} \). We define the addition \( + : H \times H \to 2^H \setminus \left\{ \emptyset \right\} \) on \( H \) as follows
+    \begin{align*}
+        0 + x = \left\{ x \right\}  \quad \forall x \in H, \quad 1 + 1 = \left\{ 1 \right\}, \quad 1 + (-1) = H, \quad (-1) + (-1) = \left\{ -1 \right\}.
+    \end{align*}
+    Multiplication \( \times : H \times H \to H \) is defined as usual. We call \( H \) the \emph{sign hyperfield}.
+\end{definition}
+
+Often, for singleton sets \( \left\{ x \right\} \), we will write \( x \) instead of \( \left\{ x \right\} \). So, 
+\begin{align*}
+    1 + 1 = 1 \qquad \qquad \text{or} \qquad \qquad (-1) + 0 = -1.
+\end{align*}
+
+\begin{remark}
+    The tuple \( (H, + , \cdot, 0, 1) \) is called a \emph{hyperfield}. A hyperfield satisfies the following properties:
+    \begin{enumerate}
+        \item  The maps \( + \) and \( \cdot \) are symmetric;
+        \item \( (H \setminus \left\{ 0 \right\}, \cdot, 1) \) is a group;
+        \item \( 0 \cdot x = 0 \) and \( 0 + x = x \) hold for all \( x \in H \);
+        \item \( \bigcup_{q \in x+y}(q + z) = \bigcup_{q \in x + y}(x + q) \) hold for all \( x,y,z \in H \);
+        \item \( a \cdot (x + y) = (a \cdot x) + (a \cdot y) \) hold for all \( a,x,y \in H \).
+        \item An inverse element \( y  \in H\) exists for every \( x \in H\) such that the set \( x + y \) contains \( 0 \). This inverse element \( y \) is unique for every \( x \) and is denoted by \( -x \).
+    \end{enumerate}
+
+    Refer to \cite{bik2022classifying} Section 6.1 or \cite{baker2018matroids} for more details.
+\end{remark}
+
+Next, we define polynomials over the sign hyperfield.
+
+\begin{definition}
+    s
+\end{definition}
