@@ -116,7 +116,7 @@ The reason we introduced the sign hyperfield is that it allows us to neglect the
     Now, suppose that there exists some \( \mathbf{k} \in \mathbb{Z}^n_{\geq 0} \) such that \( \lambda_{\mathbf{k}} \mathbf{w}^{\mathbf{k}} \neq 0 \). Assume \(  \lambda_{\mathbf{k}} \mathbf{w}^{\mathbf{k}} > 0 \). Then, there also exists some \( \mathbf{j} \in \mathbb{Z}^n_{\geq 0} \) such that we have \( \lambda_{\mathbf{j}} \mathbf{w}^{\mathbf{j}} < 0 \); otherwise \( f(\mathbf{w}) > 0 \) which is a contradiction to \( \mathbf{w} \) being a root of \( f \). Thus, \( \mathrm{sign}(f)(\mathbf{s}) \) has summands of both signs, and hence \( \mathrm{sign}(f)(\mathbf{s}) = H \). So \( 0 \in  \mathrm{sign}(f)(\mathbf{s}) \) holds. Therefore, \( \mathbf{s} \) is a root of \( \mathrm{sign}(f) \).
 \end{proof}
 
-Taking the contrapositive of the above proposition, we get the \emph{Hyperfield Criterion}.
+Taking the contrapositive of the above proposition, we get the \emph{Hyperfield Criterion} which was first presented by Bik and Marigliano in \cite{bik2022classifying}.
 
 \begin{proposition}[Hyperfield Criterion]
     Let \( \mathbf{s} = (s_{i,j})_{(i,j) \in V_d} \in H^{V_d} \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration with \( \mathrm{sign}(\mathbf{w}) = \mathbf{s} \). If \( \mathbf{s} \) is not a root of a hyperfield Pascal form, then \( \mathbf{w} \) is not a chipsplitting outcome.
@@ -126,4 +126,94 @@ Taking the contrapositive of the above proposition, we get the \emph{Hyperfield 
     Follows from Proposition \ref{prop:sign-sikjsfnf} and Theorem \ref{thm:pascal-outcome}.
 \end{proof}
 
-We call a vector \( \mathbf{s} \in H^{V_d} \) a hyperfield configuration. For completeness, we state standard definitions for hyperfield configurations \( \mathbf{s} \in H^{V_d} \) similar to Definition \ref{def:chip-terminology}.
+We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \emph{hyperfield configuration}. For completeness, we state standard definitions for sign configurations \( \mathbf{s} \in H^{V_d} \) similar to Definition \ref{def:chip-terminology}.
+
+\begin{definition}
+    Let \( \mathbf{s} \in H^{V_d} \) be a sign configuration. We define the following:
+    \begin{enumerate}
+        \item The positive support is defined as \( \mathrm{supp}^+(\mathbf{s}) \coloneqq \left\{ (i,j) \in V_d \mid s_{i,j} = 1 \right\} \).
+        \item The negative support is defined as \( \mathrm{supp}^-(\mathbf{s}) \coloneqq \left\{ (i,j) \in V_d \mid s_{i,j} = -1 \right\} \).
+        \item The support is defined as \( \mathrm{supp}(\mathbf{s}) \coloneqq \mathrm{supp}^+(\mathbf{s}) \cup \mathrm{supp}^-(\mathbf{s}) \).
+        \item The degree of \( \mathbf{s} \) is defined as \( \mathrm{deg}(\mathbf{s}) \coloneqq \mathrm{max}\left\{ i + j \mid (i,j) \in \mathrm{supp}(\mathbf{s}) \right\} \).
+        \item We call \( \mathbf{s} \) \emph{valid} if its support is empty or \( \mathrm{supp}^-(\mathbf{s}) = \left\{ (0,0) \right\} \).
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, the following statements hold:
+    \begin{enumerate}
+        \item \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \),
+        \item \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \),
+        \item \( \mathrm{deg}(\mathrm{sign}(\mathbf{w})) = \mathrm{deg}(\mathbf{w}) \).
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Follows from the definitions.
+\end{proof}
+
+To make use of the Hyperfield Criterion, we investigate hyperfield forms induced by the Pascal forms \( \mathrm{col}(k), \mathrm{row}(k) \), and \( \mathrm{diag}(k) \).
+
+\begin{proposition}\label{skdmldskfmksdej}
+    Let \( k = 0, \dots, d \). Define 
+    \begin{align*}
+        A_k^+ &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \equiv k \pmod 2 \right\} \\
+        A_k^- &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \not \equiv k \pmod 2 \right\}
+    \end{align*}
+    Then, the following statements hold:
+    \begin{enumerate}
+        \item We have 
+        \begin{align*}
+            \mathrm{sign}(\mathrm{diag}(k)) = \sum_{i=0}^k \sum_{j=0}^{d-k} x_{i,j}.
+        \end{align*}
+
+        \item We have 
+        \begin{align*}
+            \mathrm{sign}(\mathrm{col}(k)) = \sum_{(i,j) \in A_k^+} x_{i,j} - \sum_{(i,j) \in A_k^-} x_{i,j}.
+        \end{align*}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    The first statement follows directly from Proposition \ref{prop:diagonal-basis-324324324231} since \( i \leq k \) and \( d - i - j \geq k - i \) must hold for the binomial coefficient to be non-zero. The second statement follows similarly from Proposition \ref{prop:pascal-formulas}.
+\end{proof}
+
+\begin{proposition}\label{prop:sign-sikjsfnf322}
+    Let \( \mathbf{s} \in H^{V_d} \) be a valid nonzero sign configuration. The following statements hold:
+    \begin{enumerate}
+        \item Let \( k = 0, \dots, d \). If \( 0 \in \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s})  \), then \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = H \).
+        \item If \( 0 \in \mathrm{sign}(\mathrm{col}(k))(\mathbf{s}) \) for all \( k = 0, \dots, d \), then \( \mathrm{sign}(\mathrm{col}(k))(\mathbf{s}) = H \).
+        \item If \( 0 \in \mathrm{sign}(\mathrm{row}(k))(\mathbf{s}) \) for all \( k = 0, \dots, d \), then \( \mathrm{sign}(\mathrm{row}(k))(\mathbf{s}) = H \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    We see that \( \mathbf{s} \) has at least degree \( d \geq 1 \) since it is nonzero and valid. All \( s_{i,j} \) equal one for \( i + j > 0 \), and there exists \( s_{k, d-k} = 1 \) for some \( k = 0, \dots, d \).
+
+    \begin{enumerate}
+        \item Assume \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) \) contains zero. By Proposition \ref{skdmldskfmksdej}, we have
+        \begin{align*}
+            0 \in \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = \sum_{i=0}^k \sum_{j=0}^{d-k} s_{i,j}.
+        \end{align*}
+        We know that \( s_{0,0} \) is minus one. So, we have \( s_{i,j} = 1 \) for some \( i,j \) with \( i + j > 0 \). Thus, \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = H \).
+        
+        \item First note that \( \mathrm{col}(0) = \mathrm{diag}(d) \). So, the case \( k = 0 \) is proven. Let \( k > 0 \). We start with \( k = d \). Then, the union of \( A^+_d \) and \( A^-_d \) consists exactly of vertices of degree \( d \). Since \( \mathrm{sign}(\mathrm{col}(d))(\mathbf{s}) =  \sum_{(i,j) \in A_d^+} s_{i,j} - \sum_{(i,j) \in A_d^-} s_{i,j} \) contains zero, we have \( s_{i,j} = 1 \) for some \( (i,j) \in A_d^+ \), and \( s_{i',j'} = -1 \) for some \( (i',j') \in A_d^- \). Hence, \( \mathrm{sign}(\mathrm{col}(d))(\mathbf{s}) = H \).
+        
+        Let \( k = d-1 \). Then, \( s_{i,j} = 1 \) for some \( (i,j) \in A_{k+1}^+ \), and \( s_{i',j'} = -1 \) for some \( (i',j') \in A_{k+1}^- \). Note that \( A_{k+1}^- \subset A^+_{k} \) by definition. Since \( \mathrm{sign}(\mathrm{col}(k))(\mathbf{s}) =  \sum_{(i,j) \in A_k^+} s_{i,j} - \sum_{(i,j) \in A_k^-} s_{i,j} \) contains zero, we have \( s_{i'',j''} = -1 \) for some \( (i'',j'') \in A_{k}^- \). Hence, \( \mathrm{sign}(\mathrm{col}(k))(\mathbf{s}) = H \).
+
+        Repeat this argument for \( k = d-2, \dots, 1 \) to show that \( \mathrm{sign}(\mathrm{col}(k))(\mathbf{s}) = H \).
+
+        \item The proof is analogous to the previous case.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, 
+    \begin{align*}
+        \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) = H \quad \text{for all} \quad p \in \left\{ \mathrm{diag}(k), \mathrm{col}(k), \mathrm{row}(k) \mid k = 0, \dots, d \right\}.
+    \end{align*}
+\end{corollary}
+
+\begin{proof}
+    This follows from Theorem \ref{thm:pascal-outcome}, Proposition \ref{prop:sign-sikjsfnf}, and Proposition \ref{prop:sign-sikjsfnf322}.
+\end{proof}
