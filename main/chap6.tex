@@ -351,6 +351,54 @@ We remind that hyperfield Pascal forms are expressed as sums \( \sum_{(i,j) \in 
     We see that \( \mathrm{diag}(1) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1\).
 \end{example}
 
-The previous example also demonstrates the expression \( \mathrm{diag}(1) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1 \) is \emph{independent} of the degree \( d \), i.e. if we were to consider the Pascal form \( \mathrm{diag}(1) \) in \( \mathbb{Z}^{V_{d}} \) for some arbitrary \( d \), the expression would still hold. This is great news since it allows us to express Pascal forms in terms of contraction variables for all degrees \( d \) at once.
+The previous example also demonstrates that the expression \( \mathrm{diag}(1) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1 \) is \emph{independent} of the degree \( d \), i.e. if we were to consider the Pascal form \( \mathrm{diag}(1) \) in \( \mathbb{Z}^{V_{d}} \) for some arbitrary \( d \), the expression would still hold. This is great news since it allows us to express Pascal forms in terms of contraction variables for all degrees \( d \) at once.
 
-So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), and \( c_3 \). As we might expect, we can also express some Pascal forms in terms of the contraction variables \( b_0, b_1, b_2, b_3 \), \( d_0, d_1, d_2, d_3 \), \( e_0, e_1, e_2, e_3 \), \( y_{i,j} \), and \( z_{i,j} \). We will now find these kinds of Pascal forms that can be represented in terms of the contraction variables independent of the degree \( d \).
+So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), and \( c_3 \). As we might expect, we can also express some Pascal forms in terms of the contraction variables \( b_0, b_1, b_2, b_3 \), \( d_0, d_1, d_2, d_3 \), \( e_0, e_1, e_2, e_3 \), \( y_{i,j} \), and \( z_{i,j} \). We will now find these kinds of Pascal forms that can be represented in terms of the contraction variables independent of the degree \( d \). A good set of Pascal forms to consider are the Pascal forms \( \mathrm{diag}(k),  \mathrm{col}(k) \) and \( \mathrm{row}(k) \) for \( k = 0,1,2,3,d-3,d-2,d-1,d \).
+
+\begin{proposition}
+    Let \( d \geq 11 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
+    \begin{enumerate}
+        \item \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), or
+        \item \( \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3)\), or
+        \item \( \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3) \), or
+        \item \( \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \).
+    \end{enumerate}
+    Then, we have 
+    \begin{align*}
+        p = \sum_{i,j = 0}^3 \lambda_{i,j}^{(x)} x_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(y)} y_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(z)} z_{i,j} + \sum_{j=0}^3 \lambda_{j}^{(b)} b_j + \sum_{i=0}^3 \lambda_{i}^{(c)} c_i + \sum_{k=0}^3 \lambda_{k}^{(d)} d_k + \sum_{k=0}^3 \lambda_{k}^{(e)} e_k
+    \end{align*}
+    with coefficients \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \in H \).
+    
+    Moreover, all the coefficients  \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \) are independent of the degree \( d \).
+\end{proposition}
+
+\begin{proof}
+    For case two and three we observe that the hyperfield form \( p \) has support contained in the areas \( X, C \), and \( Y \) from Figure \ref{fig:contractions-42342432}. This follows directly from Proposition \ref{skdmldskfmksdej}. We also see that \( p \) depends only on the column sums on \( C \).
+
+    For case one and four we see that \( p \) has support contained in the areas \( X, B \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We conclude that \( p \) depends only on the row sums on \( B \).
+\end{proof}
+
+Here is another example.
+
+\begin{example}
+    Consider \( \mathrm{diag}(3) \) and \( d = 11 \).
+    \begin{verbatim}
+        · 
+        · · 
+        · · · 
+        + + + + 
+        + + + + · 
+        + + + + · · 
+        + + + + · · · 
+        + + + + · · · · 
+        + + + + · · · · · 
+        + + + + · · · · · · 
+        + + + + · · · · · · · 
+        + + + + · · · · · · · ·
+    \end{verbatim}
+    Write 
+    \begin{align*}
+        \mathrm{sign}(\mathrm{diag}(3)) = \sum_{i,j=0}^3 x_{i,j} + \sum_{i=0}^3 c_i + \sum_{i=0}^3 \sum^{i}_{j=0} y_{i,j}.
+    \end{align*}
+    This linear form is independent of the degree \( d \).
+\end{example}
