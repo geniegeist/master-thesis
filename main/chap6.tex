@@ -278,7 +278,7 @@ The idea of contraction is to \emph{contract} or \emph{consolidate} vertices in 
     \caption{This figure illustrates the contraction variables and is taken from \cite{bik2022classifying}. The yellow areas \( X, Y, Z \) represent formal variables \( x_{i,j} \) that are unaffected by the contraction. The mint areas \( B, C, D \) represent rows and columns of vertices that are merged into a single vertex. The area \( D \) is further divided into areas \( D_1, D_2 \) by alternating columns.}
 \end{figure}
 
-\begin{definition}
+\begin{definition}\label{def:contraction-variables}
 Let \( x_{i,j} \) be formal variables indexed by \( V_d \). We merge a subset of rows and columns of formal variables \( x_{i,j} \) in \( V_d \) into a single vertex by defining the following \emph{contraction variables}:
 \begin{align*}
     y_{i,j} &\coloneqq x_{i, d-3-i+j} \quad \text{ for } i,j = 0, \dots, 3, \\
@@ -355,7 +355,7 @@ The previous example also demonstrates that the expression \( \mathrm{diag}(1) =
 
 So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), and \( c_3 \). As we might expect, we can also express some Pascal forms in terms of the contraction variables \( b_0, b_1, b_2, b_3 \), \( d_0, d_1, d_2, d_3 \), \( e_0, e_1, e_2, e_3 \), \( y_{i,j} \), and \( z_{i,j} \). We will now find these kinds of Pascal forms that can be represented in terms of the contraction variables independent of the degree \( d \). A good set of Pascal forms to consider are the Pascal forms \( \mathrm{diag}(k),  \mathrm{col}(k) \) and \( \mathrm{row}(k) \) for \( k = 0,1,2,3,d-3,d-2,d-1,d \).
 
-\begin{proposition}
+\begin{proposition}\label{prop:contracted-part-1}
     Let \( d \geq 11 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
     \begin{enumerate}
         \item \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), or
@@ -369,7 +369,11 @@ So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), a
     \end{align*}
     with coefficients \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \in H \).
     
-    Moreover, all the coefficients  \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \) are independent of the degree \( d \).
+    Define \( \lambda(p,d) \coloneqq \left(\lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \right) \) for the coefficients of \( p \) on \( H^{V_d} \). Then, we have
+    \begin{align*}
+        \lambda(p,d) &= \lambda(p,d+1) = \lambda(p,d+2) = \lambda(p,d+3) = \dots
+    \end{align*}
+    In other words, all the coefficients  \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \) are independent of the degree \( d \).
 \end{proposition}
 
 \begin{proof}
@@ -402,3 +406,202 @@ Here is another example.
     \end{align*}
     This linear form is independent of the degree \( d \).
 \end{example}
+
+
+\begin{proposition}\label{prop:contracted-part-2}
+    Let \( d \geq 12 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
+    \begin{enumerate}
+        \item \( \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3) \), or
+        \item \( \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3)\).
+    \end{enumerate}
+    Then, we have 
+    \begin{align*}
+        p = \sum_{i,j = 0}^3 \lambda_{i,j}^{(x)} x_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(y)} y_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(z)} z_{i,j} + \sum_{j=0}^3 \lambda_{j}^{(b)} b_j + \sum_{i=0}^3 \lambda_{i}^{(c)} c_i + \sum_{k=0}^3 \lambda_{k}^{(d)} d_k + \sum_{k=0}^3 \lambda_{k}^{(e)} e_k
+    \end{align*}
+    with coefficients \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \in H \).
+    
+    Define \( \lambda(p,d) \coloneqq \left(\lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \right) \) for the coefficients of \( p \) on \( H^{V_d} \). Then, we have
+    \begin{align*}
+        \lambda(p,d) &= \lambda(p,d+2) = \lambda(p,d+4) = \lambda(p,d+6) = \dots \\
+        \lambda(p,d+1) &= \lambda(p,d+3) = \lambda(p,d+5) = \lambda(p,d+7) = \dots 
+    \end{align*}
+    In other words, all the coefficients of forms on even degrees are independent, and all the coefficients of forms on odd degrees are independent of the degree \( d \).
+\end{proposition}
+
+\begin{proof}
+    All the hyperfield forms \( p \) depend on entries in the area \( Y, D \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We see that \( p \) depends only on the alternating diagonal sums on \( D \) for \( x_{i,j} \) in the area \( D \). This shows that \( p \) is a sum of the contraction variables \( y_{i,j} \), \( z_{i,j} \), and \( d_k - e_k \).
+\end{proof}
+
+\begin{example}
+    Consider \( \mathrm{col}(d-3) \). Let \( d = 12 \). The support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure:
+    \begin{verbatim}
+        · 
+        · · 
+        · · · 
+        + + + + 
+        · - - - - 
+        · · + + + + 
+        · · · - - - - 
+        · · · · + + + + 
+        · · · · · - - - - 
+        · · · · · · + + + + 
+        · · · · · · · - - - - 
+        · · · · · · · · + + + + 
+        · · · · · · · · · - - - -
+    \end{verbatim}
+    We write 
+    \begin{align*}
+        \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j}.
+    \end{align*}
+    For \( d = 13 \), the support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure:
+    \begin{verbatim}
+        · 
+        · · 
+        · · · 
+        + + + + 
+        · - - - - 
+        · · + + + + 
+        · · · - - - - 
+        · · · · + + + + 
+        · · · · · - - - - 
+        · · · · · · + + + + 
+        · · · · · · · - - - - 
+        · · · · · · · · + + + + 
+        · · · · · · · · · - - - -
+        · · · · · · · · · · + + + +
+    \end{verbatim}
+    We write 
+    \begin{align*}
+        \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j}.
+    \end{align*}
+\end{example}
+
+We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. Now, we apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
+
+\begin{definition}
+    Define the index set
+    \begin{align*}
+        \Xi \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\}.
+    \end{align*}
+    Let \( \mathbf{s} \in H^{\Xi} \). We call \( \mathbf{s} \) a \emph{contracted hyperfield configuration}, and write \( \mathbf{s} \) as
+    \begin{align*}
+        \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) = (x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k).
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Let \( \mathbf{s} \in H^{\Xi}\) be a {contracted hyperfield configuration}.
+    We say \( \mathbf{s} \) is \emph{valid} if one of the following holds:
+    \begin{enumerate}
+        \item \( \mathbf{s} = \mathbf{0} \) or
+        \item \( s_{0,0} = -1 \), \( x_{i,j} \geq 0 \) for all \( i+j > 0 \), and \(  y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k \geq 0 \) for all \( i,j,k = 0,1,2,3 \).
+    \end{enumerate}
+\end{definition}
+
+Going from the world of hyperfield configurations to the world of \emph{contracted} hyperfield configurations is done via the following map.
+
+\begin{definition}
+    Let \( d \geq 11 \). Let \( \mathbf{s} \in H^{V_d} \) be a hyperfield configuration. We define 
+    \begin{align*}
+        \mathrm{contr}_d(\mathbf{s}): \mathbf{s} \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) = (x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k)
+    \end{align*}
+    where we set
+    \begin{align*}
+        x_{i,j} &\coloneqq s_{i,j} \quad \text{ for } i,j = 0, \dots, 3, \\
+        y_{i,j} &\coloneqq s_{i, d-3-i+j} \quad \text{ for } i,j = 0, \dots, 3, \\
+        z_{i,j} &\coloneqq s_{d-3-j+i,j} \quad \text{ for } i,j = 0, \dots, 3, \\
+        b_j &\coloneqq s_{4,j} + \dots + s_{d-4-j,j} \quad \text{ for } j = 0, \dots, 3, \\
+        c_i &\coloneqq s_{i,4} + \dots + s_{i,d-4-i} \quad \text{ for } i = 0, \dots, 3, \\
+        d_k &\coloneqq \begin{cases}
+            s_{4,d-4-k} + s_{6,d-6-k} + \dots + s_{d-4-k,4} & \text{ if \( d + k \) is even} \\
+            s_{4,d-4-k} + s_{6,d-6-k} + \dots + s_{d-5-k,5} & \text{ if \( d + k \) is odd}
+        \end{cases} \quad \text{ for } k = 0, \dots, 3, \\
+        e_k &\coloneqq \begin{cases}
+            s_{5,d-5-k} + s_{7,d-7-k} + \dots + s_{d-5-k,5} & \text{ if \( d + k \) is even} \\
+            s_{5,d-5-k} + s_{7,d-7-k} + \dots + s_{d-4-k,4} & \text{ if \( d + k \) is odd}
+        \end{cases} \quad \text{ for } k = 0, \dots, 3.
+    \end{align*}
+    exactly as in Definition \ref{def:contraction-variables}.
+\end{definition}
+
+The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we introduce the following definition.
+
+\begin{definition}
+    Let \( \mathbf{s} \in H^{V_d} \) be a hyperfield configuration. We say \( \mathbf{s} \) is \emph{weakly valid} if for all \( (i,j) \in \mathrm{supp}^-(\mathbf{s}) \) one of the following holds:
+    \begin{enumerate}
+        \item \( i,j = 0, \dots, 3 \), or
+        \item \( i = 0, \dots, 3 \) and \( i+j \geq d-3 \), or
+        \item \( j = 0, \dots, 3 \) and \( i + j \geq d-3 \).
+    \end{enumerate}
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{assets/weakly-valid.png}
+    \caption{A hyperfield configuration is weakly valid if its negative support is contained in the yellow area. The figure is taken from \cite{bik2022classifying}.}
+\end{figure}
+
+From now on, we only consider \emph{weakly valid} hyperfield configurations because in this case the contraction map \( \mathrm{contr}_d \) always outputs elements in \( H^{\Xi} \).
+
+\begin{definition}
+    Let \( \mathbf{s} \in H^{\Xi} \) be a contracted hyperfield configuration. The \emph{positive support} of \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) is defined as the set of all symbols \( x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k \) such that the corresponding coefficients of \( \mathbf{s} \) equal to one.
+\end{definition}
+
+\begin{example}
+    Let \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{\Xi}\) be a contracted hyperfield configuration defined by 
+    \begin{align*}
+        x_{0,0} = -1, \quad x_{0,3} = 1, \quad x_{1,1} = 1, \quad, x_{3,0} = 1, \quad d_0 = 1, \quad e_0 = 1
+    \end{align*}
+    where all other entries are zero. Then, the positive support of \( \mathbf{s} \) is given by
+    \begin{align*}
+        \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}.
+    \end{align*}
+\end{example}
+
+\section{Proof}
+
+We have all the tools to prove the main result of this chapter, namely for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have
+\begin{align*}
+    \mathrm{deg}(\mathbf w) \leq 5.
+\end{align*}
+As in previous chapters, we characterize outcomes as roots of Pascal forms. So, we define the following two systems of Pascal forms that valid outcomes must be roots of:
+\begin{gather*}
+    \Phi_1 \coloneqq \{ 
+        \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3), \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3),\\
+         \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3), \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) 
+     \},
+\end{gather*}
+and 
+\begin{gather*}
+    \Phi_2 \coloneqq \{ 
+        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3), \\
+        \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) 
+     \}.
+\end{gather*}
+We also define \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
+
+By Proposition \ref{prop:contracted-part-1}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_1 \) as 
+\begin{align*}
+    \mathrm{sign}(p) = \hat p
+\end{align*}
+for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 11 \). This linear form is independent of the degree \( d \). To make notations consistent later, we set \( \hat p^{\mathrm{even}} \coloneqq  \hat p^{\mathrm{odd}}  \coloneqq \hat p\).
+
+Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_2 \) as
+\begin{align*}
+    \mathrm{sign}(p) = \begin{cases}
+        \hat p^{\mathrm{even}} & \text{ if } d \text{ is even} \\
+        \hat p^{\mathrm{odd}} & \text{ if } d \text{ is odd}
+    \end{cases}
+\end{align*}
+for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). These linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
+
+\begin{definition}
+    We define the following three solution sets:
+    \begin{enumerate}
+        \item     Define \( \Gamma_d \) to be the set of all valid hyperfield configurations \( \mathbf{s} \in H^{V_d} \) of degree \( d \) such that \( \mathrm{sign}(p)(\mathbf{s}) = H \) for all \( p \in \Phi \).
+
+        \item     Define \( \Gamma^{\mathrm{even}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{even}}(\mathbf{s}) = H \) for all \( p \in \Phi \).
+
+        \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Phi \).
+    \end{enumerate}
+\end{definition}
