@@ -118,7 +118,7 @@ The reason we introduced the sign hyperfield is that it allows us to neglect the
 
 Taking the contrapositive of the above proposition, we get the \emph{Hyperfield Criterion} which was first presented by Bik and Marigliano in \cite{bik2022classifying}.
 
-\begin{proposition}[Hyperfield Criterion]
+\begin{proposition}[Hyperfield Criterion]\label{prop:hyperfield-criterion}
     Let \( \mathbf{s} = (s_{i,j})_{(i,j) \in V_d} \in H^{V_d} \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration with \( \mathrm{sign}(\mathbf{w}) = \mathbf{s} \). If \( \mathbf{s} \) is not a root of a hyperfield Pascal form, then \( \mathbf{w} \) is not a chipsplitting outcome.
 \end{proposition}
 
@@ -605,3 +605,62 @@ for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\ma
         \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Phi \).
     \end{enumerate}
 \end{definition}
+
+By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). This is the reason why we have defined \( \Gamma_d \) in the first place. 
+
+\begin{proposition}
+    Let \( d \geq 12 \). Then, the following holds:
+    \begin{enumerate}
+        \item If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
+       \item If \( d \) is odd, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{odd}}) \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Let \( d \geq 12 \) be even. Let \( \mathbf{s} \in {H}^{V_d} \) be a hyperfield configuration and \( p \in \Phi \). Then, we have 
+    \begin{align*}
+        \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})).
+    \end{align*}
+    by definition of \( \hat p^{\mathrm{even}} \). If \( \mathbf{s} \in \Gamma_d \), then \( H = \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})) \). Hence, \( \mathrm{contr}_d(\mathbf{s}) \) is contained in \( \Gamma^{\mathrm{even}} \). If \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) holds, using the equation above we also see that \( \mathbf{s} \in \Gamma_d \). This shows that \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
+
+    The second statement for odd degrees \( d \) follows analogously.
+\end{proof}
+
+\begin{corollary}
+    Let \( d \geq 12 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have 
+    \begin{align*}
+        \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}}.
+    \end{align*}
+\end{corollary}
+
+\begin{proof}
+    Define \( \mathbf{s} \coloneqq \mathrm{sign}(\mathbf{w}) \). By Proposition \ref{prop:sign-sikjsfnf322} we have \( \mathbf{s} \in \Gamma_d \). If \( d \) is even, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) by the previous proposition. If \( d \) is odd, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{odd}} \) by the previous proposition. This shows the claim.
+\end{proof}
+
+This corollary allows us to exclude certain outcomes as valid outcomes. Assume we have some contracted hyperfield configuration \( \xi \in H^{\Xi} \) that is not a root of some of the linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) for \( p \in \Phi \). Then, any chipsplitting configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d( \mathrm{sign}(\mathbf{w})) = \xi \) is not a valid outcome.
+
+
+\begin{proposition}
+    Let \( \mathbf{s} \in H^{V_d} \) be a valid hyperfield configuration of degree \( d \) and positive support size four. Define the set \( \Omega_d  \) to be
+    \begin{align*}
+         \left\{ \mathbf{s} \in H^{V_d} \mid \mathrm{deg}(\mathbf{s}) = d, \lvert \mathrm{supp}^{+}(\mathbf{s}) \rvert = 4, \mathrm{sign}(p)(\mathbf{s}) = H \, \forall p \in \left\{ \mathrm{row}(k), \mathrm{col}(k), \mathrm{diag}(k) \right\}_{k=0}^d \right\}. 
+    \end{align*}
+    Then, all of the following hold:
+    \begin{enumerate}
+        \item Let \( d = 6 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
+        \begin{gather*}
+            \left\{ (0,3), (1,5), (4,1), (6,0) \right\},
+            \left\{ (0,5), (1,1), (3,3), (6,0) \right\},
+            \left\{ (0,6), (1,1), (3,3), (5,0) \right\},\\
+            \left\{ (0,6), (1,1), (3,3), (6,0) \right\},
+            \left\{ (0,6), (1,4), (3,0), (5,1) \right\}.
+        \end{gather*}
+        \item Let \( d = 7 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
+        \begin{gather*}
+            \left\{ (0,7), (1,1), (3,3), (7,0) \right\},
+            \left\{ (0,7), (1,3), (5,1), (7,0) \right\},
+            \left\{ (0,7), (1,5), (3,1), (7,0) \right\}.
+        \end{gather*}
+        \item Let \( d\geq 8 \). Then \( \mathbf{s}\notin \Omega_d \).
+    \end{enumerate}
+\end{proposition}
