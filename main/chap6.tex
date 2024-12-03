@@ -1,13 +1,12 @@
 
-\chapter{Valid Outcomes of Positive Support Size Four}
+\chapter{Constraints on Supports of Valid Outcomes}
 
-We want to show that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have
-\begin{align*}
-    \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3 = 5.
-\end{align*}
-In the previous chapter, we showed that this inequality holds for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 3 \) using the \emph{Invertibility Criterion}. For this chapter, we will need to introduce a new criterion, the \emph{Hyperfield Criterion}.
+We want to show in the next chapter that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have \( \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3 = 5 \).
+For that goal we need new tools aside from the \emph{Invertibility Criterion}. We will introduce the \emph{Hyperfield Criterion} and \emph{Contractions} to achieve it.
 
 \section{Hyperfield Criterion}
+
+In this section, we develop the \emph{Hyperfield Criterion} which allows us to interpret Pascal forms as constraints on the support of valid outcomes.
 
 Let us define the {sign hyperfield}. For some set \( A \), the set \( 2^A \) denotes the power set of \( A \).
 
@@ -264,7 +263,235 @@ The above example demonstrates that we can view Corollary \ref{cor:sign-sikjsfnf
     \end{enumerate}
 \end{corollary}
 
-We will use this observation to efficiently enumerate valid outcomes.
+We will use these constraints to efficiently compute all outcomes of degree some \( d \).
+
+\section{Solving Homogeneous Hyperfield Linear Systems}
+
+We deviate from the approach by Bik and Marigliano in \cite{bik2022classifying} by spending some considerate time in solving homogeneous hyperfield linear systems. It will help us path the way for some breakthrough for the efficient computation of valid outcomes.
+
+Fix some degree \( d \). Due to the Hyperfield Criterion, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) which satisfy 
+\begin{align*}
+    0 \in \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w}))
+\end{align*}
+for all \( p \in \left\{ \mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k=0}^d \). These configurations are potential valid outcomes. Let us consider how we can efficiently compute such valid configurations.
+
+\vspace{0.3cm}
+
+\textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $V(A) \coloneqq \{ \mathbf{x} \in H^{V_{d}} : 0 \in \mathrm{sign}(p_{i})(\mathbf{x})  \quad \forall i = 1, \dots, k \}$.
+
+\vspace{0.3cm}
+
+We further simplify the problem by only considering configurations $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ and $\vert \mathrm{supp}^+(\mathbf{x}) \vert = n$ for some fixed $n \in \mathbb N$.
+
+\vspace{0.3cm}
+
+\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ x \in H^{V_{d}} : \text{$\mathrm{supp}^-(x) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(x) \vert = n$} \}$.
+
+\vspace{0.3cm}
+
+Note that $S_{n}(A)$ is a superset of valid outcomes of positive support size $n$, which will be useful in finding all valid outcomes.
+
+\subsection*{A Naive Approach}
+
+To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate over all positive support size $n$ supports and check if they are hyperfield roots of some hyperfield Pascal basis.
+
+
+\begin{algorithm}
+\caption{Brute Force Algorithm}\label{alg:hyperfield_criterion:brute_force}
+    \begin{algorithmic}[1]
+    \Require Positive support size $n$, a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$
+    \Ensure $S_{n}(A)$
+
+    \Function{solve}{$A, n$}
+    \State initialize empty list \texttt{solutions}
+    \For{$n$-combination $S = \{(c_{i}, r_{i}) : i = 1, \dots, n\}$ of $V_{d}$}
+        \State initialize $x \in H^{V_{d}}$ with positive support $S$ and $x_{0,0} = -1$ 
+        \If{$x$ is a hyperfield root of every $p \in A$} 
+        \State add $S$ to \texttt{solutions}
+        \EndIf
+    \EndFor
+    \State \Return \texttt{solutions}
+    \EndFunction
+    \end{algorithmic}  
+\end{algorithm}
+    
+The naive approach has an exponential time complexity since $\binom{(d+1)(d + 2)/2}{n}$ many supports are checked.
+
+\subsection*{Efficient Algorithm}
+
+For a specific type of system of linear forms $A$, we can greatly speed up the computation of $S_{n}(A)$.
+
+
+\begin{definition}
+    Let $p$ be a linear form in \( H^{V_d} \), and let $\mathbf{x} \in {H}^{V_d}$ be some hyperfield root of $p$. If $\mathrm{supp}(\mathbf{x}) \cap \mathrm{supp}(p) = \emptyset$, then the root $\mathbf{x}$ is called a \emph{trivial root} of $p$. Otherwise, the root $\mathbf{x}$ is called a \emph{non-trivial root} of $p$.
+\end{definition}
+
+\begin{definition}
+    Let $A$ be a system of linear forms in \( H^{V_d} \). We say $S_{n}(A)$ is \emph{non-trivial} if $S_{n}(A) \neq \emptyset$ and every $\mathbf{x} \in S_{n}(A)$ is a non-trivial root for every form $p \in A$. We say $A$ is \emph{non-trivial} if $S_{n}(A)$ is non-trivial.
+\end{definition}
+  
+\begin{proposition}
+Let $A$ be a system of linear forms in \( H^{V_d} \), $p \in A$ and $\mathbf{x} \in S_{n}(A)$. Then, the following statements hold:
+\begin{enumerate}
+    \item If $(0,0) \in \mathrm{supp}^+(p)$, then $x_{i,j} = 1$ for some $(i,j) \in \mathrm{supp}^+(p)$. 
+    \item If $(0,0) \in \mathrm{supp}^-(p)$, then $x_{i,j} = 1$ for some $(i,j) \in \mathrm{supp}^-(p)$. 
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proof}
+Assume $(0,0) \in \mathrm{supp}^+(p)$. Since $x_{0,0} = -1$, we have $-1 \in \mathrm{sign}(p)(x)$. By assumption, $\mathbf{x}$ is a hyperfield root of $p$, so $0 \in \mathrm{sign}(p)(\mathbf{x})$. This can only happen if $x_{i,j} = 1$ for some $(i,j) \in \mathrm{supp}^+(p)$. The case $(0,0) \in \mathrm{supp}^-(p)$ is similar.
+\end{proof}
+
+The next proposition assumes that $A$ is non-trivial. 
+
+\begin{proposition}
+Let $A$ be a non-trivial system of linear forms, $p \in A$ and $\mathbf{x} \in S_{n}(A)$. 
+If $(0,0) \notin \mathrm{supp}(p)$, then $\mathrm{supp}^+(p) \neq \emptyset$, $\mathrm{supp}^-(p) \neq \emptyset$ as well as $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \mathrm{supp}^+(p)$ and $(i',j') \in \mathrm{supp}^-(p)$.
+\end{proposition}
+
+\begin{proof}
+Assume $(0,0) \notin \mathrm{supp}(p)$. First, $\mathrm{supp}(p) \neq \emptyset$ because $S_{n}(A)$ is non-empty and consists only of non-trivial roots. If $\mathrm{supp}^+(p) = \emptyset$, then $\mathrm{supp}^+(x) \subset \mathrm{supp}^-(p) = \mathrm{supp}(p) \neq \emptyset$. Hence, $\mathrm{sign}(p)(x) = \{ -1 \}$, which contradicts $\mathbf{x}$ being a root. Thus, $\mathrm{supp}^+(p)$ is non-empty. Similarly, $\mathrm{supp}^-(p)$ is non-empty.
+
+By non-triviality, $x_{i,j} = 1$ for some $(i,j) \in \mathrm{supp}(p)$. Assume $(i,j) \in \mathrm{supp}^+(p)$. Hence, $1 \in \mathrm{sign}(p)(\mathbf{x})$.  Since $\mathbf{x}$ is a root, we also have $0 \in \mathrm{sign}(p)(\mathbf{x})$. This can only occur if $x_{i',j'} = 1$ for some $(i',j') \in \mathrm{supp}^-(p)$. The case $(i,j) \in \mathrm{supp}^-(p)$ is similar. 
+\end{proof}
+
+Both propositions allow us to interpret hyperfield linear forms in a non-trivial system $A$ as constraints on the positive supports of roots in $S_{n}(A)$.
+
+
+\begin{example}
+Fix the degree $d = 3$.
+Assume a system $A$ and some linear form $p \in A$. Further assume $p = \mathrm{diag}(0)$ is a diagonal Pascal equation of order $0$. The support of $p$ is represented by the following diagram:
+\begin{verbatim}
+    + 
+    +  . 
+    +  .  .
+    +  .  .  .
+\end{verbatim} 
+We see that any nonzero hyperfield root $\mathbf{x}$ of $A$ satisfies $x_{i} = 1$ for some 
+\begin{align*}
+    (i,j) \in \{ (0,0), (0,1), (0,2), (0,3) \}
+\end{align*}
+because $x_{00}$ is negative.
+
+Now, assume $A$ is non-trivial. Consider a row pascal equation $q = \mathrm{row}(3)$ which is contained in \( A \). Its support is depicted by the following diagram:
+\begin{verbatim}
+    - 
+    .  + 
+    .  .  -
+    .  .  .  +
+\end{verbatim} 
+For some $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ to be a hyperfield root of $q$, we must have either
+\begin{enumerate}
+\item $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \{ (0,3), (2, 1) \}$ and $(i',j') \in \{ (3,0), (1,2) \}$, or 
+\item $\mathrm{supp}(\mathbf{x}) \subset V_{3} \setminus \mathrm{supp}(q)$.
+\end{enumerate}
+Considering only non-trivial roots $\mathbf{x}$ lets us exclude the latter case. Thus, if we have a non-trivial system $A$ with $p,q \in A$, to compute $S_{n}(A)$, it suffices to check only those hyperfield roots whose support intersected with each of the three following regions is non-empty:
+\begin{verbatim}
+    + 
+    +  . 
+    +  .  .
+    +  .  .  .
+
+    + 
+    .  . 
+    .  .  +
+    .  .  .  .
+
+    . 
+    .  + 
+    .  .  .
+    .  .  .  + 
+\end{verbatim}
+Here are examples of such hyperfield roots illustrated in the following diagrams:
+\begin{verbatim}
+    +               
+    .  +           
+    .  .  .
+    .  .  .  .
+
+    . 
+    .  . 
+    +  .  +
+    .  .  .  +
+\end{verbatim}
+\end{example}
+
+\begin{definition}
+To each linear form $p$ in \( H^{V_d} \) we can associate a finite set of supports, which we call $\mathrm{constraints}(p) \coloneqq \{\mathrm{supp}^+(p) \setminus \{(0,0)\}, \mathrm{supp}^-(p) \setminus \{ (0,0) \} \}  \subset 2^{V_{d}}$. 
+\end{definition}
+
+The name is justified by the following proposition.
+\begin{proposition}\label{prop:hyperfield_criterion:constraints}
+Let $p$ be a linear form in \( \mathbb{H}^{V_d} \), and $\mathbf{x} \in H^{V_{d}}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$. Then, $\mathbf{x}$ is a non-trivial hyperfield root of $p$ if and only if $\mathrm{supp}^+(\mathbf{x}) \cap S \neq \emptyset$ for all $S \in \mathrm{constraints}(p)$. 
+\end{proposition}
+
+\begin{proof}
+Since $\mathbf{x}$ is non-trivial, we clearly have non-empty intersection of $\mathrm{supp}^+(\mathbf{x})$ and $S \in \mathrm{constraints}(p)$. The converse direction is also clear since $p(\mathbf{x}) = 1 - 1 = H$.
+\end{proof}
+
+We present an algorithm for computing $S_{n}(A)$ of non-trivial systems $A$.
+
+\begin{algorithm}
+\caption{Algorithm for Non-Trivial Systems}\label{alg:hyperfield_criterion:efficient}
+    \begin{algorithmic}[1]
+    \Require Positive support size $n$, non-trivial system $A$ 
+    \Ensure $S_{n}(A)$
+
+    \Function{solve}{$A, n$}
+        \State C $\gets \bigcup_{p \in A}\mathrm{constraints}(p)$
+        \State \texttt{solutions} $\gets \{ \mathbf{x} \in H^{V_{d}} \mid \forall S \in C: \mathrm{supp}^+(\mathbf{\mathbf{x}}) \cap S \neq \emptyset, \vert \mathrm{supp}^+(\mathbf{x}) \vert = n,  \mathrm{supp}^-(\mathbf{x}) = \{(0,0)\}   \}$
+        \State \Return \texttt{solutions}
+    \EndFunction
+    \end{algorithmic}  
+\end{algorithm}
+
+\begin{proof}[Proof of correctness]
+The correctness of $\texttt{solutions} = S_{n}(A)$ follows from Proposition \ref{prop:hyperfield_criterion:constraints} and the assumption that $A$ is non-trivial. 
+\end{proof}
+
+\section{Implementation of the Hyperfield Criterion}
+
+The Hyperfield Criterion states that only the common hyperfield roots of all Pascal forms can be supports of valid outcomes. The system of all Pascal forms is a-priori an \emph{infinite} and \emph{non-trivial} system. However, we found out that several bases of Pascal forms exist such as the row, col and diag Pascal basis. This allows us to consider \emph{finite} systems. Define the finite system $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$.
+
+\begin{proposition}
+The system $A$ is non-trivial.
+\end{proposition}
+
+\begin{proof}
+First, $S_{n}(A)$ is non-empty because $\mathbf{x} = (x_{i})_{i=0}^n$ defined as $x_{i, d-i} = {n \choose i}$ is a solution of the system $A$. 
+
+Let $\mathbf{x} \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following cases.
+\begin{itemize}
+    \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{diag}(i))$; then $\mathrm{diag}(i)(\mathbf{x}) < 0$; we found a contradiction to $\mathbf{x}$ being a root. 
+    \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{row}(i))$. If $i = d$, then $\mathbf{x}$ is not of degree $n$. Therefore, we assume $i < d$. Then, either $\mathbf{x}$ is a trivial root for $\mathrm{row}(i+1)$ or we have $\mathrm{row}(i+1)(\mathbf{x}) \neq 0$. In the latter case, we found a contradiction to $\mathbf{x}$ being a root. For the former case that $\mathbf{x}$ is a trivial root, we conclude that there exists nonzero $x_{u, d-u}$ for some $u = i+2, \dots, d$ since $\mathbf{x}$ is of degree $n$; now we just repeat the argument for $\mathrm{row}(i+1)$. More precisely, if $\mathbf{x}$ is again a trivial root for $\mathrm{row}(i+2)$, we repeat the argument for $\mathrm{row}(i+2)$ until we will end up with a contradiction $\mathrm{row}(u)(\mathbf{x}) \neq 0$.
+    \item For the case $\mathrm{col}(i)$, we can argue by symmetry.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+Configurations $\mathbf{x} \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(\mathbf{x}) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } i > k + 1 \}$ are not valid outcomes for any $k = 0, \dots, d-1$. Neither are configurations $x \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(x) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } j > k + 1 \}$ for $k = 0, \dots, d-1$ due to symmetry.
+\end{corollary}
+
+\begin{proof}
+Since the previously defined system $A$ is non-trivial, we must have that supports of valid outcomes intersect the support of $\mathrm{row}(k+1)$ non-trivially.
+\end{proof}
+
+\begin{example}
+This is not a valid outcome:
+
+    \begin{verbatim}
+    .               
+    .  .           
+    .  .  .
+    .  .  .  *
+    *  .  .  *  *
+    *  *  .  *  *  *
+\end{verbatim}
+\end{example}
+
+Now that we have shown that $A$ is a trivial system, we have found an efficient way to apply the Hyperfield Criterion. Here is a detailed breakdown of an implementation of the algorithm.
+
 
 \section{Contractions}
 
@@ -557,110 +784,3 @@ From now on, we only consider \emph{weakly valid} hyperfield configurations beca
         \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}.
     \end{align*}
 \end{example}
-
-\section{Proof}
-
-We have all the tools to prove the main result of this chapter, namely for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have
-\begin{align*}
-    \mathrm{deg}(\mathbf w) \leq 5.
-\end{align*}
-As in previous chapters, we characterize outcomes as roots of Pascal forms. So, we define the following two systems of Pascal forms that valid outcomes must be roots of:
-\begin{gather*}
-    \Phi_1 \coloneqq \{ 
-        \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3), \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3),\\
-         \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3), \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) 
-     \},
-\end{gather*}
-and 
-\begin{gather*}
-    \Phi_2 \coloneqq \{ 
-        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3), \\
-        \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) 
-     \}.
-\end{gather*}
-We also define \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
-
-By Proposition \ref{prop:contracted-part-1}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_1 \) as 
-\begin{align*}
-    \mathrm{sign}(p) = \hat p
-\end{align*}
-for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 11 \). This linear form is independent of the degree \( d \). To make notations consistent later, we set \( \hat p^{\mathrm{even}} \coloneqq  \hat p^{\mathrm{odd}}  \coloneqq \hat p\).
-
-Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_2 \) as
-\begin{align*}
-    \mathrm{sign}(p) = \begin{cases}
-        \hat p^{\mathrm{even}} & \text{ if } d \text{ is even} \\
-        \hat p^{\mathrm{odd}} & \text{ if } d \text{ is odd}
-    \end{cases}
-\end{align*}
-for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). These linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
-
-\begin{definition}
-    We define the following three solution sets:
-    \begin{enumerate}
-        \item     Define \( \Gamma_d \) to be the set of all valid hyperfield configurations \( \mathbf{s} \in H^{V_d} \) of degree \( d \) such that \( \mathrm{sign}(p)(\mathbf{s}) = H \) for all \( p \in \Phi \).
-
-        \item     Define \( \Gamma^{\mathrm{even}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{even}}(\mathbf{s}) = H \) for all \( p \in \Phi \).
-
-        \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Phi \).
-    \end{enumerate}
-\end{definition}
-
-By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). This is the reason why we have defined \( \Gamma_d \) in the first place. 
-
-\begin{proposition}
-    Let \( d \geq 12 \). Then, the following holds:
-    \begin{enumerate}
-        \item If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
-       \item If \( d \) is odd, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{odd}}) \).
-    \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-    Let \( d \geq 12 \) be even. Let \( \mathbf{s} \in {H}^{V_d} \) be a hyperfield configuration and \( p \in \Phi \). Then, we have 
-    \begin{align*}
-        \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})).
-    \end{align*}
-    by definition of \( \hat p^{\mathrm{even}} \). If \( \mathbf{s} \in \Gamma_d \), then \( H = \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})) \). Hence, \( \mathrm{contr}_d(\mathbf{s}) \) is contained in \( \Gamma^{\mathrm{even}} \). If \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) holds, using the equation above we also see that \( \mathbf{s} \in \Gamma_d \). This shows that \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
-
-    The second statement for odd degrees \( d \) follows analogously.
-\end{proof}
-
-\begin{corollary}
-    Let \( d \geq 12 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have 
-    \begin{align*}
-        \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}}.
-    \end{align*}
-\end{corollary}
-
-\begin{proof}
-    Define \( \mathbf{s} \coloneqq \mathrm{sign}(\mathbf{w}) \). By Proposition \ref{prop:sign-sikjsfnf322} we have \( \mathbf{s} \in \Gamma_d \). If \( d \) is even, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) by the previous proposition. If \( d \) is odd, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{odd}} \) by the previous proposition. This shows the claim.
-\end{proof}
-
-This corollary allows us to exclude certain outcomes as valid outcomes. Assume we have some contracted hyperfield configuration \( \xi \in H^{\Xi} \) that is not a root of some of the linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) for \( p \in \Phi \). Then, any chipsplitting configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d( \mathrm{sign}(\mathbf{w})) = \xi \) is not a valid outcome.
-
-
-\begin{proposition}
-    Let \( \mathbf{s} \in H^{V_d} \) be a valid hyperfield configuration of degree \( d \) and positive support size four. Define the set \( \Omega_d  \) to be
-    \begin{align*}
-         \left\{ \mathbf{s} \in H^{V_d} \mid \mathrm{deg}(\mathbf{s}) = d, \lvert \mathrm{supp}^{+}(\mathbf{s}) \rvert = 4, \mathrm{sign}(p)(\mathbf{s}) = H \, \forall p \in \left\{ \mathrm{row}(k), \mathrm{col}(k), \mathrm{diag}(k) \right\}_{k=0}^d \right\}. 
-    \end{align*}
-    Then, all of the following hold:
-    \begin{enumerate}
-        \item Let \( d = 6 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
-        \begin{gather*}
-            \left\{ (0,3), (1,5), (4,1), (6,0) \right\},
-            \left\{ (0,5), (1,1), (3,3), (6,0) \right\},
-            \left\{ (0,6), (1,1), (3,3), (5,0) \right\},\\
-            \left\{ (0,6), (1,1), (3,3), (6,0) \right\},
-            \left\{ (0,6), (1,4), (3,0), (5,1) \right\}.
-        \end{gather*}
-        \item Let \( d = 7 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
-        \begin{gather*}
-            \left\{ (0,7), (1,1), (3,3), (7,0) \right\},
-            \left\{ (0,7), (1,3), (5,1), (7,0) \right\},
-            \left\{ (0,7), (1,5), (3,1), (7,0) \right\}.
-        \end{gather*}
-        \item Let \( d\geq 8 \). Then \( \mathbf{s}\notin \Omega_d \).
-    \end{enumerate}
-\end{proposition}
