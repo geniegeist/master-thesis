@@ -82,28 +82,8 @@ This corollary allows us to exclude certain outcomes as valid outcomes. Assume w
 
 
 \begin{proposition}
-    Let \( \mathbf{s} \in H^{V_d} \) be a valid hyperfield configuration of degree \( d \) and positive support size four. Define the set \( \Omega_d  \) to be
-    \begin{align*}
-         \left\{ \mathbf{s} \in H^{V_d} \mid \mathrm{deg}(\mathbf{s}) = d, \lvert \mathrm{supp}^{+}(\mathbf{s}) \rvert = 4, \mathrm{sign}(p)(\mathbf{s}) = H \, \forall p \in \left\{ \mathrm{row}(k), \mathrm{col}(k), \mathrm{diag}(k) \right\}_{k=0}^d \right\}. 
-    \end{align*}
-    Then, all of the following hold:
-    \begin{enumerate}
-        \item Let \( d = 6 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
-        \begin{gather*}
-            \left\{ (0,3), (1,5), (4,1), (6,0) \right\},
-            \left\{ (0,5), (1,1), (3,3), (6,0) \right\},
-            \left\{ (0,6), (1,1), (3,3), (5,0) \right\},\\
-            \left\{ (0,6), (1,1), (3,3), (6,0) \right\},
-            \left\{ (0,6), (1,4), (3,0), (5,1) \right\}.
-        \end{gather*}
-        \item Let \( d = 7 \). Then, \( \mathbf{s} \) is contained in \( \Omega_d \) if and only if its positive support is exactly one of the following:
-        \begin{gather*}
-            \left\{ (0,7), (1,1), (3,3), (7,0) \right\},
-            \left\{ (0,7), (1,3), (5,1), (7,0) \right\},
-            \left\{ (0,7), (1,5), (3,1), (7,0) \right\}.
-        \end{gather*}
-        \item Let \( d\geq 8 \). Then \( \mathbf{s}\notin \Omega_d \).
-    \end{enumerate}
+    Let \( \mathbf{s} \in H^{V_d} \) be a valid hyperfield configuration of degree \( d \) with positive support size four or less. If \( d\geq 12 \), then \( \mathbf{s} \notin \Gamma_d \).
+
 \end{proposition}
 
 \begin{proof}
