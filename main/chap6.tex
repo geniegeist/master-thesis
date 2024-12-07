@@ -265,9 +265,9 @@ The above example demonstrates that we can view Corollary \ref{cor:sign-sikjsfnf
 
 We will use these constraints to efficiently compute all outcomes of degree some \( d \).
 
-\section{Solving Homogeneous Hyperfield Linear Systems}
+\section{Solving Hyperfield Linear Systems}
 
-We deviate from the approach by Bik and Marigliano in \cite{bik2022classifying} by spending some considerate time in solving homogeneous hyperfield linear systems. It will help us path the way for some breakthrough for the efficient computation of valid outcomes.
+We deviate from the approach by Bik and Marigliano in \cite{bik2022classifying} by spending some considerate time in solving hyperfield linear systems. It will help us path the way for some breakthrough for the efficient computation of valid outcomes.
 
 Fix some degree \( d \). Due to the Hyperfield Criterion, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) which satisfy 
 \begin{align*}
@@ -446,9 +446,14 @@ We present an algorithm for computing $S_{n}(A)$ of non-trivial systems $A$.
     \end{algorithmic}  
 \end{algorithm}
 
+
 \begin{proof}[Proof of correctness]
 The correctness of $\texttt{solutions} = S_{n}(A)$ follows from Proposition \ref{prop:hyperfield_criterion:constraints} and the assumption that $A$ is non-trivial. 
 \end{proof}
+
+\begin{remark}\label{rem:fiuhwiu3}
+    The algorithm can also be used for linear forms on \( H^{\Xi} \) for some general finite set \( \Xi \subset \mathbb{Z}_{\geq 0} \times \mathbb{Z}_{\geq 0} \), and solutions \( \mathbf{x} \in H^{\Xi} \). The proof is analogous.
+\end{remark}
 
 \section{Implementation of the Hyperfield Criterion}
 
@@ -582,7 +587,7 @@ from Algorithm \ref{alg:hyperfield_criterion:efficient}, we use the implementati
 \end{algorithm}
     
 
-\begin{proposition}
+\begin{proposition}\label{prop:jdngkjrenj3nw}
     Let $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$ for some degree \( d \in \mathbb{N} \). Let \( \mathbf{x} \in H^{V_d} \) be nonzero with \( \mathrm{supp}^-(\mathbf{x}) = \left\{ (0,0) \right\} \). The following statements hold:
 
     \begin{enumerate}

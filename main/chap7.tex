@@ -49,7 +49,7 @@ for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\ma
 
 By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). This is the reason why we have defined \( \Gamma_d \) in the first place. 
 
-\begin{proposition}
+\begin{proposition}\label{prop:sign-sikjsfnf3223423432}
     Let \( d \geq 12 \). Then, the following holds:
     \begin{enumerate}
         \item If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
@@ -67,7 +67,7 @@ By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of 
     The second statement for odd degrees \( d \) follows analogously.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{cor:validwunfwufneuiw}
     Let \( d \geq 12 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have 
     \begin{align*}
         \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}}.
@@ -87,5 +87,16 @@ This corollary allows us to exclude certain outcomes as valid outcomes. Assume w
 \end{proposition}
 
 \begin{proof}
-    s
+    Let \( d \geq 12 \). For computing \( \Gamma_d \) we could use Algorithm \ref{alg:hyperfield_criterion:efficient} for all \( d = 12, 13, 14, \dots \) and so on, which is not feasible since we would compute solutions sets for many infinitely many degrees \( d \). Instead, we show that \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) is empty. By Proposition \ref{prop:sign-sikjsfnf3223423432}, \( \Gamma_d \) is empty as well for all \( d\geq 12 \).
+
+    To show that \(  \Gamma^{\mathrm{even}} \) is empty, we can just use Algorithm \ref{alg:hyperfield_criterion:efficient} and Remark \ref{rem:fiuhwiu3} with \(A \coloneqq \left\{ \hat p^{\mathrm{even}} \mid p \in \Phi \right\}\). Similarly, we compute \( \Gamma^{\mathrm{odd}} = \emptyset \) with \(A \coloneqq \left\{ \hat p^{\mathrm{odd}} \mid p \in \Phi \right\}\) and Algorithm \ref{alg:hyperfield_criterion:efficient}. The results are in Appendix TODO. This shows the claim. TODO: show that \( A \) is non-trivial.
+\end{proof}
+
+\begin{theorem}
+    For valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have \( \mathrm{deg}(\mathbf w) \leq 5 \).
+\end{theorem}
+
+\begin{proof}
+    Let \( d \geq 6 \).
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) and degree \( d \). We have \( \mathrm{sign}(\mathbf{w}) \in \Gamma_d \). By the previous proposition, there is no such \( \mathrm{sign}(\mathbf{w}) \) for \( d \geq 12 \). By Proposition \ref{prop:jdngkjrenj3nw}, the degree of \( \mathrm{sign}(\mathbf{w}) = d \) is six or seven. So, we just need to check eight cases. Of these eight cases, we can exclude all of them by applying the Invertibility Criterion, see Appendix TODO. This shows that the degree of \( \mathbf{w} \) is at most five.
 \end{proof}
