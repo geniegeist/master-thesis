@@ -6,6 +6,9 @@ In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) w
     \mathrm{deg}(\mathbf w) \leq 7.
 \end{align*}
 Tools like the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion will be used to prove this result.
+
+\section{Case \( d = 8, \dots, 41 \)}
+
 First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \).
 
 \begin{proposition}
@@ -78,5 +81,52 @@ First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome o
     \end{enumerate}
     Valid configurations that have one of these eight sets as positive support are of degree eight or less. 
     
-    Next, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The result is that only the zero outcome is possible. This shows the claim.
+    Finally, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The result is that only the zero outcome is possible. This shows the claim.
+\end{proof}
+
+\section{Case \( d \geq 42 \)}
+
+We have proven that no valid outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \). Next, we show that no valid outcome of degree \( d \geq 42 \) exists using contractions.
+
+As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets 
+\begin{gather*}
+    \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \text{ and }
+    \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} 
+\end{gather*}
+using Algorithm \ref{alg:hyperfield_criterion:efficient}. The Proposition \ref{prop:jasndkjsnjsnkjs} has already shown that the sets 
+\begin{align*}
+    \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 4 \right\} \text{ and }
+    \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 4 \right\} 
+\end{align*}
+are empty. So, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
+
+
+
+\begin{definition}
+    We define 
+    \begin{gather*}
+        \Gamma^{\mathrm{even}}_5 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\}
+        \text{ and }
+        \Gamma^{\mathrm{odd}}_5 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\}.
+    \end{gather*}
+\end{definition}
+
+\begin{proposition}
+    The following holds:
+    \begin{enumerate}
+        \item We have \( \lvert \Gamma^{\mathrm{even}}_5 \rvert  = 1283\).
+        \item We have \( \lvert \Gamma^{\mathrm{odd}}_5 \rvert  = 1265\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    See APpendix TODO. \# KEYWORD:LAOL
+\end{proof}
+
+\begin{corollary}
+    Let \( d\geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome of degree \( d \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \). Then, \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \).
+\end{corollary}
+
+\begin{proof}
+    This follows from Corollary \ref{cor:validwunfwufneuiw}.
 \end{proof}
