@@ -19,6 +19,38 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{baker2018matroids}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=1a622c6968b619f4fd84ef62d5f9d2b6}{%
+           family={Baker},
+           familyi={B\bibinitperiod},
+           given={Matt},
+           giveni={M\bibinitperiod}}}%
+        {{hash=74ffa23d60fdb8373b31db4e0f768c80}{%
+           family={Bowler},
+           familyi={B\bibinitperiod},
+           given={Nathan},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {AIP Publishing}%
+      }
+      \strng{namehash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \strng{fullhash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \strng{bibnamehash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \strng{authorbibnamehash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \strng{authornamehash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \strng{authorfullhash}{d3877495cf2b9565eeb300dc707d5a7a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIP Conference Proceedings}
+      \field{number}{1}
+      \field{title}{Matroids over hyperfields}
+      \field{volume}{1978}
+      \field{year}{2018}
+    \endentry
     \entry{bik2022classifying}{article}{}
       \name{author}{2}{}{%
         {{hash=be409331fee8160c633485ef63c8e8be}{%
@@ -76,6 +108,26 @@
       \field{labeltitlesource}{title}
       \field{title}{Discrete statistical models with rational maximum likelihood estimator}
       \field{year}{2021}
+    \endentry
+    \entry{grinberghyperfactorial}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=35cdb7a8ffd76f6a9754b5fbbbea9e97}{%
+           family={Grinberg},
+           familyi={G\bibinitperiod},
+           given={Darij},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \strng{fullhash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \strng{bibnamehash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \strng{authorbibnamehash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \strng{authornamehash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \strng{authorfullhash}{35cdb7a8ffd76f6a9754b5fbbbea9e97}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A hyperfactorial divisibility, version of 27 July 2015}
     \endentry
     \entry{huh2013varieties}{article}{}
       \name{author}{1}{}{%

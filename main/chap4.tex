@@ -72,7 +72,7 @@ One of the most important tools in the study of outcomes is the \emph{invertibil
 
 Given some set of vertices \( S \subset V_d \) the invertibility criterion uses the diagonal basis \( (\mathrm{diag}(0), \dots, \mathrm{diag}(d)) \) to determine whether a nonzero outcome with support in \( S \) exists.
 
-\begin{definition}
+\begin{definition}\label{def:pairing-matrix}
     Let \( E \subset \left\{ 0, \dots, d \right\} \) and \( S \subset V_d \) with \( \lvert E \rvert = \lvert S \rvert \neq 0 \). The \emph{pairing matrix} of \( (E,S) \) is definded as \( A^{(d)}_{E,S} \coloneqq \begin{bmatrix} \binom{d-i-j}{k-i} \end{bmatrix}_{k \in E, (i,j) \in S} \).
 \end{definition}
 
@@ -219,6 +219,39 @@ Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \)
     \end{align*}
     where \( * \) stands for arbitrary entries. The matrix is invertible, so no nonzero outcome with support in \( S = \left\{ (0,0), (0,4), (2,0), (4,1), (5,0), (6,0) \right\} \) exists.
 \end{example}
+
+\section{Implementation of the Hyperfield Criterion}
+
+The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome. It is later used in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
+
+\begin{algorithm}[H]
+\caption{Only Zero Outcome}\label{alg:hyperfield_criterion:is_zero}
+    \begin{algorithmic}[1]
+    \Require Positive support set $S \subset {V_d}$
+    \Ensure \texttt{True} only if \( \mathbf{0} \) is the only outcome \( \mathbf{w} \) with \( \mathrm{supp}^+(\mathbf{w}) \subset S \), \texttt{False} if unconclusive
+
+    \State $\texttt{support} \gets \{(0,0)\} \cup \texttt{S}$
+    \State $\texttt{E} \gets \{0, \dots, |\texttt{support}| - 1\}$
+    \State $\texttt{P} \gets \texttt{build\_pairing\_matrix}(d, \texttt{E}, \texttt{support})$    
+    \State \Return $\texttt{rank}(\texttt{P}) \neq |\texttt{support}|$
+    \end{algorithmic}  
+\end{algorithm}
+
+The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^{(d)}_{E,S} \) as defined in Definition \ref{def:pairing-matrix}. If this Algorithm is inconclusive, we can try to use another set of \( E \). This leads to the following generalization:
+
+\begin{algorithm}[H]
+\caption{Only Zero Outcome (Generalized)}\label{alg:hyperfield_criterion:is_zero_general}
+    \begin{algorithmic}[1]
+    \Require Positive support set $S \subset {V_d}$, set \( E \subset \left\{ 0, \dots, d \right\} \) with size \( \lvert S \vert + 1 \)
+    \Ensure \texttt{True} only if \( \mathbf{0} \) is the only outcome \( \mathbf{w} \) with \( \mathrm{supp}^+(\mathbf{w}) \subset S \), \texttt{False} if unconclusive
+
+    \State $\texttt{support} \gets \{(0,0)\} \cup \texttt{S}$
+    \State $\texttt{P} \gets \texttt{build\_pairing\_matrix}(d, \texttt{E}, \texttt{support})$    
+    \State \Return $\texttt{rank}(\texttt{P}) \neq |\texttt{support}|$
+    \end{algorithmic}  
+\end{algorithm}
+
+Algorithm \texttt{Only Zero Outcome} is clearly a special case of Algorithm \texttt{Only Zero Outcome (Generalized)} with \( E =  \{0, \dots, |{S}|\}\).
 
 \section{Symmetry}
 
