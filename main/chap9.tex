@@ -1,2 +1,65 @@
 \chapter{Valid Outcomes of Positive Support
 Size Five}
+
+In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have
+\begin{align*}
+    \mathrm{deg}(\mathbf w) \leq 7.
+\end{align*}
+Tools like the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion will be used to prove this result.
+First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \).
+
+\begin{proposition}
+    Let $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$ for some degree \( d \in \mathbb{N} \). Let \( \mathbf{x} \in H^{V_d} \) be nonzero with \( \mathrm{supp}^-(\mathbf{x}) = \left\{ (0,0) \right\} \). Then, the number of solutions \( \lvert S_5(A) \rvert \) for \( d = 8, \dots, 41 \) is depicted in Table \ref{tab:solutions324324324}.
+\end{proposition}
+
+\begin{proof}
+    We compute the set of \( S_5(A) \) for \( d = 8, \dots, 40 \), and \( 41 \) using the implementation of Algorithm \ref{alg:solve} which is included in the appendix TODO.
+\end{proof}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    \( d \) & \( \lvert S_5(A) \rvert \) \\ \hline
+    8  & 792  \\ \hline
+    9  & 882  \\ \hline
+    10 & 950  \\ \hline
+    11 & 1084 \\ \hline
+    12 & 1102 \\ \hline
+    13 & 1212 \\ \hline
+    14 & 1248 \\ \hline
+    15 & 1400 \\ \hline
+    16 & 1400 \\ \hline
+    17 & 1530 \\ \hline
+    18 & 1553 \\ \hline
+    19 & 1723 \\ \hline
+    20 & 1710 \\ \hline
+    21 & 1856 \\ \hline
+    22 & 1863 \\ \hline
+    23 & 2049 \\ \hline
+    24 & 2020 \\ \hline
+    25 & 2182 \\ \hline
+    26 & 2173 \\ \hline
+    27 & 2375 \\ \hline
+    28 & 2330 \\ \hline
+    29 & 2508 \\ \hline
+    30 & 2483 \\ \hline
+    31 & 2701 \\ \hline
+    32 & 2640 \\ \hline
+    33 & 2834 \\ \hline
+    34 & 2793 \\ \hline
+    35 & 3027 \\ \hline
+    36 & 2950 \\ \hline
+    37 & 3160 \\ \hline
+    38 & 3103 \\ \hline
+    39 & 3353 \\ \hline
+    40 & 3260 \\ \hline
+    41 & 3486 \\ \hline
+    \end{tabular}
+    \caption{Number of solutions \( \lvert S_5(A) \rvert \) for \( d = 8, \dots, 41 \).}
+    \label{tab:solutions324324324}
+\end{table}
+
+\begin{proposition}
+    No outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \).
+\end{proposition}

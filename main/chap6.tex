@@ -285,7 +285,7 @@ We further simplify the problem by only considering configurations $\mathbf{x}$ 
 
 \vspace{0.3cm}
 
-\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ x \in H^{V_{d}} : \text{$\mathrm{supp}^-(x) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(x) \vert = n$} \}$.
+\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ \mathbf{x} \in H^{V_{d}} : \text{$\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(\mathbf{x}) \vert = n$} \}$.
 
 \vspace{0.3cm}
 
@@ -305,8 +305,8 @@ To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate o
     \Function{solve}{$A, n$}
     \State initialize empty list \texttt{solutions}
     \For{$n$-combination $S = \{(c_{i}, r_{i}) : i = 1, \dots, n\}$ of $V_{d}$}
-        \State initialize $x \in H^{V_{d}}$ with positive support $S$ and $x_{0,0} = -1$ 
-        \If{$x$ is a hyperfield root of every $p \in A$} 
+        \State initialize $\mathbf{x} \in H^{V_{d}}$ with positive support $S$ and $x_{0,0} = -1$ 
+        \If{$\mathbf{x}$ is a hyperfield root of every $p \in A$} 
         \State add $S$ to \texttt{solutions}
         \EndIf
     \EndFor
@@ -452,7 +452,7 @@ The correctness of $\texttt{solutions} = S_{n}(A)$ follows from Proposition \ref
 \end{proof}
 
 \begin{remark}\label{rem:fiuhwiu3}
-    The algorithm can also be used for linear forms on \( H^{\Xi} \) for some general finite set \( \Xi \subset \mathbb{Z}_{\geq 0} \times \mathbb{Z}_{\geq 0} \), and solutions \( \mathbf{x} \in H^{\Xi} \). The proof is analogous.
+    The algorithm can also be used for linear forms on \( H^{\Xi} \) with general index set \( \Xi \subset \mathbb{Z}_{\geq 0} \times \mathbb{Z}_{\geq 0} \), and solutions \( \mathbf{x} \in H^{\Xi} \). The proof is analogous.
 \end{remark}
 
 \section{Implementation of the Hyperfield Criterion}
@@ -478,7 +478,7 @@ Let $\mathbf{x} \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following case
 \end{proof}
 
 \begin{corollary}
-Configurations $\mathbf{x} \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(\mathbf{x}) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } i > k + 1 \}$ are not valid outcomes for any $k = 0, \dots, d-1$. Neither are configurations $x \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(x) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } j > k + 1 \}$ for $k = 0, \dots, d-1$ due to symmetry.
+Configurations $\mathbf{x} \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(\mathbf{x}) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } i > k + 1 \}$ are not valid outcomes for any $k = 0, \dots, d-1$. Neither are configurations $\mathbf{x} \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(\mathbf{x}) \subset \{ (i,j) \in \mathbb{Z}^{V_{d}} : i + j \leq k \text{ or } j > k + 1 \}$ for $k = 0, \dots, d-1$ due to symmetry.
 \end{corollary}
 
 \begin{proof}
