@@ -5,7 +5,7 @@ In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) w
 \begin{align*}
     \mathrm{deg}(\mathbf w) \leq 7.
 \end{align*}
-Tools like the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion will be used to prove this result.
+Tools like the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion will be used to prove this result. We follow the same proof as Bik and Marigliano in \cite{bik2022classifying}.
 
 \section{Case \( d = 8, \dots, 41 \)}
 
@@ -191,6 +191,8 @@ We make the following simplication to the index set \( \Xi \).
     \end{align*}
 \end{definition}
 
+A simple computation of the set \( \Lambda \) shows that it has \( 2290 \) elements.
+
 \begin{proposition}
     Let \( \mathbf{s}' \in \Lambda \). Then, \( \mathbf{s}' \) has positive support of size five or four.
 \end{proposition}
@@ -202,6 +204,8 @@ We make the following simplication to the index set \( \Xi \).
     \end{gather*}
     that \( \mathbf{f} \in \left\{ 0,1 \right\} \) holds. Hence, \( \mathbf{s}' \) has positive support of size five or four.
 \end{proof}
+
+\section{Case \( d \geq 42\) continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Four}
 
 \begin{corollary}
     From the proof above, we see that \( \mathbf{s}' \in \Lambda \) has positive support size four if and only if \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) satisfies \( d_i = 1 \) and \( e_j = 1 \) for some \( i,j = 0, 1,2,3 \).
@@ -232,7 +236,7 @@ We make the following simplication to the index set \( \Xi \).
 \end{algorithmic}
 \end{algorithm}
 
-We exclude this case with the following proposition.
+We exclude this one case from the 2290 cases in \( \Lambda \) with the following proposition.
 
 \begin{proposition}
     Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a weakly valid outcome. Then, we have 
@@ -262,4 +266,33 @@ We exclude this case with the following proposition.
     It has support in \( \mathrm{supp}(\mathbf{u}) = \left\{ (0,0), (0,3), (1,1), (3,0) \right\}  \subset  \mathrm{supp}(\mathbf{w})\). Define the outcome \( \mathbf{v} \coloneqq \mathbf{w} +w_{0,0} \mathbf{u} \). Then, \( v_{0,0} = 0 \) and \( \mathbf{v} \neq \mathbf{0} \). However, if we apply the Invertibility Criterion with \( \lambda = \mathbf{1} \) on \( \mathbf{v} \), we see that \( \mathbf{v} \) is zero. This is a contradiction. Hence, \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}  \).
 \end{proof}
 
-It remains to show the other cases of \( \mathbf{s}' \in \Lambda = \chi( \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 ) \); let us assume that \( \mathbf{s}' \) has positive support size five.
+\section{Case \( d \geq 42\) continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Five}
+
+It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five.
+
+\begin{proposition}
+    Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, all of the following hold:
+    \begin{enumerate}
+        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \);
+        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \);
+        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    This is verified by computer. Keyword TAG MUSIAS.
+\end{proof}
+
+It is our goal to exclude all \( 2289 \) cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. We will make use of the Invertibility Criterion. For that we introduce \emph{relative coordinates}  defined below.
+
+\begin{definition}
+    Let \( d \geq 42 \).
+    Let \( M \) be a sentinel value with no further significance. We use it to encode integers from \( 4, \dots, d-7 \). Define the map 
+    \begin{align*}
+        \mathrm{relcoord}: \left\{ 0, \dots, d \right\} \to \left\{ 0,1,2,3,d-6,d-5,d-4,d-3,d-2,d-1,d,M \right\}, \\
+        x \mapsto \begin{cases}
+            x & \text{if } x \in \left\{ 0,1,2,3, d-6,d-5,d-4,d-3,d-2,d-1,d \right\}, \\
+            M& \text{if } x \in \left\{ 4, \dots, d-7 \right\}.
+        \end{cases}
+    \end{align*}
+\end{definition}
