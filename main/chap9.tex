@@ -402,15 +402,17 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 \end{example}
 
 \begin{corollary}
-    Let \( d\geq 42 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid configuration with positive support size five. Assume \( (i,x), (i,y), (i',z) \in \mathrm{supp}(\mathbf{w}) \) with \( i < i' \). If \( \mathrm{relcoord}(x) \in \left\{ 0,1,2,3 \right\} \), \( \mathrm{relcoord}(y) \in \left\{ d-6, \dots, d \right\} \) and \( \mathrm{relcoord}(z) \neq M  \), then \( \mathbf{w} \) is not an outcome.
+    Let \( d \geq 42 \).
+    Let \( S = \left\{ (i,x), (i,y), (i+1,z) \right\} \subset V_d \). If \( \mathrm{relcoord}(x) \in \left\{ 0,1,2,3 \right\} \), \( \mathrm{relcoord}(y) \in \left\{ d-6, \dots, d \right\} \) and \( \mathrm{relcoord}(z) \neq M  \), then \( A^{(d)}_{E, S} \) is invertible.
 \end{corollary}
 
 \begin{proof}
     Use Proposition \ref{prop:impossible-support-2324223423123123}. We just need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction, so \( x + y \neq 2z + 1 \) for all \( d \geq 42 \).
 \end{proof}
 
-These two corollaries allow us to implement the following algorithm to exclude certain cases of \( \mathbf{s}' \in \Lambda \).
-\begin{algorithm}[H]
+The corollary above can be extended to several other cases which allows us to implement an algorithm to exclude certain cases of \( \mathbf{s}' \in \Lambda \). First, we need an algorithm for the division step.
+
+\begin{algorithm}
 \caption{Divide}
 \label{alg:divide}
 \begin{algorithmic}[1]
@@ -468,26 +470,38 @@ This division algorithm just implements the division rule to choose \( \lambda_i
             \item If \( b = d-2,d-1 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ M, d-6,d-5 \right\} \).
             \item If \( b = d \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ M, d-6,d-5,d-4 \right\} \).
         \end{enumerate}
-        \item Let \( a = d-6, \dots, d \). Then, \( \mathrm{relcoord}( \frac{a + b - 1}{2}) = M \).
     \end{enumerate}
 \end{proposition}
 
-\begin{algorithm}[H]
+\begin{proof}
+    Let \( d \geq 42 \).
+    \begin{enumerate}
+        \item Let \( a = b = 3 \). Then \( \frac{6 - 1 }{2} = 2.5 \). Thus, for all \( a \leq b \leq 3 \) we have \( \frac{a + b - 1 }{2} \leq 2.5 \), so \(\mathrm{relcoord}( \frac{a + b - 1 }{2})  \neq M \). Let \( a = b = d - 6 \). Then \( \frac{a + b -1}{2} > d - 7 \). Thus, for all \( d-6 \leq a \leq b \leq d \) we have \( \mathrm{relcoord}(\frac{a + b - 1 }{2}) \neq M \).
+        \item Let \( b = 4, \dots, d-7 \).
+        \begin{enumerate}
+            \item For \( a = 0 \) and \( b  = 4 \) we obtain \( \frac{a + b -1}{2} > 1.5 \). So, \( \mathrm{relcoord}(\frac{a + b - 1}{2})  \notin \left\{ 0,1 \right\} \). For \( a = 1 \) and \( b  = d-7 \), we see that \( \frac{a + b -1}{2} = \frac{d-7}{2} \), which maps to \( M \) under relative coordinates for \( d \geq 42 \). So the midpoint maps to values between two and \( M \) under \( \mathrm{relcoord} \), i.e. \( \left\{ 2,3,M \right\} \). This shows the claim.
+            \item The proof of case \( a = 2,3 \) is similar to the previous proof.
+        \end{enumerate}
+        \item Let \( a = 4, \dots, d-7 \).
+        \begin{enumerate}
+            \item Let \( b = d-6, d-5 \). Then, \( \frac{a + b - 1}{2} \geq \frac{d - 3}{2} \geq 19.5 \) for all \( d \geq 42 \). This maps to \( M \) under relative coordinates. Moreover,  \( \frac{a + b - 1}{2} \leq \frac{d - 7 + d - 5 - 1}{2} = \frac{2d - 13}{2} = d - 6.5 \). Thus, 
+            \( \mathrm{relcoord}(\frac{a + b - 1}{2}) = M \).
+            \item The proof of cases \( b = d-4, d-3, \dots, d \) are similar to the previous proof.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+This proposition gives Algorithm \ref{alg:midpoint} to compute the midpoint of two points in relative coordinates. Next, we define the order in relative coordinates:
+\begin{align*}
+    0 < 1 < 2 < 3 < M < d-6 < d-5 < d-4 < d-3 < d-2 < d-1 < d.
+\end{align*}
+The \texttt{succ} function is defined as the successor in this order, see Algorithm \ref{alg:succ}. We can now implement the conquer step of the divide and conquer approach of the Invertibility Criterion, see Algorithm \ref{alg:conquer}. This leads us to an implementation of the Invertibility Criterion for relative coordinates, see Algorithm \ref{alg:relcoord-inv-crit}.
+
+\begin{algorithm}
 \caption{Compute midpoint \( \frac{a + b -1}{2} \)}
-\label{alg:helper}
+\label{alg:midpoint}
 \begin{algorithmic}[1]
 \Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
-
-\Function{\texttt{succ}}{$x$}
-    \If{$x = 3$}
-        \State \Return \texttt{SENTINEL\_M}
-    \ElsIf{$x = \texttt{SENTINEL\_M}$}
-        \State \Return $\texttt{SENTINEL\_D} - 6$
-    \Else
-        \State \Return $x + 1$
-    \EndIf
-\EndFunction
-
 \Function{\texttt{midpoint}}{$a, b$}
     \State $low, high \gets \min(a, b), \max(a, b)$
     \If{$low > \texttt{SENTINEL\_M}$ \textbf{or} $high < \texttt{SENTINEL\_M}$}
@@ -514,24 +528,41 @@ This division algorithm just implements the division rule to choose \( \lambda_i
 \end{algorithmic}
 \end{algorithm}
 
+\begin{algorithm}
+\caption{Successor}
+\label{alg:succ}
+\begin{algorithmic}[1]
+\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
+\Function{\texttt{succ}}{$x$}
+\If{$x = 3$}
+    \State \Return \texttt{SENTINEL\_M}
+\ElsIf{$x = \texttt{SENTINEL\_M}$}
+    \State \Return $\texttt{SENTINEL\_D} - 6$
+\Else
+    \State \Return $x + 1$
+\EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \caption{Conquer Algorithm}
 \label{alg:conquer}
 \begin{algorithmic}[1]
-\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
+\Require support \texttt{relset} in relative coordinates
+\Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
 \Function{\texttt{conquer}}{$\texttt{relset}$}
-    \State \texttt{relset} $\gets \texttt{sorted(relset, key=lambda x: col(x))}$
+    \State \texttt{relset} $\gets \texttt{relset.sort\_by\_column()}$
     \State $\texttt{length} \gets |\texttt{relset}|$
     \If{$\texttt{length} \leq 2$}
-        \State \Return \texttt{True} \Comment{Invertibility criterion holds}
+        \State \Return \texttt{True} \Comment{Proposition \ref{prop:impossible-support-23233243243423} and \ref{prop:impossible-support-232423}}
     \ElsIf{$\texttt{length} = 3$}
         \State $x, y, z \gets \texttt{relset}[0], \texttt{relset}[1], \texttt{relset}[2]$
         \State $\texttt{same\_column} \gets (\texttt{col}(x) = \texttt{col}(y) = \texttt{col}(z))$
-        \If{$\texttt{same\_column}$} \Comment{Proposition 5.7c}
+        \If{$\texttt{same\_column}$} \Comment{Proposition \ref{prop:impossible-support-2}}
             \State \Return \texttt{True}
         \ElsIf{$\texttt{col}(x) = \texttt{col}(y)$ \textbf{and} $\texttt{succ}(\texttt{col}(x)) = \texttt{col}(z)$}
-            \If{$\texttt{row}(z) \notin \texttt{midpoint}(\texttt{row}(x), \texttt{row}(y))$} \Comment{Proposition 5.7d}
+            \If{$\texttt{row}(z) \notin \texttt{midpoint}(\texttt{row}(x), \texttt{row}(y))$} \Comment{Proposition \ref{prop:impossible-support-2324223423123123}}
                 \State \Return \texttt{True}
             \EndIf
         \EndIf
@@ -542,3 +573,33 @@ This division algorithm just implements the division rule to choose \( \lambda_i
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+    
+\begin{algorithm}
+\caption{Invertibility Criterion for relative coordinates}
+\label{alg:relcoord-inv-crit}
+\begin{algorithmic}[1]
+\Require support \texttt{relset} in relative coordinates
+\Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
+\Function{\texttt{invertibility\_criterion}}{$\texttt{relset}$}
+    \State $L \gets \texttt{divide(relset)}$
+    \State \Return $\texttt{all\_is\_true}(\texttt{[conquer(s) for s in make\_subrelset(relset, L)]})$ 
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Make subrelset}
+\label{alg:subrelset}
+\begin{algorithmic}[1]
+\Function{\texttt{make\_subrelset}}{$\texttt{relset}, L$}
+    \State $\texttt{i} \gets 0$
+    \For{$n \in \{l \in L \mid l > 0\}$}
+        \State \textbf{yield} $\texttt{relset}[\texttt{i}:\texttt{i}+n]$
+        \State $\texttt{i} \gets \texttt{i} + n$
+    \EndFor
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+Let us apply the Invertibility Criterion for relative coordinates to all of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five.
