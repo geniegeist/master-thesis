@@ -270,6 +270,8 @@ We exclude this one case from the 2290 cases in \( \Lambda \) with the following
 
 It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. From now on, assume that \( \mathbf{s}' \in \Lambda \) has positive support size five. We will show that all these cases are invalid. For that we introduce \emph{relative coordinates} defined below to make use of the Invertibility Criterion.
 
+\subsection{Relative Coordinates and the Invertibility Criterion}
+
 \begin{definition}
     Let \( d \geq 42 \).
     Let \( M \) be a sentinel value with no further significance. We use it to encode integers from \( 4, \dots, d-7 \). Define the map 
@@ -290,12 +292,12 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with po
 \begin{proposition}\label{prop:iewjri3j3234212121112}
     Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with positive support size five and degree \( d \). Write \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \). Let \( i,j = 0,1,2,3 \). Then, all of the following conditions hold:
     \begin{enumerate}
-        \item \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if \( x_{i,j} \neq 0 \);
-        \item \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if \( y_{i,j} \neq 0 \);
-        \item \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if \( z_{i,j} \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if \( b_i \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if \( c_i \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if \( f_i \neq 0 \).
+        \item \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( x_{i,j} \neq 0 \);
+        \item \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( y_{i,j} \neq 0 \);
+        \item \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( z_{i,j} \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if and only if \( b_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if and only if \( c_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if and only if \( f_i \neq 0 \).
     \end{enumerate}
 \end{proposition}
 
@@ -637,9 +639,11 @@ The \texttt{succ} function is defined as the successor in this order, see Algori
 
 Let us apply the Invertibility Criterion for relative coordinates to all of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. Let \( \mathbf{s}' \) be one of these cases. We need to compute the set 
 \begin{align*}
-    R(\mathbf{s}') \coloneqq \{ \mathrm{relcoord}(\mathbf{w}) \mid  \mathbf{w} \in \mathbb Z^{V_d} \text{ such that } \mathrm{contr}'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \}.
+    R(\mathbf{s}') \coloneqq \{ \mathrm{relset}(\mathbf{w}) \mid  \mathbf{w} \in \mathbb Z^{V_d} \text{ such that } \mathrm{contr}'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \}.
 \end{align*}
-Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \) using Proposition \ref{prop:iewjri3j3234212121112}, see Algorithm \ref{alg:relsets}.
+Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \) using Proposition \ref{prop:iewjri3j3234212121112}, see Algorithm \ref{alg:relsets}. Now, we can apply the Invertibility Criterion for relative coordinates to all of \( \mathbf{m} \in R(\mathbf{s}') \). If all of these applications to \( \mathbf{m} \in R(\mathbf{s}') \) are successful, then \( \mathbf{s}' \) is impossible. Otherwise, we cannot exclude \( \mathbf{s}' \) as a possible outcome. 
+
+Of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five, we rule out 1182 cases by applying the Invertibility Criterion for relative coordinates using Algorithm \ref{alg:jwenkjdn2kj32}. The remaining 1107 cases are inconclusive. The details of the implementation can be found in the Appendix TODO.
 
 \begin{algorithm}[H]
 \caption{Find Relative Coordinates}
@@ -649,8 +653,8 @@ Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \) us
 \Ensure $R(\mathbf{s}')$
 \Function{\texttt{relsets}}{$\mathbf{s}'$}
     \State $\texttt{constraints} \gets \texttt{[make\_rel\_constraints(t) for t in s' if t != 0]}$
-    \State $\texttt{accu} \gets []$ 
-    \State $\texttt{res} \gets []$ 
+    \State $\texttt{accu} \gets \texttt{list()}$ 
+    \State $\texttt{res} \gets \texttt{list()}$ 
     
     \Function{\texttt{dfs}}{$\texttt{i}$}
         \If{$\texttt{i} \geq |\texttt{constraints}|$}
@@ -671,5 +675,38 @@ Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \) us
 \end{algorithm}
 
 \begin{proof}[Proof of correctness]
-    s
+    Let \( \mathbf{s}' = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) \).
+    By Proposition \ref{prop:iewjri3j3234212121112}, \( \mathbf{m} \in R(\mathbf{s}') \) if and only if \( \mathbf{m} \cap C \neq \emptyset \) for all \( C \in \left\{ \texttt{make\_rel\_constraints(t)} \mid t \in \{x_{i,j}, y_{i,j}, z_{i,j}, b_i, c_i, f_i\}, t \neq 0 \right\} \).
+
+    It just remains to show that \( \mathbf{m} \in \texttt{res} \) if and only if \( \mathbf{m} \) satisfies all of these constraints. First note that \( x \in \mathbf{m} \) if and only if \( x \in \mathrm{constraints[i]} \) for some \( i \) by line eleven. Since \( \mathbf{m} \in \texttt{res}  \) if and only if \( \mathbf{m} \) satisfies all constraints by line six, the algorithm is correct.
 \end{proof}
+
+\begin{algorithm}
+\caption{Check Configurations Against Invertibility Criterion}
+\label{alg:jwenkjdn2kj32}
+\begin{algorithmic}[1]
+\Require $\Lambda$
+\Ensure $\texttt{left\_to\_check}$: supports not satisfying the Invertibility Criterion
+\State $\texttt{left\_to\_check} \gets \texttt{list()}$ 
+\For{each $\mathbf{s}' \in \Lambda$}
+    \State $\texttt{res} \gets [\texttt{invertibility\_criterion}(R) \text{ for } R \in \texttt{relsets}(\mathbf{s}')]$
+    \If{$\neg \texttt{all}(\texttt{res})$}
+        \State $\texttt{left\_to\_check.append}(\mathbf{s}')$
+    \EndIf
+\EndFor
+\State \Return $\texttt{len(left\_to\_check)}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Symmetry}
+
+It remains to consider 1107 cases thanks to the Invertibility Criterion for relative coordinates. We can use symmetry to reduce the number of cases further. Let \( \mathbf{s}' \in \Lambda \) be one of the 1107 cases. We can apply the following symmetries to \( \mathbf{s}' \) similar to the symmetries in Section \ref{sec:symmetry}:
+\begin{align*}
+    (12) \cdot (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) &\coloneqq ((x_{j,i})_{i,j=0}^3, (y_{j,i})_{i,j=0}^3, (z_{j,i})_{i,j=0}^3, \mathbf{c}, \mathbf{b}, \mathbf{f}), \\
+    (13) \cdot (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) &\coloneqq ((z_{3-i,j})_{i,j=0}^3, (y_{3-j,3-i})_{i,j=0}^3, (x_{3-i,j})_{i,j=0}^3, \mathbf{f}, \mathbf{c}, \mathbf{b}).
+\end{align*}
+Define the group \( S_3 \) generated by these two symmetries. For all weakly valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \), the actions \( \sigma \in S_3 \) satisfy 
+\begin{align*}
+    \sigma \cdot \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathrm{contr}_d'(\mathrm{sign}(\sigma \cdot \mathbf{w})).
+\end{align*}
+We can use this symmetry to reduce the number of cases to consider.
