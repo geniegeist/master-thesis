@@ -400,3 +400,145 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 \begin{example}
     Returning to Example \ref{ex:siuh438h89}, we see that it suffices to consider the case \( i = j \). The case \( i \neq j \) then follows from the previous corollary.
 \end{example}
+
+\begin{corollary}
+    Let \( d\geq 42 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid configuration with positive support size five. Assume \( (i,x), (i,y), (i',z) \in \mathrm{supp}(\mathbf{w}) \) with \( i < i' \). If \( \mathrm{relcoord}(x) \in \left\{ 0,1,2,3 \right\} \), \( \mathrm{relcoord}(y) \in \left\{ d-6, \dots, d \right\} \) and \( \mathrm{relcoord}(z) \neq M  \), then \( \mathbf{w} \) is not an outcome.
+\end{corollary}
+
+\begin{proof}
+    Use Proposition \ref{prop:impossible-support-2324223423123123}. We just need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction, so \( x + y \neq 2z + 1 \) for all \( d \geq 42 \).
+\end{proof}
+
+These two corollaries allow us to implement the following algorithm to exclude certain cases of \( \mathbf{s}' \in \Lambda \).
+\begin{algorithm}[H]
+\caption{Divide}
+\label{alg:divide}
+\begin{algorithmic}[1]
+\Require \texttt{relset}: Support of a configuration in relative coordinates
+\Ensure \( L \in \mathbb{Z}^{k} \) where \( L_i = \lvert S_i \rvert \) if a division \( (\lambda, (E_i)_{i=1}^k, (S_i)_{i=1}^k) \) is found; \texttt{None} otherwise
+
+\State $M \gets 500$, $d \gets 1000$
+\State $R \gets [0, 1, 2, 3, M, d-6, d-5, d-4, d-3, d-2, d-1, d]$ 
+
+\State $L \gets \texttt{list()}$, $\texttt{col\_start} \gets 0$
+
+\For{$\texttt{col\_end} \in \{0, \dots, |R|-1\}$}
+    \State $\texttt{num\_cols} \gets \texttt{col\_end} - \texttt{col\_start} + 1$
+    \State $\texttt{points\_in\_col} \gets \{p = (x,y) \in \texttt{relset} \mid x \in [R[\texttt{col\_start}], R[\texttt{col\_end}]]\}$
+    \State $\texttt{num\_points} \gets |\texttt{points\_in\_col}|$
+
+    \If{$(\texttt{num\_points} = 0) \lor (\texttt{num\_cols} = \texttt{num\_points}) \lor (R[\texttt{col\_end}] = M)$}
+        \State $L.\texttt{append}(\texttt{num\_points})$
+        \State $\texttt{col\_start} \gets \texttt{col\_end} + 1$
+    \EndIf
+\EndFor
+
+\If{$\texttt{sum}(L) \neq 6$}
+    \State \Return \texttt{None}
+\EndIf
+
+\State \Return $L$
+\end{algorithmic}
+\end{algorithm}
+
+This division algorithm just implements the division rule to choose \( \lambda_i  \) minimal such that \( \lvert S_i \rvert \in \left\{ 0, \lambda_i \right\} \) as explained in Remark \ref{rem:ksldmfiewonowiniew}.
+
+\begin{example}
+    Here are some examples of the algorithm in action.
+    \begin{enumerate}
+        \item \( L=[3, 0, 2, 0, 0, 0, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (M, 1), (M, M), (d, 0)] \).
+        \item \( L=[3, 0, 2, 0, 0, 0, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (M, 1), (M, d-6), (d, 0)] \).
+        \item \( L=[3, 0, 0, 0, 2, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (d, 0), (d-5, 1), (d-5, M)] \).
+    \end{enumerate}
+\end{example}
+
+\begin{proposition}
+    Let \( d \geq 42 \). Let \( a,b  = 0, \dots, d \) with \( b \geq a \) Then, the following hold:
+    \begin{enumerate}
+        \item If \( b = 0, 1,2,3 \) or \( a = d-6, \dots, d \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \neq M \).
+        \item Let \( b = 4, \dots, d-7 \).
+        \begin{enumerate}
+            \item If \( a = 0,1 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ 2,3, M \right\} \).
+            \item If \( a = 2,3 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ 3, M \right\} \).
+        \end{enumerate}
+        \item Let \( a = 4, \dots, d-7 \).
+        \begin{enumerate}
+            \item If \( b = d-6, d-5 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) = M \).
+            \item If \( b = d-4,d-3 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ M, d-6 \right\} \).
+            \item If \( b = d-2,d-1 \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ M, d-6,d-5 \right\} \).
+            \item If \( b = d \), then \( \mathrm{relcoord}( \frac{a + b - 1}{2}) \in \left\{ M, d-6,d-5,d-4 \right\} \).
+        \end{enumerate}
+        \item Let \( a = d-6, \dots, d \). Then, \( \mathrm{relcoord}( \frac{a + b - 1}{2}) = M \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{algorithm}[H]
+\caption{Compute midpoint \( \frac{a + b -1}{2} \)}
+\label{alg:helper}
+\begin{algorithmic}[1]
+\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
+
+\Function{\texttt{succ}}{$x$}
+    \If{$x = 3$}
+        \State \Return \texttt{SENTINEL\_M}
+    \ElsIf{$x = \texttt{SENTINEL\_M}$}
+        \State \Return $\texttt{SENTINEL\_D} - 6$
+    \Else
+        \State \Return $x + 1$
+    \EndIf
+\EndFunction
+
+\Function{\texttt{midpoint}}{$a, b$}
+    \State $low, high \gets \min(a, b), \max(a, b)$
+    \If{$low > \texttt{SENTINEL\_M}$ \textbf{or} $high < \texttt{SENTINEL\_M}$}
+        \State \Return $\left\{ \frac{low + high - 1}{2} \right\}$
+    \ElsIf{$high = \texttt{SENTINEL\_M}$}
+        \If{$low \in \{0, 1\}$}
+            \State \Return $\{2, 3, \texttt{SENTINEL\_M}\}$
+        \ElsIf{$low \in \{2, 3\}$}
+            \State \Return $\{3, \texttt{SENTINEL\_M}\}$
+        \EndIf
+    \ElsIf{$low = \texttt{SENTINEL\_M}$}
+        \If{$high \in \{\texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5\}$}
+            \State \Return $\{\texttt{SENTINEL\_M}\}$
+        \ElsIf{$high \in \{\texttt{SENTINEL\_D} - 4, \texttt{SENTINEL\_D} - 3\}$}
+            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6\}$
+        \ElsIf{$high \in \{\texttt{SENTINEL\_D} - 2, \texttt{SENTINEL\_D} - 1\}$}
+            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5\}$
+        \ElsIf{$high = \texttt{SENTINEL\_D}$}
+            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5, \texttt{SENTINEL\_D} - 4\}$
+        \EndIf
+    \EndIf
+    \State \Return $\{\texttt{SENTINEL\_M}\}$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\caption{Conquer Algorithm}
+\label{alg:conquer}
+\begin{algorithmic}[1]
+\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
+\Function{\texttt{conquer}}{$\texttt{relset}$}
+    \State \texttt{relset} $\gets \texttt{sorted(relset, key=lambda x: col(x))}$
+    \State $\texttt{length} \gets |\texttt{relset}|$
+    \If{$\texttt{length} \leq 2$}
+        \State \Return \texttt{True} \Comment{Invertibility criterion holds}
+    \ElsIf{$\texttt{length} = 3$}
+        \State $x, y, z \gets \texttt{relset}[0], \texttt{relset}[1], \texttt{relset}[2]$
+        \State $\texttt{same\_column} \gets (\texttt{col}(x) = \texttt{col}(y) = \texttt{col}(z))$
+        \If{$\texttt{same\_column}$} \Comment{Proposition 5.7c}
+            \State \Return \texttt{True}
+        \ElsIf{$\texttt{col}(x) = \texttt{col}(y)$ \textbf{and} $\texttt{succ}(\texttt{col}(x)) = \texttt{col}(z)$}
+            \If{$\texttt{row}(z) \notin \texttt{midpoint}(\texttt{row}(x), \texttt{row}(y))$} \Comment{Proposition 5.7d}
+                \State \Return \texttt{True}
+            \EndIf
+        \EndIf
+        \State \Return \texttt{False}
+    \Else
+        \State \Return \texttt{False}
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}

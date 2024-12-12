@@ -120,7 +120,9 @@ Instead of finding one large set \( S \) with \( \mathrm{supp}(\mathbf w) \subse
     \lambda_1 + \dots + \lambda_l &= d+1.
 \end{align*}
 
-Such decomposition will always work when \( \lvert \left\{ (i,j) \in \mathrm{supp}(\mathbf{w}) : i \geq d-k \right\} \rvert \leq k+1 \) for all \( k = 0, \dots, d \). This is because we can always choose \( \lambda_1  \) minimal such that \( \lvert S_1 \rvert \in \left\{ 0, \lambda_1 \right\} \). We repeat this process until \( c_l = d+1 \). This decomposition is illustrated in the following example.
+\begin{remark}\label{rem:ksldmfiewonowiniew}
+The above decomposition works when \( \lvert \left\{ (i,j) \in \mathrm{supp}(\mathbf{w}) : i \geq d-k \right\} \rvert \leq k+1 \) for all \( k = 0, \dots, d \). This is because we can always choose \( \lambda_1  \) minimal such that \( \lvert S_1 \rvert \in \left\{ 0, \lambda_1 \right\} \). We repeat this process until \( c_l = d+1 \). This decomposition is illustrated in the following example.
+\end{remark}
 
 \begin{example}\label{ex:decomposition-nsjkfnje}
     Fix the degree \( d=6 \). Assume we have some configuration \( \mathbf w \in \mathbb{Z}^{V_6} \) with support in the positions marked with an \texttt{*} below.
@@ -137,6 +139,7 @@ Such decomposition will always work when \( \lvert \left\{ (i,j) \in \mathrm{sup
 \end{example}
 
 
+
 Next with \( S_i \) defined, we define for all \( i=1, \dots, l \) the sets
 \begin{align*}
     E_i \coloneqq \begin{cases}
@@ -145,6 +148,8 @@ Next with \( S_i \) defined, we define for all \( i=1, \dots, l \) the sets
     \end{cases}
 \end{align*}
 We see that \( \lvert E_i \rvert = \lvert S_i \rvert \) for all \( i = 1, \dots, l \). 
+
+
 
 \subsection*{Conquer}
 
