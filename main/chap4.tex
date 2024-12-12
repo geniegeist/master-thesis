@@ -110,7 +110,7 @@ Given a non-zero configuration \( \mathbf{w} \) we try to construct sets \( S \s
 
 The invertibility criterion is a powerful tool to determine whether a given configuration is an outcome. However, it is not always easy to find suitable sets \( S \) and \( E \) such that the pairing matrix is invertible. We will now introduce a method to construct such sets.
 
-\subsection*{Divide}
+\subsection*{Divide}\label{subsec:divide}
 
 Instead of finding one large set \( S \) with \( \mathrm{supp}(\mathbf w) \subset S \), we divide \( S \) into smaller sets \( S_1, \dots, S_l \). These smaller sets \( S_1, \dots, S_k \) will be implicitly defined by integers \( \lambda_1, \dots, \lambda_l \in \mathbb{N} \) as we will shortly see. We choose \( l \in \mathbb{N} \) and integers \( \lambda_1, \dots, \lambda_l \in \mathbb{N} \) such that for all \( i=1, \dots, d \) we have
 \begin{align*}
@@ -400,7 +400,7 @@ Now, we show that specific supports cannot be the supports of valid integral out
 \end{proof}
 
 \begin{proposition}\label{prop:impossible-support-2324223423123123}
-    Let \( d \in \mathbb{N} \). Assume \( i,j,=0, \dots, d \) with \( i < j \). Moreover, let \( k=0, \dots, d-1 \). If \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
+    Let \( d \in \mathbb{N} \). Assume \( i,j=0, \dots, d \) with \( i < j \). Moreover, let \( k=0, \dots, d-1 \). If \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
 \end{proposition}
 
 \begin{proof}
