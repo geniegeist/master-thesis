@@ -222,7 +222,7 @@ Given some support \( S \), we divide it into smaller sets \( S_1, \dots, S_l \)
 
 \section{Implementation of the Hyperfield Criterion}
 
-The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome. It is later used in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
+The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome in \( \mathbb{Z}^{V_d} \). It is later used in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
 
 \begin{algorithm}[H]
 \caption{Only Zero Outcome}\label{alg:hyperfield_criterion:is_zero}
@@ -237,7 +237,7 @@ The Invertibility Criterion inspires the following algorithm for determining if 
     \end{algorithmic}  
 \end{algorithm}
 
-The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^{(d)}_{E,S} \) as defined in Definition \ref{def:pairing-matrix}. If this Algorithm is inconclusive, we can try to use another set of \( E \). This leads to the following generalization:
+The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^{(d)}_{E,S} \) as defined in Definition \ref{def:pairing-matrix}. If this Algorithm is inconclusive, we can try to use another set \( E \subset \left\{ 0, \dots, d \right\} \). This leads to the following generalization:
 
 \begin{algorithm}[H]
 \caption{Only Zero Outcome (Generalized)}\label{alg:hyperfield_criterion:is_zero_general}

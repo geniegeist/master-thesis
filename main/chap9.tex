@@ -193,7 +193,7 @@ We make the following simplication to the index set \( \Xi \).
 
 A simple computation of the set \( \Lambda \) shows that it has \( 2290 \) elements.
 
-\begin{proposition}
+\begin{proposition}\label{prop:ieshwu4rhui3w}
     Let \( \mathbf{s}' \in \Lambda \). Then, \( \mathbf{s}' \) has positive support of size five or four.
 \end{proposition}
 
@@ -208,7 +208,7 @@ A simple computation of the set \( \Lambda \) shows that it has \( 2290 \) eleme
 \section{Case \( d \geq 42\) continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Four}
 
 \begin{corollary}
-    From the proof above, we see that \( \mathbf{s}' \in \Lambda \) has positive support size four if and only if \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) satisfies \( d_i = 1 \) and \( e_j = 1 \) for some \( i,j = 0, 1,2,3 \).
+    From Proposition \ref{prop:ieshwu4rhui3w}, we see that \( \mathbf{s}' \in \Lambda \) has positive support size four if and only if \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) satisfies \( d_i = 1 \) and \( e_j = 1 \) for some \( i,j = 0, 1,2,3 \).
 \end{corollary}
 
 \begin{corollary}
@@ -268,7 +268,7 @@ We exclude this one case from the 2290 cases in \( \Lambda \) with the following
 
 \section{Case \( d \geq 42\) continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Five}
 
-It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five.
+It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. From now on, assume that \( \mathbf{s}' \in \Lambda \) has positive support size five. We will show that all these cases are invalid. 
 
 \begin{proposition}
     Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, all of the following hold:
@@ -293,6 +293,70 @@ It is our goal to exclude all \( 2289 \) cases of \( \mathbf{s}' \in \Lambda \) 
         x \mapsto \begin{cases}
             x & \text{if } x \in \left\{ 0,1,2,3, d-6,d-5,d-4,d-3,d-2,d-1,d \right\}, \\
             M& \text{if } x \in \left\{ 4, \dots, d-7 \right\}.
-        \end{cases}
+        \end{cases}.
+    \end{align*}
+    Define the map \emph{relative set} as follows:
+    \begin{align*}
+        \mathrm{relset}: \mathbb{Z}^{V_d} &\to 2^{\left\{ 0, \dots, 3, M, d-6, \dots, d \right\} \times \left\{ 0, \dots, 3, M, d-6, \dots, d \right\}}, \\
+        \mathbf{w} &\mapsto \left\{ (\mathrm{relcoord}(i), \mathrm{relcoord}(j)) \mid (i,j) \in \mathrm{supp}(\mathbf{w}) \right\}.
     \end{align*}
 \end{definition}
+
+\begin{proposition}
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with positive support size five and degree \( d \). Write \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \). Let \( i,j = 0,1,2,3 \). Then, all of the following hold:
+    \begin{enumerate}
+        \item \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if \( x_{i,j} \neq 0 \);
+        \item \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if \( y_{i,j} \neq 0 \);
+        \item \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if \( z_{i,j} \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if \( b_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if \( c_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if \( f_i \neq 0 \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Let \( \mathbf{w} \) be some valid outcome with \( x_{i,j} \neq 0 \). Then, \( w_{i,j} \neq 0 \) with \( i,j = 0, 1,2, 3 \). By definition of \( \mathrm{relcoord} \), \( i \mapsto i \) and \( j \mapsto j \). So \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) since \( (i,j) \in \mathrm{supp}(\mathbf{w}) \).
+
+    Assume \( y_{i,j} \neq 0 \). Then, \( w_{i, d-3+j-i} \neq 0 \). By definition of \( \mathrm{relcoord} \), \( i \mapsto i \) and \( d-3+j-i \mapsto d-3+j-i \). So \( (i,d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) since \( (i,d-3+j-i) \in \mathrm{supp}(\mathbf{w}) \). The case \( z_{i,j} \neq 0 \) is similar.
+
+    Assume \( b_{i} \neq 0 \). Then, there must exist some nonzero \( w_{k, i} \) for some \( k = 4, \dots, d-4-i \). Clearly, \( k \) maps to some element in \( \left\{ M, d-6, \dots, d-4-i \right\} \). This shows the claim. The case for \( c_i \) is similar.
+
+    Assume \( f_{i} \neq 0 \). Then, there must exist some nonzero \( w_{k, d-i-k} \) for some \( k = 4, \dots, d-4-i \). Clearly, \( k \) and \( d-i-k \)  map to some element in \( \left\{ M, d-6, \dots, d-4-i \right\} \). This shows the claim.
+\end{proof}
+
+Relative coordinates help us to apply the Invertibility Criterion. 
+
+\begin{example}
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size seven. Now, assume that the relative support set of \( \mathbf{w} \) is 
+    \begin{align*}
+        \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M), (d,0) \right\}.
+    \end{align*}
+    Let us visualize the configuration \( \mathbf{w} \). Can such a configuration exist?
+    \begin{verbatim}
+d     X
+d-1   .   .
+d-2   .   .   .
+d-3   .   .   .   .
+d-4   .   .   .   .   .
+d-5   .   .   .   .   .   .
+d-6   .   .   .   .   .   X   X
+M     .   .   .   .   .   .   .   .
+M     ........................................
+M     ..........................................
+M     ............................................
+M     .   .   .   .   .   .   .   .   .   .   .   .   
+M     .   .   .   .   .   .   .   .   .   .   .   .   .   X
+M     .   .   .   .   .   .   .   .   .   .   .   .   .   X   .   
+3     .   X   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+2     .   .   .   .   X   X   X   X   X   X   X   X   .   .   .   .   .     
+1     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+0     X   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   X
+
+      0   1   2   3   M   M   M   M   M   M   M   M  d-6 d-5 d-4 d-3 d-2 d-1  d
+    \end{verbatim}
+    We see that 
+    \begin{align*}
+        \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \cup \left\{ (d,0) \right\}.
+    \end{align*}
+    for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we can apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. So assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. Hence, \( \mathbf{w} \) cannot be an outcome.
+\end{example}
