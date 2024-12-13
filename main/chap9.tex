@@ -755,11 +755,11 @@ Let \( d \geq 42 \). We apply the Hexagon Criterion (Proposition \ref{prop:hexag
 \begin{align*}
     \ell_1 = \ell_2 = 7 \quad \text{and} \quad d' = 6.
 \end{align*}
-First, we check that the requirements of the Hexagon Criterion are met: \( d' + \ell_1 + \ell_2  = 20 \leq 42 = d \). Next, we need to find all contracted configurations from the 179 cases of \( \mathbf{s}' \in \Lambda \) whose support lies inside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \), see Figure \ref{fig:hexagon}. 
+First, we check that the requirements of the Hexagon Criterion are met: \( d' + \ell_1 + \ell_2  = 20 \leq 42 = d \). Next, we need to find all contracted configurations from the 179 cases of \( \mathbf{s}' \in \Lambda \) whose support lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \), see Figure \ref{fig:hexagon}. 
 
 \begin{proposition}
     Let \( d \geq 42 \).
-    Let \( \mathbf{s}' \in H^{\Xi'} \) be some contracted configuration and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some configuration with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \). If \( \mathrm{supp}^+(\mathbf{s}') \cap \left\{ \mathbf{b}, \mathbf{c}, \mathbf{f} \right\} = \emptyset\), then \( \mathrm{supp}(\mathbf{w}) \) lies in the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
+    Let \( \mathbf{s}' \in H^{\Xi'} \) be some contracted configuration and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some configuration with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \). If \( \mathrm{supp}^+(\mathbf{s}') \cap \left\{ \mathbf{b}, \mathbf{c}, \mathbf{f} \right\} = \emptyset\), then \( \mathrm{supp}(\mathbf{w}) \) lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
 \end{proposition}
 
 \begin{proof}
@@ -784,3 +784,242 @@ Here are the thirteen cases of \( \mathbf{s}' \in \Lambda \) that remain:
     \item \( \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \)
     \item \( \left\{ x_{1,2}, x_{2,1}, y_{0,3}, z_{3,0}, d_1 \right\} \)
 \end{enumerate}
+Let \( d \geq 42 \). We can go through these cases one by one and apply the Hexagon Criterion:
+\begin{verbatim}
+y03 z20 z22 z31 c1
+
+*  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  *  y  y  d  d  
+c  *  c  y  d  d  d  
+c  *  c  c  d  d  d  d  
+c  *  c  c     d  d  d  d  
+c  *  c  c        d  d  d  d  
+c  *  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  *  z  
+x  x  x  x  b  b  b  b  b  b  z  z  z  *  
+*  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
+\end{verbatim}
+To apply the Hexagon Criterion to some configuration \( \mathbf{w} \) with the support indicated as above, we need to know where the nonzero entry of \( \mathbf{w} \) in the \( c_1 \)-column is roughly located; here the \( c_1 \)-column denotes the entries \( w_{1,k} \) with \( k = 4, \dots, d - 1 - 4 \). There can only exist one nonzero entry in the \( c_1 \)-column since \( \mathbf{w} \) has positive support size five. Let us denote the nonzero entry in the \( c_1 \)-column by \( (a,b) \in V_d \) where \( a = 1 \). We differentiate between three cases:
+\begin{enumerate}
+    \item Let \( a + b \leq \mathrm{floor}(\frac{d}{3})\). Set \( \ell_1 = \ell_2 = d' =  \mathrm{floor}(\frac{d}{3}) \geq \frac{42}{3} = 14 \). We easily see that the other non-entries \( y_{0,3}, z_{2.0}, z_{2,2}, z_{3,1} \) lie outside the hexagon.
+    \item Let \( b \geq \mathrm{floor}(\frac{d}{3})  \). Set \( d' = 6 \), \( \ell_2 = 7 \) and \( \ell_1 = d + 1 - \mathrm{floor}(\frac{d}{3}) \geq 43 - 14 = 29 \). We see that \( d' + \ell_1 + \ell_2 \leq d \) since \( d \geq 42 \). We easily see that the non-entries \( y_{0,3}, z_{2.0}, z_{2,2}, z_{3,1} \) lie outside the hexagon. It remains to check that \( (a,b) \) also lies outside the hexagon. We have \( d - \ell_1 = d - (d + 1) + \mathrm{floor}(\frac{d}{3}) =\mathrm{floor}(\frac{d}{3}) - 1 < \mathrm{floor}(\frac{d}{3}) \leq b \). Thus, \( (a,b) \) lies outside the hexagon.
+\end{enumerate}
+Both these cases show that we can apply the Hexagon Criterion; the criterion shows that the degree of \( \mathbf{w} \) is at most \( d' \leq \mathrm{floor}(\frac{d}{3}) \). However, we assume that \( \mathbf{w} \) is of degree \( d \), which is a contradiction since \( d' < d \). We rule out \( \left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\} \).
+
+There are eleven other cases that are checked similarly; only for \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) we need another strategy. Let us depict these eleven ``simple'' cases:
+
+\begin{verbatim}
+y03 y12 y21 z30 b1
+
+*  
+y  y  
+y  *  y  
+y  y  y  y  
+c  y  *  y  d  
+c  c  y  y  d  d  
+c  c  c  y  d  d  d  
+c  c  c  c  d  d  d  d  
+c  c  c  c     d  d  d  d  
+c  c  c  c        d  d  d  d  
+c  c  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  x  x  *  *  *  *  *  *  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+y03 y11 y13 z20 b1
+
+*  
+y  *  
+y  y  y  
+y  *  y  y  
+c  y  y  y  d  
+c  c  y  y  d  d  
+c  c  c  y  d  d  d  
+c  c  c  c  d  d  d  d  
+c  c  c  c     d  d  d  d  
+c  c  c  c        d  d  d  d  
+c  c  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  x  x  *  *  *  *  *  *  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
+
+
+y03 y13 y22 z20 b1
+
+*  
+y  *  
+y  y  y  
+y  y  *  y  
+c  y  y  y  d  
+c  c  y  y  d  d  
+c  c  c  y  d  d  d  
+c  c  c  c  d  d  d  d  
+c  c  c  c     d  d  d  d  
+c  c  c  c        d  d  d  d  
+c  c  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  x  x  *  *  *  *  *  *  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
+
+
+x01 x21 y13 z30 d1
+
+y  
+y  *  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  c  y  y  *  d  
+c  c  c  y  d  *  d  
+c  c  c  c  d  d  *  d  
+c  c  c  c     d  d  *  d  
+c  c  c  c        d  d  *  d  
+c  c  c  c           d  d  *  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+*  x  *  x  b  b  b  b  b  b  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+y03 z10 z22 z31 c1
+
+*  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  *  y  y  d  d  
+c  *  c  y  d  d  d  
+c  *  c  c  d  d  d  d  
+c  *  c  c     d  d  d  d  
+c  *  c  c        d  d  d  d  
+c  *  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  *  z  
+x  x  x  x  b  b  b  b  b  b  z  z  z  *  
+*  x  x  x  b  b  b  b  b  b  b  z  *  z  z  
+
+
+y02 y11 y13 z30 b1
+
+y  
+*  *  
+y  y  y  
+y  *  y  y  
+c  y  y  y  d  
+c  c  y  y  d  d  
+c  c  c  y  d  d  d  
+c  c  c  c  d  d  d  d  
+c  c  c  c     d  d  d  d  
+c  c  c  c        d  d  d  d  
+c  c  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  x  x  *  *  *  *  *  *  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+y03 z22 z30 z31 c1
+
+*  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  *  y  y  d  d  
+c  *  c  y  d  d  d  
+c  *  c  c  d  d  d  d  
+c  *  c  c     d  d  d  d  
+c  *  c  c        d  d  d  d  
+c  *  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  *  z  
+x  x  x  x  b  b  b  b  b  b  z  z  z  *  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+y03 z11 z30 z31 c1
+
+*  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  *  y  y  d  d  
+c  *  c  y  d  d  d  
+c  *  c  c  d  d  d  d  
+c  *  c  c     d  d  d  d  
+c  *  c  c        d  d  d  d  
+c  *  c  c           d  d  d  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  x  x  b  b  b  b  b  b  z  *  z  *  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+x03 x11 x30 z33 d0
+
+y  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  *  
+c  c  y  y  d  *  
+c  c  c  y  d  d  *  
+c  c  c  c  d  d  d  *  
+c  c  c  c     d  d  d  *  
+c  c  c  c        d  d  d  *  
+c  c  c  c           d  d  d  *  
+*  x  x  x  b  b  b  b  z  z  z  *  
+x  x  x  x  b  b  b  b  b  z  z  z  z  
+x  *  x  x  b  b  b  b  b  b  z  z  z  z  
+*  x  x  *  b  b  b  b  b  b  b  z  z  z  z  
+
+
+x02 x21 y13 z30 d1
+
+y  
+y  *  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  c  y  y  *  d  
+c  c  c  y  d  *  d  
+c  c  c  c  d  d  *  d  
+c  c  c  c     d  d  *  d  
+c  c  c  c        d  d  *  d  
+c  c  c  c           d  d  *  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+*  x  x  x  b  b  b  b  b  z  z  z  z  
+x  x  *  x  b  b  b  b  b  b  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
+
+
+
+x12 x21 y03 z30 d1
+
+*  
+y  y  
+y  y  y  
+y  y  y  y  
+c  y  y  y  d  
+c  c  y  y  *  d  
+c  c  c  y  d  *  d  
+c  c  c  c  d  d  *  d  
+c  c  c  c     d  d  *  d  
+c  c  c  c        d  d  *  d  
+c  c  c  c           d  d  *  d  
+x  x  x  x  b  b  b  b  z  z  z  z  
+x  *  x  x  b  b  b  b  b  z  z  z  z  
+x  x  *  x  b  b  b  b  b  b  z  z  z  z  
+*  x  x  x  b  b  b  b  b  b  b  z  z  z  *
+\end{verbatim}
