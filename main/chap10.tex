@@ -116,3 +116,65 @@ Next, we need to show the following proposition.
 \begin{proof}
     TODO
 \end{proof}
+
+\begin{proposition}
+    Let \( p = \mathrm{diag}(1) - \mathrm{diag}(d-1)\). We can write \( \mathrm{sign}(p) = \hat p^{\mathrm{even}} \) and  \( \mathrm{sign}(p) = \hat p^{\mathrm{odd}} \) for some linear form \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) for even and odd degree \( d \), respectively. These linear forms \(  \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) are independent of \( d \).
+\end{proposition}
+
+\begin{proof}
+    Will be proven by computer.
+\end{proof}
+
+We redefine the following sets.
+
+\begin{definition}
+    We define the following three solution sets:
+    \begin{enumerate}
+        \item     Define \( \Gamma^{\mathrm{even}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{even}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
+
+        \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    We define 
+    \begin{gather*}
+        \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
+        \text{ and }
+        \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}.
+    \end{gather*}
+\end{definition}
+
+
+\begin{proposition}
+    The following holds:
+    \begin{enumerate}
+        \item We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\).
+        \item We have \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
+    \end{enumerate}
+\end{proposition}
+
+We exluded around 100,000 cases; there are still around 217,000 cases left to check.
+
+\section{Contractable Pascal Forms}
+
+To further reduce the cases, we want to generate a set \( G \) of hyperfield Pascal forms that are \emph{fixed-contractable}. We will see that of the 217,000 cases we can exclude cases that are not a hyperfield root of some \( p \in G \).
+
+\begin{definition}
+    Let \( p \) be a Hyperfield linear form. We say \( p \) is \emph{contractable} if we can write \( \mathrm{sign}(p) = \hat p^{\mathrm{even}} \) and  \( \mathrm{sign}(p) = \hat p^{\mathrm{odd}} \) for some linear form \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) for even and odd degree \( d \), respectively. 
+\end{definition}
+
+\begin{definition}
+    Let \( i = 0,1,2,3,4 \).
+    Let \( p \) be a Hyperfield linear form. We say \( p \) is \emph{contractable} on \( b_i \) if we can write
+    \begin{align*}
+        p = \sum_{(i,j) \in V_d \setminus \left\{ (4,i), \dots, (d-i-4, i) \right\}} \lambda_{i,j} x_{i,j}  +\lambda b_i
+    \end{align*}
+    where \( b_i \coloneqq x_{4,i} + \dots + x_{d-4-i,i} \). We similarly define \( p \) is \emph{contractable} on \( c_i \), \( d_i \), and \( e_i \).
+\end{definition}
+
+\begin{definition}
+    Let \( p \) be a Hyperfield linear form. We say \( p \) is \emph{fixed-contractable} if it is contractable and the linear forms \( \hat p^{\mathrm{even}} \) and \( \hat p^{\mathrm{odd}} \) are independent of \( d \). 
+
+    We similarly define \( p \) is \emph{fixed-contractable} on \( b_i \), \( c_i \), \( d_i \), and \( e_i \).
+\end{definition}
