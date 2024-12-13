@@ -168,9 +168,9 @@ To further reduce the cases, we want to generate a set \( G \) of hyperfield Pas
     Let \( i = 0,1,2,3,4 \).
     Let \( p \) be a Hyperfield linear form. We say \( p \) is \emph{contractable} on \( b_i \) if we can write
     \begin{align*}
-        p = \sum_{(i,j) \in V_d \setminus \left\{ (4,i), \dots, (d-i-4, i) \right\}} \lambda_{i,j} x_{i,j}  +\lambda b_i
+        p = \sum_{(i,j) \in V_d \setminus \left\{ (5,i), \dots, (d-i-5, i) \right\}} \lambda_{i,j} x_{i,j}  +\lambda b_i
     \end{align*}
-    where \( b_i \coloneqq x_{4,i} + \dots + x_{d-4-i,i} \). We similarly define \( p \) is \emph{contractable} on \( c_i \), \( d_i \), and \( e_i \).
+    where \( b_i \coloneqq x_{5,i} + \dots + x_{d-5-i,i} \). We similarly define \( p \) is \emph{contractable} on \( c_i \), \( d_i \), and \( e_i \).
 \end{definition}
 
 \begin{definition}
@@ -178,3 +178,119 @@ To further reduce the cases, we want to generate a set \( G \) of hyperfield Pas
 
     We similarly define \( p \) is \emph{fixed-contractable} on \( b_i \), \( c_i \), \( d_i \), and \( e_i \).
 \end{definition}
+
+\begin{definition}
+    Let $p(x) = \sum \lambda_{ij} x_{ij}$ be any hyperfield linear form. For $i = 0,1,2,3,4$ we write \( p_{c_{i}} \coloneqq \begin{bmatrix} \lambda_{i, 5} & \dots & \lambda_{i,d-i-5} \end{bmatrix} \).
+  We call this the $i$-th $c$-column of $p$.
+  
+   Similarly, we define $p_{b_{i}}$, $p_{d_{i}}$ and $p_{e_{i}}$ to denote the $i$-th $b$-row, $d$-diagonal and $e$-diagonal of $p$, respectively.
+  \end{definition}
+
+
+\begin{proposition}
+    Let $p$ be a linear combination of $\{ \mathrm{row}(i), \mathrm{col}(i), \mathrm{diag}(i) : i \in \{ 0, \dots, 4\} \cup \{ d-4, \dots, d \} \}$. Then, the following statements hold:
+  \begin{itemize}
+  \item The $c$-columns of $\mathrm{sign}(p)$ only depend on $\{ \mathrm{sign}(\mathrm{row}(i)), \mathrm{sign}(\mathrm{diag}(i)) \}_{i = 0, \dots, 4}$.
+  \item The $b$-rows of $\mathrm{sign}(p)$ only depend on $\{ \mathrm{sign}(\mathrm{col}(i)), \mathrm{sign}(\mathrm{diag}(d-i)) \}_{i = 0, \dots, 4}$.
+  \item The $d$-diagonals and $e$-diagonals of $\mathrm{sign}(p)$ only depend on 
+  \begin{align*}
+    \{ \mathrm{sign}(\mathrm{row}(d-i)), \mathrm{sign}(\mathrm{col}(d-i)) \}_{i = 0, \dots, 4}.
+  \end{align*}
+  \end{itemize}
+  \end{proposition}
+  
+  \begin{proof}
+   This follows easily from the definition of $\mathrm{row}, \mathrm{col}, \mathrm{diag}$.
+  \end{proof}
+
+  \begin{proposition}
+    The following statements hold:
+    \begin{itemize}
+    \item Let $p \in \{\mathrm{sign}(\mathrm{row}(i)), \mathrm{sign}(\mathrm{diag}(i)) \}_{i = 0, \dots, 4}$. For any $i = 0, \dots, 4$ the $c_{i}$-column of $p$ is a constant vector, i.e. $p_{c_{i}} \in \{ -1, 0, 1 \}$. 
+  
+    \item Let $p \in \{\mathrm{sign}( \mathrm{col}(i)),\mathrm{sign}(\mathrm{diag}(d-i)) \}_{i = 0, \dots, 4}$. For any $i = 0, \dots, 4$ the $b_{i}$-row of $p$ is a constant vector, i.e. $p_{b_{i}} \in \{ -1, 0, 1 \}$. 
+  
+    \item Let $p \in \{ \mathrm{sign}(\mathrm{row}(d-i)), \mathrm{sign}(\mathrm{col}(d-i)) \}_{i = 0, \dots, 4}$. For any $i = 0, \dots, 4$ the $d_{i}$-diagonal of $p$ is a constant vector, i.e. $p_{d_{i}} \in \{ -1, 0, 1 \}$; similarly for the $e_{i}$-diagonal. 
+    \end{itemize}
+  \end{proposition}
+  
+  \begin{proof}
+    This also follows easily from the definition of $\mathrm{row}, \mathrm{col}, \mathrm{diag}$. 
+  \end{proof}
+  
+
+\begin{proposition}\label{prop:row_extend_d}
+    Let \( p : \mathbb{Z}^{V_d} \to \mathbb{Z},  q: \mathbb{Z}^{V_{d+1}} \to \mathbb{Z}  \) be Pascal forms that can be expressed as \( p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{row}(i) \). Let \( (p_{ij})_{(i,j) \in V_d} \) denote the coefficients of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \), and let \( (q_{ij})_{(i,j) \in V_{d+1}} \) denote the coefficients of the linear form \( q: x \mapsto \sum_{(i,j) \in V_{d+1}} q_{ij}x_{ij} \). Then, \( q_{ij} = p_{ij} \) for all \( (i,j) \in V_d \).
+    
+    In other words, if the visualization of the coefficients \( (p_{ij})_{(i,j) \in V_d} \) of the linear form \( p: x \mapsto \sum_{(i,j) \in V_d} p_{ij}x_{ij} \) on the grid \( V_d \) looks like this
+    \begin{align*}
+      \begin{matrix}
+        p_{0,d} & & & \\
+        \vdots & p_{1,d-1} & & &    \\
+        \vdots & \vdots & \ddots & &    \\
+        \vdots & \vdots & \vdots & \ddots &    \\
+        \vdots & \vdots & \vdots & \vdots & \ddots &  &\\
+        \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots  \\
+        \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots\\
+        p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0} \\
+      \end{matrix}.
+    \end{align*}
+    Then, the visualization of the coefficients \( (q_{ij})_{(i,j) \in V_d} \) of the linear form \( q: x \mapsto \sum_{(i,j) \in V_d} q_{ij}x_{ij} \) on the grid \( V_{d+1} \) looks like this
+    \begin{align*}
+      \begin{matrix}
+        q_{0,{d+1}} & & & \\
+        p_{0,d} & q_{1, d} & & \\
+        \vdots & p_{1,d-1} & q_{2, d-1} & &    \\
+        \vdots & \vdots & \ddots & \ddots &    \\
+        \vdots & \vdots & \vdots & \ddots & \ddots    \\
+        \vdots & \vdots & \vdots & \vdots & \ddots & \ddots &\\
+        \vdots & \vdots & \vdots & \vdots &  \vdots  & \ddots & \ddots  \\
+        \vdots & \vdots & \vdots & \vdots &  \vdots  & & \ddots & \ddots \\
+        p_{0,0} & p_{1,0} & \hdots & \hdots &  \hdots  & \hdots & \hdots & p_{d,0} & q_{d+1, 0} \\
+      \end{matrix}.
+    \end{align*}
+  \end{proposition}
+  
+  \begin{proof}
+    First, the statement follows immediately for \( p=q= \lambda \mathrm{row}(i) \) for all \( i = 0, \dots, d \) from the definition of \( \mathrm{row}(i) \). 
+    
+    Now, assume \(  p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{row}(i)  \). Let \( (p^{(l)}_{ij})_{(i,j) \in V_d} \) and \( (q^{(l)}_{ij})_{(i,j) \in V_{d+1}} \) denote the coefficients of the linear forms \( \mathrm{row}(l) \). Since we know that \( p^{(l)}_{ij} = q^{(l)}_{ij} \) for all \( l = 0, \dots, d \) and \( (i,j) \in V_d \), we find that \( q_{ij} = q^{(l)}_{ij} = \sum p^{(l)}_{ij} = p_{ij} \) for all \( (i,j) \in V_d \).
+  \end{proof}
+  
+  \begin{corollary}
+    The same statement holds for \( p = q = \sum_{i=0}^{d}  \lambda_{i} \mathrm{col}(i) \).
+  \end{corollary}
+  
+  \begin{proof}
+    Use symmetry.
+  \end{proof}
+  
+
+\begin{example}
+    Consider \( p = q = \mathrm{row}(3) + \mathrm{row}(2) \) in \( \mathbb{Z}^{V_8} \) and \( \mathbb{Z}^{V_9} \), respectively. Then, \( p \) is represented by 
+    \begin{verbatim}
+      -28
+      -14    14
+       -5     9    -5
+        .     5    -4     1
+        2     2    -3     1     .
+        2     .    -2     1     .     .
+        1    -1    -1     1     .     .     .
+        .    -1     .     1     .     .     .     .
+        .     .     1     1     .     .     .     .     .
+    \end{verbatim}
+    and \( q \) is represented by
+    \begin{verbatim}
+      -48
+      -28    20
+      -14    14    -6
+       -5     9    -5     1
+        .     5    -4     1     . 
+        2     2    -3     1     .     .
+        2     .    -2     1     .     .     .
+        1    -1    -1     1     .     .     .     .
+        .    -1     .     1     .     .     .     .     .
+        .     .     1     1     .     .     .     .     .     .
+    \end{verbatim}
+  \end{example}
+  
