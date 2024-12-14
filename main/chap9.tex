@@ -18,50 +18,6 @@ First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome o
     We compute the set of \( S_5(A) \) for \( d = 8, \dots, 40 \), and \( 41 \) using the implementation of Algorithm \ref{alg:solve} which is included in the appendix TODO.
 \end{proof}
 
-\begin{table}
-    \centering
-    \begin{tabular}{|c|c|}
-    \hline
-    degree \( d \) & number of solutions \( \lvert S_5(A) \rvert \) \\ \hline
-    8  & 792  \\ \hline
-    9  & 882  \\ \hline
-    10 & 950  \\ \hline
-    11 & 1084 \\ \hline
-    12 & 1102 \\ \hline
-    13 & 1212 \\ \hline
-    14 & 1248 \\ \hline
-    15 & 1400 \\ \hline
-    16 & 1400 \\ \hline
-    17 & 1530 \\ \hline
-    18 & 1553 \\ \hline
-    19 & 1723 \\ \hline
-    20 & 1710 \\ \hline
-    21 & 1856 \\ \hline
-    22 & 1863 \\ \hline
-    23 & 2049 \\ \hline
-    24 & 2020 \\ \hline
-    25 & 2182 \\ \hline
-    26 & 2173 \\ \hline
-    27 & 2375 \\ \hline
-    28 & 2330 \\ \hline
-    29 & 2508 \\ \hline
-    30 & 2483 \\ \hline
-    31 & 2701 \\ \hline
-    32 & 2640 \\ \hline
-    33 & 2834 \\ \hline
-    34 & 2793 \\ \hline
-    35 & 3027 \\ \hline
-    36 & 2950 \\ \hline
-    37 & 3160 \\ \hline
-    38 & 3103 \\ \hline
-    39 & 3353 \\ \hline
-    40 & 3260 \\ \hline
-    41 & 3486 \\ \hline
-    \end{tabular}
-    \caption{Number of solutions \( \lvert S_5(A) \rvert \) for degrees \( d = 8, \dots, 41 \).}
-    \label{tab:solutions324324324}
-\end{table}
-
 \begin{proposition}\label{prop:uiwuwinca}
     No outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \).
 \end{proposition}
@@ -75,7 +31,7 @@ First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome o
         \item \( \left\{   (1, 1), (3, 0), (3, 4), (0, 8), (5, 3) \right\} \),
         \item \( \left\{   (3, 0), (0, 6), (5, 1), (1, 7), (4, 4) \right\} \),
         \item \( \left\{   (0, 3), (3, 0), (5, 1), (1, 7), (4, 4) \right\} \),
-        \item \( \left\{  (1, 1), (4, 0), (3, 4), (0, 8), (5, 3) \right\} \), and
+        \item \( \left\{  (1, 1), (4, 0), (3, 4), (0, 8), (5, 3) \right\} \),
         \item \( \left\{  (3, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \).
     \end{enumerate}
     Valid configurations that have one of these eight sets as positive support are of degree eight or less. 
@@ -815,220 +771,9 @@ To apply the Hexagon Criterion to some configuration \( \mathbf{w} \) with the s
 Both these cases show that we can apply the Hexagon Criterion; the criterion shows that the degree of \( \mathbf{w} \) is at most \( d' \leq \mathrm{floor}(\frac{d}{3}) \). However, we assume that \( \mathbf{w} \) is of degree \( d \), which is a contradiction since \( d' < d \). We rule out \( \left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\} \).
 \end{example}
 
-There are eleven other cases that are checked similarly; only for \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) we need another strategy. Let us depict these eleven ``simple'' cases:
+We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. Unfortunately, there is one case \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) which cannot be ruled out by the Hexagon Criterion. We need to consider this case separately; so let us ignore this case for now and consider the remaining eleven cases.
 
-\begin{verbatim}
-y03 y12 y21 z30 b1
-
-*  
-y  y  
-y  *  y  
-y  y  y  y  
-c  y  *  y  d  
-c  c  y  y  d  d  
-c  c  c  y  d  d  d  
-c  c  c  c  d  d  d  d  
-c  c  c  c     d  d  d  d  
-c  c  c  c        d  d  d  d  
-c  c  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  x  x  *  *  *  *  *  *  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-y03 y11 y13 z20 b1
-
-*  
-y  *  
-y  y  y  
-y  *  y  y  
-c  y  y  y  d  
-c  c  y  y  d  d  
-c  c  c  y  d  d  d  
-c  c  c  c  d  d  d  d  
-c  c  c  c     d  d  d  d  
-c  c  c  c        d  d  d  d  
-c  c  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  x  x  *  *  *  *  *  *  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
-
-
-y03 y13 y22 z20 b1
-
-*  
-y  *  
-y  y  y  
-y  y  *  y  
-c  y  y  y  d  
-c  c  y  y  d  d  
-c  c  c  y  d  d  d  
-c  c  c  c  d  d  d  d  
-c  c  c  c     d  d  d  d  
-c  c  c  c        d  d  d  d  
-c  c  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  x  x  *  *  *  *  *  *  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
-
-
-x01 x21 y13 z30 d1
-
-y  
-y  *  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  c  y  y  *  d  
-c  c  c  y  d  *  d  
-c  c  c  c  d  d  *  d  
-c  c  c  c     d  d  *  d  
-c  c  c  c        d  d  *  d  
-c  c  c  c           d  d  *  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-*  x  *  x  b  b  b  b  b  b  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-y03 z10 z22 z31 c1
-
-*  
-y  y  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  *  y  y  d  d  
-c  *  c  y  d  d  d  
-c  *  c  c  d  d  d  d  
-c  *  c  c     d  d  d  d  
-c  *  c  c        d  d  d  d  
-c  *  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  *  z  
-x  x  x  x  b  b  b  b  b  b  z  z  z  *  
-*  x  x  x  b  b  b  b  b  b  b  z  *  z  z  
-
-
-y02 y11 y13 z30 b1
-
-y  
-*  *  
-y  y  y  
-y  *  y  y  
-c  y  y  y  d  
-c  c  y  y  d  d  
-c  c  c  y  d  d  d  
-c  c  c  c  d  d  d  d  
-c  c  c  c     d  d  d  d  
-c  c  c  c        d  d  d  d  
-c  c  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  x  x  *  *  *  *  *  *  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-y03 z22 z30 z31 c1
-
-*  
-y  y  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  *  y  y  d  d  
-c  *  c  y  d  d  d  
-c  *  c  c  d  d  d  d  
-c  *  c  c     d  d  d  d  
-c  *  c  c        d  d  d  d  
-c  *  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  *  z  
-x  x  x  x  b  b  b  b  b  b  z  z  z  *  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-y03 z11 z30 z31 c1
-
-*  
-y  y  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  *  y  y  d  d  
-c  *  c  y  d  d  d  
-c  *  c  c  d  d  d  d  
-c  *  c  c     d  d  d  d  
-c  *  c  c        d  d  d  d  
-c  *  c  c           d  d  d  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  x  x  b  b  b  b  b  b  z  *  z  *  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-x03 x11 x30 z33 d0
-
-y  
-y  y  
-y  y  y  
-y  y  y  y  
-c  y  y  y  *  
-c  c  y  y  d  *  
-c  c  c  y  d  d  *  
-c  c  c  c  d  d  d  *  
-c  c  c  c     d  d  d  *  
-c  c  c  c        d  d  d  *  
-c  c  c  c           d  d  d  *  
-*  x  x  x  b  b  b  b  z  z  z  *  
-x  x  x  x  b  b  b  b  b  z  z  z  z  
-x  *  x  x  b  b  b  b  b  b  z  z  z  z  
-*  x  x  *  b  b  b  b  b  b  b  z  z  z  z  
-
-
-x02 x21 y13 z30 d1
-
-y  
-y  *  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  c  y  y  *  d  
-c  c  c  y  d  *  d  
-c  c  c  c  d  d  *  d  
-c  c  c  c     d  d  *  d  
-c  c  c  c        d  d  *  d  
-c  c  c  c           d  d  *  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-*  x  x  x  b  b  b  b  b  z  z  z  z  
-x  x  *  x  b  b  b  b  b  b  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *  
-
-
-
-x12 x21 y03 z30 d1
-
-*  
-y  y  
-y  y  y  
-y  y  y  y  
-c  y  y  y  d  
-c  c  y  y  *  d  
-c  c  c  y  d  *  d  
-c  c  c  c  d  d  *  d  
-c  c  c  c     d  d  *  d  
-c  c  c  c        d  d  *  d  
-c  c  c  c           d  d  *  d  
-x  x  x  x  b  b  b  b  z  z  z  z  
-x  *  x  x  b  b  b  b  b  z  z  z  z  
-x  x  *  x  b  b  b  b  b  b  z  z  z  z  
-*  x  x  x  b  b  b  b  b  b  b  z  z  z  *
-\end{verbatim}
-
-We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to each of these eleven cases. First, we observe that all the eleven cases satisfy 
+First, we observe that all the eleven cases satisfy 
 \begin{align*}
     \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \quad \text{and} \quad \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0.
 \end{align*}
@@ -1058,7 +803,7 @@ This proves the proposition.
 \end{proof}
 
 \begin{proposition}
-    All of the eleven cases are impossible.
+    All the eleven cases are impossible.
 \end{proposition}
 
 \begin{proof}
@@ -1066,6 +811,7 @@ This proves the proposition.
 
     We apply the Hexagon Criterion with these choices of \( d', \ell_1 \) and \( \ell_2 \) to each of the eleven cases. We find that the degree of the valid outcomes \( \mathbf{w} \) is at most \( d' \). However, we assumed that the degree of the valid outcomes is \( d \), which is a contradiction. This shows that all of the eleven cases are impossible.
 \end{proof}
+
 
 \subsection*{The Final Case}
 

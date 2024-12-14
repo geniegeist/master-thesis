@@ -155,7 +155,7 @@ We redefine the following sets.
     \end{enumerate}
 \end{proposition}
 
-We exluded around 100,000 cases; there are still around 217,000 cases left to check.
+We excluded around 100,000 cases; there are still around 217,000 cases left to check.
 
 \section{Contractable Pascal Forms}
 
@@ -229,12 +229,7 @@ We are interested in linear combinations of hyperfield Pascal forms \( p \) that
 \end{definition}
 
 \begin{example}
-    By Proposition \ref{prop:contracted-part-1} and \ref{prop:contracted-part-2}, the following formal linear combinations are fixed-contractable:
-    \begin{gather*}
-        \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3), \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3), \\
-        \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3), \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \\
-        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3),  \\\mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3).
-    \end{gather*}
+    By Proposition \ref{prop:contracted-part-1} and \ref{prop:contracted-part-2}, the following formal linear combinations are fixed-contractable: \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), \(  \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3) \), \( \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3) \), \( \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \), \( \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3) \), \( \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) \).
 \end{example}
 
 We are looking for more fixed-contractable formal linear forms.
@@ -297,23 +292,24 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
 
 For the following propositions and lemmas, we fix the following notations:
 \begin{itemize}
-    \item Let \( T \) be a formal linear combination of \( \left\{ \mathrm{row}(i) \mid i = 0, \dots, 4, t-4, \dots, t \right\} \), i.e. 
+    \item Let \( T \) be a formal linear combination of \( \left\{ \mathrm{row}(i) \right\}_{i=0}^4 \) or \( \left\{ \mathrm{row}(i) \right\}_{i=t-4}^t \), i.e. 
     \begin{align*}
-        T = \sum_{i=1}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=1}^{4}  \lambda_{t-i} \mathrm{row}(t-i);
+        T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) \quad \text{or} \quad T = \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i);
     \end{align*}
     \item Write the realizations of \( T \) as \( p \coloneqq \sum p_{i,j}x_{i,j}  \coloneqq p_d  \) and \( q \coloneqq \sum q_{i,j}x_{i,j} \coloneqq p_{d+1} \) for some degree \( t = d \);
-    \item Write \( r \coloneqq \max\left\{ i \mid \lambda_i \neq 0 \right\} \), and \( \mathrm{row}(r) = \sum r_{i,j}x_{i,j} \).
+    \item Define \( r \coloneqq \max\left\{ i \mid \lambda_i \neq 0 \right\} \) if \(  \max\left\{ i \mid \lambda_i \neq 0 \right\} \leq 4 \), otherwise \( r \coloneqq \min\left\{ i \mid \lambda_i \neq 0 \right\} \); 
+    \item Write \( \mathrm{row}(r) = \sum r_{i,j}x_{i,j} \).
 \end{itemize}  
 
 \begin{lemma}\label{prop:row_extend_d}
     Let \( d \in \mathbb{N}_{\geq 9} \). Then, \( q_{i,j} = p_{i,j} \) holds for all \( (i,j) \in V_d \).
-  \end{lemma}
+\end{lemma}
   
-  \begin{proof}
+\begin{proof}
     Let \( d \in \mathbb{N} \), \( \ell = 0, \dots, 4,t-4,\dots,t \) and \(T_{\ell} =  \mathrm{row}(\ell) \). We denote its realizations in \( d \) and \( d + 1 \) by \( p_d^{(\ell)} = \sum p_{i,j}^{(\ell)}x_{i,j} \) and \( p_{d+1}^{(\ell)} = \sum q_{i,j}^{(\ell)}x_{i,j} \), respectively. By Proposition \ref{prop:pascal-formulas}, we see that \( p_{i,j}^{(\ell)} = q_{i,j}^{(\ell)} \) for all \( (i,j) \in V_d \).
     
-    Next, assume \( T =  \sum_{i=1}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=1}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
-  \end{proof}
+    Next, assume \( T =  \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
+\end{proof}
   
   
 \begin{lemma}\label{lemma:sign_row_propagation}
@@ -332,7 +328,7 @@ For the following propositions and lemmas, we fix the following notations:
 \end{proof}
 
 \begin{lemma}\label{lemma:same_sign_propagation_easy}
-    Let \( d \in \mathbb{N}_{\geq 15} \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
+    Let \( d \in \mathbb{N}_{\geq 15} \) and \( r \leq 4 \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
     then for all \( i = k, \dots, r\) we either have \( p_{c_i} > 0, q_{c_i} > 0 \) or \( p_{c_i} < 0, q_{c_i} < 0 \).
 \end{lemma}
   
@@ -343,7 +339,7 @@ For the following propositions and lemmas, we fix the following notations:
 \end{proof}
 
 \begin{proposition}\label{prop:fixed-contraction-homo-row}
-    Let \( d \in \mathbb{N}_{\geq 15} \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
+    Let \( d \in \mathbb{N}_{\geq 15} \) and \( r \leq 4 \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
     then  \( \mathrm{sign}(T) \) is fixed-contractable on \( c_i \) for all \( i = k, \dots, r \).
 \end{proposition}
 
@@ -354,11 +350,151 @@ For the following propositions and lemmas, we fix the following notations:
 
 There exist similar propositions for contractability on \( d_i \) and \( e_i \).
 
-\begin{proposition}
-    Let \( d \in \mathbb{N}_{\geq 15} \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{col}(r))_{d_i} = \mathrm{sign}(p)_{d_i} \),
-then  \( \mathrm{sign}(T) \) is fixed-contractable on \( d_i \) for all \( i = k, \dots, r \). The analogous statement holds for \( e_i \).
+\begin{proposition}\label{prop:i3jhr23h923h8}
+    Let \( d \in \mathbb{N}_{\geq 15} \) and \( r \geq d-4 \). If there exists \( k \in \left\{ r, \dots, d \right\} \) such that for all \( i = r, \dots, k\) we have \(  \mathrm{sign}(\mathrm{row}(r))_{d_i} = \mathrm{sign}(p)_{d_i} \),
+then  \( \mathrm{sign}(T) \) is fixed-contractable on \( d_i \) for all \( i = r, \dots, k\). The analogous statement holds for \( e_i \).
 \end{proposition}
 
 \begin{proof}
     We can use the same proof as before, but now the sign of the entire diagonal $d_{i}$ changes whenever we increase the dimension by one. Fortunately, the contractability on $d_{i}$ is not affected by this. 
 \end{proof}
+
+We state analogous propositions for \( \mathrm{col}(\cdot) \) of Proposition \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} but skip the proofs since they are similar. Let \(  T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{col}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{col}(t-i) \).
+
+\begin{proposition}\label{prop:fixed-contraction-homo-col}
+    Let \( d \in \mathbb{N}_{\geq 15} \) and \( r \leq 4 \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{col}(r))_{b_i} = \mathrm{sign}(p)_{b_i} \),
+    then  \( \mathrm{sign}(T) \) is fixed-contractable on \( b_i \) for all \( i = k, \dots, r \).
+\end{proposition}
+
+\begin{proposition}\label{prop:23e232sdada2kmkl}
+    Let \( d \in \mathbb{N}_{\geq 15} \) and \( r \geq d-4 \). If there exists \( k \in \left\{ r, \dots, d \right\} \) such that for all \( i = r, \dots, k\) we have \(  \mathrm{sign}(\mathrm{col}(r))_{d_i} = \mathrm{sign}(p)_{d_i} \),
+then  \( \mathrm{sign}(T) \) is fixed-contractable on \( d_i \) for all \( i = r, \dots, k\). The analogous statement holds for \( e_i \).
+\end{proposition}
+
+Here is an analogous version of Lemma \ref{prop:row_extend_d} but for \( \mathrm{diag}(\cdot) \).
+
+\begin{lemma}\label{prop:diag_extend_d}
+    Let \( d \in \mathbb{N}_{\geq 9} \). Then, \( q_{i,j+1} = p_{i,j} \) holds for all \( (i,j) \in V_d \).
+\end{lemma}
+
+\begin{proof}
+    Just use Lemma \ref{prop:row_extend_d} and symmetries \( \sigma \in S_3 \).
+\end{proof}
+
+\begin{example}
+    Consider \( T = \mathrm{diag}(3) + \mathrm{diag}(2) \). Then, \( p_8 \) is represented by the triangle on the left and \( p_9 \) is represented by the triangle on the right.
+    \begin{verbatim}
+  .                                    .  
+  .   .                                .   .  
+  1   1   1                            1   1   1   
+  4   3   2   1                        4   3   2   1   .
+ 10   6   3   1   .                   10   6   3   1   .   .
+ 20  10   4   1   .   .               20  10   4   1   .   .   .
+ 35  15   5   1   .   .   .           35  15   5   1   .   .   .   .
+ 56  21   6   1   .   .   .   .       56  21   6   1   .   .   .   .   .
+ 84  28   7   1   .   .   .   .   .   84  28   7   1   .   .   .   .   .   .
+                                     120  36   8   1   .   .   .   .   .   .   . 
+\end{verbatim}
+\end{example}
+
+Not surprisingly, we have analogous propositions for \( \mathrm{diag}(\cdot) \) of Proposition \ref{prop:fixed-contraction-homo-row}. Consider the formal linear combination \(  T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{diag}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{diag}(t-i) \).
+
+\begin{proposition}\label{prop:fixed-contraction-homo-diag}
+    Let \( d \in \mathbb{N}_{\geq 15} \). The following statements hold:
+    \begin{enumerate}
+        \item  Assume \( r \leq 4 \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{diag}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
+        then  \( \mathrm{sign}(T) \) is fixed-contractable on \( c_i \) for all \( i = k, \dots, r \).
+        \item Assume \( r \geq d-4 \).
+        If there exists \( k \in \left\{ r, \dots, d \right\} \) such that for all \( i = r, \dots, d\) we have \(  \mathrm{sign}(\mathrm{diag}(r))_{b_i} = \mathrm{sign}(p)_{b_i} \),
+        then  \( \mathrm{sign}(T) \) is fixed-contractable on \( b_i \) for all \( i = r, \dots, d \).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    The proofs are analogous to the proof of Proposition \ref{prop:fixed-contraction-homo-row}.
+\end{proof}
+
+%\begin{definition}
+%    Let \( B \) be a set of formal linear combinations. Define the set of fixed-contractable forms $\mathrm{FC}(B)$ of \( B \) to be 
+%    \begin{align*}x
+%    \mathrm{FC}(B) \coloneqq B \cap \left\{ p \mid \text{\( p \) is fixed-contractable} \right\}.
+%    \end{align*}
+%\end{definition}
+
+We end this section with computing a set of fixed-contractable formal linear combinations of Pascal forms \( \mathrm{diag}, \mathrm{col} \), and \( \mathrm{row} \).
+
+
+\begin{proposition}\label{prop:row_homo_diag}
+    Let \( d \in \mathbb{N}_{\geq 15} \), \( T = \sum_{i=0}^4 \lambda_i \mathrm{row}(i)\) with realization \( p_d \), and \( T' = T - \mathrm{diag}(0) \) with realization \( p'_d \). If \( (p_d)_{c_0} \geq \mathbf{2} \), then we have \( (p'_{d'})_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+\end{proposition}
+
+\begin{proof}
+    We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( (p_{d'})_{c_0} \geq \mathbf 2 \) for all \( d' \geq d \) by Lemma \ref{prop:row_extend_d}. So, we have \( (p_{d'} - \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+\end{proof}
+
+
+\begin{example}
+    Let \( T' = \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0)\).
+    Then, \((p'_d)_{c_0} \geq \mathbf 1 \) for all dimensions \( d \geq 15 \). Let us visualize \( \mathrm{row}(1) + \mathrm{row}(2) \) for \( d = 18 \):
+    \begingroup
+    \fontsize{8pt}{10pt}\selectfont
+    \begin{verbatim}
+      135 
+      119  -16 
+      104  -15    1 
+       90  -14    1    . 
+       77  -13    1    .    . 
+       65  -12    1    .    .    . 
+       54  -11    1    .    .    .    . 
+       44  -10    1    .    .    .    .    . 
+       35   -9    1    .    .    .    .    .    . 
+       27   -8    1    .    .    .    .    .    .    . 
+       20   -7    1    .    .    .    .    .    .    .    . 
+       14   -6    1    .    .    .    .    .    .    .    .    . 
+        9   -5    1    .    .    .    .    .    .    .    .    .    . 
+        5   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+        2   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+        .   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       -1   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       -1    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+        .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
+    \end{verbatim}
+    \endgroup
+    As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column. For comparison, here is the visualization of \( \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0) \) for \( d = 18 \):
+    \begingroup
+    \fontsize{8pt}{10pt}\selectfont
+    \begin{verbatim}
+      134 
+      118  -16 
+      103  -15    1 
+       89  -14    1    . 
+       76  -13    1    .    . 
+       64  -12    1    .    .    . 
+       53  -11    1    .    .    .    . 
+       43  -10    1    .    .    .    .    . 
+       34   -9    1    .    .    .    .    .    . 
+       26   -8    1    .    .    .    .    .    .    . 
+       19   -7    1    .    .    .    .    .    .    .    . 
+       13   -6    1    .    .    .    .    .    .    .    .    . 
+        8   -5    1    .    .    .    .    .    .    .    .    .    . 
+        4   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+        1   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+       -1   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       -2   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       -2    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       -1    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+       \end{verbatim}
+    \endgroup
+  \end{example}
+
+  \begin{proposition}\label{prop:row_homo_zero_diag}
+    Let \( p = \sum \lambda_i \mathrm{row}(i)\). Assume that \( p_{c_0} \geq \mathbf{0} \) for some degree \( d \in \mathbb{N} \). Then \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all degrees greater or equal to \( d \).
+  \end{proposition}
+  
+  
+  \begin{proof}
+    We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( p_{c_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Proposition \ref{prop:row_extend_d}. So, we have \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
+  \end{proof}
+  
+  
+  
