@@ -429,11 +429,13 @@
     \vspace{34pt minus 8pt}
     {
       \fmsmallfont
-      Supervisors: \par
-      {\@chair} \\
+      Supervisor and First Reviewer:\\
+      {\@chair} \par
+      \par
       \ifdefined\@cochair
         {\@cochair} \\
       \fi
+      Second Reviewer: \\
       {\@othermembers}\par
       \vspace{14pt minus 4pt}
       \@degreesemester \ \@degreeyear\par

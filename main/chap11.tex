@@ -1,9 +1,6 @@
-\chapter{Discussion}
+\chapter{Computation of Fundamental Models}
 
-This thesis establishes a connection between the classification of discrete statistical models (Theorem \ref{thm:degree-fundamental-models}) and a combinatorial puzzle related to chipsplitting games (Theorem \ref{thm:outcome-degree-support-size}). Specifically, the puzzle investigates whether the degree of a valid chipsplitting outcome can grow indefinitely while its support size remains fixed. For outcomes with positive support sizes up to five, we prove that the degree cannot grow indefinitely, providing a definitive negative answer.
-
-For outcomes with a positive support size of six, significant progress was made toward a similar conclusion. By employing systematic reductions, the number of cases requiring analysis was reduced from approximately 300,000 to 12,000, indicating that a negative answer may hold for this case as well. Furthermore, computational evidence strengthens this hypothesis; our calculations in Table \ref{table:computed-fundamental-models} reveal that for positive support size $n=6$, there are no valid outcomes of degree $d \in \left\{ 10, \dots, TODO \right\}$. This pattern suggests that the degree of valid outcomes with positive support size six is bounded above by nine.
-
+In the final chapter, we compute the number of fundamental models. The implementation details are publicly available in the repository \cite{ducrepo}. The results of these computations are summarized in the following table.
 
 \begin{figure}[H]
     \centering
@@ -24,8 +21,6 @@ For outcomes with a positive support size of six, significant progress was made 
     \caption{The number of fundamental outcomes for each positive support size \( n \) and degree \( d \). For \( n = 2, 3, 4, 5 \) there are no additional columns beyond those shown as we have proven that the degree is bounded.}
     \label{table:computed-fundamental-models}
     \end{figure}
-    
 
-To construct Table \ref{table:computed-fundamental-models}, we employed the following methodology. First, we calculated the set of all supports of valid outcomes for a fixed degree \( d\in \mathbb{N} \) using Algorithm \ref{alg:hyperfield_criterion:efficient}. For each chipsplitting support generated, we mapped it back to a statistical model and solved the corresponding linear system to determine whether it yields a fundamental model, as defined in Definition \ref{def:fundamental-model}. The full implementation details and code are available in the repository TODO.
 
-By using this approach, we computed all valid outcomes for positive support sizes \( n = 1, \dots, 7 \) and degree \( d \leq 11 \). This extends the results of Bik and Marigliano \cite{bik2022classifying} by one additional support size, made possible by a more efficient implementation.
+To construct this table, we employed the following methodology. First, we calculated the set of all supports of valid outcomes for a fixed degree \( d\in \mathbb{N} \) using Algorithm \ref{alg:hyperfield_criterion:efficient}. For each chipsplitting support generated, we mapped it back to a statistical model and computed the rank of the corresponding linear system to determine whether it yields a unique solution. If the system is of full rank, the associated statistical model is fundamental, as defined in Definition \ref{def:fundamental-model}. By using this approach, we computed all valid outcomes for positive support sizes \( n = 1, \dots, 7 \) and degree \( d \leq 11 \). This extends the results of Bik and Marigliano \cite{bik2022classifying} by one additional support size, made possible by a more efficient implementation.

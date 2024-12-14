@@ -20,4 +20,23 @@ We focus on \textbf{{one-dimensional {discrete} {statistical} {models} with rati
 \end{itemize}
 There are two intriguing questions to ask about statistical models with rational MLE: the first one is about which \emph{form} do the maximum likelihood estimators take; the second one is more concerned with the \emph{classification} of the statistical models, i.e. can we divide these models into easier to understand classes? An answer to the first question was given by June Huh. He showed that if \( \Phi \) is rational, then each of its coordinates is an alternating product of linear forms with numerator and denominator of the same degree, see \cite{huh2013varieties, duarte2021discrete}. For the second question, Arthur Bik and Orlando Marigliano classified all one-dimensional discrete statistical models with rational MLE using \emph{fundamental models} \cite{bik2022classifying}.
 
-This thesis continues the work of Bik and Marigliano. In the first half, we present their classification results on how fundamental models serve as the building blocks of one-dimensional discrete models with rational MLE. In the second half, we establish and extend their finding that there are only finitely many fundamental models within the probability simplices \( \Delta_n  \) for \( n \leq 4 \). Due to the complexity of the problem, the cases \( n \geq 5 \) were left open. For the first time, we make significant progress for \( n = 5 \). Other contributions of this thesis include a new result on the number of fundamental models in \( \Delta_6 \) with a maximum degree of \( 11 \), and a missing proof of a key algorithm from their work.
+This thesis continues the work of Bik and Marigliano. In the first half, we present their classification results on how fundamental models serve as the building blocks of one-dimensional discrete models with rational MLE. In the second half, we establish and extend their finding that there are only finitely many fundamental models within the probability simplices \( \Delta_n  \) for \( n \leq 4 \). Due to the complexity of the problem, the cases \( n \geq 5 \) were left open. We make progress for \( n = 5 \) by reducing the number of cases to check from 300,000 to 12,000. Additionally, this thesis introduces new results on the number of fundamental models in \( \Delta_6 \), with a maximum degree of eleven, and provides an algorithm for solving non-trivial hyperfield linear systems, which is essential to all the computational work presented.
+
+The outline of this thesis is as follows: 
+
+
+Chapter 2 provides a classification of statistical models with fundamental models;  Chapter 3 introduces chipsplitting games, and establishes the connection to fundamental models via chipsplitting outcomes; Chapter 4 develops tools for analyzing valid chipsplitting outcomes; Chapters 5 proves that the degree of valid outcomes with support size up to five is bounded; Chapter 6 introduces new tools to tackle outcomes of positive support size four; Chapter 7 establishes a bound on the degree for positive size four outcomes using ; Chapter 8 extends the results of Chapter 7 to support size five; Chapter 9 investigates valid outcomes with support size five; Chapter 10 discusses valid outcomes with support size six; Chapter 11 summarizes the computation of fundamental models; and Chapter 12 concludes with a discussion on future research directions and implications of the findings.
+
+\begin{itemize}
+    \item Chapter 2 provides a classification of statistical models with fundamental models
+    \item Chapter 3 introduces chipsplitting games, and establishes the connection to fundamental models via chipsplitting outcomes
+    \item Chapter 4 develops tools for analyzing valid chipsplitting outcomes and Chapter 5 uses these tools to prove that the degree of valid outcomes with support size up to three is bounded
+    \item Chapter 6 extends the tools developed in Chapter 4 to support the proof for positive support size four, and Chapter 7 leverages these tools to establish a bound on the degree for positive size four outcomes
+    \item Chapter 8 introduces the final tool to tackle outcomes of positive support size five, and Chapter 9 completes the proof for support size five
+    \item Chapter 10 introduces new techniques to reduce the number of cases to check for proving the degree of valid outcomes with support size six is bounded
+    \item Chapter 11 computes the number of fundamental models 
+    \item Chapter 12 concludes with a discussion on future research directions and implications of the findings
+\end{itemize}
+
+
+The source code for the computations discussed in this thesis is available at \cite{ducrepo}.
