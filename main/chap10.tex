@@ -77,89 +77,9 @@ We increased the contraction size to gain more information about potential suppo
 
 The number of cases to check has increased by a factor of hundred compared to the previous chapters. If we would be able to reduce the cases immensely, we could in theory apply the same techniques as in the previous chapters to prove \( \mathrm{deg}(\mathbf w) \leq 9 \). We will spend the remaining part of this chapter to find a way to reduce the number of cases to check to around 10,000 cases; this is a reduction by a factor of 30. We hope that this reduction is sufficient to make the problem computationally feasible for future proofs. Due to time constraints of this thesis, we will not be able to prove \( \mathrm{deg}(\mathbf w) \leq 9 \) for all valid outcomes of positive support size six.
 
-\section{An Extended Trivial System}
+\section{Fixed-Contractable Pascal Forms}
 
-We have the system \( \Phi = \Phi_1 \cup \Phi_2 \). We proved that this system is non-trivial. If we can find a system \( \Psi \) that is a superset of \( \Phi \) and is also nont-rivial, then we can reduce the number of cases to check. 
-
-\begin{proposition}
-    Define \( \Psi' = \Phi \cup \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \), where 
-    \begin{gather*}
-        Z \coloneqq \{ (0,1), (0,2), (0,3), (0,4), (0,d-1), (0,d-2), (0,d-3), (0,d-4),\\ (1,2), (1,3), (1, d), (1,d-4), (1,d-2), (1,d-3),\\ (2,d), (2,d-1), (2,d-3), (2, d-4),\\ (3,d), (3,d-1), (3,d-2), (3, d-4)\\
-        (d-4,d), (d-3,d), (d-2,d), (d-2,d-1), (d-1,d-2), (d-1,d-3), (d-1,d)\}.
-    \end{gather*}
-    The system \( \Psi' \) is non-trivial.
-\end{proposition}
-
-\begin{proof}
-    It is easy to see that every \( p = \sum \lambda_{i,j} x_{i,j} = \mathrm{diag}(q) - \mathrm{diag}(r) \) for \( (q,r) \in Z \) satisfies \( \lambda_{0,0} \neq 0 \), \( \mathrm{supp}^+(p) \neq \emptyset \), and \( \mathrm{supp}^-(p) \neq \emptyset \). Thus, any root \( \mathbf{w} \) of \( p \) satisfies \( \mathrm{supp}^+(p) \cap \mathrm{supp}^+(w) \neq \emptyset \) or \( \mathrm{supp}^-(p) \cap \mathrm{supp}^+(w) \neq \emptyset \).
-\end{proof}
-
-Next, we need to show the following proposition.
-
-\begin{proposition}
-    Let \( p \in \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \). Let \( d \geq 15 \). As in Proposition \ref{prop:contracted-part-1}, we can write \( \mathrm{sign}(p) = \hat p^{\mathrm{even}} \) and  \( \mathrm{sign}(p) = \hat p^{\mathrm{odd}} \) for some linear form \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) for even and odd degree \( d \), respectively. These linear forms \(  \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) are independent of \( d \).
-\end{proposition}
-
-\begin{proof}
-    This will later be proved by computer. For now, we assume this is true. Do not worry it will not lead to circular reasoning.
-\end{proof}
-
-\begin{proposition}
-    Define \( \Psi \coloneqq \Psi \cup \left\{ \mathrm{diag}(1) - \mathrm{diag}(d-1) \right\}\). The system \( \Psi \) is non-trivial.
-\end{proposition}
-
-\begin{proof}
-    Let \( T = \mathrm{diag}(1) - \mathrm{diag}(d-1) \) be a formal linear combination. Let \( d \in \mathbb{N}_{\geq 15} \) be odd and \( \mathbf{w} \) be a root of \( \Psi \). Then, the realization \( p_d = \sum \lambda_{i,j}x_{i,j}\) of \( T \) for \( t = d \) satisfies 
-    \begin{align*}
-        \lambda_{0,0} = 0, \;  \lambda_{0,k} < {0} \quad \forall k = 1, \dots, d..
-    \end{align*}
-     If \( \mathbf{w} \) is a trivial root of \( p_d \), then it satisfies \( w_{0,k} = 0 \) for all \( k = 1, \dots, d \). Then, \( \mathrm{diag}(0)(\mathbf{w}) < 0 \); this is a contradiction because \( \mathbf{w} \) is supposed to be a root of \( \mathrm{diag}(0) \).
-    
-    Let \( d \in \mathbb{N}_{\geq 15} \) be even and \( \mathbf{w} \) be a root of \( \Psi \). The realization \( p_d = \sum \lambda_{i,j}x_{i,j} \) satisfies \( \lambda_{i,d-i} \neq 0 \) if and only if \( i \in \left\{ 0, d \right\} \). If \( \mathbf{w} \) is a trivial solution of \( p_d \), the it satisfies \( w_{d,0} > 0 \) since it is a root of \( \mathrm{diag}(d) \). However, \( \mathrm{col}(d-1)(\mathbf{w}) < 0 \), which is a contradiction since \( \mathbf{w} \) is a root of \( \mathrm{col}(d-1) \).
-\end{proof}
-
-\begin{proposition}
-    Let \( p = \mathrm{diag}(1) - \mathrm{diag}(d-1)\). We can write \( \mathrm{sign}(p) = \hat p^{\mathrm{even}} \) and  \( \mathrm{sign}(p) = \hat p^{\mathrm{odd}} \) for some linear form \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) for even and odd degree \( d \), respectively. These linear forms \(  \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) are independent of \( d \).
-\end{proposition}
-
-\begin{proof}
-    Will be proven by computer.
-\end{proof}
-
-We redefine the following sets.
-
-\begin{definition}
-    We define the following three solution sets:
-    \begin{enumerate}
-        \item     Define \( \Gamma^{\mathrm{even}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{even}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
-
-        \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
-    \end{enumerate}
-\end{definition}
-
-\begin{definition}
-    We define 
-    \begin{gather*}
-        \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
-        \text{ and }
-        \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}.
-    \end{gather*}
-\end{definition}
-
-
-\begin{proposition}
-    The following holds:
-    \begin{enumerate}
-        \item We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\).
-        \item We have \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
-    \end{enumerate}
-\end{proposition}
-
-We excluded around 100,000 cases; there are still around 217,000 cases left to check.
-
-\section{Contractable Pascal Forms}
-
-To further reduce the cases, we want to generate a set of hyperfield Pascal forms that are \emph{fixed-contractable}.
+To reduce the number of cases to check, we want to generate a set of hyperfield Pascal forms that are \emph{fixed-contractable}.
 
 \begin{definition}
     Let \( d \in \mathbb{N}_{\geq 15} \) and \( p \) be a hyperfield linear form on \( H^{V_d} \). We say \( p \) is \emph{contractable} for \( d \) if we can write \( p = \hat p \) for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \). 
@@ -187,6 +107,9 @@ We are interested in linear combinations of hyperfield Pascal forms \( p \) that
     \end{align*}
     Let \( d \in \mathbb{N}_{\geq 15}\). We write \( p_d \) for the realization of \( T \) for \( t = d \); the realization \( p_d \) is just a linear form on \( H^{V_d} \) where we replace the formal variable \( t \) by an actual value \( d \).
 \end{definition}
+
+
+\pagebreak
 
 \begin{example}
     Consider the formal linear combination \( T = \mathrm{row}(3) - row(t - 2) \). Let \( d = 15 \). The realization \( p_d \) of \( T \) for \( t = d \) is the linear form depicted in the following figure
@@ -241,7 +164,7 @@ We are looking for more fixed-contractable formal linear forms.
   \end{definition}
 
 
-\begin{proposition}
+\begin{proposition}\label{prop:nwfiewnfiuwneufni2un2}
     Let \( d \in \mathbb{N}_{\geq 15} , i  = 0, \dots, 4\), and $T$ be a formal linear combination of \(  \{ \mathrm{sign}(\mathrm{row}(j)), \mathrm{sign}(\mathrm{col}(j)), \mathrm{sign}(\mathrm{diag}(j)) \mid j \in \{ 0, \dots, 4\} \cup \{ t-4, \dots, t \} \} \).
 Then, the following statements hold for all realizations \( p_d \) of \( T \):
   \begin{enumerate}
@@ -273,6 +196,9 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
   
 
   Let us investigate how realizations of certain formal linear combinations change when we increase the degree \( d \). 
+
+  
+  \pagebreak
 
   \begin{example}
     Consider \( T = \mathrm{row}(3) + \mathrm{row}(2) \). Then, \( p_8 \) is represented by the triangle on the left and \( p_9 \) is represented by the triangle on the right.
@@ -421,80 +347,193 @@ Not surprisingly, we have analogous propositions for \( \mathrm{diag}(\cdot) \) 
 %    \end{align*}
 %\end{definition}
 
-We end this section with computing a set of fixed-contractable formal linear combinations of Pascal forms \( \mathrm{diag}, \mathrm{col} \), and \( \mathrm{row} \).
+We define \( G_{\mathrm{row}} \) to be the set of formal linear combinations with 
+\begin{align*}
+    G_{\mathrm{row}} \coloneqq \left\{ 
+    \sum_{i=1}^5 \lambda_i \mathrm{row}(k_i) \mid \lambda_i \in \left\{-1, 0,1 \right\},  k_i \in \left\{ 0,\dots,4,d-4, \dots, d \right\}
+     \right\}.
+\end{align*}
+The sets \( G_{\mathrm{col}} \) and \( G_{\mathrm{diag}} \) are defined similarly. Using Proposition \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} we can easily compute a subset \( G'_{\mathrm{row}} \subset G_{\mathrm{row}} \) that only contains fixed-contractable forms. Refer to GITHUB TODO.
 
 
-\begin{proposition}\label{prop:row_homo_diag}
-    Let \( d \in \mathbb{N}_{\geq 15} \), \( T = \sum_{i=0}^4 \lambda_i \mathrm{row}(i)\) with realization \( p_d \), and \( T' = T - \mathrm{diag}(0) \) with realization \( p'_d \). If \( (p_d)_{c_0} \geq \mathbf{2} \), then we have \( (p'_{d'})_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+% \begin{proposition}\label{prop:row_homo_diag}
+%     Let \( d \in \mathbb{N}_{\geq 15} \), \( T = \sum_{i=0}^4 \lambda_i \mathrm{row}(i)\) with realization \( p_d \), and \( T' = T - \mathrm{diag}(0) \) with realization \( p'_d \). If \( (p_d)_{c_0} \geq \mathbf{2} \), then we have \( (p'_{d'})_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+% \end{proposition}
+
+% \begin{proof}
+%     We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( (p_{d'})_{c_0} \geq \mathbf 2 \) for all \( d' \geq d \) by Lemma \ref{prop:row_extend_d}. So, we have \( (p_{d'} - \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+% \end{proof}
+
+
+% \begin{example}
+%     Let \( T' = \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0)\).
+%     Then, \((p'_d)_{c_0} \geq \mathbf 1 \) for all dimensions \( d \geq 15 \). Let us visualize \( \mathrm{row}(1) + \mathrm{row}(2) \) for \( d = 18 \):
+%     \begingroup
+%     \fontsize{8pt}{10pt}\selectfont
+%     \begin{verbatim}
+%       135 
+%       119  -16 
+%       104  -15    1 
+%        90  -14    1    . 
+%        77  -13    1    .    . 
+%        65  -12    1    .    .    . 
+%        54  -11    1    .    .    .    . 
+%        44  -10    1    .    .    .    .    . 
+%        35   -9    1    .    .    .    .    .    . 
+%        27   -8    1    .    .    .    .    .    .    . 
+%        20   -7    1    .    .    .    .    .    .    .    . 
+%        14   -6    1    .    .    .    .    .    .    .    .    . 
+%         9   -5    1    .    .    .    .    .    .    .    .    .    . 
+%         5   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+%         2   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+%         .   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -1   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -1    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%         .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
+%     \end{verbatim}
+%     \endgroup
+%     As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column. For comparison, here is the visualization of \( \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0) \) for \( d = 18 \):
+%     \begingroup
+%     \fontsize{8pt}{10pt}\selectfont
+%     \begin{verbatim}
+%       134 
+%       118  -16 
+%       103  -15    1 
+%        89  -14    1    . 
+%        76  -13    1    .    . 
+%        64  -12    1    .    .    . 
+%        53  -11    1    .    .    .    . 
+%        43  -10    1    .    .    .    .    . 
+%        34   -9    1    .    .    .    .    .    . 
+%        26   -8    1    .    .    .    .    .    .    . 
+%        19   -7    1    .    .    .    .    .    .    .    . 
+%        13   -6    1    .    .    .    .    .    .    .    .    . 
+%         8   -5    1    .    .    .    .    .    .    .    .    .    . 
+%         4   -4    1    .    .    .    .    .    .    .    .    .    .    . 
+%         1   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -1   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -2   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -2    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        -1    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
+%        \end{verbatim}
+%     \endgroup
+%   \end{example}
+
+% \begin{proposition}\label{prop:row_homo_zero_diag}
+%     Let \( d \in \mathbb{N}_{\geq 15} \), \( T = \sum_{i=0}^4 \lambda_i \mathrm{row}(i)\) with realization \( p_d \), and \( T' = T + \mathrm{diag}(0) \) with realization \( p'_d \). If \( (p_d)_{c_0} \geq \mathbf{0} \), then we have \( (p'_{d'})_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+% \end{proposition}
+  
+  
+%   \begin{proof}
+%     We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( (p_{d'})_{c_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Proposition \ref{prop:row_extend_d}. So, we have \( (p_{d'} + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+%   \end{proof}
+  
+  
+  
+% \begin{example}
+%     Let \( T' = \mathrm{row}(2) + \mathrm{row}(3) - \mathrm{diag}(0) \).
+%     Then, \( (p'_d)_{c_0} < \mathbf{0} \) for all \( d \geq 15 \). Moreover, we can use Proposition \ref{prop:fixed-contraction-homo-row} to show \( (p'_d)_{c_1} > \mathbf{0} \) for all \( d \geq 15 \).
+%   \end{example}
+
+%   \begin{proposition}\label{prop:col_homo_d_zero_diag}
+%     Let \( T = \sum_{i=d-4}^d \lambda_i \mathrm{col}(i)\). Assume that \( (p_d)_{d_0} \geq \mathbf{0} \) for some degree \( d \in \mathbb{N}_{\geq 15} \). Then \( (p_{d'} - \mathrm{col}(d'))_{d_0} \geq \mathbf 1 \) for all degrees \( d' \geq d \)
+%   \end{proposition}
+  
+%   \begin{proof}
+%     We see that \( (\mathrm{col}(d))_{d_0} = -\mathbf 1 \) is a constant vector for all degrees. Note that \( (p_{d'})_{d_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Lemma \ref{prop:diag_extend_d}. So, we have \( (p_{d'} - \mathrm{col}(d'))_{d_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
+%   \end{proof}
+  
+
+
+
+\section{An Extended Trivial System}
+
+To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi_1 \cup \Phi_2 \). We proved that this system is non-trivial. If we can find a system \( \Psi \) that is a superset of \( \Phi \) and is also nont-rivial, then we can reduce the number of cases to check. 
+
+\begin{proposition}
+    Define \( \Psi' = \Phi \cup \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \), where 
+    \begin{gather*}
+        Z \coloneqq \{ (0,1), (0,2), (0,3), (0,4), (0,d-1), (0,d-2), (0,d-3), (0,d-4),\\ (1,2), (1,3), (1, d), (1,d-4), (1,d-2), (1,d-3),\\ (2,d), (2,d-1), (2,d-3), (2, d-4),\\ (3,d), (3,d-1), (3,d-2), (3, d-4)\\
+        (d-4,d), (d-3,d), (d-2,d), (d-2,d-1), (d-1,d-2), (d-1,d-3), (d-1,d)\}.
+    \end{gather*}
+    The system \( \Psi' \) is non-trivial.
 \end{proposition}
 
 \begin{proof}
-    We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( (p_{d'})_{c_0} \geq \mathbf 2 \) for all \( d' \geq d \) by Lemma \ref{prop:row_extend_d}. So, we have \( (p_{d'} - \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all \( d' \geq d \).
+    It is easy to see that every \( p = \sum \lambda_{i,j} x_{i,j} = \mathrm{diag}(q) - \mathrm{diag}(r) \) for \( (q,r) \in Z \) satisfies \( \lambda_{0,0} \neq 0 \), \( \mathrm{supp}^+(p) \neq \emptyset \), and \( \mathrm{supp}^-(p) \neq \emptyset \). Thus, any root \( \mathbf{w} \) of \( p \) satisfies \( \mathrm{supp}^+(p) \cap \mathrm{supp}^+(w) \neq \emptyset \) or \( \mathrm{supp}^-(p) \cap \mathrm{supp}^+(w) \neq \emptyset \).
 \end{proof}
 
+\begin{proposition}
+    Let \( T \in\left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \). Then, \( T \) is fixed-contractable.
+\end{proposition}
 
-\begin{example}
-    Let \( T' = \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0)\).
-    Then, \((p'_d)_{c_0} \geq \mathbf 1 \) for all dimensions \( d \geq 15 \). Let us visualize \( \mathrm{row}(1) + \mathrm{row}(2) \) for \( d = 18 \):
-    \begingroup
-    \fontsize{8pt}{10pt}\selectfont
-    \begin{verbatim}
-      135 
-      119  -16 
-      104  -15    1 
-       90  -14    1    . 
-       77  -13    1    .    . 
-       65  -12    1    .    .    . 
-       54  -11    1    .    .    .    . 
-       44  -10    1    .    .    .    .    . 
-       35   -9    1    .    .    .    .    .    . 
-       27   -8    1    .    .    .    .    .    .    . 
-       20   -7    1    .    .    .    .    .    .    .    . 
-       14   -6    1    .    .    .    .    .    .    .    .    . 
-        9   -5    1    .    .    .    .    .    .    .    .    .    . 
-        5   -4    1    .    .    .    .    .    .    .    .    .    .    . 
-        2   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
-        .   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-        .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
-    \end{verbatim}
-    \endgroup
-    As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column. For comparison, here is the visualization of \( \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0) \) for \( d = 18 \):
-    \begingroup
-    \fontsize{8pt}{10pt}\selectfont
-    \begin{verbatim}
-      134 
-      118  -16 
-      103  -15    1 
-       89  -14    1    . 
-       76  -13    1    .    . 
-       64  -12    1    .    .    . 
-       53  -11    1    .    .    .    . 
-       43  -10    1    .    .    .    .    . 
-       34   -9    1    .    .    .    .    .    . 
-       26   -8    1    .    .    .    .    .    .    . 
-       19   -7    1    .    .    .    .    .    .    .    . 
-       13   -6    1    .    .    .    .    .    .    .    .    . 
-        8   -5    1    .    .    .    .    .    .    .    .    .    . 
-        4   -4    1    .    .    .    .    .    .    .    .    .    .    . 
-        1   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -2   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -2    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       \end{verbatim}
-    \endgroup
-  \end{example}
+\begin{proof}
+    Let \( (i,j) \in Z \).
+    Use Proposition \ref{prop:fixed-contraction-homo-diag} if \( i,j \leq 4 \) or \( i,j \geq d-4 \). Otherwise, the claim follows immediately from Proposition \ref{prop:nwfiewnfiuwneufni2un2}.
+\end{proof}
 
-  \begin{proposition}\label{prop:row_homo_zero_diag}
-    Let \( p = \sum \lambda_i \mathrm{row}(i)\). Assume that \( p_{c_0} \geq \mathbf{0} \) for some degree \( d \in \mathbb{N} \). Then \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all degrees greater or equal to \( d \).
-  \end{proposition}
-  
-  
-  \begin{proof}
-    We see that \( (\mathrm{diag}(0))_{c_0} = \mathbf 1 \) is a constant vector for all degrees. Note that \( p_{c_0} \geq \mathbf 0 \) for all \( d' \geq d \) by Proposition \ref{prop:row_extend_d}. So, we have \( (p + \mathrm{diag}(0))_{c_0} \geq \mathbf 1 \) for all dimensions \( d' \geq d \).
-  \end{proof}
-  
-  
-  
+\begin{proposition}
+    Define \( \Psi \coloneqq \Psi \cup \left\{ \mathrm{diag}(1) - \mathrm{diag}(d-1) \right\}\). The system \( \Psi \) is non-trivial.
+\end{proposition}
+
+\begin{proof}
+    Let \( T = \mathrm{diag}(1) - \mathrm{diag}(d-1) \) be a formal linear combination. Let \( d \in \mathbb{N}_{\geq 15} \) be odd and \( \mathbf{w} \) be a root of \( \Psi \). Then, the realization \( p_d = \sum \lambda_{i,j}x_{i,j}\) of \( T \) for \( t = d \) satisfies 
+    \begin{align*}
+        \lambda_{0,0} = 0, \;  \lambda_{0,k} < {0} \quad \forall k = 1, \dots, d..
+    \end{align*}
+     If \( \mathbf{w} \) is a trivial root of \( p_d \), then it satisfies \( w_{0,k} = 0 \) for all \( k = 1, \dots, d \). Then, \( \mathrm{diag}(0)(\mathbf{w}) < 0 \); this is a contradiction because \( \mathbf{w} \) is supposed to be a root of \( \mathrm{diag}(0) \).
+    
+    Let \( d \in \mathbb{N}_{\geq 15} \) be even and \( \mathbf{w} \) be a root of \( \Psi \). The realization \( p_d = \sum \lambda_{i,j}x_{i,j} \) satisfies \( \lambda_{i,d-i} \neq 0 \) if and only if \( i \in \left\{ 0, d \right\} \). If \( \mathbf{w} \) is a trivial solution of \( p_d \), the it satisfies \( w_{d,0} > 0 \) since it is a root of \( \mathrm{diag}(d) \). However, \( \mathrm{col}(d-1)(\mathbf{w}) < 0 \), which is a contradiction since \( \mathbf{w} \) is a root of \( \mathrm{col}(d-1) \).
+\end{proof}
+
+\begin{proposition}
+    Let \( T = \mathrm{diag}(1) - \mathrm{diag}(d-1)\). Then, \( T \) is fixed-contractable.
+\end{proposition}
+
+\begin{proof}
+    Use Proposition \ref{prop:nwfiewnfiuwneufni2un2}.
+\end{proof}
+
+We redefine the following sets.
+
+\begin{definition}
+    We define the following three solution sets:
+    \begin{enumerate}
+        \item     Define \( \Gamma^{\mathrm{even}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{even}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
+
+        \item     Define \( \Gamma^{\mathrm{odd}} \) to be the set of all valid contracted hyperfield configurations \( \mathbf{s} \in H^{\Xi} \) such that \( \hat p^{\mathrm{odd}}(\mathbf{s}) = H \) for all \( p \in \Psi \).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    We define 
+    \begin{gather*}
+        \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
+        \text{ and }
+        \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}.
+    \end{gather*}
+\end{definition}
+
+\begin{proposition}
+    All valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with positive support size six satisfy \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}}_6 \cup \Gamma^{\mathrm{odd}}_6 \).
+\end{proposition}
+
+\begin{proof}
+    This follows easily since outcomes are characterized as roots of Pascal forms.
+\end{proof}
+
+\begin{proposition}
+    The following holds:
+    \begin{enumerate}
+        \item We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\).
+        \item We have \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
+    \end{enumerate}
+\end{proposition}
+
+We excluded around 100,000 cases; there are still around 217,000 cases left to check.
+
+\section{Reducing Cases with Fixed-Contractable Pascal Forms}
+
+The final reduction step uses fixed-contractable forms. From a set of formal linear combinations of \( \mathrm{row}, \mathrm{col}, \) and \( \mathrm{diag} \), we want to compute a subset that only contains fixed-contractable forms. To do this, we fix some degree \( D \in \mathbb{N} \), realize each form for degree \( D \), and algorithmically prove that they are fixed-contractable. Propositions \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} are examples for such an algorithmic proof. The source code is found on GITHUB TODO. We were able to compute 18273 fixed-contractables.
+
+After obtaining a set \( G' \) that only contains fixed-contractables, we take \( \mathbf{s} \in  \Gamma^{\mathrm{even}}_6 \), and check that \( 0 \in \mathrm{contr}(p_D)(\mathbf{s}) \) for all \( T \in G' \). If there is one realization \( p_D \) of \( T \) where \( \mathbf{s} \) is not a hyperfield root, then we can exclude \( \mathbf{s} \) since \( T \) is a linear combination of Pascal forms and valid outcomes in \( \mathbb{Z}^{V_d} \) are roots of all Pascal forms. In this way we are able to reduce 106806 cases to 6700 cases. TODO COMPUTE
