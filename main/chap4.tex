@@ -269,9 +269,9 @@ With the Invertibility Criterion we can exclude certain supports from being the 
 \begin{proof}
     Observe that
     \begin{align*}
-        \mathrm{diag}(k)  &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}\\ 
-        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}\\
-        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} x_{i,j}.
+        \mathrm{diag}(k)  = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}
+        = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}
+        = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} x_{i,j}.
     \end{align*}
 
     Let \( \mathbf{w} \) be a valid outcome. Then, \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) for all \( k = 0, \dots, d \). Thus, 
@@ -321,10 +321,8 @@ Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be
     \begin{align*}
         \mathrm{col}(k)(\hat{\mathbf w}) &= (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} \\
         &= (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} \\
-        &= (-1)^{d-k} \mathrm{diag}(k)(\mathbf w)\\
-        &= 0.
+        &= (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0.
     \end{align*}
-    This proves the statement.
 \end{proof}
 
 The symmetry just introduced can be interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by 
