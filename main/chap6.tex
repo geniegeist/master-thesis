@@ -551,8 +551,6 @@ from Algorithm \ref{alg:hyperfield_criterion:efficient}, we use the implementati
     We compute the set of \( S_4(A) \) for \( d = 6,7,8,9,10 \), and \( 11 \) using the implementation of Algorithm \ref{alg:solve} which is included in the appendix TODO. This gives us the results stated in the proposition. 
 \end{proof}
 
-We obtain the following corollary.
-
 \begin{corollary}
     For all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) and \( \mathrm{deg}(\mathbf{w}) \leq 11 \) we have \( \mathrm{deg}(\mathbf w) \leq 5 \).
 \end{corollary}
@@ -753,14 +751,8 @@ Here is another example.
 We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. Now, we apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
 
 \begin{definition}
-    Define the index set
-    \begin{align*}
-        \Xi \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\}.
-    \end{align*}
-    Let \( \mathbf{s} \in H^{\Xi} \). We call \( \mathbf{s} \) a \emph{contracted hyperfield configuration}, and write \( \mathbf{s} \) as
-    \begin{align*}
-        \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) = (x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k).
-    \end{align*}
+    We define the index set \(  \Xi \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \).
+    Let \( \mathbf{s} \in H^{\Xi} \). We call \( \mathbf{s} \) a \emph{contracted hyperfield configuration}, and write \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) = (x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k) \).
 \end{definition}
 
 \begin{definition}
@@ -795,7 +787,6 @@ Going from the world of hyperfield configurations to the world of \emph{contract
             s_{5,d-5-k} + s_{7,d-7-k} + \dots + s_{d-4-k,4} & \text{ if \( d + k \) is odd}
         \end{cases} \quad \text{ for } k = 0, \dots, 3.
     \end{align*}
-    exactly as in Definition \ref{def:contraction-variables}.
 \end{definition}
 
 The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we only consider weakly valid configuration; that are configurations whose negative support may only be contained in the yellow area below.
@@ -815,7 +806,7 @@ The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \ma
     \end{enumerate}
 \end{definition}
 
-From now on, we only consider \emph{weakly valid} hyperfield configurations because in this case the contraction map \( \mathrm{contr}_d \) always outputs elements in \( H^{\Xi} \).
+We consider \emph{weakly valid} hyperfield configurations because the contraction map \( \mathrm{contr}_d \) always outputs elements in \( H^{\Xi} \).
 
 \begin{definition}
     Let \( \mathbf{s} \in H^{\Xi} \) be a contracted hyperfield configuration. The \emph{positive support} of \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) is defined as the set of all symbols \( x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k \) such that the corresponding coefficients of \( \mathbf{s} \) equal to one.
@@ -826,8 +817,5 @@ From now on, we only consider \emph{weakly valid} hyperfield configurations beca
     \begin{align*}
         x_{0,0} = -1, \quad x_{0,3} = 1, \quad x_{1,1} = 1, \quad, x_{3,0} = 1, \quad d_0 = 1, \quad e_0 = 1
     \end{align*}
-    where all other entries are zero. Then, the positive support of \( \mathbf{s} \) is given by
-    \begin{align*}
-        \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}.
-    \end{align*}
+    where all other entries are zero. Then, the positive support of \( \mathbf{s} \) is given by \( \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} \).
 \end{example}

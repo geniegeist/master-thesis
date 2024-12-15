@@ -7,7 +7,7 @@ Let us devote the remaining chapters to the study of Theorem \ref{thm:outcome-de
     holds for valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \). 
 \end{theorem*}
 
-From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outcomes in \( \mathbb{Z}^{V_d} \) for \emph{finite} \( d \in \mathbb{N} \). To show the theorem, we will first study the supports of valid outcomes; knowing that some kinds of supports cannot be the supports of valid outcomes will help us to prove the theorem. For instance, integer configurations that have support in the entries below marked with an \texttt{*} cannot be valid outcomes:
+From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outcomes in \( \mathbb{Z}^{V_d} \) for \emph{finite} \( d \in \mathbb{N} \). To show the theorem, we will first study the supports of valid outcomes; knowing that some kinds of supports cannot be the supports of valid outcomes will help us to prove the theorem. For instance, integer configurations that have support in the entries below marked with an \texttt{*} cannot be valid outcomes as we will see.
 \begin{verbatim}
     ·  
     ·  · 
@@ -21,7 +21,7 @@ From now on, valid outcomes \( \mathbf{w} \) refer to \emph{integral} valid outc
 \section{Invertibility Criterion}
 
 Let \( d \in \mathbb{N} \).
-One of the most important tools in the study of outcomes is the \emph{Invertibility Criterion} first introduced in \cite{bik2022classifying}. By Theorem \ref{thm:pascal-outcome} we can characterize outcomes as the roots of all Pascal forms on \( \mathbb{Z}^{V_d} \). In the previous chapter we have already found two bases for the space of Pascal forms, namely \((\mathrm{row}(0), \dots, \mathrm{row}(d)) \) and \((\mathrm{col}(0), \dots, \mathrm{col}(d)) \) (see Definition \ref{def:row-col}). Let us introduce a \emph{new} basis for the space of Pascal forms.
+The most important tools in the study of outcomes is the \emph{Invertibility Criterion} first introduced in \cite{bik2022classifying}. By Theorem \ref{thm:pascal-outcome} we can characterize outcomes as the roots of Pascal forms on \( \mathbb{Z}^{V_d} \). In the previous chapter, we have already found two bases for the space of Pascal forms: \((\mathrm{row}(0), \dots, \mathrm{row}(d)) \) and \((\mathrm{col}(0), \dots, \mathrm{col}(d)) \). Let us introduce another basis.
 
 \begin{definition}
     Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. We define \( \mathrm{diag}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{k,d-k} = \mathbf e_k \).
@@ -256,39 +256,30 @@ With the Invertibility Criterion we can exclude certain supports from being the 
 \begin{example}
     We have established that the support on the left-hand side cannot correspond to a valid outcome. By symmetry, the support on the right-hand side also cannot correspond to a valid outcome.
     \begin{verbatim}
-        ·                      *
-        · ·                    * ·
-        * · ·                  · * · 
-        · · · ·                · · · · 
-        · · · · ·              * · · · · 
-        · · · · * ·            · · · · · ·
-        * · * · · * *          * · · · * · ·
+·                      *
+· ·                    * ·
+* · ·                  · * · 
+· · · ·                · · · · 
+· · · · ·              * · · · · 
+· · · · * ·            · · · · · ·
+* · * · · * *          * · · · * · ·
     \end{verbatim}
 \end{example}
 
-Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be a configuration in \( \mathbb{Z}^{V_d} \). We define 
-\begin{align*}
-    \mathbf w \mapsto \hat{\mathbf w} \coloneqq \left( (-1)^{d-j} w_{j, d - i -j} \right)_{(i,j) \in V_d}.
-\end{align*}
+Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be a configuration in \( \mathbb{Z}^{V_d} \). We define \( \mathbf w \mapsto \hat{\mathbf w} \coloneqq \left( (-1)^{d-j} w_{j, d - i -j} \right)_{(i,j) \in V_d} \).
 
 \begin{proposition}\label{prop:symmetry-2}
     Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a configuration in \( \mathbb{Z}^{V_d} \). Then \( \mathbf{w} \) is an outcome if and only if \( \hat{\mathbf w} \coloneqq \left( (-1)^{d-j} w_{j, d - i -j} \right)_{(i,j) \in V_d} \) is an outcome.
 \end{proposition}
 
 \begin{proof}
-    Let \( k = 0, \dots, d \). We have 
-    \begin{align*}
-        \mathrm{col}(k)(\hat{\mathbf w}) &= (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} \\
-        &= (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} \\
-        &= (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0.
-    \end{align*}
+    Let \( k = 0, \dots, d \). We have \( \mathrm{col}(k)(\hat{\mathbf w}) = (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} 
+    = (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} 
+    = (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0 \).
 \end{proof}
 
-The symmetry just introduced can be interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by 
-\begin{align*}
-    (12) \cdot \mathbf w = \tilde{\mathbf w} \quad \text{and} \quad (123) \cdot \mathbf w = \hat{\mathbf w}.
-\end{align*}
-Then, the group actions \( (12) \), \( (13) \) and \( (23) \) can be depicted in Figure \ref{fig:group-action-s3}.
+The symmetry just introduced can be interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by \( (12) \cdot \mathbf w = \tilde{\mathbf w}  \) and \( (123) \cdot \mathbf w = \hat{\mathbf w} \).
+The group actions \( (12) \), \( (13) \) and \( (23) \) can be depicted in Figure \ref{fig:group-action-s3}.
 
 \begin{figure}[H]
     \centering

@@ -1,10 +1,7 @@
 \chapter{Valid Outcomes of Positive Support Size Five}
 
-In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have
-\begin{align*}
-    \mathrm{deg}(\mathbf w) \leq 7.
-\end{align*}
-Tools like the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion will be used to prove this result. We follow the same proof as Bik and Marigliano in \cite{bik2022classifying}.
+In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 7 \).
+We use the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion to prove this result. We follow the same proof as Bik and Marigliano in \cite{bik2022classifying}.
 
 \section{Case \( d = 8, \dots, 41 \)}
 
@@ -33,9 +30,7 @@ First, we show similar to Proposition \ref{prop:jdngkjrenj3nw} that no outcome o
         \item \( \left\{   (0, 3), (3, 0), (5, 1), (1, 7), (4, 4) \right\} \),
         \item \( \left\{  (1, 1), (4, 0), (3, 4), (0, 8), (5, 3) \right\} \),
         \item \( \left\{  (3, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \).
-    \end{enumerate}
-    Valid configurations that have one of these eight sets as positive support are of degree eight or less. 
-    
+    \end{enumerate}    
     Finally, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The result is that only the zero outcome is possible. This shows the claim.
 \end{proof}
 
@@ -82,11 +77,7 @@ Some of these cases occur multiple times; when we exclude these, we have \( 2318
 We make the following simplification to the index set \( \Xi \).
 
 \begin{definition}
-    Define the index set
-    \begin{align*}
-        \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\}
-    \end{align*}
-    with the map \( \chi: H^\Xi \to H^{\Xi'}, \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}) \). The new coordinate system \( H^{\Xi'} \) is visualized below.
+    Define the index set \( \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \) with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}) \). The new coordinate system \( H^{\Xi'} \) is visualized below.
 \begin{figure}[H]
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
@@ -237,36 +228,9 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with po
 \end{proof}
 
 \begin{remark}
-    Given some \( \mathbf{s}' \in {H}^{\Xi'} \) we can compute all the relative supports \( \mathrm{relset}(\mathbf{w}) \) for all \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\). Proposition \ref{prop:iewjri3j3234212121112} gives us an easy way to compute this set of relative supports by interpreting all the six conditions 1., 2., 3., 4., 5., and 6. in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). 
+    Given some \( \mathbf{s}' \in {H}^{\Xi'} \) we can compute all the relative supports \( \mathrm{relset}(\mathbf{w}) \) for all \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\). Proposition \ref{prop:iewjri3j3234212121112} gives us an easy way to compute this set of relative supports by interpreting all the six conditions \( (1), (2), (3), (4), (5) \) and \( (6) \) in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). 
 
-
-\begin{algorithm}
-    \caption{Make relative constraints}
-    \label{alg:make_rel_constraints}
-    \begin{algorithmic}[1]
-    \Require some nonzero coordinate \( t \in \left\{ x_{i,j}, y_{i,j}, z_{i,j}, b_i, c_i, f_i \right\} \) of $\mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \in H^{\Xi'}$
-    \Ensure set of constraints on the relative support of \( \mathbf{w} \) that correspond to the nonzero coordinate \( t \) as in Proposition \ref{prop:iewjri3j3234212121112}.
-    \Function{\texttt{make\_rel\_constraints}}{$t$}
-    \If{$t = x_{i,j}$}
-    \State \Return $[(i,j)]$
-\EndIf
-\If{$t = y_{i,j}$}
-    \State \Return $[(i, d-3+j-i)]$
-\EndIf
-\If{$t = z_{i,j}$}
-    \State \Return $[(d-3+i-j, j)]$
-\EndIf
-\If{$t = b_i$}
-    \State \Return $\{(M,i), (d-6,i), \dots, (d-4-i,i)\}$
-\EndIf
-\If{$t = c_i$}
-    \State \Return $\{(i,M), (i,d-6), \dots, (i,d-4-i)\}$
-\EndIf
-\If{$t = f_i$}
-    \State \Return $\{(M, d-4-i), \dots, (M,d-6), (M,M), (d-6,M), \dots, (d-4-i,M)\}$
-\EndIf    \EndFunction
-    \end{algorithmic}
-    \end{algorithm}
+    For instance, if \( \mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \) satisfies \( b_0 \neq 0 \), then we know that corresponding outcomes \( \mathbf{w} \) satisfy has some nonzero \( w_{i,j} \) in  \( (i,j) \in \left\{ (M,0), (d-6, 0), \dots, (d-4, 0) \right\} \). This observation simplifies the computation of all outcomes corresponding to \( \mathbf{s}' \).
 \end{remark}
 
 Relative coordinates help us to apply the Invertibility Criterion. 
@@ -430,11 +394,8 @@ This division algorithm just implements the division rule to choose \( \lambda_i
     \end{enumerate}
 \end{proof}
 
-This proposition gives Algorithm \ref{alg:midpoint} to compute the midpoint of two points in relative coordinates. Next, we define the order in relative coordinates:
-\begin{align*}
-    0 < 1 < 2 < 3 < M < d-6 < d-5 < d-4 < d-3 < d-2 < d-1 < d.
-\end{align*}
-The \texttt{succ} function is defined as the successor in this order, see Algorithm \ref{alg:succ}. We can now implement the conquer step of the divide and conquer approach of the Invertibility Criterion, see Algorithm \ref{alg:conquer}. This leads us to an implementation of the Invertibility Criterion for relative coordinates, see Algorithm \ref{alg:relcoord-inv-crit}.
+This proposition gives Algorithm \ref{alg:midpoint} to compute the midpoint of two points in relative coordinates. Next, we define the order in relative coordinates: \(     0 < 1 < 2 < 3 < M < d-6 < d-5 < d-4 < d-3 < d-2 < d-1 < d\).
+The \texttt{succ} function is defined as the successor in this order, see Algorithm \ref{alg:succ}. We now implement the conquer step of the divide and conquer approach of the Invertibility Criterion, see Algorithm \ref{alg:conquer}. This leads us to an implementation of the Invertibility Criterion for relative coordinates, see Algorithm \ref{alg:relcoord-inv-crit}.
 
 \begin{algorithm}
 \caption{Compute midpoint \( \frac{a + b -1}{2} \)}
@@ -666,7 +627,7 @@ First, we check that the requirements of the Hexagon Criterion are met: \( d' + 
 
 A simple computation shows that 166 cases out of the 179 cases satisfy the Proposition above (for details see Appendix TODO). By the Hexagon Criterion, valid outcomes \( \mathbf{w} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) where \( \mathbf{s}' \) is one of these 166 cases have degree at most \( d' = 20 \). However, we already showed that there are no valid outcomes of degree \( \leq 41 \); we found a contradiction. Thus, it remains to check the thirteen cases where the Hexagon Criterion could not be applied.
 
-Here are the thirteen cases of \( \mathbf{s}' \in \Lambda \) that remain:
+There are the thirteen cases of \( \mathbf{s}' \in \Lambda \) that remain:
 \begin{enumerate}
     \item \( \left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\} \)
     \item \( \left\{ y_{0,3}, y_{1,2}, y_{2,1}, z_{3,0}, b_1 \right\} \)
@@ -717,10 +678,7 @@ Both these cases show that we can apply the Hexagon Criterion; the criterion sho
 We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. Unfortunately, there is one case \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) which cannot be ruled out by the Hexagon Criterion. We need to consider this case separately; so let us ignore this case for now and consider the remaining eleven cases.
 
 First, we observe that all the eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
-Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) there exists some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \) such that 
-\begin{align*}
-    \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\}.
-\end{align*}
+Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) there exists some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \) such that \( \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\} \).
 
 \begin{proposition}\label{prop:nkjeai32huh3i2}
     One of the following statements holds:
