@@ -1,6 +1,12 @@
 \chapter{Hexagon Criterion}
 
-We now introduce the \emph{Hexagon Criterion}, which allows us to determine if subconfigurations of a chipsplitting outcome are outcomes. It was first discovered in \cite{bik2022classifying}.
+We introduce the \emph{Hexagon Criterion}, first presented in \cite{bik2022classifying}, to determine whether subconfigurations of a chipsplitting outcome qualify as outcomes. This criterion applies to configurations supported within the yellow area below, we say its support is not contained inside the ``hexagon".
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/hexagon.png}
+    \caption{A configuration's support lies outside the hexagon if it is contained in the yellow area spanned by parameters \( \ell_1, \ell_2 \), and \( d' \).}     \label{fig:hexagon}
+\end{figure}
 
 First, we need the following lemma to compute the determinant of matrix that we will encounter in the proof of the Hexagon Criterion.
 
@@ -17,6 +23,7 @@ First, we need the following lemma to compute the determinant of matrix that we 
     See Theorem 8 of \cite{grinberghyperfactorial}.
 \end{proof}
 
+
 \begin{proposition}[Hexagon Criterion]\label{prop:hexagon-criterion231312}
     Let \( d, d', \ell_1, \ell_2 \in \mathbb{N} \) with \( d' \geq 1 \), \( \ell_1, \ell_2 \geq d' \), and \( d' + \ell_1 + \ell_2 \leq d \). Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \in \mathbb{Z}^{V_d} \) be a chip configuration. Define the subconfiguration \( \mathbf{w}' \coloneqq (w_{i,j})_{(i,j) \in V_{d'}} \in \mathbb{Z}^{V_{d'}}\). Assume the support of \( \mathbf{w} \) is not contained inside the ``hexagon" (see Figure \ref{fig:hexagon}), or equivalently, assume that
     \begin{align*}
@@ -32,16 +39,13 @@ First, we need the following lemma to compute the determinant of matrix that we 
 \begin{proof}
     We prove the first statement. Assume \( \mathbf{w} \) is an outcome. Let \( k = 0, \dots, d' \) and \( \mathrm{diag}(\ell_1 + k) = \sum_{(i,j) \in V_d} \mu_{i,j} x_{i,j} \). Consider the restricted linear form \( l_k = \sum_{(i,j) \in V_{d'}} \lambda_{i,j}x_{i,j} : \mathbb{Z}^{V_{d'}} \to \mathbb{Z} \) with \( \lambda_{i,j} \coloneqq \mu_{i,j} \) for \( (i,j) \in V_{d'} \). Then, \( l_0, \dots, l_{d'} \) are Pascal forms on \( \mathbb{Z}^{V_{d'}} \) with \( l_k(\mathbf{w}') = \mathrm{diag}(\ell_1 + k)(\mathbf{w}) = 0 \). By Proposition \ref{thm:pascal-outcome} it suffices to show that \( l_0, \dots, l_{d'} \) are linearly independent to show that \( \mathbf{w}' \) is an outcome.
 
-    Let \( a = 0, \dots, d' \). Define the configuration \( \mathbf{e}^{(a)} \in \mathbb{Z}^{V_{d'}} \) by 
+    Let \( a = 0, \dots, d' \). Define
     \begin{align*}
-        e_{{i,j}}^{(a)} \coloneqq \begin{cases}
+        e_{{i,j}}^{(a)} &\coloneqq \begin{cases}
             1 & \text{ if } i = a \text{ and } j = d' - a, \\
             0 & \text{ otherwise}.
-        \end{cases}.
-    \end{align*}
-    Define the matrix 
-    \begin{align*}
-        A \coloneqq \begin{bmatrix}
+        \end{cases}\\
+        A &\coloneqq \begin{bmatrix}
             l_k(\mathbf{e}^{(a)})
         \end{bmatrix}^{d'}_{k,a = 0} = \begin{bmatrix}
             \binom{d-d'}{\ell_1 + k - a}
@@ -54,28 +58,14 @@ First, we need the following lemma to compute the determinant of matrix that we 
         \item all entries of \( A \) are nonzero because \( 0 \leq \ell_1 + k - a \leq d - d' \), and 
         \item \( d - d' - \ell_1 \geq \ell_2 \geq 0 \).
     \end{enumerate}
-    This allows us to use Lemma \ref{lemma:grinberghyperfactorial} with 
-    \begin{align*}
-        a \coloneqq d - d' - \ell_1, \quad b \coloneqq \ell_1, \quad c \coloneqq d' + 1.
-    \end{align*}
-    We obtain a nonzero determinant:
-    \begin{align*}
-        \mathrm{det}(A) = \frac{H(d - d' - \ell_1)H(\ell_1)H(d' + 1)H(d+1)}{H(\ell_1 + d' + 1)H(1 + d - \ell_1)H(d - d')} \neq 0.
-    \end{align*}
+    This allows us to use Lemma \ref{lemma:grinberghyperfactorial} with \( a \coloneqq d - d' - \ell_1, b \coloneqq \ell_1\), and \( c \coloneqq d' + 1 \).
+    We obtain a nonzero determinant \( \mathrm{det}(A) = \frac{H(d - d' - \ell_1)H(\ell_1)H(d' + 1)H(d+1)}{H(\ell_1 + d' + 1)H(1 + d - \ell_1)H(d - d')} \neq 0 \).
     Hence, \( l_0, \dots, l_{d'} \) are linearly independent.
 
-    For the second statement, let \( \mathbf{w} \) be an outcome, that is also valid. By the previous statement, the subconfiguration \( \mathbf{w}' \) is an outcome, as well. We extend \( \mathbf{w}' \) to some configuration \( \mathbf{v} \in \mathbb{Z}^{V_d} \) by 
-    \begin{align*}
-        v_{i,j} \coloneqq \begin{cases}
-            w_{i,j}' & \text{ if } (i,j) \in V_{d'}, \\
-            0 & \text{ otherwise}.
-        \end{cases}
-    \end{align*}
+    For the second statement, let \( \mathbf{w} \) be a valid outcome. By the previous statement, the subconfiguration \( \mathbf{w}' \) is an outcome, as well. We extend \( \mathbf{w}' \) to some configuration \( \mathbf{v} \in \mathbb{Z}^{V_d} \) by \( v_{i,j} \coloneqq \begin{cases}
+        w_{i,j}' & \text{ if } (i,j) \in V_{d'}, \\
+        0 & \text{ otherwise}
+    \end{cases} \).
     Clearly, \( \mathbf{v} \) is a \emph{valid} outcome of degree at most \( d' \). Then, \( \mathbf{v} - \mathbf{w} \) is an outcome with empty negative support. By Proposition \ref{prop:outcome-zero}, \(  \mathbf{v} - \mathbf{w} \) is zero. Hence, \( \mathbf{w} \) has degree at most \( d' \).
 \end{proof}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.66\textwidth]{assets/hexagon.png}
-    \caption{This illustration is taken from \cite{bik2022classifying}. If there is an outcome \( \mathbf{w} \) with support in the yellow area, then its subconfiguration \( \mathbf{w}' \) is an outcome if the support of \( \mathbf{w}' \) is contained in the bottom-left yellow triangle. Moreover, if the outcome \( \mathbf{w} \) is valid, then its support is only contained in the bottom-left yellow triangle.}     \label{fig:hexagon}
-\end{figure}

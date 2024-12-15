@@ -17,10 +17,7 @@ Let us define the {sign hyperfield}. For some set \( A \), the set \( 2^A \) den
     Multiplication \( \times : H \times H \to H \) is defined as usual. We call \( H \) the \emph{sign hyperfield}.
 \end{definition}
 
-Often, for singleton sets \( \left\{ x \right\} \), we will write \( x \) instead of \( \left\{ x \right\} \). So, 
-\begin{align*}
-    1 + 1 = 1 \qquad \qquad \text{or} \qquad \qquad (-1) + 0 = -1.
-\end{align*}
+Often, for singleton sets \( \left\{ x \right\} \), we will write \( x \) instead of \( \left\{ x \right\} \); so \(  1 + 1 = 1 \) and \( (-1) + 0 = -1 \).
 
 \begin{remark}
     The tuple \( (H, + , \cdot, 0, 1) \) is called a \emph{hyperfield}. A hyperfield satisfies the following properties:
@@ -36,30 +33,24 @@ Often, for singleton sets \( \left\{ x \right\} \), we will write \( x \) instea
     Refer to \cite{bik2022classifying} Section 6.1 or \cite{baker2018matroids} for more details.
 \end{remark}
 
-Next, we define polynomials over the sign hyperfield.
+\begin{definition}
+    A polynomial in \( n \) variables \( x_1, \dots, x_n \) over \( H \) is a formal sum \( f= \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \) with \( \lambda_{\mathbf{k}} \in H \),
+    where only a finite number of coefficients \( \lambda_{\mathbf{k}} \) are non-zero, and \( \mathbf{x}^{\mathbf{k}} = x_1^{k_1} \cdots x_n^{k_n} \). The set of all polynomials in \( n \) variables over \( H \) is denoted by \( H[x_1, \dots, x_n] \).
+\end{definition}
 
 \begin{definition}
-    A polynomial in \( n \) variables \( x_1, \dots, x_n \) over \( H \) is a formal sum
-    \begin{align*}
-        f= \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}}, \quad \lambda_{\mathbf{k}} \in H,
-    \end{align*}
-    where only a finite number of coefficients \( \lambda_{\mathbf{k}} \) are non-zero, and \( \mathbf{x}^{\mathbf{k}} = x_1^{k_1} \cdots x_n^{k_n} \). The set of all polynomials in \( n \) variables over \( H \) is denoted by \( H[x_1, \dots, x_n] \).
-
-    Let \( \mathbf{x} \in H \). Then, we define 
-    \begin{align*}
-        f(\mathbf{x}) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \subset H.
-    \end{align*}
-
-    We say that \( f \) \emph{vanishes} at \( \mathbf{x} \in H \) if \( 0 \in f(\mathbf{x}) \). In this case, \( \mathbf{x} \) is a \emph{hyperfield root} of \( f \).
+    Let \( \mathbf{x} \in H \). We define \( f(\mathbf{x}) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \subset H \).
 \end{definition}
+
+\begin{definition}
+    We say that \( f \) \emph{vanishes} at \( \mathbf{x} \in H \) if \( 0 \in f(\mathbf{x}) \). We call \( \mathbf{x} \) a \emph{hyperfield root} of \( f \) in this case
+\end{definition}
+
 
 Any \emph{real} polynomial can be turned into a polynomial over the sign hyperfield by replacing the coefficients with elements of \( H \). We can then evaluate the polynomial at any point in \( H \).
 
 \begin{definition}
-    Let \( f = \sum \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \in \mathbb{R}[\mathbf{x}] \) be a polynomial over \( \mathbb{R} \). We call 
-    \begin{align*}
-        \mathrm{sign}(f) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \mathrm{sign}(\lambda_{\mathbf{k}}) \mathbf{x}^{\mathbf{k}} \in H[\mathbf{x}]
-    \end{align*}
+    Let \( f = \sum \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \in \mathbb{R}[\mathbf{x}] \) be a polynomial over \( \mathbb{R} \). We call \( \mathrm{sign}(f) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \mathrm{sign}(\lambda_{\mathbf{k}}) \mathbf{x}^{\mathbf{k}} \in H[\mathbf{x}] \)
     the polynomial over \( H \) induced by \( f \).
 \end{definition}
 
@@ -99,7 +90,7 @@ For sake of simplicity, we also write for any real vector \( \mathbf{w} \in \mat
 \end{example}
 
 \begin{definition}
-    A hyperfield Pascal form is just a polynomial over \( H \) induced by a Pascal form.
+    A hyperfield Pascal form is a polynomial over \( H \) induced by a Pascal form.
 \end{definition}
 
 The reason we introduced the sign hyperfield is that it allows us to neglect the concrete values of the coefficients of a polynomial and focus on their signs. This makes reasoning about roots easier, which is helpful since we saw in earlier chapters that chipsplitting outcomes are roots of Pascal forms.
@@ -124,10 +115,10 @@ Taking the contrapositive of the above proposition, we get the \emph{Hyperfield 
     Follows from Proposition \ref{prop:sign-sikjsfnf} and Theorem \ref{thm:pascal-outcome}.
 \end{proof}
 
-We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \emph{hyperfield configuration}. For completeness, we state standard definitions for sign configurations \( \mathbf{s} \in H^{V_d} \) similar to Definition \ref{def:chip-terminology}.
+We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \emph{hyperfield configuration}. We state definitions for sign configurations \( \mathbf{s} \in H^{V_d} \) similar to those in Definition \ref{def:chip-terminology}.
 
 \begin{definition}
-    Let \( \mathbf{s} \in H^{V_d} \) be a sign configuration. We define the following:
+    Let \( \mathbf{s} \in H^{V_d} \) be a sign configuration. We define:
     \begin{enumerate}
         \item The positive support is defined as \( \mathrm{supp}^+(\mathbf{s}) \coloneqq \left\{ (i,j) \in V_d \mid s_{i,j} = 1 \right\} \).
         \item The negative support is defined as \( \mathrm{supp}^-(\mathbf{s}) \coloneqq \left\{ (i,j) \in V_d \mid s_{i,j} = -1 \right\} \).
@@ -138,7 +129,7 @@ We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \em
 \end{definition}
 
 \begin{lemma}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, the following statements hold:
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, we have:
     \begin{enumerate}
         \item \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \),
         \item \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \),
@@ -155,25 +146,16 @@ To make use of the Hyperfield Criterion, we investigate hyperfield forms induced
 \begin{proposition}\label{skdmldskfmksdej}
     Let \( k = 0, \dots, d \). Define 
     \begin{align*}
-        A_k^+ &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \equiv k \pmod 2 \right\} \\
-        A_k^- &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \not \equiv k \pmod 2 \right\}
+        A_k^+ &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \equiv k \pmod 2 \right\}, \\
+        A_k^- &\coloneqq \left\{ (i,j) \in V_d \mid j = 0, \dots, k \; \text{and} \; i = k-j, \dots, d-j \; \text{with} \; j \not \equiv k \pmod 2 \right\}.
     \end{align*}
     Then, the following statements hold:
     \begin{enumerate}
-        \item We have 
-        \begin{align*}
-            \mathrm{sign}(\mathrm{diag}(k)) = \sum_{i=0}^k \sum_{j=0}^{d-k} x_{i,j}.
-        \end{align*}
+        \item We have \( \mathrm{sign}(\mathrm{diag}(k)) = \sum_{i=0}^k \sum_{j=0}^{d-k} x_{i,j} \).
 
-        \item We have 
-        \begin{align*}
-            \mathrm{sign}(\mathrm{col}(k)) = \sum_{(i,j) \in A_k^+} x_{i,j} - \sum_{(i,j) \in A_k^-} x_{i,j}.
-        \end{align*}
+        \item We have \( \mathrm{sign}(\mathrm{col}(k)) = \sum_{(i,j) \in A_k^+} x_{i,j} - \sum_{(i,j) \in A_k^-} x_{i,j} \).
 
-        \item We have 
-        \begin{align*}
-            \mathrm{sign}(\mathrm{row}(k)) = \sum_{(i,j) \in A_k^+} x_{j,i} - \sum_{(i,j) \in A_k^-} x_{j,i}.
-        \end{align*}
+        \item We have \( \mathrm{sign}(\mathrm{row}(k)) = \sum_{(i,j) \in A_k^+} x_{j,i} - \sum_{(i,j) \in A_k^-} x_{j,i} \).
     \end{enumerate}
 \end{proposition}
 
@@ -194,11 +176,8 @@ To make use of the Hyperfield Criterion, we investigate hyperfield forms induced
     We see that \( \mathbf{s} \) has at least degree \( d \geq 1 \) since it is nonzero and valid. All \( s_{i,j} \) equal one for \( i + j > 0 \), and there exists \( s_{k, d-k} = 1 \) for some \( k = 0, \dots, d \).
 
     \begin{enumerate}
-        \item Assume \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) \) contains zero. By Proposition \ref{skdmldskfmksdej}, we have
-        \begin{align*}
-            0 \in \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = \sum_{i=0}^k \sum_{j=0}^{d-k} s_{i,j}.
-        \end{align*}
-        We know that \( s_{0,0} \) is minus one. So, we have \( s_{i,j} = 1 \) for some \( i,j \) with \( i + j > 0 \). Thus, \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = H \).
+        \item Assume \(0 \in \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) \). By Proposition \ref{skdmldskfmksdej}, we have \( 0 \in \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = \sum_{i=0}^k \sum_{j=0}^{d-k} s_{i,j} \).
+        We know that \( s_{0,0} = -1 \). So, we have \( s_{i,j} = 1 \) for some \( i,j \) with \( i + j > 0 \). Thus, \( \mathrm{sign}(\mathrm{diag}(k))(\mathbf{s}) = H \).
         
         \item First note that \( \mathrm{col}(0) = \mathrm{diag}(d) \). So, the case \( k = 0 \) is proven. Let \( k > 0 \). We start with \( k = d \). Then, the union of \( A^+_d \) and \( A^-_d \) consists exactly of vertices of degree \( d \). Since \( \mathrm{sign}(\mathrm{col}(d))(\mathbf{s}) =  \sum_{(i,j) \in A_d^+} s_{i,j} - \sum_{(i,j) \in A_d^-} s_{i,j} \) contains zero, we have \( s_{i,j} = 1 \) for some \( (i,j) \in A_d^+ \), and \( s_{i',j'} = -1 \) for some \( (i',j') \in A_d^- \). Hence, \( \mathrm{sign}(\mathrm{col}(d))(\mathbf{s}) = H \).
         
@@ -211,17 +190,14 @@ To make use of the Hyperfield Criterion, we investigate hyperfield forms induced
 \end{proof}
 
 \begin{corollary}\label{cor:sign-sikjsfnfnuuusus}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, 
-    \begin{align*}
-        \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) = H \quad \text{for all} \quad p \in \left\{ \mathrm{diag}(k), \mathrm{col}(k), \mathrm{row}(k) \mid k = 0, \dots, d \right\}.
-    \end{align*}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have \( \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) = H \) for all \( p \in \left\{ \mathrm{diag}(k), \mathrm{col}(k), \mathrm{row}(k) \mid k = 0, \dots, d \right\} \).
 \end{corollary}
 
 \begin{proof}
     This follows from Theorem \ref{thm:pascal-outcome}, Proposition \ref{prop:sign-sikjsfnf}, and Proposition \ref{prop:sign-sikjsfnf322}.
 \end{proof}
 
-\begin{example}
+\begin{example}\label{ex:sjiu2ui3diag}
     Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome of degree \( d = 5 \). By the previous corollary and Example \ref{ex:sign-hyperfield03242}, we know that the outcome \( \mathbf{w} \) has at least one positive entry \( w_{i,j} \) in each of the following marked areas \( + \) because \( w_{0,0} < 0 \):
     \begin{verbatim}
 +            ·            ·            ·            ·            ·
@@ -268,10 +244,7 @@ We will use these constraints to efficiently compute all outcomes of degree some
 
 We deviate from the approach by Bik and Marigliano in \cite{bik2022classifying} by spending some considerate time in solving hyperfield linear systems. It will help us path the way for some breakthrough for the efficient computation of valid outcomes.
 
-Fix some degree \( d \). Due to the Hyperfield Criterion, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) which satisfy 
-\begin{align*}
-    0 \in \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w}))
-\end{align*}
+Fix some degree \( d \). Due to the Hyperfield Criterion, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) satisfying \( 0 \in \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) \)
 for all \( p \in \left\{ \mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k=0}^d \). These configurations are potential valid outcomes. Let us consider how we can efficiently compute such valid configurations.
 
 \vspace{0.3cm}
@@ -314,11 +287,11 @@ To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate o
     \end{algorithmic}  
 \end{algorithm}
     
-The naive approach has an exponential time complexity since $\binom{(d+1)(d + 2)/2}{n}$ many supports are checked.
+The naive approach has exponential time complexity as it checks \( \binom{(d+1)(d+2)/2}{n} \) supports.
 
 \subsection*{Efficient Algorithm}
 
-For a specific type of system of linear forms $A$, we can greatly speed up the computation of $S_{n}(A)$.
+For some systems \( A \), we can greatly speed up the computation of $S_{n}(A)$.
 
 
 \begin{definition}
@@ -367,10 +340,7 @@ Assume a system $A$ and some linear form $p \in A$. Further assume $p = \mathrm{
     +  .  .
     +  .  .  .
 \end{verbatim} 
-We see that any nonzero hyperfield root $\mathbf{x}$ of $A$ satisfies $x_{i} = 1$ for some 
-\begin{align*}
-    (i,j) \in \{ (0,0), (0,1), (0,2), (0,3) \}
-\end{align*}
+We see that any nonzero hyperfield root $\mathbf{x}$ of $A$ satisfies $x_{i} = 1$ for some \( (i,j) \in \{ (0,0), (0,1), (0,2), (0,3) \} \)
 because $x_{00}$ is negative.
 
 Now, assume $A$ is non-trivial. Consider a row pascal equation $q = \mathrm{row}(3)$ which is contained in \( A \). Its support is depicted by the following diagram:
@@ -387,32 +357,17 @@ For some $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ to be a h
 \end{enumerate}
 Considering only non-trivial roots $\mathbf{x}$ lets us exclude the latter case. Thus, if we have a non-trivial system $A$ with $p,q \in A$, to compute $S_{n}(A)$, it suffices to check only those hyperfield roots whose support intersected with each of the three following regions is non-empty:
 \begin{verbatim}
-    + 
-    +  . 
-    +  .  .
-    +  .  .  .
-
-    + 
-    .  . 
-    .  .  +
-    .  .  .  .
-
-    . 
-    .  + 
-    .  .  .
-    .  .  .  + 
+    +             +             .
+    +  .          .  .          .  + 
+    +  .  .       .  .  +       .  .  .
+    +  .  .  .    .  .  .  .    .  .  .  + 
 \end{verbatim}
-Here are examples of such hyperfield roots illustrated in the following diagrams:
+Here are examples of such hyperfield roots:
 \begin{verbatim}
-    +               
-    .  +           
-    .  .  .
-    .  .  .  .
-
-    . 
-    .  . 
-    +  .  +
-    .  .  .  +
+    +             .        
+    .  +          .  .      
+    .  .  .       +  .  +
+    .  .  .  .    .  .  .  +
 \end{verbatim}
 \end{example}
 
@@ -470,7 +425,7 @@ First, $S_{n}(A)$ is non-empty because $\mathbf{x} = (x_{i})_{i=0}^n$ defined as
 
 Let $\mathbf{x} \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following cases.
 \begin{itemize}
-    \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{diag}(i))$; then $\mathrm{diag}(i)(\mathbf{x}) < 0$; we found a contradiction to $\mathbf{x}$ being a root. 
+    \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{diag}(i))$; then $\mathrm{diag}(i)(\mathbf{x}) < 0$ but $\mathbf{x}$ is a root of \( \mathrm{diag}(i) \). 
     \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{row}(i))$. If $i = d$, then $\mathbf{x}$ is not of degree $n$. Therefore, we assume $i < d$. Then, either $\mathbf{x}$ is a trivial root for $\mathrm{row}(i+1)$ or we have $\mathrm{row}(i+1)(\mathbf{x}) \neq 0$. In the latter case, we found a contradiction to $\mathbf{x}$ being a root. For the former case that $\mathbf{x}$ is a trivial root, we conclude that there exists nonzero $x_{u, d-u}$ for some $u = i+2, \dots, d$ since $\mathbf{x}$ is of degree $n$; now we just repeat the argument for $\mathrm{row}(i+1)$. More precisely, if $\mathbf{x}$ is again a trivial root for $\mathrm{row}(i+2)$, we repeat the argument for $\mathrm{row}(i+2)$ until we will end up with a contradiction $\mathrm{row}(u)(\mathbf{x}) \neq 0$.
     \item For the case $\mathrm{col}(i)$, we can argue by symmetry.
 \end{itemize}
@@ -629,8 +584,8 @@ The idea of contraction is to \emph{contract} or \emph{consolidate} vertices in 
 
 \begin{figure}[H]\label{fig:contractions-42342432}
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/contactions-4.png}
-    \caption{This figure illustrates the contraction variables and is taken from \cite{bik2022classifying}. The yellow areas \( X, Y, Z \) represent formal variables \( x_{i,j} \) that are unaffected by the contraction. The mint areas \( B, C, D \) represent rows and columns of vertices that are merged into a single vertex. The area \( D \) is further divided into areas \( D_1, D_2 \) by alternating columns.}
+    \includegraphics[width=0.4\textwidth]{assets/contactions-4.png}
+    \caption{This figure illustrates the contraction variables and is taken from \cite{bik2022classifying}. The yellow areas \( X, Y, Z \) represent formal variables \( x_{i,j} \) that are unaffected by the contraction. The green areas \( B, C, D,E \) represent rows and columns of vertices that are merged into a single vertex.}
 \end{figure}
 
 \begin{definition}\label{def:contraction-variables}
@@ -675,7 +630,7 @@ Let us visualize the contraction variables for \( d = 16 \) in the following fig
             x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0}
         \end{array}
     \end{align*}  
-    \caption{Contraction variables for \( d = 16 \) are depicted.}
+    \caption{This illustrates contraction variables for \( d = 16 \).}
 \end{figure}
 
 As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the contraction variable \( c_0 \) by summing them up. Similarly, the formal variables \( x_{i,4}, \dots, x_{i,d-4-i} \) are merged into \( c_i \) for \( i = 1,2,3 \).
@@ -740,26 +695,7 @@ So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), a
 Here is another example.
 
 \begin{example}
-    Consider \( \mathrm{diag}(3) \) and \( d = 11 \).
-    \begin{verbatim}
-        · 
-        · · 
-        · · · 
-        + + + + 
-        + + + + · 
-        + + + + · · 
-        + + + + · · · 
-        + + + + · · · · 
-        + + + + · · · · · 
-        + + + + · · · · · · 
-        + + + + · · · · · · · 
-        + + + + · · · · · · · ·
-    \end{verbatim}
-    Write 
-    \begin{align*}
-        \mathrm{sign}(\mathrm{diag}(3)) = \sum_{i,j=0}^3 x_{i,j} + \sum_{i=0}^3 c_i + \sum_{i=0}^3 \sum^{i}_{j=0} y_{i,j}.
-    \end{align*}
-    This linear form is independent of the degree \( d \).
+    Consider \( \mathrm{diag}(3) \) and \( d = 11 \). Write  \( \mathrm{sign}(\mathrm{diag}(3)) = \sum_{i,j=0}^3 x_{i,j} + \sum_{i=0}^3 c_i + \sum_{i=0}^3 \sum^{i}_{j=0} y_{i,j} \), and we see that this linear form is independent of the degree \( d \).
 \end{example}
 
 
@@ -879,7 +815,13 @@ Going from the world of hyperfield configurations to the world of \emph{contract
     exactly as in Definition \ref{def:contraction-variables}.
 \end{definition}
 
-The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we introduce the following definition.
+The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we only consider weakly valid configuration; that are configurations whose negative support may only be contained in the yellow area below.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/weakly-valid.png}
+    \caption{A hyperfield configuration is weakly valid if its negative support is contained in the yellow area.}
+\end{figure}
 
 \begin{definition}
     Let \( \mathbf{s} \in H^{V_d} \) be a hyperfield configuration. We say \( \mathbf{s} \) is \emph{weakly valid} if for all \( (i,j) \in \mathrm{supp}^-(\mathbf{s}) \) one of the following holds:
@@ -889,12 +831,6 @@ The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \ma
         \item \( j = 0, \dots, 3 \) and \( i + j \geq d-3 \).
     \end{enumerate}
 \end{definition}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{assets/weakly-valid.png}
-    \caption{A hyperfield configuration is weakly valid if its negative support is contained in the yellow area. The figure is taken from \cite{bik2022classifying}.}
-\end{figure}
 
 From now on, we only consider \emph{weakly valid} hyperfield configurations because in this case the contraction map \( \mathrm{contr}_d \) always outputs elements in \( H^{\Xi} \).
 

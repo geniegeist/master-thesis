@@ -25,10 +25,7 @@ We start with the proof of the first theorem.
 \begin{proof}[Proof of Theorem \ref{thm:outcome-degree-support-size-232323}]
     Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome. Since it is valid, we either have an empty negative support or a negative support that only contains \( (0,0) \). If the negative support is empty, then \( \mathbf{w} = \mathbf 0 \) by Proposition \ref{prop:outcome-zero}. Hence, we assume \( w_{0,0} < 0 \).
 
-    Now, consider the Pascal form \( \mathrm{diag}(0) = \sum c_{i,j} x_{i,j} \). We have \( c_{0, 0} = c_{0, 1} = \dots = c_{0, d} = 1 \) and \( c_{i,j} = 0 \) for everything else. Similarly, we have for the Pascal form \( \mathrm{diag}(d) = \sum c'_{i,j} x_{i,j} \) that \( c'_{\cdot, 0} = \mathbf 1 \) and \( c'_{i,j} = 0 \) for everything else. Since outcomes are roots of Pascal forms, we have 
-    \begin{align*}
-        \mathrm{diag}(0)(\mathbf w) = \mathrm{diag}(d)(\mathbf w) = 0.
-    \end{align*}
+    Now, consider the Pascal form \( \mathrm{diag}(0) = \sum c_{i,j} x_{i,j} \). We have \( c_{0, 0} = c_{0, 1} = \dots = c_{0, d} = 1 \) and \( c_{i,j} = 0 \) for everything else. Similarly, we have for the Pascal form \( \mathrm{diag}(d) = \sum c'_{i,j} x_{i,j} \) that \( c'_{\cdot, 0} = \mathbf 1 \) and \( c'_{i,j} = 0 \) for everything else. Since outcomes are roots of Pascal forms, we have \( \mathrm{diag}(0)(\mathbf w) = \mathrm{diag}(d)(\mathbf w) = 0 \).
     Since \( w_{0,0} < 0 \) we must have \( w_{0,j} > 0 \) and \( w_{i, 0} > 0 \) for some \( i,j > 0 \). Hence, \( \mathbf{w} \) has positive support size at least two.
 \end{proof}
 
@@ -36,10 +33,8 @@ Next, we prove the second theorem.
 
 \begin{proof}[Proof of Theorem \ref{thm:outcome-degree-support-size-232323343}]
     Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be an integral outcome with positive support size two and degree \( d \).
-    By the previous proof, we see that 
-    \begin{align*}
-        \mathrm{supp}^+({\mathbf{w}}) = \left\{  (0,j), (i,0) \right\}.
-    \end{align*}
+    By the previous proof, we see that \( \mathrm{supp}^+({\mathbf{w}}) = \left\{  (0,j), (i,0) \right\} \).
+    
     Without loss of generality, we assume \( i = d \). We want to show that \( j = d \). Consider the Pascal form \( \mathrm{row}(d) = \sum c_{i,j} x_{i,j} \), which has only nonzero coefficients \( c_{i,j} \) for \( i + j = d \).
     
     \begin{itemize}
@@ -84,10 +79,7 @@ It remains to prove Theorem \ref{thm:sfnjksnfjkwenjfk}. For that consider the fo
     Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). Assume  \(  \left\{ (0,0), (d,0), (0,d) \right\} \subset \mathrm{supp}(\mathbf{w}) \). Clearly, statement 1, 2, 3, or 4 must hold.
 
     So assume \( (0,d) \notin \mathrm{supp}(\mathbf{w}) \) and  \( (d,0) \notin \mathrm{supp}(\mathbf{w}) \). As in the proof of Theorem \ref{thm:outcome-degree-support-size-232323}, consider the Pascal form \( \mathrm{diag}(0) = \sum c_{i,j} x_{i,j} \). We have \( c_{0, \cdot} = \mathbf 1 \) and \( c_{i,j} = 0 \) for everything else. Similarly, we have for the Pascal form \( \mathrm{diag}(d) = \sum c'_{i,j} x_{i,j} \) that \( c'_{\cdot, 0} = \mathbf 1 \) and \( c'_{i,j} = 0 \) for everything else. Since outcomes are roots of Pascal forms, we have \( \mathrm{diag}(0)(\mathbf w) = \mathrm{diag}(d)(\mathbf w) = 0 \).
-    Due to \( w_{0,0} < 0 \), we conclude \( w_{0,j} > 0 \) and \( w_{i, 0} > 0 \) for some \( i,j > 0 \). Thus, we have 
-    \begin{align*}
-         \left\{ (i,0), (0,j) \right\} \subset \mathrm{supp}(\mathbf{w})
-    \end{align*}
+    Due to \( w_{0,0} < 0 \), we conclude \( w_{0,j} > 0 \) and \( w_{i, 0} > 0 \) for some \( i,j > 0 \). Thus, we have \( \left\{ (i,0), (0,j) \right\} \subset \mathrm{supp}(\mathbf{w}) \)
     for some \( i,j = 1, \dots, d-1 \) using the assumption  \( (0,d) \notin \mathrm{supp}(\mathbf{w}) \) and  \( (d,0) \notin \mathrm{supp}(\mathbf{w}) \). Since \( \mathbf{w} \) is of degree \( d \), there exists \( w_{k,d-k} > 0 \) for some \( k = 1, \dots, d-1 \). However, \( \mathrm{row}(d)(\mathbf{w}) = 0 \) implies that there must be some \( w_{h,d-h} > 0\) for some \( h \neq k \); this \( h \) cannot equal \( 0 \) or \( d \). Thus, the positive support size of \( \mathbf{w} \) is at least four, which is a contradiction. Hence, we must have \( (d,0) \in \mathrm{supp}(\mathbf{w}) \) or \( (0,d) \in \mathrm{supp}(\mathbf{w}) \).
 
     Let \( (d,0) \in \mathrm{supp}(\mathbf{w}) \) and \( (e, 0) \in \mathrm{supp}(\mathbf{w}) \) for some \( e = 1, \dots, d-1 \). Now using the same argument as before, there must exist some \( w_{f,d-f} > 0 \) for some \( f = 1, \dots, d-1 \); otherwise \( \mathrm{row}(d)(\mathbf{w}) > 0 \) which is a contradiction since \( \mathbf{w} \) is a root of all Pascal forms. This proves statement 5. 

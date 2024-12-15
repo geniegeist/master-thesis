@@ -47,11 +47,7 @@ Games that satisfy the condition in the corollary are called \emph{reduced}. We 
     \left\{ \text{reduced games on \( (V,E) \)} \right\} / \sim \quad &\to \quad  \left\{ g: V' \to \mathbb{Z} : \# \{ p \in V' : g(p) \neq 0 \} < \infty \right\} \\
     f &\mapsto (p \mapsto \text{number of moves at \( p \) in game \( f \)})
 \end{align*}
-is a bijection, where \( V' \subset V \) is the subset of vertices with at least one outgoing edge. The equivalence relation \( \sim \) is defined by \( f \sim g \) if \( f \) and \( g \) are the same up to reordering. Unsplitting moves are counted negatively by \( p \mapsto \text{number of moves at \( p \) in game \( f \)} \). Using the map above we identify a chipsplitting game with its corresponding function \( V' \to \mathbb{Z} \). For every outcome \( \mathbf{w} = (w_v)_{v \in V} \) we have 
-\begin{align*}
-    w_v = -f(v) + \sum_{u\in V', (u,v) \in E} f(u),
-\end{align*}
-where we define \( f(v) = 0 \) for \( v \notin V \).
+is a bijection, where \( V' \subset V \) is the subset of vertices with at least one outgoing edge. The equivalence relation \( \sim \) is defined by \( f \sim g \) if \( f \) and \( g \) are the same up to reordering. Unsplitting moves are counted negatively by \( p \mapsto \text{number of moves at \( p \) in game \( f \)} \). Using the map above we identify a chipsplitting game with its corresponding function \( V' \to \mathbb{Z} \). For every outcome \( \mathbf{w} = (w_v)_{v \in V} \) we have \(     w_v = -f(v) + \sum_{u\in V', (u,v) \in E} f(u)\), where we set \( f(t) = 0 \) for \( t \notin V \).
 
 Now, we define the directed graphs that we will consider in this thesis. For \( d \in \mathbb{N} \cup \left\{ \infty \right\} \) we write 
 \begin{align*}
@@ -111,18 +107,11 @@ We are interested in \emph{outcomes} that are \emph{valid} since they will corre
 In this chapter we will establish that outcomes are roots of Pascal equations. So let us first define Pascal equations which are special cases of \emph{linear forms}.
 
 \begin{definition}
-    A \emph{linear form} on \( \mathbb{Z}^{V_d} \) is a map of the form
-    \begin{align*}
-        \mathbb{Z}^{V_d} \to \mathbb{Z}, \quad \mathbf{w} \mapsto \sum_{(i,j) \in V_d} c_{i,j} w_{i,j}.
-    \end{align*}
-    It is denoted by \( \sum_{(i,j) \in V_d} c_{i,j} x_{i,j} \).
+    A \emph{linear form} on \( \mathbb{Z}^{V_d} \) is a map of the form \( \mathbb{Z}^{V_d} \to \mathbb{Z}, \quad \mathbf{w} \mapsto \sum_{(i,j) \in V_d} c_{i,j} w_{i,j} \), denoted by \( \sum_{(i,j) \in V_d} c_{i,j} x_{i,j} \).
 \end{definition}
 
 \begin{definition}
-    A \emph{Pascal form} on \( \mathbb{Z}^{V_d} \) is a linear form \( \sum_{(i,j) \in V_d} c_{i,j} x_{i,j} \) on \( \mathbb{Z}^{V_d} \) satisfying 
-    \begin{align*}
-        c_{i,j} = c_{i+1,j} + c_{i,j+1} \quad \text{for all } (i,j) \in V_{d-1}.
-    \end{align*}
+    A \emph{Pascal form} on \( \mathbb{Z}^{V_d} \) is a linear form \( \sum_{(i,j) \in V_d} c_{i,j} x_{i,j} \) on \( \mathbb{Z}^{V_d} \) satisfying \( c_{i,j} = c_{i+1,j} + c_{i,j+1}\) for all $(i,j) \in V_{d-1}$.
 \end{definition}
 
 \begin{example}
@@ -142,10 +131,7 @@ Evaluating Pascal equations is invariant under splitting and unsplitting moves.
 
 \begin{proof}
     Let \( u \coloneqq (i',j') \in V_{d-1} \).
-    By the Pascal property, we have 
-    \begin{align*}
-        c_{i'+1,j'} + c_{i',j'+1} - c_{i',j'}= 0.
-    \end{align*}
+    By the Pascal property, we have \( c_{i'+1,j'} + c_{i',j'+1} - c_{i',j'}= 0 \).
     Thus, we have 
     \begin{align*}
         p(\mathrm{split}_u(\mathbf w)) &= \sum_{(i,j) \in V_d} c_{i,j} (\mathrm{split}_u(\mathbf w))_{i,j} \\
@@ -246,10 +232,10 @@ For examples of the Pascal forms \( \mathrm{col}(k) \) and \( \mathrm{row}(k) \)
 
 \begin{proposition}\label{prop:pascal-formulas}
     For all integers \( k = 0, \dots, d \) the following formulas hold:
-    \begin{align*}
-        \mathrm{col}(k)  &= (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j}, \\
-        \mathrm{row}(k) &= (-1)^k \sum_{(i,j) \in V_d} (-1)^i \binom{j}{k-i} x_{i,j}.
-    \end{align*} 
+    \begin{gather*}
+        \mathrm{col}(k)  = (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \; \text{and} \;
+        \mathrm{row}(k) = (-1)^k \sum_{(i,j) \in V_d} (-1)^i \binom{j}{k-i} x_{i,j}.
+    \end{gather*} 
     Note that \( \binom{a}{b} = 0 \) for \( b < 0 \) or \( b > a \).
 \end{proposition}
 
@@ -281,7 +267,7 @@ We now show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is indeed a ba
     \begin{align}\label{eq:234324324}
         \sum_{(i,j) \in V_d} c_{i,j}x_{i,j} = \lambda_0 \mathrm{col}(0) + \dots + \lambda_d \mathrm{col}(d)
     \end{align}
-    for \( \lambda_0, \dots, \lambda_d \), then due to Proposition \ref{prop:pascal-formulas} we see for all \( (i,j)\in V_d \) that we have
+    for \( \lambda_0, \dots, \lambda_d \), then due to Proposition \ref{prop:pascal-formulas} we have for all \( (i,j)\in V_d \) that
     \begin{align*}
         c_{i,j} &= \lambda_0 (-1)^{0+j} \binom{i}{0-j} + \lambda_1 (-1)^{1+j} \binom{i}{1-j} + \dots + \lambda_d (-1)^{d+j} \binom{i}{d-j} \\
         &= \lambda_j (-1)^{2j} \binom{i}{0} + \lambda_{j+1} (-1)^{2j+1} \binom{i}{1} + \dots + \lambda_{i+j} (-1)^{2j+i} \binom{i}{i}.
@@ -307,7 +293,7 @@ Let us come back to Theorem \ref{thm:pascal-outcome}. We can now prove the other
 
 \begin{proof}
     Let \( \mathbf{w}\in \mathbb{Z}^{V_d} \) be a chip configuration.
-    By assumption
+    By assumption, we have 
     \begin{align}\label{eq:324324234324324}
         \mathrm{col}(\mathrm{deg}(\mathbf w))(\mathbf w) = 0.
     \end{align}
@@ -319,7 +305,7 @@ Let us come back to Theorem \ref{thm:pascal-outcome}. We can now prove the other
     \begin{align}\label{eq:2j2j1kjkj}
         \sum_{i=0}^{\mathrm{deg}(\mathbf w)}(-1)^i w_{i, \mathrm{deg}(\mathbf w) - i} = 0.
     \end{align}
-    Furthermore, we know that there exists a unique minimal set of splitting or unsplitting moves at vertices \( (i,j) \) of degree \( \mathrm{deg}(\mathbf w) - 1 \) such that applied to \( \mathbf w \) we obtain a chip configuration \( \mathbf w' \) with \( w'_{i,j} = 0 \) for all \( i =0, ... , \mathrm{deg}(\mathbf w) \). We call applying these set of moves to \( \mathbf w \) \emph{retraction}.
+    Furthermore, we know that there exists a unique minimal set of splitting or unsplitting moves at vertices \( (i,j) \) of degree \( \mathrm{deg}(\mathbf w) - 1 \) such that when applied to \( \mathbf w \) we obtain a chip configuration \( \mathbf w' \) with \( w'_{i,j} = 0 \) for all \( i =0, ... , \mathrm{deg}(\mathbf w) \). We call applying these set of moves to \( \mathbf w \) \emph{retraction}.
     
     \begin{verbatim}
         .
@@ -440,8 +426,8 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
 
 To show this theorem, we need to do some preparations. Let \( \mathbb{R}[\theta]_{\leq d} \) denote the vector space of polynomials in the variable \( \theta \) of degree at most \( d \) with real coefficients. Similarly, we define \( \mathbb{Z}[\theta]_{\leq d} \) and \( \mathbb{Q}[\theta]_{\leq d} \). Next, we introduce the linear map \( \alpha_{d}^{\mathbb R} \) that maps real chip configurations to real polynomials:
 \begin{align*}
-    \alpha_d^{\mathbb R}: \mathbb{R}^{V_d} &\to \mathbb{R}[\theta]_{\leq d}, \\
-    \mathbf{w} &\mapsto \sum_{(i,j) \in V_d} w_{i,j} \theta^{i}(1-\theta)^j.
+    \alpha_d^{\mathbb R}: \mathbb{R}^{V_d} \to \mathbb{R}[\theta]_{\leq d}, 
+    \mathbf{w} \mapsto \sum_{(i,j) \in V_d} w_{i,j} \theta^{i}(1-\theta)^j.
 \end{align*}
 We define the map \( \alpha_d^{\mathbb Z} \) and \( \alpha_d^{\mathbb Q} \) for integer and rational chip configurations analogously.
 
