@@ -155,7 +155,7 @@ This demonstrates that outcomes are roots of Pascal equations. The converse is a
 The direction left to right is the content of the previous corollary. For the other direction life would be easier if we had not to deal with infinitely many Pascal equations. So let us fix this first by introducing a basis from which we can generate all Pascal equations through linear combinations.
 
 \begin{example}\label{ex:pascal-basis}
-    Fix the degree \( d = 2 \). We later claim that the following set of Pascal forms is a basis:
+    Let \( d = 2 \). We later claim that the following set of Pascal forms is a basis:
     \begin{verbatim}
         0               0               1               
         0  0            1  1            0 -1           
@@ -170,7 +170,7 @@ The direction left to right is the content of the previous corollary. For the ot
     We will denote the first set of Pascal forms by \( \left\{ \mathrm{col}(0), \mathrm{col}(1), \mathrm{col}(2) \right\} \) and the second set by \( \{ \mathrm{row}(0), \mathrm{row}(1), \mathrm{row}(2) \} \).
 \end{example}
 
-To generalize the example above to an arbitrary degree \( d \in \mathbb{N} \) and to vectors beyond unit vectors, we assert that there exists a unique Pascal form whose first column is any chosen vector.
+To generalize the example to arbitrary \( d \in \mathbb{N} \) and to vectors beyond unit vectors, we claim that there exists a unique Pascal form whose first column is any chosen vector.
 
 \begin{proposition}\label{prop:supsup-pascal}
     Let \( \mathbf{a} = (a_0, \dots, a_d) \) be any vector with integer entries. Then, the following two statements hold:
@@ -196,10 +196,8 @@ Let us define our first two Pascal form bases.
     \end{itemize}
 \end{definition}
 
-For examples of the Pascal forms \( \mathrm{col}(k) \) and \( \mathrm{row}(k) \) for \( d = 2 \) see Example \ref{ex:pascal-basis}. We provide another example for \( d = 7 \).
-
 \begin{example}
-    Let us consider the Pascal form \( \mathrm{col}(3) \) for \( d = 7 \). We visualize this Pascal form as follows: 
+    Consider the Pascal form \( \mathrm{col}(3) \) for \( d = 7 \). We visualize it as follows: 
     \begin{verbatim}
         · 
         ·   · 
@@ -418,7 +416,7 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
 \end{figure}
 
 
-To show this theorem, we need to do some preparations. Let \( \mathbb{R}[\theta]_{\leq d} \) denote the vector space of polynomials in the variable \( \theta \) of degree at most \( d \) with real coefficients. Similarly, we define \( \mathbb{Z}[\theta]_{\leq d} \) and \( \mathbb{Q}[\theta]_{\leq d} \). Next, we introduce the linear map \( \alpha_{d}^{\mathbb R} \) that maps real chip configurations to real polynomials:
+To show this theorem, we first make some preparations. Let \( \mathbb{R}[\theta]_{\leq d} \) denote the vector space of polynomials in the variable \( \theta \) of degree at most \( d \) with real coefficients. Similarly, we define \( \mathbb{Z}[\theta]_{\leq d} \) and \( \mathbb{Q}[\theta]_{\leq d} \). Next, we introduce the linear map \( \alpha_{d}^{\mathbb R} \) that maps real chip configurations to real polynomials:
 \begin{align*}
     \alpha_d^{\mathbb R}: \mathbb{R}^{V_d} \to \mathbb{R}[\theta]_{\leq d}, 
     \mathbf{w} \mapsto \sum_{(i,j) \in V_d} w_{i,j} \theta^{i}(1-\theta)^j.
@@ -439,19 +437,13 @@ We define the map \( \alpha_d^{\mathbb Z} \) and \( \alpha_d^{\mathbb Q} \) for 
 
     Let \( d < \infty \). By Corollary \ref{cor:pascal-basis-2323}, the codimension of the outcome space is \( d+1 \), as it is defined by the roots of the Pascal forms \( \mathrm{col}(0), \dots, \mathrm{col}(d) \). 
 
-    Let \( f(\theta) = \lambda_0 + \lambda_1 \theta + \dots + \lambda_d \theta^d  \) be a polynomial in \( \mathbb R \) of degree at most \( d \). Define a chipsplitting configuration \( \mathbf{w} \) by 
-        \begin{align*}
-            w_{i,j} \coloneqq \begin{cases}
-                \lambda_i & \text{if } j=0, \\
-                0 & \text{otherwise}.
-            \end{cases}
-        \end{align*}
-    Then, \( \alpha^\mathbb{R}_d(\mathbf w) = f \), which shows that the map \( \alpha^{\mathbb R}_d \) is surjective. Hence, the kernel of \( \alpha^{\mathbb R}_d \) has codimension \( d+1 \); it has equal codimension as the space of outcomes. 
+    Let \( f(\theta) = \lambda_0 + \lambda_1 \theta + \dots + \lambda_d \theta^d  \) be a polynomial in \( \mathbb R \) of degree at most \( d \). Define a chipsplitting configuration \( \mathbf{w} \) by \(  w_{i,j} \coloneqq \begin{cases}
+        \lambda_i & \text{if } j=0, \\
+        0 & \text{otherwise}.
+    \end{cases} \).
+    Then, \( \alpha^\mathbb{R}_d(\mathbf w) = f \) holds, which shows that the map \( \alpha^{\mathbb R}_d \) is surjective. Hence, the kernel of \( \alpha^{\mathbb R}_d \) has codimension \( d+1 \); it has equal codimension as the space of outcomes. 
 
-    Finally, we just need to show that the space of outcomes is contained in the kernel of \( \alpha^{\mathbb R}_d \). Since their codimensions are equal, the two spaces must be equal. Let \( \mathbf{w} \in \mathbb{R}^{V_d} \) be an outcome. The value of \( \alpha^{\mathbb R}_d(\mathbf w) \) remains the same if apply splitting or unsplitting moves at arbitrary vertices \( (i,j) \in V_{d-1} \) because we have 
-    \begin{align*}
-        -\theta^i(1-\theta)^j + \theta^{i+1}(1-\theta)^j + \theta^i(1-\theta)^{j+1} = \theta^i(1-\theta)^j (-1 + \theta + (1 - \theta)) = 0.
-    \end{align*}
+    Finally, we just need to show that the space of outcomes is contained in the kernel of \( \alpha^{\mathbb R}_d \). Since their codimensions are equal, the two spaces must be equal. Let \( \mathbf{w} \in \mathbb{R}^{V_d} \) be an outcome. The value of \( \alpha^{\mathbb R}_d(\mathbf w) \) remains the same if apply splitting or unsplitting moves at arbitrary vertices \( (i,j) \in V_{d-1} \) because we have \( -\theta^i(1-\theta)^j + \theta^{i+1}(1-\theta)^j + \theta^i(1-\theta)^{j+1} = \theta^i(1-\theta)^j (-1 + \theta + (1 - \theta)) = 0 \).
     The remaining claim follows from \( \alpha_d^{\mathbb{R}}(\mathbf 0) = 0 \).
 \end{proof}
 
@@ -534,23 +526,7 @@ Let us go back to Example \ref{ex:binomial-model-chip-three}.
     For valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| \leq 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 2 \cdot |\mathrm{supp}^+(\mathbf w)| - 3 \).
 \end{theorem}
 
-Arthur Bik and Marigliano Orlando established this theorem in \cite{bik2022classifying}, and we will provide a proof in the following sections. The question of whether the upper bound extends to cases with larger positive support sizes, \( |\mathrm{supp}^+(\mathbf w)| > 5 \), remains open. A primary contribution of this thesis is the significant advancement in proving this bound for the case \( |\mathrm{supp}^+(\mathbf w)| = 6 \).
-
-\begin{table}[h!] 
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        \textbf{Pos. Support Size} & \textbf{Max Degree} \\
-        \hline
-        \(2\) & \(1\) \\
-        \(3\) & \(3\) \\
-        \(4\) & \(5\) \\
-        \(5\) & \(7\) \\
-        \hline
-    \end{tabular}
-    \caption{    The following table shows the largest degree of a valid real outcome with positive support size \( 2,3,4 \) and \( 5 \).}
-    \label{tab:support_size_degree}
-\end{table}
+Bik and Orlando established this theorem in \cite{bik2022classifying}. Whether the upper bound extends to cases with larger positive support sizes, \( |\mathrm{supp}^+(\mathbf w)| > 5 \), remains open. A primary contribution of this thesis is the significant advancement in proving this bound for the case \( |\mathrm{supp}^+(\mathbf w)| = 6 \).
 
 Theorem \ref{thm:outcome-degree-support-size} is of particular interest because it is equivalent to Theorem \ref{thm:degree-fundamental-models}, i.e. proving that the degree of outcomes is bounded by their positive support size is equivalent to establishing that the degree of statistical models is bounded by their dimension.
 

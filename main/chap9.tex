@@ -67,17 +67,18 @@ using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{pr
     This follows from Corollary \ref{cor:validwunfwufneuiw}.
 \end{proof}
 
-Let us pick some \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \). We want to show that any configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) that maps to \( \mathbf{s} \) under \( \mathrm{contr}_d \circ \mathrm{sign} \) must be a zero outcome which is a contradiction. So, we need to check \( 1283 + 1265 = 2548 \) cases.
-Some of these cases occur multiple times; when we exclude these, we have \( 2318 \) cases to check.
-
-\begin{remark}
-    Comparing this proof with the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd}, you will notice that the number of cases in \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) to check has increased from zero to \( 2318 \).
-\end{remark}
-
-We make the following simplification to the index set \( \Xi \).
+For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \), we want to show that any valid outcome \( \mathbf{w} \in \mathbb{Z}^{V_d} \) that maps to \( \mathbf{s} \) under \( \mathrm{contr}_d \circ \mathrm{sign} \) is \( \mathbf{0} \). Note that \( \lvert \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \rvert = 2318 \); so we have to check \( 2318 \) cases. To make life easier when checking these cases, we simplify the index set \( \Xi \).
 
 \begin{definition}
-    Define the index set \( \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \) with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}) \). The new coordinate system \( H^{\Xi'} \) is visualized below.
+    Define the index set 
+    \begin{align*}
+        Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} 
+    \end{align*}
+    with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by 
+    \begin{align*}
+        \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}).
+    \end{align*}
+    The new coordinate system \( H^{\Xi'} \) is visualized below.
 \begin{figure}[H]
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
@@ -667,26 +668,25 @@ x  x  x  x  b  b  b  b  b  z  z  *  z
 x  x  x  x  b  b  b  b  b  b  z  z  z  *  
 *  x  x  x  b  b  b  b  b  b  b  z  z  *  z  
 \end{verbatim}
-To apply the Hexagon Criterion to some configuration \( \mathbf{w} \) with the support indicated as above, we need to know where the nonzero entry of \( \mathbf{w} \) in the \( c_1 \)-column is roughly located; here the \( c_1 \)-column denotes the entries \( w_{1,k} \) with \( k = 4, \dots, d - 1 - 4 \). There can only exist one nonzero entry in the \( c_1 \)-column since \( \mathbf{w} \) has positive support size five. Let us denote the nonzero entry in the \( c_1 \)-column by \( (a,b) \in V_d \) where \( a = 1 \). We differentiate between three cases:
+To apply the Hexagon Criterion to some configuration \( \mathbf{w} \) with the support indicated as above, we need to know where the nonzero entry of \( \mathbf{w} \) in the \( c_1 \)-column is roughly located; here the \( c_1 \)-column denotes the entries \( w_{1,k} \) with \( k = 4, \dots, d - 1 - 4 \). There can only exist one nonzero entry in the \( c_1 \)-column since \( \mathbf{w} \) has positive support size five. Let us denote the nonzero entry in the \( c_1 \)-column by \( (a,b) \in V_d \) where \( a = 1 \). There are two cases:
 \begin{enumerate}
     \item Let \( a + b \leq \mathrm{floor}(\frac{d}{3})\). Set \( \ell_1 = \ell_2 = d' =  \mathrm{floor}(\frac{d}{3}) \geq \frac{42}{3} = 14 \). We easily see that the other non-entries \( y_{0,3}, z_{2.0}, z_{2,2}, z_{3,1} \) lie outside the hexagon.
     \item Let \( b \geq \mathrm{floor}(\frac{d}{3})  \). Set \( d' = 6 \), \( \ell_2 = 7 \) and \( \ell_1 = d + 1 - \mathrm{floor}(\frac{d}{3}) \geq 43 - 14 = 29 \). We see that \( d' + \ell_1 + \ell_2 \leq d \) since \( d \geq 42 \). We easily see that the non-entries \( y_{0,3}, z_{2.0}, z_{2,2}, z_{3,1} \) lie outside the hexagon. It remains to check that \( (a,b) \) also lies outside the hexagon. We have \( d - \ell_1 = d - (d + 1) + \mathrm{floor}(\frac{d}{3}) =\mathrm{floor}(\frac{d}{3}) - 1 < \mathrm{floor}(\frac{d}{3}) \leq b \). Thus, \( (a,b) \) lies outside the hexagon.
 \end{enumerate}
-Both these cases show that we can apply the Hexagon Criterion; the criterion shows that the degree of \( \mathbf{w} \) is at most \( d' \leq \mathrm{floor}(\frac{d}{3}) \). However, we assume that \( \mathbf{w} \) is of degree \( d \), which is a contradiction since \( d' < d \). We rule out \( \left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\} \).
+Hence, we can apply the Hexagon Criterion showing that the degree of \( \mathbf{w} \) is at most \( d' \leq \mathrm{floor}(\frac{d}{3}) \). However, we assume that \( \mathbf{w} \) is of degree \( d \), which is a contradiction since \( d' < d \). We rule out \( \left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\} \).
 \end{example}
 
-We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. Unfortunately, there is one case \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) which cannot be ruled out by the Hexagon Criterion. We need to consider this case separately; so let us ignore this case for now and consider the remaining eleven cases.
+We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. However, one case, \( \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \), cannot be ruled out by the Hexagon Criterion. We will handle this case separately and focus on the remaining eleven cases for now.
 
 First, we observe that all the eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
-Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) there exists some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \) such that \( \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\} \).
+Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) we have 
+\begin{align*}
+    \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\} 
+\end{align*}
+for some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \).
 
 \begin{proposition}\label{prop:nkjeai32huh3i2}
-    One of the following statements holds:
-\begin{enumerate}
-    \item \( a + b \leq \mathrm{floor}(\frac{d}{3}) \),
-    \item \( a \geq \mathrm{floor}(\frac{d}{3}) \), or 
-    \item \( b \geq \mathrm{floor}(\frac{d}{3}) \).
-\end{enumerate}
+    We have either \( a + b \leq \mathrm{floor}(\frac{d}{3}) \), or \( a \geq \mathrm{floor}(\frac{d}{3}) \), or \( b \geq \mathrm{floor}(\frac{d}{3}) \).
 \end{proposition}
 
 \begin{proof}
@@ -697,7 +697,6 @@ Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mat
     \item Let \( b = 0 \) with \( a + b > \mathrm{floor}(\frac{d}{3}) \). Then, \( a > \mathrm{floor}(\frac{d}{3}) \). Let \( b = 1 \) with \( a + b > \mathrm{floor}(\frac{d}{3}) \). Then, \( a \geq \mathrm{floor}(\frac{d}{3}) \). 
     \item Let \( a + b \geq d-1  \). Since \( d-1 > 2 \mathrm{floor}(\frac{d}{3}) \), we have \( a > \mathrm{floor}(\frac{d}{3}) \) or \( b > \mathrm{floor}(\frac{d}{3}) \).
 \end{itemize}
-This proves the proposition.
 \end{proof}
 
 \begin{proposition}
@@ -720,11 +719,10 @@ We are left with one case  \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\
 \end{proposition}
 
 \begin{proof}[Proof by Contradiction]
-    We assume that \( d \geq 42 \). Assume that a weakly valid outcome \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) =  \left\{ x_{0,0}, y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \) exists. Then, the support of \( \mathbf{w} \) reads 
-    \begin{align*}
-        S = \left\{ (0,0), (d,0), (0,d), (i,1), (1,j), (k, d-1-k) \right\}
-    \end{align*}
-    for some integers \( i,j, k \). Let us define \( e \in \mathbb{Z} \) such that we can write \( d = 2e + 1 \). If \( j \neq e \), we use Proposition \ref{prop:impossible-support-2324223423123123} to show that such a \( \mathbf{w} \) cannot exist. So, we assume that \( j = e \). By symmetry \( (12) \in S_3 \) and \( (13) \in S_3 \), we conclude that \( i = e \) and \( k = e \). This shows that the support of \( \mathbf{w} \) reads
+    We assume that \( d \geq 42 \). Assume that a weakly valid outcome \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) =  \left\{ x_{0,0}, y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \) exists. Then, the support of \( \mathbf{w} \) reads \( S = \left\{ (0,0), (d,0), (0,d), (i,1), (1,j), (k, d-1-k) \right\} \)
+    for some integers \( i,j, k \). 
+    
+    Let us define \( e \in \mathbb{Z} \) such that we can write \( d = 2e + 1 \). If \( j \neq e \), we use Proposition \ref{prop:impossible-support-2324223423123123} to show that such a \( \mathbf{w} \) cannot exist. So, we assume that \( j = e \). By symmetry \( (12) \in S_3 \) and \( (13) \in S_3 \), we conclude that \( i = e \) and \( k = e \). This shows that the support of \( \mathbf{w} \) reads
     \begin{align*}
         S &= \left\{ (0,0), (d,0), (0,d), (e,1), (1,e), (e, d-1-e) \right\} \\&= \left\{ (0,0), (d,0), (0,d), (e,1), (1,e), (e,e) \right\}.
     \end{align*}

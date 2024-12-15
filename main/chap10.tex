@@ -140,21 +140,17 @@ We are interested in linear combinations of hyperfield Pascal forms \( p \) that
     \end{align*}
     We say \( T \) is \emph{fixed-contractable} if all of the following statements hold:
     \begin{enumerate}
-        \item the realization \( p_d \) is contractable for all \( d \in \mathbb{N} \) with \( d \in \mathbb{N}_{\geq 15} \);
-        \item there exists a linear form \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \);
-        \item there exists a linear form \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \).
+        \item The realization \( p_d \) is contractable for all \( d \in \mathbb{N} \) with \( d \in \mathbb{N}_{\geq 15} \);
+        \item There exists a linear form \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \);
+        \item There exists a linear form \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \).
     \end{enumerate}
     
-    Similarly, we define \( p \) is \emph{fixed-contractable} on \( b_i \) if \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \) and \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \). 
-    
-    The definition of \emph{fixed-contractable} on \( c_i \), \( d_i \), and \( e_i \) is analogous.
+    Similarly, we define \( p \) is \emph{fixed-contractable} on \( b_i \) if \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \) and \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \). The definition of \emph{fixed-contractable} on \( c_i \), \( d_i \), and \( e_i \) is analogous.
 \end{definition}
 
 \begin{example}
     By Proposition \ref{prop:contracted-part-1} and \ref{prop:contracted-part-2}, the following formal linear combinations are fixed-contractable: \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), \(  \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3) \), \( \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3) \), \( \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \), \( \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3) \), \( \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) \).
 \end{example}
-
-We are looking for more fixed-contractable formal linear forms.
 
 \begin{definition}
     Let \( d \in \mathbb{N}_{\geq 15} , i \in \left\{ 0,\dots,4,d-4, \dots, d \right\}\), and $p = \sum \lambda_{i,j} x_{i,j}$ be a hyperfield linear form on \( H^{V_d} \). We define the $i$-th $b$-row of $p$ as \( p_{b_{i}} \coloneqq \begin{bmatrix} \lambda_{5,i} & \dots & \lambda_{d-i-5,i} \end{bmatrix} \in H^{d -  i - 9} \).
@@ -193,14 +189,27 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
     This also follows easily from the definition of $\mathrm{row}, \mathrm{col}$, and \(\mathrm{diag} \). 
   \end{proof}
   
+  Let us investigate how realizations of formal form change when increasing the degree. We fix the following notations:
+\begin{itemize}
+    \item Let \( T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i)  \) or \( T = \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i) \);
+    \item Write the realizations of \( T \) as \( p \coloneqq \sum p_{i,j}x_{i,j}  \coloneqq p_d  \) and \( q \coloneqq \sum q_{i,j}x_{i,j} \coloneqq p_{d+1} \) for some degree \( t = d \);
+    \item Define \( r \coloneqq \max\left\{ i \mid \lambda_i \neq 0 \right\} \) if \(  \max\left\{ i \mid \lambda_i \neq 0 \right\} \leq 4 \), otherwise \( r \coloneqq \min\left\{ i \mid \lambda_i \neq 0 \right\} \); 
+    \item Write \( \mathrm{row}(r) = \sum r_{i,j}x_{i,j} \).
+\end{itemize}  
 
-  Let us investigate how realizations of certain formal linear combinations change when we increase the degree \( d \). 
 
+\begin{lemma}\label{prop:row_extend_d}
+    Let \( d \in \mathbb{N}_{\geq 9} \). Then, \( q_{i,j} = p_{i,j} \) holds for all \( (i,j) \in V_d \).
+\end{lemma}
   
-  \pagebreak
-
-  \begin{example}
-    Consider \( T = \mathrm{row}(3) + \mathrm{row}(2) \). Then, \( p_8 \) is represented by the triangle on the left and \( p_9 \) is represented by the triangle on the right.
+\begin{proof}
+    Let \( d \in \mathbb{N} \), \( \ell = 0, \dots, 4,t-4,\dots,t \) and \(T_{\ell} =  \mathrm{row}(\ell) \). We denote its realizations in \( d \) and \( d + 1 \) by \( p_d^{(\ell)} = \sum p_{i,j}^{(\ell)}x_{i,j} \) and \( p_{d+1}^{(\ell)} = \sum q_{i,j}^{(\ell)}x_{i,j} \), respectively. By Proposition \ref{prop:pascal-formulas}, we see that \( p_{i,j}^{(\ell)} = q_{i,j}^{(\ell)} \) for all \( (i,j) \in V_d \).
+    
+    Next, assume \( T =  \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
+\end{proof}
+  
+\begin{example}
+    Let \( T = \mathrm{row}(3) + \mathrm{row}(2) \). We visualize \( p_8 \) and \( p_9 \):
     \begin{verbatim}
                                      -48
 -28                                  -28  20
@@ -214,25 +223,6 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
   .   .   1   1   .   .   .   .   .    .   .   1   1   .   .   .   .   .   .
     \end{verbatim}
   \end{example}
-
-For the following propositions and lemmas, we fix the following notations:
-\begin{itemize}
-    \item Let \( T \) be a formal linear combination of \( \left\{ \mathrm{row}(i) \right\}_{i=0}^4 \) or \( \left\{ \mathrm{row}(i) \right\}_{i=t-4}^t \), i.e. \( T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i)  \) or \( T = \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i) \);
-    \item Write the realizations of \( T \) as \( p \coloneqq \sum p_{i,j}x_{i,j}  \coloneqq p_d  \) and \( q \coloneqq \sum q_{i,j}x_{i,j} \coloneqq p_{d+1} \) for some degree \( t = d \);
-    \item Define \( r \coloneqq \max\left\{ i \mid \lambda_i \neq 0 \right\} \) if \(  \max\left\{ i \mid \lambda_i \neq 0 \right\} \leq 4 \), otherwise \( r \coloneqq \min\left\{ i \mid \lambda_i \neq 0 \right\} \); 
-    \item Write \( \mathrm{row}(r) = \sum r_{i,j}x_{i,j} \).
-\end{itemize}  
-
-\begin{lemma}\label{prop:row_extend_d}
-    Let \( d \in \mathbb{N}_{\geq 9} \). Then, \( q_{i,j} = p_{i,j} \) holds for all \( (i,j) \in V_d \).
-\end{lemma}
-  
-\begin{proof}
-    Let \( d \in \mathbb{N} \), \( \ell = 0, \dots, 4,t-4,\dots,t \) and \(T_{\ell} =  \mathrm{row}(\ell) \). We denote its realizations in \( d \) and \( d + 1 \) by \( p_d^{(\ell)} = \sum p_{i,j}^{(\ell)}x_{i,j} \) and \( p_{d+1}^{(\ell)} = \sum q_{i,j}^{(\ell)}x_{i,j} \), respectively. By Proposition \ref{prop:pascal-formulas}, we see that \( p_{i,j}^{(\ell)} = q_{i,j}^{(\ell)} \) for all \( (i,j) \in V_d \).
-    
-    Next, assume \( T =  \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
-\end{proof}
-  
   
 \begin{lemma}\label{lemma:sign_row_propagation}
     Let \( d \in \mathbb{N}_{\geq 9} \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$ for all \( i = k, \dots, r \), then \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
@@ -378,31 +368,7 @@ We now provide more Propositions that will later help us to automatically prove 
         .    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
     \end{verbatim}
     \endgroup
-    As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column. For comparison, here is the visualization of \( \mathrm{row}(1) + \mathrm{row}(2) - \mathrm{diag}(0) \) for \( d = 18 \):
-    \begingroup
-    \fontsize{8pt}{10pt}\selectfont
-    \begin{verbatim}
-      134 
-      118  -16 
-      103  -15    1 
-       89  -14    1    . 
-       76  -13    1    .    . 
-       64  -12    1    .    .    . 
-       53  -11    1    .    .    .    . 
-       43  -10    1    .    .    .    .    . 
-       34   -9    1    .    .    .    .    .    . 
-       26   -8    1    .    .    .    .    .    .    . 
-       19   -7    1    .    .    .    .    .    .    .    . 
-       13   -6    1    .    .    .    .    .    .    .    .    . 
-        8   -5    1    .    .    .    .    .    .    .    .    .    . 
-        4   -4    1    .    .    .    .    .    .    .    .    .    .    . 
-        1   -3    1    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1   -2    1    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -2   -1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -2    .    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       -1    1    1    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    . 
-       \end{verbatim}
-    \endgroup
+    As we can see, it is \( c_0 \)-contractable since its \( c_0 \)-column is positive. Subtracting \( \mathrm{diag}(0) \) from \( \mathrm{row}(1) + \mathrm{row}(2) \) will not change the sign of the \( c_0 \)-column.
   \end{example}
 
 \begin{proposition}\label{prop:row_homo_zero_diag}
@@ -482,14 +448,6 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
 \end{definition}
 
 \begin{proposition}
-    All valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with positive support size six satisfy \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}}_6 \cup \Gamma^{\mathrm{odd}}_6 \).
-\end{proposition}
-
-\begin{proof}
-    This follows easily since outcomes are characterized as roots of Pascal forms.
-\end{proof}
-
-\begin{proposition}
     We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\) and \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
 \end{proposition}
 
@@ -551,7 +509,6 @@ The final reduction step relies on using fixed-contractable forms as a filter.
 
     \begin{remark}
 The choice of linear combinations in \( G \) is arbitrary; the more forms we include, the more cases we can exclude later. Common sense suggests not every formal linear combination in \( G \) is fixed-contractable; so we develop an algorithm to computationally prove that some forms are fixed-contractable. 
-
 \end{remark}
 
 \subsection*{Step 1: Realization}
