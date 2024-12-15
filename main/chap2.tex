@@ -167,7 +167,7 @@ As before, models refer to one-dimensional discrete statistical models with rati
     Now, consider the probability simplex \( \Delta_1 \). It only contains the models \( \theta \mapsto (\theta, 1-\theta) \) and \( \theta \mapsto (1-\theta, \theta) \) which are equivalent. They are fundamental.
 \end{example}
 
-We will see that fundamental models like the ones above are building blocks for all reduced models by \emph{composition}.
+Fundamental models are the building blocks for all reduced models.
 
 \begin{definition}
     Let \( \mathcal{M} \) and \( \mathcal{M}' \) be reduced models which are represented by functions \( f,g : \mathbb{Z}^2 \to \mathbb{R}_{\geq 0} \), see Remark \ref{rem:representation-of-models-by-functions}. Let \( \mu \in (0,1) \). The \emph{composite} \( \mathcal{M} *_\mu \mathcal{M}' \) of \( \mathcal{M} \) and \( \mathcal{M}' \) is the reduced model represented by the function \(  (i,j) \mapsto \mu f(i,j) + (1-\mu) g(i,j) \).
@@ -188,10 +188,8 @@ We will see that fundamental models like the ones above are building blocks for 
 %     By assumption \( \mathcal{M} \) is the composite of two reduced models \( \mathcal{M}_1 \) and \( \mathcal{M}_2 \) with supports \( S_1 \) and \( S_2 \) which are proper subsets of \( S \).
 % \end{proof}
 
-We are about to show that every reduced model is the composite of finitely many fundamental models.
-
 \begin{proposition}\label{prop:composition-fundamental}
-    Let \( \mathcal{M} \) be a reduced model. Then \( \mathcal{M} \) is the composite of finitely many fundamental models.
+    Every reduced model is the finite composite of fundamental models.
 \end{proposition}
 
 \begin{proof}

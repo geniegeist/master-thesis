@@ -678,10 +678,10 @@ Here is another example.
 
 \begin{proposition}\label{prop:contracted-part-2}
     Let \( d \geq 12 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
-    \begin{enumerate}
-        \item \( \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3) \), or
-        \item \( \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3)\).
-    \end{enumerate}
+    \begin{gather*}
+        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3),
+        \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3).
+    \end{gather*}
     Then, we have 
     \begin{align*}
         p = \sum_{i,j = 0}^3 \lambda_{i,j}^{(x)} x_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(y)} y_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(z)} z_{i,j} + \sum_{j=0}^3 \lambda_{j}^{(b)} b_j + \sum_{i=0}^3 \lambda_{i}^{(c)} c_i + \sum_{k=0}^3 \lambda_{k}^{(d)} d_k + \sum_{k=0}^3 \lambda_{k}^{(e)} e_k
@@ -701,47 +701,26 @@ Here is another example.
 \end{proof}
 
 \begin{example}
-    Consider \( \mathrm{col}(d-3) \). Let \( d = 12 \). The support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure:
+    The support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure for \( d = 12 \) and \( d = 13 \):
     \begin{verbatim}
-        · 
-        · · 
-        · · · 
-        + + + + 
-        · - - - - 
-        · · + + + + 
-        · · · - - - - 
-        · · · · + + + + 
-        · · · · · - - - - 
-        · · · · · · + + + + 
-        · · · · · · · - - - - 
-        · · · · · · · · + + + + 
-        · · · · · · · · · - - - -
+                             · 
+·                            · ·    
+· ·                          · · ·
+· · ·                        + + + + 
++ + + +                      · - - - - 
+· - - - -                    · · + + + + 
+· · + + + +                  · · · - - - - 
+· · · - - - -                · · · · + + + + 
+· · · · + + + +              · · · · · - - - - 
+· · · · · - - - -            · · · · · · + + + + 
+· · · · · · + + + +          · · · · · · · - - - - 
+· · · · · · · - - - -        · · · · · · · · + + + + 
+· · · · · · · · + + + +      · · · · · · · · · - - - -
+· · · · · · · · · - - - -    · · · · · · · · · · + + + +
     \end{verbatim}
-    We write 
-    \begin{align*}
-        \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j}.
-    \end{align*}
-    For \( d = 13 \), the support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure:
-    \begin{verbatim}
-        · 
-        · · 
-        · · · 
-        + + + + 
-        · - - - - 
-        · · + + + + 
-        · · · - - - - 
-        · · · · + + + + 
-        · · · · · - - - - 
-        · · · · · · + + + + 
-        · · · · · · · - - - - 
-        · · · · · · · · + + + + 
-        · · · · · · · · · - - - -
-        · · · · · · · · · · + + + +
-    \end{verbatim}
-    We write 
-    \begin{align*}
-        \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j}.
-    \end{align*}
+    For \( d = 12 \), we may write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
+    
+    For \( d = 13 \), we may write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
 \end{example}
 
 We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. Now, we apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
