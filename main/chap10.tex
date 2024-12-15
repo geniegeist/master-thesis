@@ -1,13 +1,44 @@
 \chapter{Valid Outcomes of Positive Support Size Six}
 
-We want to prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) we have
-\begin{align*}
-    \mathrm{deg}(\mathbf w) \leq 9.
-\end{align*}
-The original paper by Bik and Marigliano \cite{bik2022classifying} did not attempt to prove this result. This thesis provides a significant step towards proving this result by reducing the number of cases to check, which renders the problem computationally feasible. 
+We want to prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) we have \( \mathrm{deg}(\mathbf w) \leq 9 \).
+The original paper by Bik and Marigliano \cite{bik2022classifying} does not provide a proof of this result. 
 
-In principle, we could use the same idea as in the previous chapters to find all valid outcomes of positive support size six; we start with computing \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \)
-albeit with a slight modification to these sets. Whereas we have previously considered contractions of size four, we now consider contractions of size five, i.e. we have the contraction variables as depicted in Figure \ref{fig:sjdnfkjewnjhwurhi3u2h}. From now on, when we write \( \mathbf{s} \in H^{\Xi} \) we mean contractions of size five.
+This thesis makes a contribution towards proving it by reducing the number of cases to check, thereby making the problem computationally feasible. In principle, we could use the same approach as in the previous chapters to find all valid outcomes with positive support size six. Specifically, we begin by computing 
+\(
+\Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
+\)
+and 
+\(
+\Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\},
+\)
+albeit with a slight modification to these sets. While we previously considered contractions of size four, here we consider contractions of size five. In other words, we now work with contraction variables as depicted in Figure \ref{fig:sjdnfkjewnjhwurhi3u2h}. From this point forward, when we refer to \( \mathbf{s} \in H^{\Xi} \), we will mean contractions of size five.
+
+\begin{figure}
+    \begin{align*}
+        \begin{array}{cccccccccccccccccccc}
+            y_{0,4} & & & & & & & & & & & & \\
+            y_{0,3} & y_{1,4} & & & & & & & & & & & \\
+            y_{0,2} & y_{1,3} & y_{2,4} & & & & & & & & & & \\
+            y_{0,1} & y_{1,2} & y_{2,3} & y_{3,4} & & & & & & & & & \\
+            y_{0,0} & y_{1,1} & y_{2,2} & y_{3,3} & y_{4,4} & & & & & & & & \\
+            c_0 & y_{1,0} & y_{2,1} & y_{3,2} & y_{4,3} & d_0 & & & & & & & \\
+            c_0 & c_1 & y_{2,0} & y_{3,1} & y_{4,2} & d_1 & e_0 & & & & & & \\
+            c_0 & c_1 & c_2 & y_{3,0} & y_{4,1} & d_2 & e_1 & d_0 & & & & & \\
+            c_0 & c_1 & c_2 & c_3 &  y_{4,0}  & d_3 & e_2 & d_1 & e_0 & & & & \\
+            c_0 & c_1 & c_2 & c_3 &  c_4  & d_4 & e_3 & d_2 & e_1 & d_0 & & & \\
+            c_0 & c_1 & c_2 & c_3 &  c_4  & * & e_4 & d_3 & e_2 & d_1 & e_0 & & \\
+            c_0 & c_1 & c_2 & c_3 &  c_4  & * & * & d_4 & e_3 & d_2 & e_1 & d_0 & \\
+            c_0 & c_1 & c_2 & c_3 &  c_4  & * & * & * & e_4 & d_3 & e_2 & d_1 & e_0 \\
+            x_{0,4} & x_{1,4} & x_{2,4} & x_{3,4} &  x_{4,4}  & b_4 & b_4 & b_4 & b_4 & z_{0,4} & z_{1,4} & z_{2,4} & z_{3,4} & z_{4,4} \\
+            x_{0,3} & x_{1,3} & x_{2,3} & x_{3,3} & x_{4,3} & b_3 & b_3 & b_3 & b_3 & b_3 & z_{0,3} & z_{1,3} & z_{2,3} & z_{3,3} & z_{4,3} \\
+            x_{0,2} & x_{1,2} & x_{2,2} & x_{3,2} & x_{4,2} & b_2 & b_2 & b_2 & b_2 & b_2 & b_2 & z_{0,2} & z_{1,2} & z_{2,2} & z_{3,2} & z_{4,2}\\
+            x_{0,1} & x_{1,1} & x_{2,1} & x_{3,1} & x_{4,1} & b_1 & b_1 & b_1 & b_1 & b_1 & b_1 & b_1 & z_{0,1} & z_{1,1} & z_{2,1} & z_{3,1} & z_{4,1} \\
+            x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & x_{4,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0} & z_{4,0}
+        \end{array}
+    \end{align*}  
+    \caption{This figure shows contraction variables for \( d = 16 \) of contraction size five.}\label{fig:sjdnfkjewnjhwurhi3u2h}
+\end{figure}
+
 
 \begin{definition}
     We define 
@@ -33,46 +64,14 @@ albeit with a slight modification to these sets. Whereas we have previously cons
 \end{definition}
 
 
-\begin{figure}[H]
-    \begin{align*}
-        \begin{array}{cccccccccccccccccccc}
-            y_{0,4} & & & & & & & & & & & & \\
-            y_{0,3} & y_{1,4} & & & & & & & & & & & \\
-            y_{0,2} & y_{1,3} & y_{2,4} & & & & & & & & & & \\
-            y_{0,1} & y_{1,2} & y_{2,3} & y_{3,4} & & & & & & & & & \\
-            y_{0,0} & y_{1,1} & y_{2,2} & y_{3,3} & y_{4,4} & & & & & & & & \\
-            c_0 & y_{1,0} & y_{2,1} & y_{3,2} & y_{4,3} & d_0 & & & & & & & \\
-            c_0 & c_1 & y_{2,0} & y_{3,1} & y_{4,2} & d_1 & e_0 & & & & & & \\
-            c_0 & c_1 & c_2 & y_{3,0} & y_{4,1} & d_2 & e_1 & d_0 & & & & & \\
-            c_0 & c_1 & c_2 & c_3 &  y_{4,0}  & d_3 & e_2 & d_1 & e_0 & & & & \\
-            c_0 & c_1 & c_2 & c_3 &  c_4  & d_4 & e_3 & d_2 & e_1 & d_0 & & & \\
-            c_0 & c_1 & c_2 & c_3 &  c_4  & * & e_4 & d_3 & e_2 & d_1 & e_0 & & \\
-            c_0 & c_1 & c_2 & c_3 &  c_4  & * & * & d_4 & e_3 & d_2 & e_1 & d_0 & \\
-            c_0 & c_1 & c_2 & c_3 &  c_4  & * & * & * & e_4 & d_3 & e_2 & d_1 & e_0 \\
-            x_{0,4} & x_{1,4} & x_{2,4} & x_{3,4} &  x_{4,4}  & b_4 & b_4 & b_4 & b_4 & z_{0,4} & z_{1,4} & z_{2,4} & z_{3,4} & z_{4,4} \\
-            x_{0,3} & x_{1,3} & x_{2,3} & x_{3,3} & x_{4,3} & b_3 & b_3 & b_3 & b_3 & b_3 & z_{0,3} & z_{1,3} & z_{2,3} & z_{3,3} & z_{4,3} \\
-            x_{0,2} & x_{1,2} & x_{2,2} & x_{3,2} & x_{4,2} & b_2 & b_2 & b_2 & b_2 & b_2 & b_2 & z_{0,2} & z_{1,2} & z_{2,2} & z_{3,2} & z_{4,2}\\
-            x_{0,1} & x_{1,1} & x_{2,1} & x_{3,1} & x_{4,1} & b_1 & b_1 & b_1 & b_1 & b_1 & b_1 & b_1 & z_{0,1} & z_{1,1} & z_{2,1} & z_{3,1} & z_{4,1} \\
-            x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & x_{4,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0} & z_{4,0}
-        \end{array}
-    \end{align*}  
-    \caption{Contraction variables for \( d = 16 \) are depicted.}\label{fig:sjdnfkjewnjhwurhi3u2h}
-\end{figure}
-
 We increased the contraction size to gain more information about potential supports, which we hope will prove useful when handling cases manually.
 
 \begin{proposition}
-    The following holds:
-    \begin{enumerate}
-        \item We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 150032\).
-        \item We have \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 154177\).
-    \end{enumerate}
+    We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 150032\) and \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 154177\).
 \end{proposition}
 
 \begin{proof}
-    This is verifed by computer. 
-    
-    TODO. 
+    This is verified by a computer program, which is available on GitHub \cite{ducrepo}. 
 \end{proof}
 
 The number of cases to check has increased by a factor of hundred compared to the previous chapters. If we would be able to reduce the cases immensely, we could in theory apply the same techniques as in the previous chapters to prove \( \mathrm{deg}(\mathbf w) \leq 9 \). We will spend the remaining part of this chapter to find a way to reduce the number of cases to check to around 10,000 cases; this is a reduction by a factor of 30. We hope that this reduction is sufficient to make the problem computationally feasible for future proofs. Due to time constraints of this thesis, we will not be able to prove \( \mathrm{deg}(\mathbf w) \leq 9 \) for all valid outcomes of positive support size six.
@@ -218,10 +217,7 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
 
 For the following propositions and lemmas, we fix the following notations:
 \begin{itemize}
-    \item Let \( T \) be a formal linear combination of \( \left\{ \mathrm{row}(i) \right\}_{i=0}^4 \) or \( \left\{ \mathrm{row}(i) \right\}_{i=t-4}^t \), i.e. 
-    \begin{align*}
-        T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) \quad \text{or} \quad T = \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i);
-    \end{align*}
+    \item Let \( T \) be a formal linear combination of \( \left\{ \mathrm{row}(i) \right\}_{i=0}^4 \) or \( \left\{ \mathrm{row}(i) \right\}_{i=t-4}^t \), i.e. \( T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i)  \) or \( T = \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i) \);
     \item Write the realizations of \( T \) as \( p \coloneqq \sum p_{i,j}x_{i,j}  \coloneqq p_d  \) and \( q \coloneqq \sum q_{i,j}x_{i,j} \coloneqq p_{d+1} \) for some degree \( t = d \);
     \item Define \( r \coloneqq \max\left\{ i \mid \lambda_i \neq 0 \right\} \) if \(  \max\left\{ i \mid \lambda_i \neq 0 \right\} \leq 4 \), otherwise \( r \coloneqq \min\left\{ i \mid \lambda_i \neq 0 \right\} \); 
     \item Write \( \mathrm{row}(r) = \sum r_{i,j}x_{i,j} \).
@@ -244,10 +240,7 @@ For the following propositions and lemmas, we fix the following notations:
 
 \begin{proof}
     Without loss of generality, we assume that \( \lambda_r > 0 \).
-    First, we see that \( q_{r, \cdot} \coloneqq (q_{r,j})_{j=0}^{d-r} = \lambda_r \cdot \mathbf{1} \) and \( q_{i,\cdot} =  \mathbf{0} \) for all \( i > r \). By the Pascal property, we have 
-    \begin{align*}
-        q_{r-1,d+1-(r-1)} = q_{r-1,d-(r-1)} - q_{r,d+1-r} = q_{r-1,d-(r-1)} - \lambda_r.
-    \end{align*}
+    First, we see that \( q_{r, \cdot} \coloneqq (q_{r,j})_{j=0}^{d-r} = \lambda_r \cdot \mathbf{1} \) and \( q_{i,\cdot} =  \mathbf{0} \) for all \( i > r \). By the Pascal property, we have \( q_{r-1,d+1-(r-1)} = q_{r-1,d-(r-1)} - q_{r,d+1-r} = q_{r-1,d-(r-1)} - \lambda_r \).
     This shows \( q_{r-1,d+1-(r-1)} < q_{r-1,d-(r-1)} = p_{r-1,d-(r-1)} < 0 \), where the last inequality follows from the assumption $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$. Thus, we have \( \mathrm{sign}(q_{r-1,d+1-(r-1)}) = \mathrm{sign}(q_{r-1,d-(r-1)}) = \mathbf -1\). 
     
     Next, we again use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). We see that \( q_{r-2,d+1-(r-2)} > 0 \) because \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Thus, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We can continue this argument for \( r-3, r-4, \dots, k \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
@@ -347,13 +340,6 @@ Not surprisingly, we have analogous propositions for \( \mathrm{diag}(\cdot) \) 
 %    \end{align*}
 %\end{definition}
 
-We define \( G_{\mathrm{row}} \) to be the set of formal linear combinations with 
-\begin{align*}
-    G_{\mathrm{row}} \coloneqq \left\{ 
-    \sum_{i=1}^5 \lambda_i \mathrm{row}(k_i) \mid \lambda_i \in \left\{-1, 0,1 \right\},  k_i \in \left\{ 0,\dots,4,d-4, \dots, d \right\}
-     \right\}.
-\end{align*}
-The sets \( G_{\mathrm{col}} \) and \( G_{\mathrm{diag}} \) are defined similarly. Using Proposition \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} we can easily compute a subset \( G'_{\mathrm{row}} \subset G_{\mathrm{row}} \) that only contains fixed-contractable forms. Refer to GITHUB TODO.
 
 
 % \begin{proposition}\label{prop:row_homo_diag}
@@ -477,10 +463,8 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
 \end{proposition}
 
 \begin{proof}
-    Let \( T = \mathrm{diag}(1) - \mathrm{diag}(d-1) \) be a formal linear combination. Let \( d \in \mathbb{N}_{\geq 15} \) be odd and \( \mathbf{w} \) be a root of \( \Psi \). Then, the realization \( p_d = \sum \lambda_{i,j}x_{i,j}\) of \( T \) for \( t = d \) satisfies 
-    \begin{align*}
-        \lambda_{0,0} = 0, \;  \lambda_{0,k} < {0} \quad \forall k = 1, \dots, d..
-    \end{align*}
+    Let \( T = \mathrm{diag}(1) - \mathrm{diag}(d-1) \) be a formal linear combination. Let \( d \in \mathbb{N}_{\geq 15} \) be odd and \( \mathbf{w} \) be a root of \( \Psi \). Then, the realization \( p_d = \sum \lambda_{i,j}x_{i,j}\) of \( T \) for \( t = d \) satisfies \( \lambda_{0,0} = 0 \) and \( \lambda_{0,k} < {0} \) for all \( k = 1, \dots, d \).
+    
      If \( \mathbf{w} \) is a trivial root of \( p_d \), then it satisfies \( w_{0,k} = 0 \) for all \( k = 1, \dots, d \). Then, \( \mathrm{diag}(0)(\mathbf{w}) < 0 \); this is a contradiction because \( \mathbf{w} \) is supposed to be a root of \( \mathrm{diag}(0) \).
     
     Let \( d \in \mathbb{N}_{\geq 15} \) be even and \( \mathbf{w} \) be a root of \( \Psi \). The realization \( p_d = \sum \lambda_{i,j}x_{i,j} \) satisfies \( \lambda_{i,d-i} \neq 0 \) if and only if \( i \in \left\{ 0, d \right\} \). If \( \mathbf{w} \) is a trivial solution of \( p_d \), the it satisfies \( w_{d,0} > 0 \) since it is a root of \( \mathrm{diag}(d) \). However, \( \mathrm{col}(d-1)(\mathbf{w}) < 0 \), which is a contradiction since \( \mathbf{w} \) is a root of \( \mathrm{col}(d-1) \).
@@ -523,18 +507,24 @@ We redefine the following sets.
 \end{proof}
 
 \begin{proposition}
-    The following holds:
-    \begin{enumerate}
-        \item We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\).
-        \item We have \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
-    \end{enumerate}
+    We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 106806\) and \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 110272\).
 \end{proposition}
+
+\begin{proof}
+    This is verified by computer.
+\end{proof}
 
 We excluded around 100,000 cases; there are still around 217,000 cases left to check.
 
 \section{Reducing Cases with Fixed-Contractable Pascal Forms}
 
-The final reduction step relies on fixed-contractable forms. Starting with a set of formal linear combinations of \( \mathrm{row} \), \( \mathrm{col} \), and \( \mathrm{diag} \), our goal is to extract a subset that consists only of fixed-contractable forms. To achieve this, we fix a degree \( D \in \mathbb{N} \), realize each form at degree \( D \), and algorithmically verify that it is fixed-contractable. Propositions \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} provide examples of such algorithmic proofs. The corresponding source code is available on \cite{ducrepo}. Using this method, we computed a total of 18,273 fixed-contractable forms.
+The final reduction step relies on using fixed-contractable forms as a filter. We define the following set.
+
+\begin{proposition}
+    s
+\end{proposition}
+
+Starting with a set of formal linear combinations of \( \mathrm{row} \), \( \mathrm{col} \), and \( \mathrm{diag} \), our goal is to extract a subset that consists only of fixed-contractable forms. To achieve this, we fix a degree \( D \in \mathbb{N} \), realize each form at degree \( D \), and algorithmically verify that it is fixed-contractable. Propositions \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} provide examples of such algorithmic proofs. The corresponding source code is available on \cite{ducrepo}. Using this method, we computed a total of 18,273 fixed-contractable forms.
 
 Once a set \( G' \) containing only fixed-contractable forms is obtained, we proceed as follows: For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_6 \), we check whether \( 0 \in \mathrm{contr}(p_D)(\mathbf{s}) \) for all \( T \in G' \). If there exists any realization \( p_D \) of \( T \) such that \( \mathbf{s} \) is not a hyperfield root, then \( \mathbf{s} \) can be excluded. This exclusion is valid because \( T \) is a linear combination of Pascal forms, and all valid outcomes on \( \mathbb{Z}^{V_d} \) must be roots of every Pascal form. 
 

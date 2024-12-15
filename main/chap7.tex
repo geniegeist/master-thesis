@@ -1,40 +1,15 @@
 \chapter{Valid Outcomes of Positive Support
 Size Four}
 
-We have all the tools to prove the main result of this chapter, namely for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) we have
-\begin{align*}
-    \mathrm{deg}(\mathbf w) \leq 5.
-\end{align*}
-As in previous chapters, we characterize outcomes as roots of Pascal forms. So, we define the following two systems of Pascal forms that valid outcomes must be roots of:
-\begin{gather*}
-    \Phi_1 \coloneqq \{ 
-        \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3), \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3),\\
-         \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3), \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) 
-     \},
-\end{gather*}
-and 
-\begin{gather*}
-    \Phi_2 \coloneqq \{ 
-        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3), \\
-        \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) 
-     \}.
-\end{gather*}
-We also define \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
+We are now ready to prove that for every valid integral outcome \( \mathbf{w} \) with \( |\mathrm{supp}^+(\mathbf{w})| = 4 \), we have \( \mathrm{deg}(\mathbf{w}) \leq 5 \). As in previous chapters, outcomes are characterized as roots of Pascal forms. We define the two systems of Pascal forms that valid outcomes must satisfy: \( \Phi_1 \coloneqq \left\{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i), \mathrm{diag}(d-i) \right\}_{i=1}^3 \), \( \Phi_2 \coloneqq \left\{ \mathrm{row}(d-i), \mathrm{col}(d-i) \right\}_{i=0}^3 \), and \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
 
-By Proposition \ref{prop:contracted-part-1}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_1 \) as 
-\begin{align*}
-    \mathrm{sign}(p) = \hat p
-\end{align*}
+By Proposition \ref{prop:contracted-part-1}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_1 \) as \( \mathrm{sign}(p) = \hat p \)
 for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 11 \). This linear form is independent of the degree \( d \). To make notations consistent later, we set \( \hat p^{\mathrm{even}} \coloneqq  \hat p^{\mathrm{odd}}  \coloneqq \hat p\).
 
-Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_2 \) as
-\begin{align*}
-    \mathrm{sign}(p) = \begin{cases}
-        \hat p^{\mathrm{even}} & \text{ if } d \text{ is even} \\
-        \hat p^{\mathrm{odd}} & \text{ if } d \text{ is odd}
-    \end{cases}
-\end{align*}
-for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). These linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
+Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_2 \) as \( \mathrm{sign}(p) = \begin{cases}
+    \hat p^{\mathrm{even}} & \text{ if } d \text{ is even} \\
+    \hat p^{\mathrm{odd}} & \text{ if } d \text{ is odd}
+\end{cases} \), where \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). These linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
 
 \begin{definition}\label{def:sdjsndjknsdj}
     We define the following three solution sets:
@@ -50,28 +25,18 @@ for some linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\ma
 By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). This is the reason why we have defined \( \Gamma_d \) in the first place. 
 
 \begin{proposition}\label{prop:sign-sikjsfnf3223423432}
-    Let \( d \geq 12 \). Then, the following holds:
-    \begin{enumerate}
-        \item If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
-       \item If \( d \) is odd, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{odd}}) \).
-    \end{enumerate}
+    Let \( d \geq 12 \). If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \) holds. If \( d \) is odd, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{odd}}) \) holds.
 \end{proposition}
 
 \begin{proof}
-    Let \( d \geq 12 \) be even. Let \( \mathbf{s} \in {H}^{V_d} \) be a hyperfield configuration and \( p \in \Phi \). Then, we have 
-    \begin{align*}
-        \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})).
-    \end{align*}
+    Let \( d \geq 12 \) be even. Let \( \mathbf{s} \in {H}^{V_d} \) be a hyperfield configuration and \( p \in \Phi \). Then, we have \( \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})) \)
     by definition of \( \hat p^{\mathrm{even}} \). If \( \mathbf{s} \in \Gamma_d \), then \( H = \mathrm{sign}(p)(\mathbf{s}) = \hat p^{\mathrm{even}}(\mathrm{contr}_d(\mathbf{s})) \). Hence, \( \mathrm{contr}_d(\mathbf{s}) \) is contained in \( \Gamma^{\mathrm{even}} \). If \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) holds, using the equation above we also see that \( \mathbf{s} \in \Gamma_d \). This shows that \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \).
 
     The second statement for odd degrees \( d \) follows analogously.
 \end{proof}
 
 \begin{corollary}\label{cor:validwunfwufneuiw}
-    Let \( d \geq 12 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have 
-    \begin{align*}
-        \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}}.
-    \end{align*}
+    Let \( d \geq 12 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) holds.
 \end{corollary}
 
 \begin{proof}

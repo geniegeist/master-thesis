@@ -38,18 +38,13 @@ Next, we prove the second theorem.
     Without loss of generality, we assume \( i = d \). We want to show that \( j = d \). Consider the Pascal form \( \mathrm{row}(d) = \sum c_{i,j} x_{i,j} \), which has only nonzero coefficients \( c_{i,j} \) for \( i + j = d \).
     
     \begin{itemize}
-        \item If the degree \( d \) is odd, we have \( c_{d,0} = 1 \) and \( c_{0,d} = -1 \). Since \( \mathrm{row}(d)(\mathbf{w}) = 0 \), we must have \( j = d \).
+        \item If \( d \) is odd, we have \( c_{d,0} = 1 \) and \( c_{0,d} = -1 \). Since \( \mathrm{row}(d)(\mathbf{w}) = 0 \), we have \( j = d \).
 
-        \item If the degree \( d \) is even, we have \( c_{d,0} = c_{0,d} = 1 \). Thus, \( \mathrm{row}(d)(\mathbf w) \neq 0 \) for all \( j = 0, \dots, d \). Hence, valid outcomes with positive support size two do not exist for even degrees.
+        \item If \( d \) is even, we have \( c_{d,0} = c_{0,d} = 1 \). Thus, \( \mathrm{row}(d)(\mathbf w) \neq 0 \) for all \( j = 0, \dots, d \). Hence, valid outcomes with positive support size two do not exist for even degrees.
     \end{itemize}
 
     From now on, we assume \(         \mathrm{supp}^+({\mathbf{w}}) = \left\{  (0,d), (d,0) \right\}    \).
-    We could further assume that the degree \( d \) is odd, but we do not need it.
-
-    For sake of contradiction, let \( d \geq 2 \). Then, we can divide the support 
-    \begin{align*}
-        \mathrm{supp}({\mathbf{w}}) = \left\{  (0,0) , (0,d), (d,0) \right\},
-    \end{align*}
+    For sake of contradiction, let \( d \geq 2 \). Then, we can divide the support \( \mathrm{supp}({\mathbf{w}}) = \left\{  (0,0) , (0,d), (d,0) \right\} \)
     via \( \lambda = (2,1,\dots,1) \) as in Chapter \ref{sec:divide-and-conquer} to obtain \( S_1 = \left\{ (0,0), (0,d) \right\} \), \( S_k = \emptyset \), and \( S_l = \left\{ (d,0) \right\} \). By Proposition \ref{prop:impossible-support-232423}, the pairing matrix induced by \( S_1 \) and \( E_1 = \left\{ 0,1 \right\} \) is invertible. For \( S_l \) we apply Proposition \ref{prop:impossible-support-23233243243423} and Remark \ref{rem:generality-jfknwejn} to get that the induced pairing matrix is invertible. By Corollary \ref{cor:invertibility-criterion-nooos}, the outcome \( \mathbf{w} \) is zero, which has an empty positive support. This is a contradiction to the assumption that the positive support size is two. Hence, the degree \( d \) equals one.
 \end{proof}
 
@@ -124,18 +119,11 @@ Knowing the possible supports of valid integral outcomes with positive support s
 \end{proof}
 
 \begin{proposition}\label{prop:symmetry-232lkmlksm}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). Assume the outcome \( \mathbf{w} \) satisfies one of the following conditions:
-    \begin{enumerate}
-        \item \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
-        \item  \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
-    \end{enumerate}
-    Then, \( d = 2 \) and \( e = f = 1 \) hold.
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid integral outcome of degree \( d \). If there exist \( e,f \in \{1 , \dots, d-1\} \) such that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \)  or  \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \), then \( d = 2 \) and \( e = f = 1 \) holds.
 \end{proposition}
 
 \begin{proof}
-    By Proposition \ref{prop:symmetry}, it suffices to show the statement for outcomes \( \mathbf{w} \) satisfying the first condition. % Let \( \mathbf{w} \) be a valid outcome with \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \) for some \( e,f = 1 , \dots, d-1 \).
-
-    Let \( d > 2 \). If \( f = d-1 \), then choose \( \lambda = (3,1,\dots,1) \). This allows us to apply Proposition \ref{prop:impossible-support-2324223423123123} because \( 0 + e \neq 2d - 1 \) for \( d > 1 \). So, \( \mathbf{w} = \mathbf 0\) which is a contradiction. Thus, we have \( f < d-1 \). Then, we can choose \( \lambda = (2, 1, \dots, 1) \). Use Proposition \ref{prop:impossible-support-232423} to get that \( \mathbf{w} = \mathbf{0} \). This is a contradiction. Hence, we have \( d = 2 \).
+    By Proposition \ref{prop:symmetry}, it suffices to show the statement for outcomes \( \mathbf{w} \) satisfying the first condition. Let \( d > 2 \). If \( f = d-1 \), then choose \( \lambda = (3,1,\dots,1) \). This allows us to apply Proposition \ref{prop:impossible-support-2324223423123123} because \( 0 + e \neq 2d - 1 \) for \( d > 1 \). So, \( \mathbf{w} = \mathbf 0\) which is a contradiction. Thus, we have \( f < d-1 \). Then, we can choose \( \lambda = (2, 1, \dots, 1) \). Use Proposition \ref{prop:impossible-support-232423} to get that \( \mathbf{w} = \mathbf{0} \). This is a contradiction. Hence, we have \( d = 2 \).
 
     Let \( d = 2 \). Then, we have \( e = f = 1 \) by definition of \( e \) and \( f \).
 \end{proof}

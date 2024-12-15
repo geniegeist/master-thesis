@@ -48,34 +48,20 @@ As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets
     \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \text{ and }
     \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} 
 \end{gather*}
-using Algorithm \ref{alg:hyperfield_criterion:efficient}. The Proposition \ref{prop:jasndkjsnjsnkjs} has already shown that the sets 
-\begin{align*}
-    \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 4 \right\} \text{ and }
-    \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 4 \right\} 
-\end{align*}
-are empty. So, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
+using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{prop:jasndkjsnjsnkjs}, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
 
 
 
 \begin{definition}
-    We define 
-    \begin{gather*}
-        \Gamma^{\mathrm{even}}_5 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\}
-        \text{ and }
-        \Gamma^{\mathrm{odd}}_5 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\}.
-    \end{gather*}
+    We define \( \Gamma^{\mathrm{even}}_5 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \) and \( \Gamma^{\mathrm{odd}}_5 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \).
 \end{definition}
 
 \begin{proposition}
-    The following holds:
-    \begin{enumerate}
-        \item We have \( \lvert \Gamma^{\mathrm{even}}_5 \rvert  = 1283\).
-        \item We have \( \lvert \Gamma^{\mathrm{odd}}_5 \rvert  = 1265\).
-    \end{enumerate}
+    We have \( \lvert \Gamma^{\mathrm{even}}_5 \rvert  = 1283\) and \( \lvert \Gamma^{\mathrm{odd}}_5 \rvert  = 1265\).
 \end{proposition}
 
 \begin{proof}
-    See APpendix TODO. \# KEYWORD:LAOL
+    This is verified by computer, see \cite{ducrepo}.
 \end{proof}
 
 \begin{corollary}
@@ -87,34 +73,21 @@ are empty. So, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{
 \end{proof}
 
 Let us pick some \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \). We want to show that any configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) that maps to \( \mathbf{s} \) under \( \mathrm{contr}_d \circ \mathrm{sign} \) must be a zero outcome which is a contradiction. So, we need to check \( 1283 + 1265 = 2548 \) cases.
-Some of these cases occur multiple times; when we exclude these, we have \( 2318 \) cases to check:
-\begin{align*}
-    \lvert \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5  \rvert = 2318.
-\end{align*}
+Some of these cases occur multiple times; when we exclude these, we have \( 2318 \) cases to check.
 
 \begin{remark}
-    If you compare this proof with the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd}, you will see that the number of cases in \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) to check has increased from zero to \( 2318 \).
+    Comparing this proof with the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd}, you will notice that the number of cases in \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) to check has increased from zero to \( 2318 \).
 \end{remark}
 
-We make the following simplication to the index set \( \Xi \).
+We make the following simplification to the index set \( \Xi \).
 
 \begin{definition}
     Define the index set
     \begin{align*}
-        \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\}.
+        \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\}
     \end{align*}
-    Let \( \mathbf{s} \in H^{\Xi} \) be weakly valid. We also define the map
-    \begin{gather*}
-        \chi: H^\Xi \to H^{\Xi'},\\ \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}).
-    \end{gather*}
-    The addition \( \mathbf{f} \coloneqq \mathbf{d} + \mathbf{e} \) is done component-wise.
-\end{definition}
-
-\begin{definition}
-    We define \( \mathrm{contr}_d' \coloneqq \chi \circ \mathrm{contr}_d \).
-\end{definition}
-
-\begin{figure}
+    with the map \( \chi: H^\Xi \to H^{\Xi'}, \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}) \). The new coordinate system \( H^{\Xi'} \) is visualized below.
+\begin{figure}[H]
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
             y_{0,3} & & & & & & & & & & & & \\
@@ -136,28 +109,34 @@ We make the following simplication to the index set \( \Xi \).
             x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0}
         \end{array}
     \end{align*}  
-    \caption{Visualization of \( \Xi' \).}
 \end{figure}
 
-\begin{definition}
-    Define \( \Lambda \subset H^{\Xi'} \) to be the set 
-    \begin{align*}
-        \Lambda  \coloneqq \chi( \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 ) = \left\{ \mathbf{s}' \in H^{\Xi'} \mid \mathbf{s}' = \chi(\mathbf{s}) \text{ for some \( \mathbf{s} \in  \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \)}\right\}.
-    \end{align*}
 \end{definition}
 
-A simple computation of the set \( \Lambda \) shows that it has \( 2290 \) elements.
+\begin{definition}
+    We define \( \mathrm{contr}_d' \coloneqq \chi \circ \mathrm{contr}_d \).
+\end{definition}
+
+
+\begin{definition}
+    We define \( \Lambda  \coloneqq \chi( \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 ) \subset H^{\Xi'} \).
+\end{definition}
+
 
 \begin{proposition}\label{prop:ieshwu4rhui3w}
     Let \( \mathbf{s}' \in \Lambda \). Then, \( \mathbf{s}' \) has positive support of size five or four.
 \end{proposition}
 
 \begin{proof}
-    Let \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in  \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \). Since \( \mathbf{d}, \mathbf{e} \) are non-negative, we see from
-    \begin{gather*}
-        \chi: H^\Xi \to H^{\Xi'}, \mathbf{s} \mapsto \mathbf{s}' = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d} + \mathbf{e})
-    \end{gather*}
+    Let \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in  \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \). Since \( \mathbf{d}, \mathbf{e} \) are non-negative, we see from the definition of \( \chi \)
     that \( \mathbf{f} \in \left\{ 0,1 \right\} \) holds. Hence, \( \mathbf{s}' \) has positive support of size five or four.
+\end{proof}
+\begin{proposition}
+    \( \Lambda \) contains \( 2290 \) elements.
+\end{proposition}
+
+\begin{proof}
+    This is verified by computer, see \cite{ducrepo}.
 \end{proof}
 
 \section{Case \( d \geq 42\) Continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Four}
@@ -194,21 +173,12 @@ A simple computation of the set \( \Lambda \) shows that it has \( 2290 \) eleme
 We exclude this one case from the 2290 cases in \( \Lambda \) with the following proposition.
 
 \begin{proposition}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a weakly valid outcome. Then, we have 
-    \begin{align*}
-        \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} 
-    \end{align*}
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a weakly valid outcome. Then, we have \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}  \).
 \end{proposition}
 
 \begin{proof}
-    Assume for the sake of contradiction that 
-    \begin{align*}
-        \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}.
-    \end{align*}
-    Then, \( \mathbf{w} \) is an outcome with support 
-    \begin{align*}
-        \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,3), (1,1), (3,0), (i,d-i), (j, d-j) \right\}
-    \end{align*}
+    Assume that \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} \).
+    Then, \( \mathbf{w} \) is an outcome with support \(  \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,3), (1,1), (3,0), (i,d-i), (j, d-j) \right\} \)
     for some even \( i =4,6,8, \dots, d-4 \) and odd \( j = 5,7,9, \dots, d-4 \).
 
     Let \( \mathbf{u} \in \mathbb{Z}^{V_3} \) be the following outcome 
@@ -302,11 +272,8 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with po
 Relative coordinates help us to apply the Invertibility Criterion. 
 
 \begin{example}\label{ex:siuh438h89}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six. Now, assume that the relative support set of \( \mathbf{w} \) is 
-    \begin{align*}
-        \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\}.
-    \end{align*}
-    Let us visualize the configuration \( \mathbf{w} \). Can such a configuration exist?
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six. Now, assume that \( \mathbf{w} \) is \( \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\} \). Can such a configuration exist?
+    \begin{small}
     \begin{verbatim}
 d     X
 d-1   .   .
@@ -329,33 +296,24 @@ M     .   .   .   .   .   .   .   .   .   .   .   .   .   X   .
 
       0   1   2   3   M   M   M   M   M   M   M   M  d-6 d-5 d-4 d-3 d-2 d-1  d
     \end{verbatim}
-    We see that 
-    \begin{align*}
-        \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\}.
-    \end{align*}
+    \end{small}
+
+    We see that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
     for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we can apply the Invertibility Criterion (Proposition \ref{prop:impossible-support-2324223423123123} and Proposition \ref{prop:impossible-support-232423}) with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. So assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. Hence, \( \mathbf{w} \) cannot be an outcome.
 \end{example}
 
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 \begin{proposition}
-    Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, all of the following hold:
-    \begin{enumerate}
-        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \);
-        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \);
-        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
-    \end{enumerate}
+    Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, we have \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
 \end{proposition}
 
 \begin{proof}
-    This is verified by computer. Keyword TAG MUSIAS.
+    This is verified by computer, see \cite{ducrepo}.
 \end{proof}
 
 \begin{corollary}
-    Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, we have
-    \begin{align*}
-        \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \quad \text{and} \quad         \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2.
-    \end{align*}
+    Let \( \mathbf{s}' \in \Lambda \). If \( \lvert \mathrm{supp}^+(\mathbf{s}') \rvert = 5 \), then \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \) hold.
 \end{corollary}
 
 \begin{proof}
@@ -393,7 +351,7 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 The corollary above can be extended to several other cases which allows us to implement an algorithm to exclude certain cases of \( \mathbf{s}' \in \Lambda \). First, we need an algorithm for the division step.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Divide}
 \label{alg:divide}
 \begin{algorithmic}[1]
@@ -583,7 +541,7 @@ The \texttt{succ} function is defined as the successor in this order, see Algori
 \end{algorithmic}
 \end{algorithm}
 
-Let us apply the Invertibility Criterion for relative coordinates to all of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. Let \( \mathbf{s}' \) be one of these cases. We need to compute the set 
+Let us apply the Invertibility Criterion for relative coordinates to all of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with a positive support size of five. We want to compute the set
 \begin{align*}
     R(\mathbf{s}') \coloneqq \{ \mathrm{relset}(\mathbf{w}) \mid  \mathbf{w} \in \mathbb Z^{V_d} \text{ such that } \mathrm{contr}'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \}.
 \end{align*}
@@ -758,10 +716,7 @@ Both these cases show that we can apply the Hexagon Criterion; the criterion sho
 
 We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. Unfortunately, there is one case \(  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}\) which cannot be ruled out by the Hexagon Criterion. We need to consider this case separately; so let us ignore this case for now and consider the remaining eleven cases.
 
-First, we observe that all the eleven cases satisfy 
-\begin{align*}
-    \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \quad \text{and} \quad \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0.
-\end{align*}
+First, we observe that all the eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
 Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) there exists some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \) such that 
 \begin{align*}
     \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\}.
