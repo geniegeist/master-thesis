@@ -1,6 +1,6 @@
 \chapter{Classification with Fundamental Models}
 
-In this chapter we present the classification of one-dimensional discrete statistical models with rational maximum likelihood estimator (MLE) using fundamental models. The classification is due to Arthur Bik and Orlando Marigliano~\cite{bik2022classifying}. 
+In this chapter, we present the classification of one-dimensional discrete statistical models with a rational maximum likelihood estimator (MLE) using fundamental models. The classification is due to Arthur Bik and Orlando Marigliano~\cite{bik2022classifying}. 
 
 \begin{center}
     \textbf{Problem statement:} Can we find a class of easy to understand models that serve as building blocks for all one-dimensional discrete statistical models with rational MLE?
@@ -28,7 +28,9 @@ To find the maximum likelihood estimator, we need find all critical points of th
 \begin{align}\label{eq:score-equations}
     \ell(p(\theta))' &= \sum u_k \frac{a_k'}{a_k} - \sum u_k \frac{b'}{b} = 0.
 \end{align}
-These equations are called the \emph{score equations} in algebraic statistics, and the number of complex solutions to these equations for general data \( u \in \mathbb{C}^{n + 1} \) is called the \emph{maximum likelihood degree} of the statistical model. This ML degree has an important meaning in algebraic statistics, as it determines the complexity of the model. We have the following relationship between the ML estimator and the ML degree.
+These equations are called the \emph{score equations} in algebraic statistics, and the number of complex solutions to these equations for general data \( u \in \mathbb{C}^{n + 1} \) is called the \emph{maximum likelihood degree} of the statistical model. This ML degree has an important meaning in algebraic statistics, as it is an algebraic measure of the complexity of the maximum likelihood estimation of the model, see \cite{amendola2019maximum, catanese2006maximum, sullivant2023algebraic}.
+
+We have the following relationship between the ML estimator and the ML degree.
 
 \begin{proposition}\label{prop:rational-mle}
     Having rational maximum likelihood estimator can be expressed equivalently by saying that the maximum likelihood degree of the statistical model is one.
@@ -75,10 +77,8 @@ Equipped with the lemma, we can now prove Proposition \ref{prop:parametrization}
     Any one-dimensional {discrete} {statistical} {models} with rational MLE can be represented by \( (w_k, i_k, j_k)_{k=0}^n \) for \( w_k \in \mathbb{R}_{>0} \) and \( i_k, j_k \in \mathbb{Z}_{\geq 0} \).
 \end{corollary}
 
-From now on, we only consider one-dimensional discrete statistical models with rational MLE; we call them \emph{models} for short.
-
 \begin{definition}
-    The degree \( \mathrm{deg}(\mathcal{M}) \) of a model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
+    The degree \( \mathrm{deg}(\mathcal{M}) \) of a one-dimensional discrete statistical models with rational MLE \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
 \end{definition}
 
 \begin{remark}\label{rem:equivalent-models}
@@ -93,7 +93,7 @@ From now on, we only consider one-dimensional discrete statistical models with r
     Let \( \mathcal{M} \) be a model represented by \( (w_k, i_k, j_k)_{k=0}^n \). The set of exponent pairs \( (i_k, j_k)_{k=0}^n \) is called the support of \( \mathcal{M} \), denoted by \( \mathrm{supp}(\mathcal{M}) \).
 \end{definition}
 
-This was our first step towards understanding the structure of models. The next step is to introduce the concept of reduced models.
+This was our first step towards understanding the structure of one-dimensional discrete statistical models with rational MLE. Next, we introduce reduced models.
 
 \section{Reduced Models}
 
@@ -244,8 +244,6 @@ They correspond to the fundamental models \( ((1-\theta)^3, 3\theta(1-\theta), \
 We just computed all fundamental models of degree three or less in \( \Delta_2 \). We will see shortly that these are all models in the probability simplex \( \Delta_2 \). Of course, \( \Delta_2 \) contains non-reduced models, too. These are models that come from linear embeddings \( \Psi_{\lambda,k} \) and \( \Psi_{\lambda,k,h} \), see Proposition \ref{prop:linear-embedding-1} and Proposition \ref{prop:linear-embedding-2}. There are infinitely many of them, and for \( \lambda = \frac{1}{3} \) we obtain the models \( \theta \mapsto (\frac{2}{3}\theta, \frac{1}{3}, \frac{2}{3}(1 - \theta)) \) and \( \theta \mapsto (1-\theta, \frac{1}{3}\theta, \frac{2}{3}\theta) \).
 \end{example}
 
-Let us summarize the results of this section. It is the first part of our classification theorem.
-
 \begin{theorem}\label{thm:classification-jekns}
     Every one-dimensional discrete statistical model with rational MLE in \( \Delta_n \) is the image of a reduced model in \( \Delta_m \) under a linear embedding \( \Delta_m \to \Delta_n \) for some \( m \leq n \).
 
@@ -259,28 +257,27 @@ Let us summarize the results of this section. It is the first part of our classi
 
 \section{On the Finiteness of Fundamental Models}
 
-We have established the first part of our classification theorem, namely that fundamental models are building blocks for all models. The second part is showing that there are only finitely many fundamental models in \( \Delta_n \) given \( n \in \mathbb{N} \). Artuhr Bik and Orlando Marigliano proved that there are only finitely many fundamental models in \( \Delta_n \) for \( n \leq 4 \) \cite{bik2022classifying}. We will later make significant progress towards proving the case \( n = 5 \). For \( n \geq 6 \) no attempt has been made yet to the best of our knowledge.
-
-Arthur Bik and Orlando Marigliano first proved the following proposition.
+After establishing that fundamental models serve as the building blocks for all models, we will prove that for \( n \leq 4 \), there are only finitely many fundamental models in \( \Delta_n \). This result was first established by Bik and Marigliano, and we adopt their approach. To begin, we present the following proposition.
 
 \begin{theorem}\label{thm:degree-fundamental-models}
-    Let \( \mathcal{M} \) be a one dimensional discrete statistical model with rational MLE in \( \Delta_n \). For \(n \leq 4 \) we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
+    Let \( \mathcal{M} \) be a one-dimensional discrete statistical model with rational MLE in \( \Delta_n \). For \(n \leq 4 \), we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
 \end{theorem}
 
-Given Theorem \ref{thm:degree-fundamental-models} it is easy to show the second part of our classification.
+Given this theorem, it is easy to show the finiteness of fundamental models.
 
 \begin{theorem}\label{thm:finiteness-fundamental-models}
     There are only finitely many fundamental models in \( \Delta_n \) for all \( n \leq 4 \).
 \end{theorem}
 
 \begin{proof}
-    By Theorem \ref{thm:degree-fundamental-models} we know that the degree of a fundamental model is at most \( 2n - 1 \). Since the number of supports of a fundamental model of degree \( 2n - 1 \) is finite, there are only finitely many fundamental models in \( \Delta_n \) for all \( n \leq 4 \).
+    Let \( n \leq 4 \).
+    By Theorem \ref{thm:degree-fundamental-models}, we know that the degree of a fundamental model is at most \( 2n - 1 \). Since the number of supports of a fundamental model of degree \( 2n - 1 \) is finite, there are only finitely many fundamental models in \( \Delta_n \).
 \end{proof}
 
-We will now spend the rest of this thesis on proving Theorem \ref{thm:degree-fundamental-models}. The idea is to use the building blocks of fundamental models that we have established so far. Namely, it suffices to show the theorem for fundamental models.
+It turns out that proving Theorem \ref{thm:degree-fundamental-models} only for fundamental models is sufficient.
 
-\begin{theorem}\label{thm:degree-fundamental-models-reduced}
-    Let \(N \in \mathbb{N} \). If for all $n \leq N$ and for all fundamental models \( \mathcal{M} \in \Delta_n\) the upper bound \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\)  holds, then the upper bound also holds for all statistical models in \( \Delta_{n'} \) for all \( n' \leq N \).    
+\begin{theorem}\label{thm:degree-fundamental-models-reduced}    
+    Let \( N \in \mathbb{N} \). If the upper bound \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1 \) holds for all \( n \leq N \) and for all fundamental models \( \mathcal{M} \in \Delta_n \), then this upper bound also holds for all statistical models, including non-fundamental ones, in \( \Delta_n \) for all \( n \leq N \).
 \end{theorem}
 
 \begin{proof}
@@ -288,19 +285,10 @@ We will now spend the rest of this thesis on proving Theorem \ref{thm:degree-fun
     Assume there is some non-fundamental model $\mathcal{M}'$ in $\Delta_n$ of degree greater than $2n - 1$. By Corollary \ref{cor:fundamental-models-ksmlkdf} there exists a fundamental model $\mathcal{M}$ in $\Delta_m$ for some $m < n$ of degree greater than $2m - 1$. This contradicts the assumption that the degree of fundamental models is at most $2n' - 1$ for all $n' \leq N$.
 \end{proof}
 
-Counting all \emph{fundamental} models in $\Delta_n$ for $n \leq 4$ is our guiding objective. As a first step, we introduce a combinatorial game that aids in counting fundamental models. We know that every reduced model can be represented by the sequence of triples $(w_k, i_k, j_k)^{n}_{k=0}$, where $w_k \in \mathbb{R}_{>0}$ and $i_k, j_k \in \mathbb{Z}_{\geq 0}$. The model can be visualized in a directed graph with vertices in $\mathbb{Z}^2$, where we can place values $w_k$ on vertices $(i_k, j_k)$. Each vertex $(i,j)$ is connected by directed edges to $(i+1, j)$ and $(i, j+1)$. 
+This justifies that our north star is to prove the following theorem.
 
-\begin{figure}\label{fig:binom-discrete-model-visual}
-    \centering
-    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBmAXVJADcBDAGwFcYkQA6EAX1PU1z5CKMgCZqdJq3Zde-bHgJEAjBQkMWbRJx58QGBUKJll6qVpDLd8wUpSrxNDdO2jr+gYuHJRap+fYrOQ9DO2RVU39NGXcDW29fSMlo7Vk9OK8iX0dklx1gjKMUcj9cizSbTOLSHOdy2M8i5BKkupiCxrCS4jMU-PTOhNIeqLyKkPiVYd6xhtDvMhGy9okYKABzeCJQADMAJwgAWyQyEBwIJGVg-aOTmnOkUWuD48RfM4vEAFZn27f7z4AFl+r1UHyQwL0N1BAKQ5BBcNhiGUPyhL0uXyRykhu3RiAAbFicSBoRCkfiEQSkQB2SnYrHwtF-akMyks8HIq5M0ElDnKJ7cy5gh7IgW4v6ApEADkpUpplMxHIAnArpbKscQ6acRcoueLXkqNZTeSKKZRuEA
-    \begin{tikzcd}
-        . \arrow[r]           & . \arrow[r]           & . \arrow[r]           & .           \\
-        1 \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \\
-        . \arrow[r] \arrow[u] & 2 \arrow[u] \arrow[r] & . \arrow[u] \arrow[r] & . \arrow[u] \\
-        . \arrow[u] \arrow[r] & . \arrow[r] \arrow[u] & 1 \arrow[r] \arrow[u] & . \arrow[u]
-    \end{tikzcd}
-    \caption{The binomial model with two trials visualized in a directed graph with vertices in $\left\{0,1,2,3 \right\}^2$.}
-\end{figure}
+\begin{theorem}\label{thm:degree-fundamental-models-fundamental}
+    Let \( \mathcal{M} \) be a fundamental model in \( \Delta_n \). For \(n \leq 4 \), we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
+\end{theorem}
 
-
-Surprisingly, we can derive a combinatorial game from this graph by defining a specific set of rules. This game, called the \emph{chipsplitting game}, will be rigorously introduced in the next chapter. After that, we will explore the game's properties and show how it can be used to count fundamental models in $\Delta_n$ for $n \leq 4$.
+The first step is introducing a combinatorial puzzle to count fundamental models using the sequence \((w_k, i_k, j_k)_{k=0}^{n}\), which characterizes these models. 

@@ -1,10 +1,8 @@
 \chapter{Chipsplitting Games}
 
-The notion of a chipsplitting game was introduced by \cite{bik2022classifying} as a combinatorial approach to classifying one-dimensional discrete statistical models with rational maximum likelihood estimator. It was inspired by \emph{chipfiring games} and for a subset of chipfiring games, the chipsplitting game is equivalent to the chipfiring game. We refer to \cite{klivans2018mathematics} for a comprehensive introduction to chipfiring games. 
+The notion of a chipsplitting game was introduced in \cite{bik2022classifying} as a combinatorial approach to count fundamental models. It was inspired by \emph{chip-firing games} \cite{klivans2018mathematics}. 
 
 \section{Basic Definitions}
-
-Let us define the notion of a chipsplitting game.
 
 \begin{definition}
     Let $(V,E)$ be a directed graph without loops.
@@ -12,15 +10,11 @@ Let us define the notion of a chipsplitting game.
     \begin{enumerate}
         \item A \emph{chip configuration} is a vector \( \mathbf{w} = (w_v)_{v \in V} \in \mathbb{Z}^{V} \) such that there are only finitely many nonzero components \( w_k \).
         \item The \emph{initial configuration} is the chip configuration \( \mathbf 0 \in \mathbb{Z}^V \).
-        \item A \emph{splitting move} at \( u \in V \) maps a chip configuration \( \mathbf w \) to some chip configuration \( \mathbf{w}' \) defined by 
-        \begin{align*}
-            w'_v \coloneqq \begin{cases}
-                w_v -1 & \text{if } v = u, \\
-                w_v + 1 & \text{if } (u,v) \in E \\
-                w_v & \text{otherwise}.
-            \end{cases}
-        \end{align*}
-        This map is denoted by \( \mathrm{split}_u \).
+        \item A \emph{splitting move} at \( u \in V \), denoted by \( \mathrm{split}_u \), maps chip configurations \( \mathbf w \) to chip configurations \( \mathbf{w}' \) defined by \( w'_v \coloneqq \begin{cases}
+            w_v -1 & \text{if } v = u, \\
+            w_v + 1 & \text{if } (u,v) \in E \\
+            w_v & \text{otherwise}.
+        \end{cases} \).
         \item An \emph{unsplitting move} at \( u \in V \) maps \( \mathbf w' \) back to \( \mathbf{w} \). This map is denoted by \( \mathrm{unsplit}_u \).
         \item A \emph{chipsplitting game} is a finite sequence of splitting and unsplitting moves.
         \item An \emph{outcome of a chipsplitting game} is the chip configuration obtained from applying the sequence of splitting and unsplitting moves defined by the game at the initial configuration.
@@ -36,13 +30,13 @@ Let us define the notion of a chipsplitting game.
     This follows from commutativity of addition.
 \end{proof}
 
-Note that all moves are reversible. Thus, we obtain the following corollary with Proposition \ref{prop:commutativity}.
+Since all moves are reversible, we obtain the following corollary with Proposition \ref{prop:commutativity}.
 
 \begin{corollary}
     Let \( \mathbf{w} \) be an outcome. Then, there exists a chipsplitting game whose outcome is \( \mathbf{w} \) and where at no point both a splitting and an unsplitting move are applied at the same vertex.
 \end{corollary}
 
-Games that satisfy the condition in the corollary are called \emph{reduced}. We will only consider reduced games in this thesis for simplicity. The map 
+Games that satisfy the condition in the corollary are called \emph{reduced}. The map 
 \begin{align*}
     \left\{ \text{reduced games on \( (V,E) \)} \right\} / \sim \quad &\to \quad  \left\{ g: V' \to \mathbb{Z} : \# \{ p \in V' : g(p) \neq 0 \} < \infty \right\} \\
     f &\mapsto (p \mapsto \text{number of moves at \( p \) in game \( f \)})
