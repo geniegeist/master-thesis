@@ -223,29 +223,20 @@ We use these constraints to compute the supports of all outcomes of degree \( d 
 
 \section{Solving Hyperfield Linear Systems}
 
-We deviate from the approach by Bik and Marigliano by solving hyperfield linear systems. Fix some degree \( d \). Due to the Hyperfield Criterion, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) satisfying \( 0 \in \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) \)
-for all \( p \in \left\{ \mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k=0}^d \). These configurations are potential valid outcomes. 
+We diverge from the approach of Bik and Marigliano by dedicating attention to solving hyperfield linear systems. Specifically, we are interested in valid configurations \( \mathbf{w} \in \mathbb{Z}^{V_d} \) satisfying \( 0 \in \mathrm{sign}(p)(\mathrm{sign}(\mathbf{w})) \)
+for all \( p \in \left\{ \mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k=0}^d \). These configurations are potential valid outcomes due to the Hyperfield Criterion.
 
 \vspace{0.3cm}
 
-\textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $V(A) \coloneqq \{ \mathbf{x} \in H^{V_{d}} : 0 \in \mathrm{sign}(p_{i})(\mathbf{x})  \quad \forall i = 1, \dots, k \}$.
+\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ \mathbf{x} \in H^{V_{d}} : \text{$\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(\mathbf{x}) \vert = n$} \}$, where $V(A) \coloneqq \{ \mathbf{x} \in H^{V_{d}} : 0 \in \mathrm{sign}(p_{i})(\mathbf{x})  \quad \forall i = 1, \dots, k \}$.
 
 \vspace{0.3cm}
 
-We further simplify the problem by only considering configurations $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ and $\vert \mathrm{supp}^+(\mathbf{x}) \vert = n$ for some fixed $n \in \mathbb N$.
-
-\vspace{0.3cm}
-
-\noindent \textbf{Problem:} Given a set of linear forms $A = \{ p_{1}, \dots, p_{k} \}$, compute the solution set $S_{n}(A) \coloneqq V(A) \cap \{ \mathbf{x} \in H^{V_{d}} : \text{$\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$, $\vert \mathrm{supp}^+(\mathbf{x}) \vert = n$} \}$.
-
-\vspace{0.3cm}
-
-Note that $S_{n}(A)$ is a superset of valid outcomes of positive support size $n$, which will be useful in finding all valid outcomes.
+Note that $S_{n}(A)$ is a superset of supports of valid outcomes with positive support size $n$.
 
 \subsection*{A Naive Approach}
 
-To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate over all positive support size $n$ supports and check if they are hyperfield roots of some hyperfield Pascal basis.
-
+To compute $S_{n}(A)$, we use a brute force algorithm: just iterate over all supports of positive support size $n$, and check if they are hyperfield roots of some hyperfield Pascal basis. It has exponential time complexity as it checks \( \binom{(d+1)(d+2)/2}{n} \) supports.
 
 \begin{algorithm}
 \caption{Brute Force Algorithm}\label{alg:hyperfield_criterion:brute_force}
@@ -265,20 +256,18 @@ To compute $S_{n}(A)$ a simple brute force algorithm can be used; just iterate o
     \EndFunction
     \end{algorithmic}  
 \end{algorithm}
-    
-The naive approach has exponential time complexity as it checks \( \binom{(d+1)(d+2)/2}{n} \) supports.
 
 \subsection*{Efficient Algorithm}
 
-For some systems \( A \), we can greatly speed up the computation of $S_{n}(A)$.
+For \emph{non-trivial} systems \( A \), we greatly speed up the computation of $S_{n}(A)$.
 
 
 \begin{definition}
-    Let $p$ be a linear form in \( H^{V_d} \), and let $\mathbf{x} \in {H}^{V_d}$ be some hyperfield root of $p$. If $\mathrm{supp}(\mathbf{x}) \cap \mathrm{supp}(p) = \emptyset$, then the root $\mathbf{x}$ is called a \emph{trivial root} of $p$. Otherwise, the root $\mathbf{x}$ is called a \emph{non-trivial root} of $p$.
+    Let $p$ be a linear form in \( H^{V_d} \), and $\mathbf{x} \in {H}^{V_d}$ be a hyperfield root of $p$. If $\mathrm{supp}(\mathbf{x}) \cap \mathrm{supp}(p) = \emptyset$, then the root $\mathbf{x}$ is called a \emph{trivial root} of $p$. Otherwise, the root $\mathbf{x}$ is called a \emph{non-trivial root} of $p$.
 \end{definition}
 
 \begin{definition}
-    Let $A$ be a system of linear forms in \( H^{V_d} \). We say $S_{n}(A)$ is \emph{non-trivial} if $S_{n}(A) \neq \emptyset$ and every $\mathbf{x} \in S_{n}(A)$ is a non-trivial root for every form $p \in A$. We say $A$ is \emph{non-trivial} if $S_{n}(A)$ is non-trivial.
+    Let $A$ be a system of linear forms in \( H^{V_d} \). We say $S_{n}(A)$ is \emph{non-trivial} if $S_{n}(A) \neq \emptyset$ and every $\mathbf{x} \in S_{n}(A)$ is a non-trivial root for all $p \in A$. We say $A$ is \emph{non-trivial} if $S_{n}(A)$ is non-trivial.
 \end{definition}
   
 \begin{proposition}
@@ -298,7 +287,7 @@ The next proposition assumes that $A$ is non-trivial.
 
 \begin{proposition}
 Let $A$ be a non-trivial system of linear forms, $p \in A$ and $\mathbf{x} \in S_{n}(A)$. 
-If $(0,0) \notin \mathrm{supp}(p)$, then $\mathrm{supp}^+(p) \neq \emptyset$, $\mathrm{supp}^-(p) \neq \emptyset$ as well as $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \mathrm{supp}^+(p)$ and $(i',j') \in \mathrm{supp}^-(p)$.
+If $(0,0) \notin \mathrm{supp}(p)$, then we have $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \mathrm{supp}^+(p)$ and $(i',j') \in \mathrm{supp}^-(p)$.
 \end{proposition}
 
 \begin{proof}
@@ -311,37 +300,22 @@ Both propositions allow us to interpret hyperfield linear forms in a non-trivial
 
 
 \begin{example}
-Fix the degree $d = 3$.
-Assume a system $A$ and some linear form $p \in A$. Further, assume $p = \mathrm{diag}(0)$. The support of $p$ is represented by the following diagram:
+Let $d = 3$. Assume $p = \mathrm{diag}(0) \in A$. The support of $p$ is visualized below on the left-hand side. Since $x_{0,0}$ is negative, we see that any nonzero hyperfield root $\mathbf{x}$ of $A$ satisfies $x_{i,j} = 1$ for some \( (i,j) \in \{ (0,0), (0,1), (0,2), (0,3) \} \). Now, assume $A$ is non-trivial. Consider $q = \mathrm{row}(3) \in A$. Its support is depicted on the right-hand side.
 \begin{verbatim}
-    + 
-    +  . 
-    +  .  .
-    +  .  .  .
+    +                    - 
+    +  .                 .  + 
+    +  .  .              .  .  -
+    +  .  .  .           .  .  .  +
 \end{verbatim} 
-Since $x_{0,0}$ is negative, we see that any nonzero hyperfield root $\mathbf{x}$ of $A$ satisfies $x_{i,j} = 1$ for some \( (i,j) \in \{ (0,0), (0,1), (0,2), (0,3) \} \)
-
-
-Now, assume $A$ is non-trivial. Consider a row pascal equation $q = \mathrm{row}(3)$ which is contained in \( A \). Its support is depicted by the following diagram:
-\begin{verbatim}
-    - 
-    .  + 
-    .  .  -
-    .  .  .  +
-\end{verbatim} 
-For some $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ to be a hyperfield root of $q$, we must have either
-\begin{enumerate}
-\item $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \{ (0,3), (2, 1) \}$ and $(i',j') \in \{ (3,0), (1,2) \}$, or 
-\item $\mathrm{supp}(\mathbf{x}) \subset V_{3} \setminus \mathrm{supp}(q)$.
-\end{enumerate}
-Considering only non-trivial roots $\mathbf{x}$ lets us exclude the latter case. Thus, if we have a non-trivial system $A$ with $p,q \in A$, to compute $S_{n}(A)$, it suffices to check only those hyperfield roots whose support intersected with each of the three following regions is non-empty:
+For $\mathbf{x}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$ to be a hyperfield root of $q$, we must have either $x_{i,j} = x_{i',j'} = 1$ for some $(i,j) \in \{ (0,3), (2, 1) \}$ and $(i',j') \in \{ (3,0), (1,2) \}$, or $\mathrm{supp}(\mathbf{x}) \subset V_{3} \setminus \mathrm{supp}(q)$.
+By considering only non-trivial roots \( \mathbf{x} \), we exclude the latter case. Thus, for a non-trivial system \( A \) with \( p, q \in A \), computing \( S_{n}(A) \) requires checking only those hyperfield roots whose support intersects non-trivially with each of the following three regions:
 \begin{verbatim}
     +             +             .
     +  .          .  .          .  + 
     +  .  .       .  .  +       .  .  .
     +  .  .  .    .  .  .  .    .  .  .  + 
 \end{verbatim}
-Here are examples of such hyperfield roots:
+Here are examples of supports satisfying the constraints above:
 \begin{verbatim}
     +             .        
     .  +          .  .      
@@ -351,16 +325,16 @@ Here are examples of such hyperfield roots:
 \end{example}
 
 \begin{definition}
-To each linear form $p$ in \( H^{V_d} \) we can associate a finite set of supports, which we call $\mathrm{constraints}(p) \coloneqq \{\mathrm{supp}^+(p) \setminus \{(0,0)\}, \mathrm{supp}^-(p) \setminus \{ (0,0) \} \}  \subset 2^{V_{d}}$. 
+To each linear form $p$ in \( H^{V_d} \), we associate a finite set of supports, denoted by $\mathrm{constraints}(p) \coloneqq \{\mathrm{supp}^+(p) \setminus \{(0,0)\}, \mathrm{supp}^-(p) \setminus \{ (0,0) \} \}  \subset 2^{V_{d}}$. 
 \end{definition}
 
-The name is justified by the following proposition.
 \begin{proposition}\label{prop:hyperfield_criterion:constraints}
 Let $p$ be a linear form in \( \mathbb{H}^{V_d} \), and $\mathbf{x} \in H^{V_{d}}$ with $\mathrm{supp}^-(\mathbf{x}) = \{ (0,0) \}$. Then, $\mathbf{x}$ is a non-trivial hyperfield root of $p$ if and only if $\mathrm{supp}^+(\mathbf{x}) \cap S \neq \emptyset$ for all $S \in \mathrm{constraints}(p)$. 
 \end{proposition}
 
 \begin{proof}
-Since $\mathbf{x}$ is non-trivial, we clearly have non-empty intersection of $\mathrm{supp}^+(\mathbf{x})$ and $S \in \mathrm{constraints}(p)$. The converse direction is also clear since $p(\mathbf{x}) = 1 - 1 = H$.
+    Let $S \in \mathrm{constraints}(p)$.
+Since $\mathbf{x}$ is non-trivial, we have non-empty intersection of $\mathrm{supp}^+(\mathbf{x})$ and $S$. The converse direction is also clear since $p(\mathbf{x}) = 1 - 1 = H$.
 \end{proof}
 
 We present an algorithm for computing $S_{n}(A)$ of non-trivial systems $A$.
@@ -381,25 +355,23 @@ We present an algorithm for computing $S_{n}(A)$ of non-trivial systems $A$.
 
 
 \begin{proof}[Proof of correctness]
-The correctness of $\texttt{solutions} = S_{n}(A)$ follows from Proposition \ref{prop:hyperfield_criterion:constraints} and the assumption that $A$ is non-trivial. 
+The correctness follows from Proposition \ref{prop:hyperfield_criterion:constraints}.
 \end{proof}
 
 \begin{remark}\label{rem:fiuhwiu3}
-    The algorithm can also be used for linear forms on \( H^{\Xi} \) with general index set \( \Xi \subset \mathbb{Z}_{\geq 0} \times \mathbb{Z}_{\geq 0} \), and solutions \( \mathbf{x} \in H^{\Xi} \). The proof is analogous.
+    The algorithm can also be used for linear forms on \( H^{\Xi} \) with arbitrary index set \( \Xi \subset \mathbb{Z}_{\geq 0} \times \mathbb{Z}_{\geq 0} \), and solutions \( \mathbf{x} \in H^{\Xi} \). The proof is analogous.
 \end{remark}
 
 \section{Implementation of the Hyperfield Criterion}
 
-The Hyperfield Criterion states that only the common hyperfield roots of all Pascal forms can be supports of valid outcomes. The system of all Pascal forms is a-priori an \emph{infinite} and \emph{non-trivial} system. However, we found out that several bases of Pascal forms exist such as the row, col and diag Pascal basis. This allows us to consider \emph{finite} systems. Define the finite system \( A \coloneqq \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0} \).
+The Hyperfield Criterion asserts that only the common hyperfield roots of all Pascal forms can serve as supports for valid outcomes. Initially, the system of all Pascal forms is an \emph{infinite} and \emph{non-trivial} system. However, we have identified several bases of Pascal forms, including the row, column, and diagonal Pascal bases. These bases enable us to restrict our consideration to \emph{finite} systems. Specifically, we define the finite system \( A \coloneqq \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0} \).
 
 \begin{proposition}
 The system $A$ is non-trivial.
 \end{proposition}
 
 \begin{proof}
-First, $S_{n}(A)$ is non-empty because $\mathbf{x} = (x_{i})_{i=0}^n$ defined as $x_{i, d-i} = {n \choose i}$ is a solution of the system $A$. 
-
-Let $\mathbf{x} \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following cases.
+First, $S_{n}(A)$ is non-empty because $\mathbf{x} = (x_{i})_{i=0}^n$ defined as $x_{i, d-i} = {n \choose i}$ is a solution of $A$. Let $\mathbf{x} \in S_{n}(A)$ and $i = 0, \dots, n$. Consider the following cases.
 \begin{itemize}
     \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{diag}(i))$; then $\mathrm{diag}(i)(\mathbf{x}) < 0$ but $\mathbf{x}$ is a root of \( \mathrm{diag}(i) \). 
     \item Assume, $\mathbf{x} \notin \mathrm{supp}(\mathrm{row}(i))$. If $i = d$, then $\mathbf{x}$ is not of degree $n$. Therefore, we assume $i < d$. Then, either $\mathbf{x}$ is a trivial root for $\mathrm{row}(i+1)$ or we have $\mathrm{row}(i+1)(\mathbf{x}) \neq 0$. In the latter case, we found a contradiction to $\mathbf{x}$ being a root. For the former case that $\mathbf{x}$ is a trivial root, we conclude that there exists nonzero $x_{u, d-u}$ for some $u = i+2, \dots, d$ since $\mathbf{x}$ is of degree $n$; now we just repeat the argument for $\mathrm{row}(i+1)$. More precisely, if $\mathbf{x}$ is again a trivial root for $\mathrm{row}(i+2)$, we repeat the argument for $\mathrm{row}(i+2)$ until we will end up with a contradiction $\mathrm{row}(u)(\mathbf{x}) \neq 0$.
@@ -412,12 +384,12 @@ Configurations $\mathbf{x} \in \mathbb{Z}^{V_{d}}$ of the form $\mathrm{supp}(\m
 \end{corollary}
 
 \begin{proof}
-Since the previously defined system $A$ is non-trivial, we must have that supports of valid outcomes intersect the support of $\mathrm{row}(k+1)$ non-trivially.
+    Let $k = 0, \dots, d-1$.
+Since the system $A$ is non-trivial, we have that supports of valid outcomes intersect the support of $\mathrm{row}(k+1)$ non-trivially.
 \end{proof}
 
 \begin{example}
-This is not a valid outcome:
-
+This is not a valid outcome by the previous corollary.
     \begin{verbatim}
     .               
     .  .           
@@ -428,83 +400,24 @@ This is not a valid outcome:
 \end{verbatim}
 \end{example}
 
-Now that we have shown that $A$ is a trivial system, we have found an efficient way to apply the Hyperfield Criterion. Here is a detailed breakdown of an implementation of the algorithm.
+Now that we have shown $A$ to be a trivial system, we have an efficient implementation of Algorithm \ref{alg:hyperfield_criterion:efficient}. Specifically, the computation of \( \{ \mathbf{x} \in H^{V_{d}} \mid \forall S \in C: \mathrm{supp}^+(\mathbf{\mathbf{x}}) \cap S \neq \emptyset, \vert \mathrm{supp}^+(\mathbf{x}) \vert = n,  \mathrm{supp}^-(\mathbf{x}) = \{(0,0)\}   \} \) on line three can be efficiently implemented with a breadth-first search algorithm as shown below.
 
-We implement the line of code \( C = \bigcup_{p \in A}\mathrm{constraints}(p) \) of Algorithm \ref{alg:hyperfield_criterion:efficient} using the procedure described in Algorithm \ref{alg:make_constraints}. We can optimize the constraints by removing redundant constraints that are contained in each other, see Algorithm \ref{alg:remove_redundant_constraints}. To compute the solutions
-\begin{align*}
-    \texttt{solutions} = \{ \mathbf{x} \in H^{V_{d}} \mid \forall S \in C: \mathrm{supp}^+(\mathbf{\mathbf{x}}) \cap S \neq \emptyset, \vert \mathrm{supp}^+(\mathbf{x}) \vert = n,  \mathrm{supp}^-(\mathbf{x}) = \{(0,0)\}   \}
-\end{align*}
-from Algorithm \ref{alg:hyperfield_criterion:efficient}, we use the implementation detailed in Algorithm \ref{alg:solve}. To further enhance efficiency, we employ a heuristic that sorts the constraints by size and processes smaller constraints first (see line two of Algorithm \ref{alg:solve}). The complete implementation is written in Python \( 3 \) and included in the appendix TODO. Using this implementation, we can efficiently compute \( S_4(A) \).
-
-
-\begin{algorithm}
-\caption{Make Constraints}\label{alg:make_constraints}
-\begin{algorithmic}[1]
-\Require some hyperfield linear form \( p \)
-\Ensure \( \mathrm{constraints}(p) \)
-\State $\texttt{constraints} \gets \texttt{list()}$
-\For{\textbf{each} $(pos, neg)$ \textbf{in} \texttt{support}(p)}
-    \If{$0 \in pos$}
-        \State $new\_constr \gets \{i \mid i \in pos \land i > 0\}$
-        \If{$new\_constr \notin constraints$}
-            \State \texttt{constraints.append}(new\_constr)
-        \EndIf
-    \ElsIf{$0 \in neg$}
-        \State $new\_constr \gets \{i \mid i \in neg \land i > 0\}$
-        \If{$new\_constr \notin constraints$}
-            \State \texttt{constraints.append}(new\_constr)
-        \EndIf
-    \ElsIf{$\texttt{len}(pos) > 0 \land \texttt{len}(neg) > 0$}
-        \If{$pos \notin constraints$}
-            \State \texttt{constraints.append}(pos)
-        \EndIf
-        \If{$neg \notin constraints$}
-            \State \texttt{constraints.append}(neg)
-        \EndIf
-    \EndIf
-\EndFor
-\State \Return \( \texttt{constraints} \)
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-\caption{Remove Redundant Constraints}
-\label{alg:remove_redundant_constraints}
-\begin{algorithmic}[1]
-\Require \( \mathrm{constraints} \)
-\Ensure nonredundant \( \mathrm{constraints} \)
-\State $\texttt{to\_remove} \gets \texttt{list()}$
-\For{\textbf{each} $c \in \texttt{constraints}$}
-    \For{\textbf{each} $d \in \texttt{constraints}$}
-        \If{$c \supset d$}
-            \State $\texttt{to\_remove.append}(c)$
-        \EndIf
-        \If{$d \supset c$}
-            \State $\texttt{to\_remove.append}(d)$
-        \EndIf
-    \EndFor
-\EndFor
-\State \Return $\{x \mid x \in \texttt{constraints} \land x \notin \texttt{to\_remove}\}$
-\end{algorithmic}
-\end{algorithm}
-    
-\begin{algorithm}
-\caption{Solve}
+\begin{algorithm}[H]
+\caption{Efficient Implementation of Algorithm \ref{alg:hyperfield_criterion:efficient} for non-trivial \( A \)}
 \label{alg:solve}
 \begin{algorithmic}[1]
 \Require positive support size \( n \), non-trivial system \( A \)
 \Ensure \( S_n(A) \)
-\State $\texttt{constraints} \gets \texttt{remove\_redundant\_constraints(make\_constraints(A))}$
-\State \texttt{constraints.sort} by length
-\State $\texttt{queue} \gets \texttt{deque}([()])$
-
+\State $\texttt{constraints} \gets \texttt{build constraints(A)}$
+\State $\texttt{queue} \gets \texttt{deque()}$
+\State $\texttt{queue.append(empty tuple())}$
 \For{\textbf{each} $\texttt{constr} \in \texttt{constraints}$}
     \For{$\_ \textbf{ in } \texttt{range}(|\texttt{queue}|)$}
         \State $\texttt{conf} \gets \texttt{queue.popleft()}$
 
         \If{\texttt{conf} intersects \texttt{constr}}
             \State $\texttt{queue.append}(\texttt{conf})$
-        \ElsIf{$|\texttt{conf}| < \texttt{support\_size}$}
+        \ElsIf{$|\texttt{conf}| < n$}
             \For{\textbf{each} $j \in \texttt{constr}$}
                 \State $\texttt{queue.append}(\texttt{conf} \cup \{j\})$
             \EndFor
@@ -515,7 +428,10 @@ from Algorithm \ref{alg:hyperfield_criterion:efficient}, we use the implementati
 \State \Return $ \texttt{queue}$
 \end{algorithmic}
 \end{algorithm}
-    
+
+\begin{proof}[Proof of correctness]
+    After each iteration of line four, \texttt{queue} contains only configurations that satisfy \texttt{constr} due to line seven and line eleven. Thus, the algorithm returns all configurations that satisfy all constraints in \texttt{constraints}.
+\end{proof}
 
 \begin{proposition}\label{prop:jdngkjrenj3nw}
     Let $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$ for some degree \( d \in \mathbb{N} \). Let \( \mathbf{x} \in H^{V_d} \) be nonzero with \( \mathrm{supp}^-(\mathbf{x}) = \left\{ (0,0) \right\} \). The following statements hold:
@@ -540,30 +456,27 @@ from Algorithm \ref{alg:hyperfield_criterion:efficient}, we use the implementati
 \end{proposition}
 
 \begin{proof}
-    We compute the set of \( S_4(A) \) for \( d = 6,7,8,9,10 \), and \( 11 \) using the implementation of Algorithm \ref{alg:solve} which is included in the appendix TODO. This gives us the results stated in the proposition. 
+    We compute the set of \( S_4(A) \) for \( d = 6,7,8,9,10 \), and \( 11 \) using Algorithm \ref{alg:solve}. The code is found in \cite{ducrepo} under \texttt{chapter05.ipynb}.
 \end{proof}
 
 \begin{corollary}
-    For all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) and \( \mathrm{deg}(\mathbf{w}) \leq 11 \) we have \( \mathrm{deg}(\mathbf w) \leq 5 \).
+    There are no valid outcomes with positive support size four for \( d = 8, 9, 10, 11 \).
 \end{corollary}
 
-The case \( \mathrm{deg}(\mathbf{w}) > 11 \) is still open. We will address this in the next section.
+The case \( \mathrm{deg}(\mathbf{w}) > 11 \) is still open. We will address this next.
 
 \section{Contractions}
 
-We aim to show that for every valid integral outcome \( \mathbf{w} \) with \( |\mathrm{supp}^+(\mathbf{w})| = 4 \), its degree is at most five. This has been proven for outcomes of degree at most eleven. The challenge lies in checking the infinite set of valid outcomes with degree at least twelve. To address this, we introduce the technique of \emph{contractions}, which reduces the problem to finitely many cases. \emph{Contractions} were first presented in \cite{bik2022classifying}.
-
-The concept of contraction involves \emph{contracting} or \emph{consolidating} vertices in \( V_d \) by merging rows or columns into a single vertex. This is achieved by introducing new formal variables \( b_{i}, c_{i}, d_{i}, e_{i}, y_{i,j} \), and \( z_{i,j} \), referred to as \emph{contraction variables}.
+We aim to show that for every valid integral outcome \( \mathbf{w} \) with \( |\mathrm{supp}^+(\mathbf{w})| = 4 \), its degree is at most five. The challenge arises from the need to check an infinite number of possible supports. To overcome this, we introduce \emph{contractions} and \emph{fixed-contractable forms}. The term \emph{contractions} was introduced in \cite{bik2022classifying}, while \emph{fixed-contractable forms} is a term specifically developed for this thesis. The concept of contraction involves \emph{contracting} or \emph{consolidating} vertices in \( V_d \) by merging rows or columns into a single vertex. This is achieved by introducing new formal variables \( b_{i}, c_{i}, d_{i}, e_{i}, y_{i,j} \), and \( z_{i,j} \), referred to as \emph{contraction variables}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/contactions-4.png}
+    \includegraphics[width=0.8\textwidth]{assets/contactions-4.png}
     \caption{This figure illustrates the contraction variables. The yellow areas \( X, Y, Z \) represent formal variables \( x_{i,j} \) that remain unaffected by the contraction. Each green area \( B, C, D, E \) represents rows or columns of vertices that are merged into a single vertex.}\label{fig:contractions-42342432}
 \end{figure}
 
 \begin{definition}\label{def:contraction-variables}
-Let \( x_{i,j} \) be formal variables indexed by \( V_d \). We merge a subset of rows and columns of these formal variables in \( V_d \) into a single vertex by defining the following \emph{contraction variables}:
-
+Let \( x_{i,j} \) be formal variables indexed by \( V_d \). We merge a subset of rows and columns into a single vertex by defining \emph{contraction variables}:
 \begin{align*}
     y_{i,j} &\coloneqq x_{i, d-3-i+j} \quad \text{ for } i,j = 0, \dots, 3, \\
     z_{i,j} &\coloneqq x_{d-3-j+i,j} \quad \text{ for } i,j = 0, \dots, 3, \\
@@ -606,12 +519,12 @@ Let us visualize the contraction variables for \( d = 16 \) in the following fig
     \end{align*}  
 \end{figure}
 
-As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the contraction variable \( c_0 \) by summing them up. 
+As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the contraction variable \( c_0 \) by summing them up. The key insight is that some hyperfield Pascal forms \( \sum_{(i,j) \in V_d} \lambda_{i,j} x_{i,j} \) can be expressed in terms of contraction variables.
 
-Recall that hyperfield Pascal forms are expressed as sums \( \sum_{(i,j) \in V_d} \lambda_{i,j} x_{i,j} \) with \( \lambda_{i,j} \in H \). The key insight is that some Pascal forms can be rewritten in terms of the contraction variables \( c_0, c_1, c_2, c_3 \) instead of the original variables \( x_{i,j} \).
+\pagebreak
 
 \begin{example}
-    Consider the Pascal form \( \mathrm{diag}(1) \) in \( \mathbb{Z}^{V_{16}} \). Its support is depicted in the following figure:
+    Consider \( \mathrm{sign}(\mathrm{diag}(1)) \) in \( {H}^{V_{16}} \). It is depicted in the following figure:
     \begin{verbatim}
         .
         +  +
@@ -631,73 +544,79 @@ Recall that hyperfield Pascal forms are expressed as sums \( \sum_{(i,j) \in V_d
         +  +  .  .  .  .  .  .  .  .  .  .  .  .  .  .
         +  +  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
     \end{verbatim}
-    We see that \( \mathrm{diag}(1) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1\).
+    We see that \( \mathrm{sign}(\mathrm{diag}(1)) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1\). Note that this expression is \emph{independent} of the degree \( d \),
 \end{example}
 
-The previous example also demonstrates that the expression \( \mathrm{diag}(1) = x_{0,0} + x_{0,1} + x_{0,2} + x_{0,3} + x_{1,0} + x_{1,1} + x_{1,2} + x_{1,3} + y_{0,0} + y_{0,1} + y_{0,2} + y_{1,0} + y_{1,1} + y_{1,2} + y_{1,3} + c_0 + c_1 \) is \emph{independent} of the degree \( d \), i.e. if we were to consider the Pascal form \( \mathrm{diag}(1) \) in \( \mathbb{Z}^{V_{d}} \) for some arbitrary \( d \), the expression would still hold. This is great news since it allows us to express Pascal forms in terms of contraction variables for all degrees \( d \) at once.
+\begin{definition}
+    Let \( d \in \mathbb{N}_{\geq 11} \) and \( p \) be a hyperfield linear form on \( H^{V_d} \). We say \( p \) is \emph{contractable} for \( d \) if we can write \( p = \hat p \) for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \). 
+\end{definition}
 
-So far, we have only considered the contraction variables \( c_0, c_1, c_2 \), and \( c_3 \). As we might expect, we can also express some Pascal forms in terms of the contraction variables \( b_0, b_1, b_2, b_3 \), \( d_0, d_1, d_2, d_3 \), \( e_0, e_1, e_2, e_3 \), \( y_{i,j} \), and \( z_{i,j} \). We will now find these kinds of Pascal forms that can be represented in terms of the contraction variables independent of the degree \( d \). A good set of Pascal forms to consider are the Pascal forms \( \mathrm{diag}(k),  \mathrm{col}(k) \) and \( \mathrm{row}(k) \) for \( k = 0,1,2,3,d-3,d-2,d-1,d \).
+\begin{definition}
+    Let \( t \) be a formal variable. Define \( I = \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\} \). Let \( T \) be a formal linear combination of
+    \begin{align*}
+        \left\{\mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k \in I} \text{ or }\left\{\mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in I}.
+    \end{align*}
+    Let \( d \in \mathbb{N}_{\geq 11}\). We write \( p_d \) for the realization of \( T \) at \( t = d \); the realization \( p_d \) is just a linear form on \( \mathbb{Z}^{V_d} \) or  \( H^{V_d} \), respectively, where the formal variable \( t \) is replaced by the actual value \( d \).
+\end{definition}
+
+
+\begin{example}
+    Let \( d = 15 \). Consider the formal linear combination \( T = \mathrm{row}(3) - \mathrm{row}(t - 2) \). The realization \( p_d \) of \( T \) at \( t = d \) is the linear form \( p = \mathrm{row}(3) - \mathrm{row}(13) \). It is depicted in the figure below. Note that the realization \( p_d \) is contractable for all \( d \in \mathbb{N} \) with \( d \geq 15 \). So, we ask whether the linear form \( \hat p_d \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}]\) change with \( d \)? 
+
+    \pagebreak
+    \begin{verbatim}
+-350 
+-350   . 
+-285  65  65 
+-220  65   . -65 
+-165  55 -10 -10  55 
+-120  45 -10   .  10 -45 
+ -84  36  -9   1   1  -9  36 
+ -56  28  -8   1   .  -1   8 -28 
+ -35  21  -7   1   .   .   1  -7  21 
+ -20  15  -6   1   .   .   .  -1   6 -15 
+ -10  10  -5   1   .   .   .   .   1  -5  10 
+  -4   6  -4   1   .   .   .   .   .  -1   4  -6 
+  -1   3  -3   1   .   .   .   .   .   .   1  -3   3 
+   .   1  -2   1   .   .   .   .   .   .   .  -1   2  -1 
+   .   .  -1   1   .   .   .   .   .   .   .   .   1  -1   . 
+   .   .   .   1   .   .   .   .   .   .   .   .   .  -1   .   .         
+    \end{verbatim}
+    
+\end{example}
+
+\begin{definition}
+    Let \( D \in \mathbb{N} \) and \( T \) be a formal linear combination of
+    \begin{align*}
+        \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\}}.
+    \end{align*}
+    We say \( T \) is \emph{fixed-contractable} starting from degree \( D \) if all the following statements hold:
+    \begin{enumerate}
+        \item The realization \( p_d \) is contractable for all \( d \geq D \);
+        \item There exists a linear form \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \geq D  \);
+        \item There exists a linear form \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \( d \geq D  \).
+    \end{enumerate}
+\end{definition}
+
 
 \begin{proposition}\label{prop:contracted-part-1}
-    Let \( d \geq 11 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
+    Let \( T \in \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\}}\) be a formal form. Then, \( T \) is fixed-contractable starting from degree \( D = 11 \).
+\end{proposition}
+
+\begin{proof}
+    Let \( d \geq 11 \).
+    We have the following cases:
     \begin{enumerate}
-        \item \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), or
-        \item \( \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3)\), or
-        \item \( \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3) \), or
-        \item \( \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \).
+        \item Let \( T \in \left\{ \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{diag}(k)) \mid k = 0,1,2,3 \right\} \). We observe that the hyperfield form \( p_d \) has support contained in the areas \( X, C \), and \( Y \) from Figure \ref{fig:contractions-42342432}. This follows directly from Proposition \ref{skdmldskfmksdej}. We also see that \( p_d \) depends only on the column sums on \( C \).
+        \item Let \( T \in \left\{ \mathrm{sign}(\mathrm{col}(k)), \mathrm{sign}(\mathrm{diag}(t-k)) \mid k = 0,1,2,3 \right\} \). We see that \( p_d \) has support contained in the areas \( X, B \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We conclude that \( p_d \) only depends on the row sums on \( B \).
+        \item Let \( T \in \left\{ \mathrm{sign}(\mathrm{col}(t-k)), \mathrm{sign}(\mathrm{row}(t-k)) \mid k = 0,1,2,3 \right\} \). All the hyperfield forms \( p_d \) depend on entries in the area \( Y, D \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We see that \( p_d \) depends in area \( D \) on alternating diagonal sums. This shows that \( p_d \) is a sum of the contraction variables \( y_{i,j} \), \( z_{i,j} \), and \( d_k - e_k \).
+
     \end{enumerate}
-    Then, we have 
-    \begin{align*}
-        p = \sum_{i,j = 0}^3 \lambda_{i,j}^{(x)} x_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(y)} y_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(z)} z_{i,j} + \sum_{j=0}^3 \lambda_{j}^{(b)} b_j + \sum_{i=0}^3 \lambda_{i}^{(c)} c_i + \sum_{k=0}^3 \lambda_{k}^{(d)} d_k + \sum_{k=0}^3 \lambda_{k}^{(e)} e_k
-    \end{align*}
-    with coefficients \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \in H \).
-    
-    Define \( \lambda(p,d) \coloneqq \left(\lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \right) \) for the coefficients of \( p \) on \( H^{V_d} \). Then, we have
-    \begin{align*}
-        \lambda(p,d) &= \lambda(p,d+1) = \lambda(p,d+2) = \lambda(p,d+3) = \dots
-    \end{align*}
-    In other words, all the coefficients  \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \) are independent of the degree \( d \).
-\end{proposition}
-
-\begin{proof}
-    For case two and three we observe that the hyperfield form \( p \) has support contained in the areas \( X, C \), and \( Y \) from Figure \ref{fig:contractions-42342432}. This follows directly from Proposition \ref{skdmldskfmksdej}. We also see that \( p \) depends only on the column sums on \( C \).
-
-    For case one and four we see that \( p \) has support contained in the areas \( X, B \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We conclude that \( p \) depends only on the row sums on \( B \).
 \end{proof}
 
-Here is another example.
 
 \begin{example}
-    Consider \( \mathrm{diag}(3) \) and \( d = 11 \). Write  \( \mathrm{sign}(\mathrm{diag}(3)) = \sum_{i,j=0}^3 x_{i,j} + \sum_{i=0}^3 c_i + \sum_{i=0}^3 \sum^{i}_{j=0} y_{i,j} \), and we see that this linear form is independent of the degree \( d \).
-\end{example}
-
-
-\begin{proposition}\label{prop:contracted-part-2}
-    Let \( d \geq 12 \). Let \( p \) be a hyperfield form induced by one of the following Pascal forms on \( \mathbb{Z}^{V_d} \):
-    \begin{gather*}
-        \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3),
-        \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3).
-    \end{gather*}
-    Then, we have 
-    \begin{align*}
-        p = \sum_{i,j = 0}^3 \lambda_{i,j}^{(x)} x_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(y)} y_{i,j} + \sum_{i,j = 0}^3 \lambda_{i,j}^{(z)} z_{i,j} + \sum_{j=0}^3 \lambda_{j}^{(b)} b_j + \sum_{i=0}^3 \lambda_{i}^{(c)} c_i + \sum_{k=0}^3 \lambda_{k}^{(d)} d_k + \sum_{k=0}^3 \lambda_{k}^{(e)} e_k
-    \end{align*}
-    with coefficients \( \lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \in H \).
-    
-    Define \( \lambda(p,d) \coloneqq \left(\lambda_{i,j}^{(x)}, \lambda_{i,j}^{(y)}, \lambda_{i,j}^{(z)}, \lambda_{j}^{(b)}, \lambda_{i}^{(c)}, \lambda_{k}^{(d)}, \lambda_{k}^{(e)} \right) \) for the coefficients of \( p \) on \( H^{V_d} \). Then, we have
-    \begin{align*}
-        \lambda(p,d) &= \lambda(p,d+2) = \lambda(p,d+4) = \lambda(p,d+6) = \dots \\
-        \lambda(p,d+1) &= \lambda(p,d+3) = \lambda(p,d+5) = \lambda(p,d+7) = \dots 
-    \end{align*}
-    In other words, all the coefficients of forms on even degrees are independent, and all the coefficients of forms on odd degrees are independent of the degree \( d \).
-\end{proposition}
-
-\begin{proof}
-    All the hyperfield forms \( p \) depend on entries in the area \( Y, D \), and \( Z \) from Figure \ref{fig:contractions-42342432} by Proposition \ref{skdmldskfmksdej}. We see that \( p \) depends only on the alternating diagonal sums on \( D \) for \( x_{i,j} \) in the area \( D \). This shows that \( p \) is a sum of the contraction variables \( y_{i,j} \), \( z_{i,j} \), and \( d_k - e_k \).
-\end{proof}
-
-\begin{example}
-    The support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted in the following figure for \( d = 12 \) and \( d = 13 \):
+    The support of \( \mathrm{sign}(\mathrm{col}(d-3)) \) is depicted for \( d = 12 \) and \( d = 13 \):
     \begin{verbatim}
                              · 
 ·                            · ·    
@@ -714,12 +633,10 @@ Here is another example.
 · · · · · · · · + + + +      · · · · · · · · · - - - -
 · · · · · · · · · - - - -    · · · · · · · · · · + + + +
     \end{verbatim}
-    For \( d = 12 \), we may write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
-    
-    For \( d = 13 \), we may write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
+    For \( d = 12 \), we write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j} \). For \( d = 13 \) we write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
 \end{example}
 
-We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. Now, we apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
+We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. We also see that our row, column, and diagonal Pascal forms can be expressed by contraction variables; even more, this contraction form is independent of the degree \( d \). Let us apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
 
 \begin{definition}
     We define the index set \(  \Xi \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \).
@@ -760,7 +677,7 @@ Going from the world of hyperfield configurations to the world of \emph{contract
     \end{align*}
 \end{definition}
 
-The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we only consider weakly valid configuration; that are configurations whose negative support may only be contained in the yellow area below.
+The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{{V_d}} \) to elements in \( H^{\Xi} \) if \( \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}  \geq 0\). If one of the entries is negative, the map may output to some element \( (2^H)^{\Xi} \). To make life easier, we only consider \emph{weakly valid} configuration; these are configurations whose negative support is only contained in the yellow area below.
 
 \begin{figure}[H]
     \centering
@@ -777,31 +694,30 @@ The contraction map \( \mathrm{contr}_d \) maps hyperfield configurations \( \ma
     \end{enumerate}
 \end{definition}
 
-We consider \emph{weakly valid} hyperfield configurations because the contraction map \( \mathrm{contr}_d \) always outputs elements in \( H^{\Xi} \).
-
 \begin{definition}
     Let \( \mathbf{s} \in H^{\Xi} \) be a contracted hyperfield configuration. The \emph{positive support} of \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) is defined as the set of all symbols \( x_{i,j}, y_{i,j}, z_{i,j}, b_j, c_i, d_k, e_k \) such that the corresponding coefficients of \( \mathbf{s} \) equal to one.
 \end{definition}
 
 \begin{example}
-    Let \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{\Xi}\) be a contracted hyperfield configuration defined by 
-    \begin{align*}
-        x_{0,0} = -1, \quad x_{0,3} = 1, \quad x_{1,1} = 1, \quad, x_{3,0} = 1, \quad d_0 = 1, \quad e_0 = 1
-    \end{align*}
-    where all other entries are zero. Then, the positive support of \( \mathbf{s} \) is given by \( \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} \).
+    Let \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \in H^{\Xi}\) be a contracted hyperfield configuration defined by \( x_{0,0} = -1,  x_{0,3} = 1,  x_{1,1} = 1, x_{3,0} = 1, d_0 = 1,  e_0 = 1 \), and all other entries are zero. Then, the positive support of \( \mathbf{s} \) is given by \( \mathrm{supp}^+(\mathbf{s}) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} \).
 \end{example}
 
 \section{Proof}
 
-We are now ready to prove that for every valid integral outcome \( \mathbf{w} \) with \( |\mathrm{supp}^+(\mathbf{w})| = 4 \), we have \( \mathrm{deg}(\mathbf{w}) \leq 5 \). As in previous chapters, outcomes are characterized as roots of Pascal forms. We define the two systems of Pascal forms that valid outcomes must satisfy: \( \Phi_1 \coloneqq \left\{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i), \mathrm{diag}(d-i) \right\}_{i=1}^3 \), \( \Phi_2 \coloneqq \left\{ \mathrm{row}(d-i), \mathrm{col}(d-i) \right\}_{i=0}^3 \), and \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
+We now prove that for every valid outcome \( \mathbf{w} \) with \( |\mathrm{supp}^+(\mathbf{w})| = 4 \), we have \( \mathrm{deg}(\mathbf{w}) \leq 5 \). Define two systems of Pascal forms that valid outcomes must satisfy: 
+\begin{enumerate}
+    \item \( \Phi_1 \coloneqq \left\{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i), \mathrm{diag}(d-i) \right\}_{i=1}^3 \), 
+    \item \( \Phi_2 \coloneqq \left\{ \mathrm{row}(d-i), \mathrm{col}(d-i) \right\}_{i=0}^3 \), and 
+    \item \( \Phi \coloneqq \Phi_1 \cup \Phi_2 \).
+\end{enumerate}
 
-By Proposition \ref{prop:contracted-part-1}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_1 \) as \( \mathrm{sign}(p) = \hat p \)
-for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 11 \). This linear form is independent of the degree \( d \). To make notations consistent later, we set \( \hat p^{\mathrm{even}} \coloneqq  \hat p^{\mathrm{odd}}  \coloneqq \hat p\).
 
-Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfield forms induced by Pascal forms \( p \) in \( \Phi_2 \) as \( \mathrm{sign}(p) = \begin{cases}
+
+By Proposition \ref{prop:contracted-part-1}, we write all forms \( p \) in \( \Phi_1 \) as \( \mathrm{sign}(p) = \hat p \)
+for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 11 \). This linear form is independent of the degree \( d \). To make notations consistent later, we set \( \hat p^{\mathrm{even}} \coloneqq  \hat p^{\mathrm{odd}}  \coloneqq \hat p\). Similarly, by Proposition \ref{prop:contracted-part-1}, we write all forms \( p \) in \( \Phi_2 \) as \( \mathrm{sign}(p) = \begin{cases}
     \hat p^{\mathrm{even}} & \text{ if } d \text{ is even} \\
     \hat p^{\mathrm{odd}} & \text{ if } d \text{ is odd}
-\end{cases} \), where \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). These linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
+\end{cases} \), where \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) if \( d \geq 12 \). Again, these linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}}  \) are independent of the degree \( d \).
 
 \begin{definition}\label{def:sdjsndjknsdj}
     We define the following three solution sets:
@@ -814,7 +730,7 @@ Similarly, by Proposition \ref{prop:contracted-part-2}, we can write all hyperfi
     \end{enumerate}
 \end{definition}
 
-By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). This is the reason why we have defined \( \Gamma_d \) in the first place. 
+By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of degree \( d \) have supports in \( \Gamma_d \). 
 
 \begin{proposition}\label{prop:sign-sikjsfnf3223423432}
     Let \( d \geq 12 \). If \( d \) is even, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{even}}) \) holds. If \( d \) is odd, then \( \Gamma_d = \mathrm{contr}_d^{-1}(\Gamma^{\mathrm{odd}}) \) holds.
@@ -828,14 +744,14 @@ By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of 
 \end{proof}
 
 \begin{corollary}\label{cor:validwunfwufneuiw}
-    Let \( d \geq 12 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) holds.
+    Let \( d \geq 12 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \).
 \end{corollary}
 
 \begin{proof}
-    Define \( \mathbf{s} \coloneqq \mathrm{sign}(\mathbf{w}) \). By Proposition \ref{prop:sign-sikjsfnf322} we have \( \mathbf{s} \in \Gamma_d \). If \( d \) is even, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) by the previous proposition. If \( d \) is odd, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{odd}} \) by the previous proposition. This shows the claim.
+    Define \( \mathbf{s} \coloneqq \mathrm{sign}(\mathbf{w}) \). By Proposition \ref{prop:sign-sikjsfnf322} we have \( \mathbf{s} \in \Gamma_d \). If \( d \) is even, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{even}} \) by the previous proposition. If \( d \) is odd, then \( \mathrm{contr}_d(\mathbf{s}) \in \Gamma^{\mathrm{odd}} \) by the previous proposition.
 \end{proof}
 
-This corollary allows us to exclude certain outcomes as valid outcomes. Assume we have some contracted hyperfield configuration \( \xi \in H^{\Xi} \) that is not a root of some of the linear forms \( \hat p^{\mathrm{even}}, \hat p^{\mathrm{odd}} \) for \( p \in \Phi \). Then, any chipsplitting configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d( \mathrm{sign}(\mathbf{w})) = \xi \) is not a valid outcome.
+This corollary allows us to exclude certain supports as supports of valid outcomes. Assume we have a contracted hyperfield configuration \( \xi \in H^{\Xi} \) that is not a root of some \( \hat p \) for \( p \in \Phi \). Then, any chipsplitting configuration \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d( \mathrm{sign}(\mathbf{w})) = \xi \) is not a valid outcome.
 
 \begin{proposition}\label{prop:jasndkjsnjsnkjs}
     Let \( \mathbf{s} \in H^{V_d} \) be a valid hyperfield configuration of degree \( d \) with positive support size four or less. If \( d\geq 12 \), then \( \mathbf{s} \notin \Gamma_d \).
@@ -844,7 +760,7 @@ This corollary allows us to exclude certain outcomes as valid outcomes. Assume w
 \begin{proof}
     Let \( d \geq 12 \). For computing \( \Gamma_d \) we could use Algorithm \ref{alg:hyperfield_criterion:efficient} for all \( d = 12, 13, 14, \dots \) and so on, which is not feasible since we would compute solutions sets for many infinitely many degrees \( d \). Instead, we show that \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) is empty. By Proposition \ref{prop:sign-sikjsfnf3223423432}, \( \Gamma_d \) is empty as well for all \( d\geq 12 \).
 
-    To show that \(  \Gamma^{\mathrm{even}} \) is empty, we can just use Algorithm \ref{alg:hyperfield_criterion:efficient} and Remark \ref{rem:fiuhwiu3} with \(A \coloneqq \left\{ \hat p^{\mathrm{even}} \mid p \in \Phi \right\}\). Similarly, we compute \( \Gamma^{\mathrm{odd}} = \emptyset \) with \(A \coloneqq \left\{ \hat p^{\mathrm{odd}} \mid p \in \Phi \right\}\) and Algorithm \ref{alg:hyperfield_criterion:efficient}. The results are in Appendix TODO. This shows the claim. TODO: show that \( A \) is non-trivial.
+    To show that \(  \Gamma^{\mathrm{even}} \) is empty, we use Algorithm \ref{alg:hyperfield_criterion:efficient} and Remark \ref{rem:fiuhwiu3} with \(A \coloneqq \left\{ \hat p^{\mathrm{even}} \mid p \in \Phi \right\}\). Similarly, to compute that \( \Gamma^{\mathrm{odd}} \) is empty, we define \(A \coloneqq \left\{ \hat p^{\mathrm{odd}} \mid p \in \Phi \right\}\) and use Algorithm \ref{alg:hyperfield_criterion:efficient}. The implementation details are publicly available on GitHub in the file \texttt{chapter05.ipynb} \cite{ducrepo}.
 \end{proof}
 
 \begin{theorem}\label{thm:main-result-32432432432nkdnjkfd}
@@ -853,5 +769,5 @@ This corollary allows us to exclude certain outcomes as valid outcomes. Assume w
 
 \begin{proof}
     Let \( d \geq 6 \).
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) and degree \( d \). We have \( \mathrm{sign}(\mathbf{w}) \in \Gamma_d \). By the previous proposition, there is no such \( \mathrm{sign}(\mathbf{w}) \) for \( d \geq 12 \). By Proposition \ref{prop:jdngkjrenj3nw}, the degree of \( \mathrm{sign}(\mathbf{w}) = d \) is six or seven. So, we just need to check eight cases. Of these eight cases, we can exclude all of them by applying Algorithm \ref{alg:hyperfield_criterion:is_zero}. The result of this algorithm is that only the zero outcome is possible for all these cases. This shows that the degree of \( \mathbf{w} \) is at most five.
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with \( |\mathrm{supp}^+(\mathbf w)| = 4 \) and degree \( d \). We have \( \mathrm{sign}(\mathbf{w}) \in \Gamma_d \). By the previous proposition, there is no such \( \mathrm{sign}(\mathbf{w}) \) for \( d \geq 12 \). By Proposition \ref{prop:jdngkjrenj3nw}, the degree of \( \mathrm{sign}(\mathbf{w}) = d \) is six or seven. So, we check eight cases. Of these eight cases, we exclude all of them by applying Algorithm \ref{alg:hyperfield_criterion:is_zero}, see the file \texttt{chapter05.ipynb} in \cite{ducrepo}.
 \end{proof}
