@@ -77,7 +77,7 @@ We now prove Proposition \ref{prop:parametrization}.
 \end{corollary}
 
 \begin{definition}
-    The degree \( \mathrm{deg}(\mathcal{M}) \) of a one-dimensional discrete statistical models with rational MLE \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
+    The \emph{degree} \( \mathrm{deg}(\mathcal{M}) \) of a one-dimensional discrete statistical models with rational MLE \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
 \end{definition}
 
 \begin{remark}\label{rem:equivalent-models}
@@ -92,11 +92,13 @@ We now prove Proposition \ref{prop:parametrization}.
     Let \( \mathcal{M} \) be a model represented by \( (w_k, i_k, j_k)_{k=0}^n \). The set of exponent pairs \( (i_k, j_k)_{k=0}^n \) is called the support of \( \mathcal{M} \), denoted by \( \mathrm{supp}(\mathcal{M}) \).
 \end{definition}
 
-This was our first step towards understanding the structure of one-dimensional discrete statistical models with rational MLE. Next, we introduce reduced models.
+We adopt the convention that, throughout the remainder of this thesis, models refer to one-dimensional discrete statistical models with a rational MLE.
+
 
 \section{Reduced Models}
 
-Models in this section refer to one-dimensional discrete statistical models with rational MLE.
+We introduce reduced models -- the first building block for the classification of models.
+
 
 \begin{definition}
     We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{reduced} if \( (i_k, j_k) \neq \mathbf 0 \) for all \( k = 0, \dots, n \), and \( (i_k, j_k) \neq (i_l, j_l) \) for all \( k \neq l \).
@@ -112,22 +114,21 @@ We use functions to represent reduced models due to \( (i_k, j_k) \neq (i_l, j_l
 Reduced models are our first building blocks for the classification of statistical models because the following two propositions show that non-reduced models are transformed into a reduced model by a sequence of linear embeddings.
 
 \begin{proposition}\label{prop:linear-embedding-1}
-    Let \( n \in \mathbb{N}_{>0} \).
-    Let \( \mathcal{M} \) be a model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_l, j_l) = \mathbf{0} \) for some index \( l \), then there exist a model \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k = 0, \dots, n \) such that \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \), where \( \Psi_{\lambda, k}: \Delta_{n-1} \to \Delta_n \) is defined as \(  p_i \mapsto \begin{cases}
+    Let \( n \in \mathbb{N}_{>0} \) and \( \mathcal{M} \) be a statistical model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_l, j_l) = \mathbf{0} \) for some index \( l \in \mathbb{N} \), then there exist \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k \in \{ 0, \dots, n \} \) such that \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \), where \( \Psi_{\lambda, k}: \Delta_{n-1} \to \Delta_n \) is defined as \(  p_i \mapsto \begin{cases}
         \lambda p_i & \text{if } k \neq i, \\
         1-\lambda & \text{otherwise }
-    \end{cases} \)
+    \end{cases} \).
 \end{proposition}
 
 \begin{proof}
-    Let \( (i_l, j_l) = \mathbf{0} \) for some index \( l \). If \( w_l = 1 \), then \( w_m = 0 \) for all \( m \neq l \); this contradicts \( w_m > 0 \) by Proposition \ref{prop:parametrization}. Set \( \lambda = 1 - w_l > 0 \) and \( k = l \). Define the model \( \mathcal{M}' \) represented by \( \left(\frac{w_h}{1-w_l}, i_h, j_h\right)^n_{h=0, h \neq l} \).
-    Then, \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \).
+    Let \( (i_l, j_l) = (0,0) \) for some index \( l \in \mathbb{N} \). If \( w_l = 1 \), then \( w_m = 0 \) for all \( m \neq l \); this contradicts \( w_m > 0 \) by Proposition \ref{prop:parametrization}. Set \( \lambda \coloneqq 1 - w_l > 0 \) and \( k \coloneqq l \). Define the statistical model \( \mathcal{M}' \) by \( \left(\frac{w_h}{1-w_l}, i_h, j_h\right)^n_{h=0, h \neq l} \).
+    Then, \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \) holds.
 \end{proof}
 
 \begin{proposition}\label{prop:linear-embedding-2}
     Let \( n \in \mathbb{N}_{>0} \).
-    Let \( \mathcal{M} \) be model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_m, j_m) = (i_l, j_l)  \) for \( m \neq l \), then there exist a model \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k,h = 0, \dots, n \) such that \( \mathcal{M} = \Psi_{\lambda,k,h}(\mathcal{M}') \), 
-    where \( \Psi_{\lambda, k,h}: \Delta_{n-1} \to \Delta_n \) is defined as \(  p_i \mapsto \begin{cases}
+    Let \( \mathcal{M} \) be model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_m, j_m) = (i_l, j_l)  \) for \( m \neq l \), then there exist \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k,h = 0, \dots, n \) such that \( \mathcal{M} = \Psi_{\lambda,k,h}(\mathcal{M}') \), 
+    where we define \( \Psi_{\lambda, k,h}: \Delta_{n-1} \to \Delta_n,  p_i \mapsto \begin{cases}
          p_i & \text{if } i \notin \left\{ k,h \right\}, \\
         \lambda p_k & \text{if } k = i, \\
         (1-\lambda) p_k & \text{if } h = i. \\
@@ -135,42 +136,44 @@ Reduced models are our first building blocks for the classification of statistic
 \end{proposition}
 
 \begin{proof}
-    Define \( \lambda = \frac{w_m}{w_m + w_l} \), \( k = m \), and \( h = l \). Define the model \( \mathcal{M}' \) represented by \(  \left( w_g + \delta_{gm}w_l, i_g, j_g  \right)^n_{g=0, g \neq l} \).
-    Then, \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \).
+    Set \( \lambda \coloneqq \frac{w_m}{w_m + w_l} \), \( k \coloneqq m \), and \( h \coloneqq l \). Define \( \mathcal{M}' \) by \(  \left( w_g + \delta_{gm}w_l, i_g, j_g  \right)^n_{g=0, g \neq l} \).
+    Then, \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \) holds.
 \end{proof}
 
-Repeated application of the two propositions transforms any model into a reduced model.
+Repeated application of these propositions transforms any model into a reduced model.
 
 \begin{corollary}\label{cor:reduced-models}
-    If \( \Delta_n \) contains a model of degree \( d \), then there also exists a reduced model of degree \( d \) in \( \Delta_m \) for some \( m \leq n \).
+    Let \( n \in \mathbb{N}_{> 0} \).
+    If \( \Delta_n \) contains a model of degree \( d \), then there exists \( m \leq n \) such that \( \Delta_m \) contains a reduced model of degree \( d \).
 \end{corollary}
 
 
 \section{Fundamental Models}
 
-As before, models refer to one-dimensional discrete statistical models with rational MLE. The main building blocks for the classification of models are \emph{fundamental models}; we will see that reduced models come from fundamental models.
+We present \emph{fundamental models}, which are building blocks for reduced models.
 
 \begin{definition}\label{def:fundamental-model}
-    We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{fundamental} if it is reduced and the equation \( p_0 + \dots p_n \equiv 1 \) for given \( (i_k, j_k)_{k=0}^n \) uniquely determines the weights \( (w_k)_{k=0}^n \).
+    We call a model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{fundamental} if it is reduced and the equation \( \sum_{k=0}^n p_k  = \sum_{k=0}^n x_k \theta^{i_k} (1-\theta)^{j_k} = 1, \forall \theta \in [0,1] \) has a unique solution \( (x_k)_{k=0}^n \) with \( x_k = w_k \).
 \end{definition}
 
 \begin{example}
-    The binomial model with two trials is fundamental. Given \( (i_0, j_0) = (0,2) \), \( (i_1, j_1) = (1,1) \), and \( (i_2, j_2) = (2,0) \), the equation \( p_0 + p_1 + p_2 = w_0\theta^2 + w_1\theta(1-\theta) + w_2(1-\theta)^2 \equiv 1 \) uniquely determines the weights \( w_0 = 1, w_1 = 2, w_2 = 1 \). To see this observe that this equation is equivalent to \( w_0\theta^2 + w_1\theta - w_1 \theta^2 + w_2 -w_22\theta + w_2\theta^2 = 1\) which is equivalent to solving \( w_2 - 1 + \theta(w_1 - 2w_2) + \theta^2(w_0 - w_1 + w_2) = 0 \) for all \( \theta \in \mathbb{R} \).
+    Consider the binomial model with two trials. Its exponent pairs read \( (i_0, j_0) = (0,2) \), \( (i_1, j_1) = (1,1) \), and \( (i_2, j_2) = (2,0) \). Then, the equation is \( p_0 + p_1 + p_2 = x_0\theta^2 + x_1\theta(1-\theta) + x_2(1-\theta)^2 \equiv 1 \); it has a unique solution \( w_0 = 1, w_1 = 2, w_2 = 1 \). To see this, observe that the equation is equivalent to \( x_0\theta^2 + x_1\theta - x_1 \theta^2 + x_2 -2x_2\theta + x_2\theta^2 = 1\), which in turn is equivalent to solving \( x_2 - 1 + \theta(x_1 - 2x_2) + \theta^2(x_0 - x_1 + x_2) = 0 \) for all \( \theta \in [0,1] \). Thus, the binomial model is fundamental.
 \end{example}
 
 \begin{example}\label{ex:prob-simplex-0}
-    Consider the probability simplex \( \Delta_0 \). It only contains the model \( 1 \) which is fundamental.
+    The probability simplex \( \Delta_0 \) only contains the model \( 1 \), which is fundamental.
 \end{example}
 
 \begin{example}\label{ex:prob-simplex-1}
-    Now, consider the probability simplex \( \Delta_1 \). It only contains the models \( \theta \mapsto (\theta, 1-\theta) \) and \( \theta \mapsto (1-\theta, \theta) \) which are equivalent. They are fundamental.
+    Consider \( \Delta_1 \). It only contains the models \( \theta \mapsto (\theta, 1-\theta) \) and \( \theta \mapsto (1-\theta, \theta) \). Both models are equivalent and fundamental.
 \end{example}
 
-Fundamental models are the building blocks for all reduced models.
+We use \emph{composition} to construct reduced models from fundamental models.
 
 \begin{definition}
-    Let \( \mathcal{M} \) and \( \mathcal{M}' \) be reduced models which are represented by functions \( f,g : \mathbb{Z}^2 \to \mathbb{R}_{\geq 0} \), see Remark \ref{rem:representation-of-models-by-functions}. Let \( \mu \in (0,1) \). The \emph{composite} \( \mathcal{M} *_\mu \mathcal{M}' \) of \( \mathcal{M} \) and \( \mathcal{M}' \) is the reduced model represented by the function \(  (i,j) \mapsto \mu f(i,j) + (1-\mu) g(i,j) \).
+    Let \( \mu \in (0,1) \). Let \( \mathcal{M} \) and \( \mathcal{M}' \) be reduced models represented by \( f,g : \mathbb{Z}^2 \to \mathbb{R}_{\geq 0} \). The \emph{composite} \( \mathcal{M} *_\mu \mathcal{M}' \) is defined as the model represented by \(  (i,j) \mapsto \mu f(i,j) + (1-\mu) g(i,j) \). It is easy to see that \( \mathcal{M} *_\mu \mathcal{M}' \) is a reduced model.
 \end{definition}
+
 
 
 % \begin{proposition}
@@ -192,22 +195,17 @@ Fundamental models are the building blocks for all reduced models.
 \end{proposition}
 
 \begin{proof}
-    For \( \Delta_0 \) and \( \Delta_1 \) we know that they only contain fundamental models, see Examples \ref{ex:prob-simplex-0} and \ref{ex:prob-simplex-1}. 
+    The simplices \( \Delta_0 \) and \( \Delta_1 \) contain only fundamental models by Example \ref{ex:prob-simplex-0} and \ref{ex:prob-simplex-1}. 
     
-    Assume we are given \( \Delta_n \) with \( n \geq 2 \), and let \( \mathcal{M} \) be a model that is not fundamental. We aim to show that \( \mathcal{M} \) can be expressed as a composite of two models, \( \mathcal{M}' \) and \( \mathcal{M}'' \), whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Assume this is indeed the case. Then, by applying the same argument to \( \mathcal{M}' \) and \( \mathcal{M}'' \), we can recursively decompose each non-fundamental model into models with smaller supports. Since \( \mathrm{supp}(\mathcal{M}) \) is finite, this recursive decomposition must eventually terminate, yielding a decomposition of \( \mathcal{M} \) into fundamental models. Thus, we have shown that any reduced model is the composite of a finite number of fundamental models. 
+    Assume \( n \geq 2 \). Let \( \mathcal{M} \in \Delta_n \) be a model that is not fundamental. We aim to show that \( \mathcal{M} \) can be expressed as a composite of two models, \( \mathcal{M}' \) and \( \mathcal{M}'' \), whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Assume this is indeed the case. Then, by applying the same argument to \( \mathcal{M}' \) and \( \mathcal{M}'' \), we can recursively decompose each non-fundamental model into models with smaller supports. Since \( \mathrm{supp}(\mathcal{M}) \) is finite, this recursive decomposition eventually terminates, yielding a decomposition of \( \mathcal{M} \) into fundamental models. Thus, we have shown that any reduced model is the composite of a finite number of fundamental models. 
 
     Let us prove that \( \mathcal{M} \) is the composite of two models whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Since \( \mathcal{M} \) is not fundamental, the equation \( p_0 + \dots + p_n = 1 \) has distinct solutions \( \mathbf w, \mathbf w' \in \mathbb{R}^{n+1}_{> 0} \). Define \( \mathbf v \coloneqq \mathbf w - \mathbf w' \neq \mathbf 0 \). Then, for all \( \theta \in (0,1) \) we have \( \sum_{k=0}^n v_k \theta^{i_k}(1-\theta)^{j_k} = 0  \).
     Observe that there are strictly positive and negative coefficients \( v_k \). 
     
-    Define \( \lambda \coloneqq \min \left\{ \frac{w_k}{\lvert v_k \rvert} : k = 0, \dots, n, \; v_k < 0 \right\} \), \( u_k \coloneqq w_k + \lambda v_k \) for \(k = 0, \dots, n \), and \( S_1 \coloneqq \left\{ (i_k, j_k) : k=0, \dots, n, \; u_k \neq 0 \right\} \). Note that \( \lambda > 0 \) since all the coefficients \( w_k \) are strictly positive by definition. Also observe that \( u_k \geq 0 \) if \( v_k \geq 0 \). Moreover, by definition \( \frac{w_k}{\lvert v_k \rvert} \geq \lambda \) for all \( k \geq 0 \). Hence, if \( v_k < 0 \), we also have \( \frac{u_k}{v_k} = \frac{w_k}{v_k} + \lambda  \leq 0\). Multiplying by \( v_k < 0 \) we obtain \( u_k \geq 0 \). All in all, we have \( u_k \geq 0 \) for all \( k = 0, \dots, n \). Moreover, \( u_k = 0 \) if and only if \( v_k < 0 \) and \( \lambda = \frac{w_k}{\lvert v_k \rvert} \). This shows that \( S_1 \subsetneq \mathrm{supp}(\mathcal{M}) \). Since \( u_0 + \dots u_n = 1 \), we have found a reduced model \( \mathcal{M}' \) represented by \( (u_k, i_k, j_k)_{(i_k,j_k) \in S_1} \).
+    We define \( \lambda \coloneqq \min \left\{ \frac{w_k}{\lvert v_k \rvert} : k = 0, \dots, n, \; v_k < 0 \right\} \), \( u_k \coloneqq w_k + \lambda v_k \) for \(k = 0, \dots, n \), and \( S_1 \coloneqq \left\{ (i_k, j_k) : k=0, \dots, n, \; u_k \neq 0 \right\} \). Note that \( \lambda > 0 \) since all the coefficients \( w_k \) are strictly positive by definition. Also observe that \( u_k \geq 0 \) if \( v_k \geq 0 \). Moreover, we have \( \frac{w_k}{\lvert v_k \rvert} \geq \lambda \) for all \( k \geq 0 \). Hence, if \( v_k < 0 \) holds, we have \( \frac{u_k}{v_k} = \frac{w_k}{v_k} + \lambda  \leq 0\). Multiplying by \( v_k < 0 \), we obtain \( u_k \geq 0 \). All in all, we have \( u_k \geq 0 \) for all \( k = 0, \dots, n \). Moreover, \( u_k = 0 \) holds if and only if \( v_k < 0 \) and \( \lambda = \frac{w_k}{\lvert v_k \rvert} \) holds. This shows that \( S_1 \subsetneq \mathrm{supp}(\mathcal{M}) \). Since we have \( u_0 + \dots u_n = 1 \), we found a reduced model \( \mathcal{M}' \) represented by \( (u_k, i_k, j_k)_{(i_k,j_k) \in S_1} \).
 
-    For the second model, we define
-    \begin{align*}
-        \mu &\coloneqq \min \left\{ \frac{w_k}{u_k} : k = 0, \dots, n, \; u_k \neq 0 \right\}, \\
-        t_k &\coloneqq \frac{w_k - \mu u_k}{1 - \mu} \quad \text{for } k = 0, \dots, n, \\
-        S_2 &\coloneqq \left\{ (i_k, j_k) : k=0, \dots, n, \; t_k \neq 0 \right\}.
-    \end{align*}
-    Similarly, \( \mu > 0 \). We have \( \mu < 1 \) because some \( v_k \) is positive implying \( u_k > w_k \). By definition, we have \( t_k \geq 0 \), and \( t_k = 0 \) if and only if \( u_k \neq 0 \) and \( \mu = \frac{w_k}{u_k} \). This shows that \( S_2 \subsetneq  \mathrm{supp}(\mathcal{M}) \) and \( S_1 \cup S_2 = \mathrm{supp}(\mathcal{M}) \). Since \( t_0 + \dots + t_n = 1 \), we have found a reduced model \( \mathcal{M}'' \) represented by \( (t_k, i_k, j_k)_{(i_k,j_k) \in S_2} \).
+    For the second model \( \mathcal{M}'' \), we define \( \mu \coloneqq \min \left\{ \frac{w_k}{u_k} : k = 0, \dots, n, \; u_k \neq 0 \right\} \), \( t_k \coloneqq \frac{w_k - \mu u_k}{1 - \mu} \) for \(  k = 0, \dots, n \), and \( S_2 \coloneqq \left\{ (i_k, j_k) : k=0, \dots, n, \; t_k \neq 0 \right\} \).
+    As before, we have \( \mu > 0 \). Additionally, \( \mu < 1 \) holds because we have \( v_k > 0 \) implying \( u_k > w_k \). By definition, we have \( t_k \geq 0 \) and \( t_k = 0 \) if and only if \( u_k \neq 0 \) and \( \mu = \frac{w_k}{u_k} \). This shows that \( S_2 \subsetneq  \mathrm{supp}(\mathcal{M}) \) and \( S_1 \cup S_2 = \mathrm{supp}(\mathcal{M}) \). Since \( t_0 + \dots + t_n = 1 \), we found a reduced model \( \mathcal{M}'' \) represented by \( (t_k, i_k, j_k)_{(i_k,j_k) \in S_2} \).
 
     Finally, we see that \( w_k = \mu u_k + (1-\mu) t_k\). This shows that \( \mathcal{M} = \mathcal{M}' *_\mu \mathcal{M}'' \).
 \end{proof}
@@ -219,29 +217,27 @@ Applying the previous proposition with Corollary \ref{cor:reduced-models} yields
 \end{corollary}
 
 \begin{example}
-For the two-dimensional probability simplex \( \Delta_2 \), we can classify all models. Again, models refer to one-dimensional discrete statistical models with rational MLE. Note that the model \( \mathcal{M} \) parametrized by \( \theta \mapsto (\theta, 1-\theta) \) satisfies \( \mathcal{M} *_\mu \mathcal{M} = \mathcal{M} \) for all \( \mu \). Since \( \Delta_1 \) only contains the model \( \theta \mapsto (\theta, 1-\theta) \), we can conclude that \( \Delta_2 \) only contains fundamental models or models that are not reduced.
+We classify all models for \( \Delta_2 \). Note that the model \( \mathcal{M} \) parametrized by \( \theta \mapsto (\theta, 1-\theta) \) satisfies \( \mathcal{M} *_\mu \mathcal{M} = \mathcal{M} \) for all \( \mu \in (0,1) \). Since \( \Delta_1 \) only contains this model, we conclude that \( \Delta_2 \) only contains fundamental or non-reduced models.
 
-To find all the fundamental models in \( \Delta_2 \), we need to check for all sets \( S = \left\{ (i_k,j_k)\right\}_{k=0}^2 \subset \mathbb{Z}^2_{>0} \) of size three if the equation \( p_0 + p_1 + p_2 = \sum_{k=0}^2 w_k \theta^{i_k}(1-\theta)^{j_k} = 1 \) has a unique solution \( (w_0, w_1, w_2) \). As we can see, a priori infinitely many sets \( S \) need to be checked. However, as we will see in the next section, only those sets \( S \) with \( \max\left\{ i+j : (i,j) \in S \right\} \leq 2n -1 = 3 \) need to be considered. Clearly, this reduces the number of sets \( S \) to be checked to a finite number.
-
-Only the supports \( \{ (0,3), (1,1), (3,0) \}\), \( \{ (0,2), (1,1), (2,0) \}\), \( \{ (0,1), (1,1), (2,0) \} \), and \( \{ (0,2),(1,0),(1,1) \} \) uniquely determine the weights \( (w_0, w_1, w_2) \). 
-These supports correspond to the fundamental models \( ((1-\theta)^3, 3\theta(1-\theta), \theta^3) \), \( ((1-\theta)^2, 2\theta(1-\theta), \theta^2) \), \( (1-\theta, \theta(1-\theta), \theta^2) \), and \( ((1-\theta)^2, \theta, \theta(1-\theta)) \); note that the last model is equivalent to the third model by \( \theta \mapsto 1-\theta \) and a permutation of the coordinates.
+To find all fundamental models in \( \Delta_2 \), we check for all sets \( S = \left\{ (i_k,j_k)\right\}_{k=0}^2 \subset \mathbb{Z}^2_{>0} \) of size three if the equation \( p_0 + p_1 + p_2 = 1 \) has a unique solution. A priori, infinitely many sets \( S \) must be checked; we will see in the next section that it suffices to check only those sets \( S \) with degree \( \mathrm{deg}(S) \coloneqq \max\left\{ i+j : (i,j) \in S \right\}  \) at most three. An exhaustive search yields the following supports for fundamental models: \( \{ (0,3), (1,1), (3,0) \}\), \( \{ (0,2), (1,1), (2,0) \}\), \( \{ (0,1), (1,1), (2,0) \} \), and \( \{ (0,2),(1,0),(1,1) \} \); they correspond to fundamental models \( ((1-\theta)^3, 3\theta(1-\theta), \theta^3) \), \( ((1-\theta)^2, 2\theta(1-\theta), \theta^2) \), \( (1-\theta, \theta(1-\theta), \theta^2) \), and \( ((1-\theta)^2, \theta, \theta(1-\theta)) \).  Note that the last model is viewed as equivalent to the third model because we can use the parametrization \( \theta \mapsto 1-\theta \) and a suitable permutation of the coordinates to obtain the third model.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/fundamental-models-delta-2.png}
+    \includegraphics[width=0.9\textwidth]{assets/fundamental-models-delta-2.png}
     \caption{From left to right, the illustration depicts the models parametrized \( ((1-\theta)^3, 3\theta(1-\theta), \theta^3) \), \( ((1-\theta)^2, 2\theta(1-\theta), \theta^2) \), \( (1-\theta, \theta(1-\theta), \theta^2) \), and \( ((1-\theta)^2, \theta, \theta(1-\theta)) \).}
-
-    \includegraphics[width=0.55\textwidth]{assets/non-red-models-delta-2.png}
-    \caption{This illustration depicts two non-reduced models in \( \Delta_2 \) for \( \lambda = \frac{1}{3} \). They are parametrized by \( \theta \mapsto (\frac{2}{3}\theta, \frac{1}{3}, \frac{2}{3}(1 - \theta)) \) and \( \theta \mapsto (1-\theta, \frac{1}{3}\theta, \frac{2}{3}\theta) \). All other non-reduced models can be obtained by varying \( \lambda \).} 
 \end{figure}
 
-We just computed all fundamental models of degree three or less in \( \Delta_2 \). We will see shortly that these are all models in the probability simplex \( \Delta_2 \). Of course, \( \Delta_2 \) contains non-reduced models, too. These are models that come from linear embeddings \( \Psi_{\lambda,k} \) and \( \Psi_{\lambda,k,h} \), see Proposition \ref{prop:linear-embedding-1} and Proposition \ref{prop:linear-embedding-2}. There are infinitely many of them, and for \( \lambda = \frac{1}{3} \) we obtain the models \( \theta \mapsto (\frac{2}{3}\theta, \frac{1}{3}, \frac{2}{3}(1 - \theta)) \) and \( \theta \mapsto (1-\theta, \frac{1}{3}\theta, \frac{2}{3}\theta) \).
+We have computed all fundamental models of degree at most three in \( \Delta_2 \). Of course, there exist non-reduced models, too. They come from linear embeddings \( \Psi_{\lambda,k} \) and \( \Psi_{\lambda,k,h} \), and for \( \lambda = \frac{1}{3} \) we obtain the models \( \theta \mapsto (\frac{2}{3}\theta, \frac{1}{3}, \frac{2}{3}(1 - \theta)) \) and \( \theta \mapsto (1-\theta, \frac{1}{3}\theta, \frac{2}{3}\theta) \).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{assets/non-red-models-delta-2.png}
+    \caption{This illustration depicts two non-reduced models in \( \Delta_2 \) parametrized by \( \theta \mapsto (\frac{2}{3}\theta, \frac{1}{3}, \frac{2}{3}(1 - \theta)) \) and \( \theta \mapsto (1-\theta, \frac{1}{3}\theta, \frac{2}{3}\theta) \).} 
+\end{figure}
 \end{example}
 
 \begin{theorem}\label{thm:classification-jekns}
-    Every one-dimensional discrete statistical model with rational MLE in \( \Delta_n \) is the image of a reduced model in \( \Delta_m \) under a linear embedding \( \Delta_m \to \Delta_n \) for some \( m \leq n \).
-
-    Moreover, every reduced model \( \mathcal{M} \subset \Delta \) can be written as a composite of finitely many fundamental models \( \mathcal{M} = \mathcal{M}_1 *_{\mu_1} ( \dots *_{\mu_{m-2}}( \mathcal{M}_{m-1} *_{\mu_{m-1}} \mathcal{M}_m) ) \)
+    Every model in \( \Delta_n \) is the image of a reduced model in \( \Delta_m \) under a linear embedding \( \Delta_m \to \Delta_n \) for some \( m \leq n \). Moreover, every reduced model \( \mathcal{M} \subset \Delta \) can be written as a composite of finitely many fundamental models \( \mathcal{M} = \mathcal{M}_1 *_{\mu_1} ( \dots *_{\mu_{m-2}}( \mathcal{M}_{m-1} *_{\mu_{m-1}} \mathcal{M}_m) ) \)
     for some \( m < n \) and \( \mu_1, \dots, \mu_m \in (0,1) \).
 \end{theorem}
 
@@ -251,10 +247,12 @@ We just computed all fundamental models of degree three or less in \( \Delta_2 \
 
 \section{On the Finiteness of Fundamental Models}
 
-After establishing that fundamental models serve as the building blocks for all models, we will prove that for \( n \leq 4 \), there are only finitely many fundamental models in \( \Delta_n \). This result was first established by Bik and Marigliano, and we adopt their approach. To begin, we present the following proposition.
+
+
+After establishing that fundamental models are building blocks for all models, we dedicate ourselves to the proof that only finitely many fundamental models in \( \Delta_n \) for \( n \leq 4 \) exist -- a result that was first established by Bik and Marigliano \cite{bik2022classifying}.
 
 \begin{theorem}\label{thm:degree-fundamental-models}
-    Let \( \mathcal{M} \) be a one-dimensional discrete statistical model with rational MLE in \( \Delta_n \). For \(n \leq 4 \), we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
+    Let \( \mathcal{M} \in \Delta_n \) be a model. For \(n \leq 4 \), we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
 \end{theorem}
 
 Given this theorem, it is easy to show the finiteness of fundamental models.
@@ -276,7 +274,7 @@ It turns out that proving Theorem \ref{thm:degree-fundamental-models} only for f
 
 \begin{proof}
     Let $N \in \mathbb{N}$ and $n \leq N$.
-    Assume there is some non-fundamental model $\mathcal{M}'$ in $\Delta_n$ of degree greater than $2n - 1$. By Corollary \ref{cor:fundamental-models-ksmlkdf} there exists a fundamental model $\mathcal{M}$ in $\Delta_m$ for some $m < n$ of degree greater than $2m - 1$. This contradicts the assumption that the degree of fundamental models is at most $2n' - 1$ for all $n' \leq N$.
+    Assume that there is a non-fundamental model $\mathcal{M}'$ in $\Delta_n$ of degree greater than $2n - 1$. By Corollary \ref{cor:fundamental-models-ksmlkdf}, there exists a fundamental model $\mathcal{M}$ in $\Delta_m$ of degree greater than $2m - 1$ for some $m < n$. This contradicts the assumption that the degree of fundamental models is at most $2k - 1$ for all $k \leq N$.
 \end{proof}
 
 This justifies that our north star is to prove the following theorem.
@@ -285,4 +283,4 @@ This justifies that our north star is to prove the following theorem.
     Let \( \mathcal{M} \) be a fundamental model in \( \Delta_n \). For \(n \leq 4 \), we have \( \mathrm{deg}(\mathcal{M}) \leq 2n - 1\).
 \end{theorem}
 
-The first step is introducing a combinatorial puzzle to count fundamental models using the sequence \((w_k, i_k, j_k)_{k=0}^{n}\), which characterizes these models. 
+The first step towards our north star is introducing a combinatorial puzzle to count fundamental models using the defining sequence \((w_k, i_k, j_k)_{k=0}^{n}\).
