@@ -81,10 +81,6 @@ The number of cases to check has increased by a factor of hundred compared to th
 To reduce the number of cases to check, we want to generate a set of hyperfield Pascal forms that are \emph{fixed-contractable}.
 
 \begin{definition}
-    Let \( d \in \mathbb{N}_{\geq 15} \) and \( p \) be a hyperfield linear form on \( H^{V_d} \). We say \( p \) is \emph{contractable} for \( d \) if we can write \( p = \hat p \) for some linear form \( \hat p \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \). 
-\end{definition}
-
-\begin{definition}
     Let \( d \in \mathbb{N}_{\geq 15} \), \( k = 0, \dots ,4 \), and \( p \) be a hyperfield linear form on \( H^{V_d} \). We say \( p \) is \emph{contractable} for \( d \) on \( b_k \) if we can write
     \begin{align*}
         p = \sum_{(i,j) \in V_d \setminus \left\{ (5,k), \dots, (d-k-5, k) \right\}} \lambda_{i,j} x_{i,j}  +\lambda b_k \quad \text{for} \quad b_k \coloneqq x_{5,k} + \dots + x_{d-5-k,k}
@@ -97,65 +93,8 @@ To reduce the number of cases to check, we want to generate a set of hyperfield 
     Clearly, \( p \) is contractable for \( d \) if and only if it is contractable for \( d \) on \( b_k \), \( c_k \), \( d_k \), and \( e_k \) for all \( k = 0, \dots, 4 \).
 \end{remark}
 
-We are interested in linear combinations of hyperfield Pascal forms \( p \) that are contractable such that \( \hat p \) is independent of the degree \( d \). We call such linear combinations \emph{fixed-contractable} because \( \hat p \) is \emph{fixed} over all degrees \( d \). To formalize this, we introduce the following definition.
-
 \begin{definition}
-    Let \( t \) be a formal variable and \( T \) be a formal linear combination of
-    \begin{align*}
-        \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\}}.
-    \end{align*}
-    Let \( d \in \mathbb{N}_{\geq 15}\). We write \( p_d \) for the realization of \( T \) for \( t = d \); the realization \( p_d \) is just a linear form on \( H^{V_d} \) where we replace the formal variable \( t \) by an actual value \( d \).
-\end{definition}
-
-
-\pagebreak
-
-\begin{example}
-    Consider the formal linear combination \( T = \mathrm{row}(3) - row(t - 2) \). Let \( d = 15 \). The realization \( p_d \) of \( T \) for \( t = d \) is the linear form depicted in the following figure
-    \begin{verbatim}
--350 
--350    . 
--285   65   65 
--220   65    .  -65 
--165   55  -10  -10   55 
--120   45  -10    .   10  -45 
- -84   36   -9    1    1   -9   36 
- -56   28   -8    1    .   -1    8  -28 
- -35   21   -7    1    .    .    1   -7   21 
- -20   15   -6    1    .    .    .   -1    6  -15 
- -10   10   -5    1    .    .    .    .    1   -5   10 
-  -4    6   -4    1    .    .    .    .    .   -1    4   -6 
-  -1    3   -3    1    .    .    .    .    .    .    1   -3    3 
-   .    1   -2    1    .    .    .    .    .    .    .   -1    2   -1 
-   .    .   -1    1    .    .    .    .    .    .    .    .    1   -1    . 
-   .    .    .    1    .    .    .    .    .    .    .    .    .   -1    .    .         
-    \end{verbatim}
-    The realization \( p_d \) is contractable for all \( d \in \mathbb{N} \) with \( d \geq 15 \), but does the linear form \( \hat p_d \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}]\) change with \( d \)? We will show that it does not change.
-\end{example}
-
-\begin{definition}
-    Let \( T \) be a formal linear combination of
-    \begin{align*}
-        \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\}}.
-    \end{align*}
-    We say \( T \) is \emph{fixed-contractable} if all of the following statements hold:
-    \begin{enumerate}
-        \item The realization \( p_d \) is contractable for all \( d \in \mathbb{N} \) with \( d \in \mathbb{N}_{\geq 15} \);
-        \item There exists a linear form \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \);
-        \item There exists a linear form \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \).
-    \end{enumerate}
-    
-    Similarly, we define \( p \) is \emph{fixed-contractable} on \( b_i \) if \( \hat p^{\mathrm{even}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{even}} \) for all even degrees \(  d \in \mathbb{N}_{\geq 15}  \) and \( \hat p^{\mathrm{odd}} \in H[\mathbf{x}, b_i] \) such that \( p_d = \hat p^{\mathrm{odd}} \) for all odd degrees \(  d \in \mathbb{N}_{\geq 15}  \). The definition of \emph{fixed-contractable} on \( c_i \), \( d_i \), and \( e_i \) is analogous.
-\end{definition}
-
-\begin{example}
-    By Proposition \ref{prop:contracted-part-1} and \ref{prop:contracted-part-2}, the following formal linear combinations are fixed-contractable: \( \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3) \), \(  \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3) \), \( \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3) \), \( \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3) \), \( \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3) \), \( \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3) \).
-\end{example}
-
-\begin{definition}
-    Let \( d \in \mathbb{N}_{\geq 15} , i \in \left\{ 0,\dots,4,d-4, \dots, d \right\}\), and $p = \sum \lambda_{i,j} x_{i,j}$ be a hyperfield linear form on \( H^{V_d} \). We define the $i$-th $b$-row of $p$ as \( p_{b_{i}} \coloneqq \begin{bmatrix} \lambda_{5,i} & \dots & \lambda_{d-i-5,i} \end{bmatrix} \in H^{d -  i - 9} \).
-  
-   Similarly, we define $p_{c_{i}}$, $p_{d_{i}}$ and $p_{e_{i}}$ to denote the $i$-th $b$-column, $d$-diagonal and $e$-diagonal of $p$, respectively.
+    Let \( d \in \mathbb{N}_{\geq 15} , i \in \left\{ 0,\dots,4,d-4, \dots, d \right\}\), and $p = \sum \lambda_{i,j} x_{i,j}$ be a hyperfield linear form on \( H^{V_d} \). We define the $i$-th $b$-row of $p$ as \( p_{b_{i}} \coloneqq \begin{bmatrix} \lambda_{5,i} & \dots & \lambda_{d-i-5,i} \end{bmatrix} \in H^{d -  i - 9} \). Similarly, we define $p_{c_{i}}$, $p_{d_{i}}$ and $p_{e_{i}}$ to denote the $i$-th $b$-column, $d$-diagonal and $e$-diagonal of $p$, respectively.
   \end{definition}
 
 

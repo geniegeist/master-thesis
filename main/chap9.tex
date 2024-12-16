@@ -15,9 +15,9 @@ First, we need the following lemma to compute the determinant of matrix that we 
 \begin{lemma}\label{lemma:grinberghyperfactorial}
     Let \( a,b,c \in \mathbb{Z}_{\geq 0} \). Define the map \( H:  \mathbb{Z}_{\geq 0} \to  \mathbb{Z}_{\geq 0}, n \mapsto 0! 1! \cdots (n-1)! \); note that \( H(0) = 1 \). Then, the following holds:
     \begin{align*}
-        \mathrm{det}\begin{bmatrix}
+        \mathrm{det}\left(\begin{bmatrix}
             \binom{a+b}{b-i+j}
-        \end{bmatrix}_{i,j = 1}^c = \frac{H(a)H(b)H(c)H(a+b+c)}{H(b+c)H(c+a)H(a+b)}
+        \end{bmatrix}_{i,j = 1}^c\right) = \frac{H(a)H(b)H(c)H(a+b+c)}{H(b+c)H(c+a)H(a+b)}.
     \end{align*} 
 \end{lemma}
 
@@ -25,8 +25,9 @@ First, we need the following lemma to compute the determinant of matrix that we 
     See Theorem 8 of \cite{grinberghyperfactorial}.
 \end{proof}
 
+We state the Hexagon Criterion.
 
-\begin{proposition}[Hexagon Criterion]\label{prop:hexagon-criterion231312}
+\begin{proposition}\label{prop:hexagon-criterion231312}
     Let \( d, d', \ell_1, \ell_2 \in \mathbb{N} \) with \( d' \geq 1 \), \( \ell_1, \ell_2 \geq d' \), and \( d' + \ell_1 + \ell_2 \leq d \). Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \in \mathbb{Z}^{V_d} \) be a chip configuration. Define the subconfiguration \( \mathbf{w}' \coloneqq (w_{i,j})_{(i,j) \in V_{d'}} \in \mathbb{Z}^{V_{d'}}\). Assume the support of \( \mathbf{w} \) is not contained inside the ``hexagon" (see Figure \ref{fig:hexagon}), i.e. \( \mathrm{supp}(\mathbf{w}) \subset V_{d'}  \cup \left\{ (i,j) \in V_d \mid j > d - \ell_1 \right\} \cup \left\{ (i,j) \in V_d \mid i > d - \ell_2 \right\} \).
     Then, the following holds:
     \begin{enumerate}
@@ -65,13 +66,12 @@ First, we need the following lemma to compute the determinant of matrix that we 
         w_{i,j}' & \text{ if } (i,j) \in V_{d'}, \\
         0 & \text{ otherwise}
     \end{cases} \).
-    Clearly, \( \mathbf{v} \) is a \emph{valid} outcome of degree at most \( d' \). Then, \( \mathbf{v} - \mathbf{w} \) is an outcome with empty negative support. By Proposition \ref{prop:outcome-zero}, \(  \mathbf{v} - \mathbf{w} \) is zero. Hence, \( \mathbf{w} \) has degree at most \( d' \).
+    Clearly, \( \mathbf{v} \) is a \emph{valid} outcome of degree at most \( d' \). Then, \( \mathbf{v} - \mathbf{w} \) is an outcome with empty negative support. By Proposition \ref{prop:outcome-zero}, \(  \mathbf{v} - \mathbf{w} \) is zero. Hence, \( \mathrm{deg}(\mathbf{w}) \leq d' \).
 \end{proof}
 
 
 
-In this chapter, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 7 \).
-We use the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion to prove this result. We follow the same proof as Bik and Marigliano in \cite{bik2022classifying}.
+Next, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 7 \). We use the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion to prove it.
 
 \section{Proof \( d = 8, \dots, 41 \)}
 
@@ -90,7 +90,7 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
 \end{proposition}
 
 \begin{proof}
-    We use Algorithm \ref{alg:hyperfield_criterion:is_zero}. The result of this algorithm is that only the zero outcome is possible for all these cases except for the following eight:
+    Let \( d = 8, \dots, 41 \). We define the system $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$. Then, we compute the set \( S_5(A) \) using Algorithm \ref{alg:solve}. Next, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero} to each \( \mathbf{s} \in S_5(A) \). After applying these algorithms for all \( d = 8, \dots, 41 \), we obtain eight cases where the Hyperfield Criterion and the Invertibility Criterion was inconclusive.
     \begin{enumerate}
         \item \( \left\{ (4, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \),
         \item \( \left\{  (3, 0), (0, 4), (5, 1), (1, 7), (4, 4) \right\} \),
@@ -101,14 +101,12 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
         \item \( \left\{  (1, 1), (4, 0), (3, 4), (0, 8), (5, 3) \right\} \),
         \item \( \left\{  (3, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \).
     \end{enumerate}    
-    Finally, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The result is that only the zero outcome is possible. This shows the claim.
+    Finally, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The implementation is found in \cite{ducrepo} under \texttt{chapter06.ipynb}.
 \end{proof}
 
 \section{Proof \( d \geq 42 \)}
 
-We have proven that no valid outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \). Next, we show that no valid outcome of degree \( d \geq 42 \) exists using contractions.
-
-As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets 
+We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets 
 \begin{gather*}
     \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \text{ and }
     \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} 
@@ -118,7 +116,7 @@ using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{pr
 
 
 \begin{definition}
-    We define \( \Gamma^{\mathrm{even}}_5 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \) and \( \Gamma^{\mathrm{odd}}_5 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \).
+    We define the sets \( \Gamma^{\mathrm{even}}_5 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \) and \( \Gamma^{\mathrm{odd}}_5 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \right\} \).
 \end{definition}
 
 \begin{proposition}
@@ -126,7 +124,7 @@ using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{pr
 \end{proposition}
 
 \begin{proof}
-    This is verified by computer, see \cite{ducrepo}.
+    This is verified by computer; see \cite{ducrepo}, specifically the file \texttt{chapter06.ipynb}.
 \end{proof}
 
 \begin{corollary}
@@ -137,19 +135,20 @@ using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{pr
     This follows from Corollary \ref{cor:validwunfwufneuiw}.
 \end{proof}
 
-For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \), we want to show that any valid outcome \( \mathbf{w} \in \mathbb{Z}^{V_d} \) that maps to \( \mathbf{s} \) under \( \mathrm{contr}_d \circ \mathrm{sign} \) is \( \mathbf{0} \). Note that \( \lvert \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \rvert = 2318 \); so we have to check \( 2318 \) cases. To make life easier when checking these cases, we simplify the index set \( \Xi \).
+For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \), we want to show that any valid outcome \( \mathbf{w} \in \mathbb{Z}^{V_d} \) that maps to \( \mathbf{s} \) under \( \mathrm{contr}_d \circ \mathrm{sign} \) is the initial configuration. Note that \( \lvert \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \rvert = 2318 \); so we have to check \( 2318 \) cases. To make life easier when checking these cases, we simplify the index set \( \Xi \).
 
 \begin{definition}
     Define the index set 
     \begin{align*}
-        Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} 
+        \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} 
     \end{align*}
     with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by 
     \begin{align*}
         \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}).
     \end{align*}
-    The new coordinate system \( H^{\Xi'} \) is visualized below.
-\begin{figure}[H]
+    The new coordinate system \( H^{\Xi'} \) is depicted in Figure \ref{fig:uhrui23h}.
+
+\begin{figure}
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
             y_{0,3} & & & & & & & & & & & & \\
@@ -171,6 +170,8 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
             x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0}
         \end{array}
     \end{align*}  
+    \caption{This figure shows the simplified coordinate system \( H^{\Xi'} \).}
+    \label{fig:uhrui23h}
 \end{figure}
 
 \end{definition}
@@ -198,7 +199,7 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
 \end{proposition}
 
 \begin{proof}
-    This is verified by computer, see \cite{ducrepo}.
+    This is verified by computer; see \cite{ducrepo} file \texttt{chapter06.ipynb}.
 \end{proof}
 
 \section{Proof \( d \geq 42\) Continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Four}
@@ -212,50 +213,28 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
 \end{corollary}
 
 \begin{proof}
-    This is easily verified by computer using Algorithm \ref{alg:iewjr83h8w9}. TODO TAG JAIKAJ.
+    This is easily verified by computer.
 \end{proof}
-
-\begin{algorithm}
-    \caption{Check Configurations for Positive Support}
-    \label{alg:iewjr83h8w9}
-    \begin{algorithmic}[1]
-    \Ensure a subset \( X \subset \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \) consisting of configurations that map to \( \mathbf{s}' \in \Lambda \) with positive support size four under \( \chi \).
-    \State $X \gets \texttt{list()}$
-    \State $D \gets \{d_0, d_1, d_2, d_3\}$
-    \State $E \gets \{e_0, e_1, e_2, e_3\}$
-    \For{\( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5 \)}
-        \If{$\mathrm{supp}(\mathbf{s}) \cap D \neq \emptyset$ \textbf{and} $\mathrm{supp}(\mathbf{s}) \cap E \neq \emptyset$}
-            \State \texttt{X.append(s)}
-        \EndIf
-    \EndFor
-    \State \Return \( X \)
-\end{algorithmic}
-\end{algorithm}
 
 We exclude this one case from the 2290 cases in \( \Lambda \) with the following proposition.
 
 \begin{proposition}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a weakly valid outcome. Then, we have \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}  \).
+    Let \( d \geq 42 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a weakly valid outcome. Then, we have 
+    \begin{align*}
+        \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}.
+    \end{align*}
 \end{proposition}
 
 \begin{proof}
     Assume that \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) = \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\} \).
     Then, \( \mathbf{w} \) is an outcome with support \(  \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,3), (1,1), (3,0), (i,d-i), (j, d-j) \right\} \)
-    for some even \( i =4,6,8, \dots, d-4 \) and odd \( j = 5,7,9, \dots, d-4 \).
-
-    Let \( \mathbf{u} \in \mathbb{Z}^{V_3} \) be the following outcome 
-    \begin{verbatim}
-        1
-        .  .
-        .  3  .
-       -1  .  .  1
-    \end{verbatim}
-    It has support in \( \mathrm{supp}(\mathbf{u}) = \left\{ (0,0), (0,3), (1,1), (3,0) \right\}  \subset  \mathrm{supp}(\mathbf{w})\). Define the outcome \( \mathbf{v} \coloneqq \mathbf{w} +w_{0,0} \mathbf{u} \). Then, \( v_{0,0} = 0 \) and \( \mathbf{v} \neq \mathbf{0} \). However, if we apply the Invertibility Criterion with \( \lambda = \mathbf{1} \) on \( \mathbf{v} \), we see that \( \mathbf{v} \) is zero. This is a contradiction. Hence, \( \mathrm{supp}^+(\mathrm{contr}_d(\mathrm{sign}(\mathbf{w}))) \neq \left\{ x_{0,3}, x_{1,1}, x_{3,0}, d_0, e_0 \right\}  \).
+    for some even \( i \in \{ 4,\dots, d-4 \}\) and odd \( j \in \{5, \dots, d-4 \} \). Let \( \mathbf{u} \in \mathbb{Z}^{V_3} \) be an outcome with \( u_{0,0} = -1 \), \( u_{1,1} = 3 \), \( u_{0,3} = u_{3,0} = 1 \), and \( u_{i,j} = 0 \) for everything else. 
+    It has support in \( \mathrm{supp}(\mathbf{u}) = \left\{ (0,0), (0,3), (1,1), (3,0) \right\}  \subset  \mathrm{supp}(\mathbf{w})\). Define the outcome \( \mathbf{v} \coloneqq \mathbf{w} +w_{0,0} \mathbf{u} \). Then, \( v_{0,0} = 0 \) and \( \mathbf{v} \neq \mathbf{0} \). However, if we apply the Invertibility Criterion with \( \lambda = \mathbf{1} \) on \( \mathbf{v} \), we see that \( \mathbf{v} \) is zero. This is a contradiction.
 \end{proof}
 
 \section{Proof \( d \geq 42\) Continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Five}
 
-It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five. From now on, assume that \( \mathbf{s}' \in \Lambda \) has positive support size five. We will show that all these cases are invalid. For that we introduce \emph{relative coordinates} defined below to make use of the Invertibility Criterion.
+It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We will show that they are invalid using \emph{relative coordinates}.
 
 \subsection{Relative Coordinates and the Invertibility Criterion}
 
@@ -295,7 +274,7 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with po
 
     Assume \( b_{i} \neq 0 \). Then, there must exist some nonzero \( w_{k, i} \) for some \( k = 4, \dots, d-4-i \). Clearly, \( k \) maps to some element in \( \left\{ M, d-6, \dots, d-4-i \right\} \). This shows the claim. The case for \( c_i \) is similar.
 
-    Assume \( f_{i} \neq 0 \). Then, there must exist some nonzero \( w_{k, d-i-k} \) for some \( k = 4, \dots, d-4-i \). Clearly, \( k \) and \( d-i-k \)  map to some element in \( \left\{ M, d-6, \dots, d-4-i \right\} \). This shows the claim.
+    Assume \( f_{i} \neq 0 \). Then, there must exist some nonzero \( w_{k, d-i-k} \) for some \( k = 4, \dots, d-4-i \). Clearly, \( k \) and \( d-i-k \)  map to some element in \( \left\{ M, d-6, \dots, d-4-i \right\} \).
 \end{proof}
 
 \begin{remark}
@@ -307,52 +286,49 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) with po
 Relative coordinates help us to apply the Invertibility Criterion. 
 
 \begin{example}\label{ex:siuh438h89}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six. Now, assume that \( \mathbf{w} \) is \( \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\} \). Can such a configuration exist?
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six and \( \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\} \). Can such a configuration exist?
     \begin{small}
     \begin{verbatim}
-d     X
-d-1   .   .
-d-2   .   .   .
-d-3   .   .   .   .
-d-4   .   .   .   .   .
-d-5   .   .   .   .   .   .
-d-6   .   .   .   .   .   X   X
-M     .   .   .   .   .   .   .   .
-M     ........................................
-M     ..........................................
-M     ............................................
-M     .   .   .   .   .   .   .   .   .   .   .   .   
-M     .   .   .   .   .   .   .   .   .   .   .   .   .   X
-M     .   .   .   .   .   .   .   .   .   .   .   .   .   X   .   
-3     .   X   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-2     .   .   .   .   X   X   X   X   X   X   X   X   .   .   .   .   .     
-1     .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
-0     X   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .
+    d    X
+    d-1  .  .
+    d-2  .  .  .
+    d-3  .  .  .  .
+    d-4  .  .  .  .  .
+    d-5  .  .  .  .  .  .
+    d-6  .  .  .  .  .  X  X
+    M    .  .  .  .  .  .  .  .
+    M    ............................
+    M    ................................
+    M    ...................................
+    M    .  .  .  .  .  .  .  .  .  .  .  .  . 
+    M    .  .  .  .  .  .  .  .  .  .  .  .  .  X
+    M    .  .  .  .  .  .  .  .  .  .  .  .  .  X  .   
+    3    .  X  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+    2    .  .  .  .  X  X  X  X  X  X  X  X  .  .  .  .  .     
+    1    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+    0    X  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 
-      0   1   2   3   M   M   M   M   M   M   M   M  d-6 d-5 d-4 d-3 d-2 d-1  d
+        0  1  2  3  M  M  M  M  M  M  M  M d-6 d-5 d-4 d-3 d-2 d-1  d
     \end{verbatim}
     \end{small}
-
     We see that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
-    for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we can apply the Invertibility Criterion (Proposition \ref{prop:impossible-support-2324223423123123} and Proposition \ref{prop:impossible-support-232423}) with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. So assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \) to see that \( \mathbf{w} = \mathbf{0} \), which is a contradiction. Hence, \( \mathbf{w} \) cannot be an outcome.
+    for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \). So, we assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \). Hence, \( \mathbf{w} \) cannot be an outcome.
 \end{example}
 
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 \begin{proposition}
-    Let \( \mathbf{s}' \in \Lambda \) with positive support size five. Then, we have \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
+    Let \( \mathbf{s}' \in \Lambda \). Then, we have 
+    \begin{itemize}
+        \item  \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \),
+        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and
+        \item      \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
+    \end{itemize}
+    This implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
 \end{proposition}
 
 \begin{proof}
     This is verified by computer, see \cite{ducrepo}.
-\end{proof}
-
-\begin{corollary}
-    Let \( \mathbf{s}' \in \Lambda \). If \( \lvert \mathrm{supp}^+(\mathbf{s}') \rvert = 5 \), then \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \) hold.
-\end{corollary}
-
-\begin{proof}
-    Follows immediately from the previous proposition.
 \end{proof}
 
 \begin{proposition}
@@ -364,15 +340,17 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 \end{proposition}
 
 \begin{proof}
-    Assume \( i \neq i' \). Then, we can just apply Proposition \ref{prop:impossible-support-23233243243423} as long as \( S'_{l'} \in \left\{ 0, \lambda'_l \right\} \) is satisfied for all \( l' \), see Section \ref{subsec:divide} on the divide and conquer approach of the Invertibility Criterion. Theses conditions are satisfied because the sets \( S_l \) induced by \( \lambda \) satisfy \( S_{l} \in \left\{ 0, \lambda_l \right\} \) by assumption.
+    Assume \( i \neq i' \). Then, we just apply Proposition \ref{prop:impossible-support-23233243243423} as long as \( S'_{l'} \in \left\{ 0, \lambda'_l \right\} \) is satisfied for all \( l' \). These conditions are satisfied because the sets \( S_l \) induced by \( \lambda \) satisfy \( S_{l} \in \left\{ 0, \lambda_l \right\} \) by assumption.
 \end{proof}
 
-\begin{corollary}
-    The previous propostion allows us to specialize to the case \( i = i' \) when \( (i,x), (i',y) \in \mathrm{supp}(\mathbf{w}) \) for \( i,i' = 4, \dots, d-7 \) and \( x \neq y \) occurs. A similar statement holds for the case \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{w}) : y = M \right\} \rvert = 2 \).
+\begin{corollary}\label{cor:2uiniu2}
+    We may specialize to the case \( i = i' \) when \( (i,x), (i',y) \in \mathrm{supp}(\mathbf{w}) \) for \( i,i' = 4, \dots, d-7 \) and \( x \neq y \) occurs.     
 \end{corollary}
 
+Similar statements hold for the case \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{w}) : y = M \right\} \rvert = 2 \).
+
 \begin{example}
-    Returning to Example \ref{ex:siuh438h89}, we see that it suffices to consider the case \( i = j \). The case \( i \neq j \) then follows from the previous corollary.
+    Returning to Example \ref{ex:siuh438h89}, we see that it suffices to consider the case \( i = j \). The case \( i \neq j \) then follows from the Corollary \ref{cor:2uiniu2}.
 \end{example}
 
 \begin{corollary}
@@ -381,52 +359,10 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 \end{corollary}
 
 \begin{proof}
-    Use Proposition \ref{prop:impossible-support-2324223423123123}. We just need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction, so \( x + y \neq 2z + 1 \) for all \( d \geq 42 \).
+    Use Proposition \ref{prop:impossible-support-2324223423123123}. We just need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction.
 \end{proof}
 
-The corollary above can be extended to several other cases which allows us to implement an algorithm to exclude certain cases of \( \mathbf{s}' \in \Lambda \). First, we need an algorithm for the division step.
-
-\begin{algorithm}[H]
-\caption{Divide}
-\label{alg:divide}
-\begin{algorithmic}[1]
-\Require \texttt{relset}: Support of a configuration in relative coordinates
-\Ensure \( L \in \mathbb{Z}^{k} \) where \( L_i = \lvert S_i \rvert \) if a division \( (\lambda, (E_i)_{i=1}^k, (S_i)_{i=1}^k) \) is found; \texttt{None} otherwise
-
-\State $M \gets 500$, $d \gets 1000$
-\State $R \gets [0, 1, 2, 3, M, d-6, d-5, d-4, d-3, d-2, d-1, d]$ 
-
-\State $L \gets \texttt{list()}$, $\texttt{col\_start} \gets 0$
-
-\For{$\texttt{col\_end} \in \{0, \dots, |R|-1\}$}
-    \State $\texttt{num\_cols} \gets \texttt{col\_end} - \texttt{col\_start} + 1$
-    \State $\texttt{points\_in\_col} \gets \{p = (x,y) \in \texttt{relset} \mid x \in [R[\texttt{col\_start}], R[\texttt{col\_end}]]\}$
-    \State $\texttt{num\_points} \gets |\texttt{points\_in\_col}|$
-
-    \If{$(\texttt{num\_points} = 0) \lor (\texttt{num\_cols} = \texttt{num\_points}) \lor (R[\texttt{col\_end}] = M)$}
-        \State $L.\texttt{append}(\texttt{num\_points})$
-        \State $\texttt{col\_start} \gets \texttt{col\_end} + 1$
-    \EndIf
-\EndFor
-
-\If{$\texttt{sum}(L) \neq 6$}
-    \State \Return \texttt{None}
-\EndIf
-
-\State \Return $L$
-\end{algorithmic}
-\end{algorithm}
-
-This division algorithm just implements the division rule to choose \( \lambda_i  \) minimal such that \( \lvert S_i \rvert \in \left\{ 0, \lambda_i \right\} \) as explained in Remark \ref{rem:ksldmfiewonowiniew}.
-
-\begin{example}
-    Here are some examples of the algorithm in action.
-    \begin{enumerate}
-        \item \( L=[3, 0, 2, 0, 0, 0, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (M, 1), (M, M), (d, 0)] \).
-        \item \( L=[3, 0, 2, 0, 0, 0, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (M, 1), (M, d-6), (d, 0)] \).
-        \item \( L=[3, 0, 0, 0, 2, 0, 0, 0, 1]  \) for support \( [(0, 0), (0, 3), (1, d-1), (d, 0), (d-5, 1), (d-5, M)] \).
-    \end{enumerate}
-\end{example}
+We have the following rules for computing the midpoint in relative coordinates.
 
 \begin{proposition}
     Let \( d \geq 42 \). Let \( a,b  = 0, \dots, d \) with \( b \geq a \) Then, the following hold:

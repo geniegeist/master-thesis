@@ -6,3 +6,5 @@ contractable
 chipsplitting
 MLE
 Invertibility
+Fixed-Contractable
+Hyperfield
