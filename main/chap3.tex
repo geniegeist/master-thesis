@@ -76,7 +76,7 @@ Now, we define the directed graphs we consider in this thesis.
     \end{enumerate}
 \end{definition}
 
-We are interested in \emph{outcomes} that are \emph{valid} since they will correspond to reduced models as we will see later. For that reason, it would be convenient to have a criterion for when a chip configuration is an outcome. The next section will provide such a criterion with the help of \emph{Pascal equations}.
+We are interested in chip configurations that are \emph{outcomes} and \emph{valid} since they correspond to reduced models as we will see later. For that reason, it would be convenient to have a criterion for when a chip configuration is an outcome. The next section will provide an algebraic criterion using \emph{Pascal equations}.
 
 \begin{example}\label{ex:dknfkdjsfnsdj}
     Consider the following chip configuration:
@@ -89,18 +89,18 @@ We are interested in \emph{outcomes} that are \emph{valid} since they will corre
         ·   .   8   .   .   2 
        -2   ·   .   .   .   2   . 
     \end{verbatim}
-    We clearly see that this configuration is valid, but is it also an outcome of a chipsplitting game? Currently, the only way to answer this question is to apply all possible sequences of splitting and unsplitting moves to the initial configuration and check if the outcome is the given configuration. In the next section, we present an easily computable characterization to answer this question.
+    We clearly see that this configuration is valid, but is it also an outcome of a chipsplitting game? Currently, the only way to answer this question is to apply all possible sequences of splitting and unsplitting moves at the initial configuration, and check if the outcome equals the configuration above.
 \end{example}
 
 
 %TO-DO: define weakly valid if we havent done so
 
-\section{Pascal Equations}
+\section{Pascal Forms}
 
-In this chapter we will establish that outcomes are roots of Pascal equations. So let us first define Pascal equations which are special cases of \emph{linear forms}.
+In this section, we establish that outcomes are roots of Pascal forms. To begin, we first define \emph{linear forms}, as Pascal forms are a specific type of linear form.
 
 \begin{definition}
-    A \emph{linear form} on \( \mathbb{Z}^{V_d} \) is a map of the form \( \mathbb{Z}^{V_d} \to \mathbb{Z}, \quad \mathbf{w} \mapsto \sum_{(i,j) \in V_d} c_{i,j} w_{i,j} \), denoted by \( \sum_{(i,j) \in V_d} c_{i,j} x_{i,j} \).
+    A \emph{linear form} on \( \mathbb{Z}^{V_d} \) is a map \( \mathbb{Z}^{V_d} \to \mathbb{Z}, \mathbf{w} \mapsto \sum_{(i,j) \in V_d} c_{i,j} w_{i,j} \).
 \end{definition}
 
 \begin{definition}
@@ -108,7 +108,7 @@ In this chapter we will establish that outcomes are roots of Pascal equations. S
 \end{definition}
 
 \begin{example}
-    We can visualize a Pascal form as a triangle of numbers where \( c_{i,j} \) is placed at the position \( (i,j) \) in the triangle. Here are examples of Pascal forms for \( d = 2 \):
+    We can visualize a Pascal form as a triangle where \( c_{i,j} \) is placed at the position \( (i,j) \). Here are examples of Pascal forms for \( d = 2 \):
     \begin{verbatim}
   0               1               0               0
   1  1            1  0            0  0            1  1
@@ -127,8 +127,7 @@ Evaluating Pascal equations is invariant under splitting and unsplitting moves.
     By the Pascal property, we have \( c_{i'+1,j'} + c_{i',j'+1} - c_{i',j'}= 0 \).
     Thus, we have 
     \begin{align*}
-        p(\mathrm{split}_u(\mathbf w)) &= \sum_{(i,j) \in V_d} c_{i,j} (\mathrm{split}_u(\mathbf w))_{i,j} \\
-        &= \sum_{(i,j) \in V_d} c_{i,j} \begin{cases}
+        p(\mathrm{split}_u(\mathbf w)) = \sum_{(i,j) \in V_d} c_{i,j} (\mathrm{split}_u(\mathbf w))_{i,j} &= \sum_{(i,j) \in V_d} c_{i,j} \begin{cases}
             w_{i,j} - 1 & \text{if } (i,j) = u, \\
             w_{i,j} + 1 & \text{if } (i,j) \in \left\{ (i'+1,j'), (i',j'+1) \right\} \\
             w_{i,j} & \text{otherwise}
@@ -145,31 +144,31 @@ Evaluating Pascal equations is invariant under splitting and unsplitting moves.
     Clearly, we have \( p(\mathbf 0) = 0 \). Then, we use Proposition \ref{prop:pascal-invariance} and the fact that \( \mathbf{w} \) is obtained from the initial configuration \( \mathbf{0} \) by a sequence of splitting and unsplitting moves.
 \end{proof}
 
-This demonstrates that outcomes are roots of Pascal equations. The converse is also true as we will see now. This is one of the most important results; so let us state it now.
+This proves that outcomes are roots of Pascal equations. The converse is also true.
 
 \begin{theorem}\label{thm:pascal-outcome}
     Let \( \mathbf{w}\in \mathbb{Z}^{V_d} \) be a chip configuration. Then, \( \mathbf{w} \) is an outcome if and only if \( \mathbf{w} \) is a root of all Pascal equations on \( \mathbb{Z}^{V_d} \).
 \end{theorem}
 
-The direction left to right is the content of the previous corollary. For the other direction life would be easier if we had not to deal with infinitely many Pascal equations. So let us fix this first by introducing a basis from which we can generate all Pascal equations through linear combinations.
+First, let us introduce a basis from which we generate all Pascal forms through linear combinations. This helps us to prove the direction from right to left in Theorem \ref{thm:pascal-outcome}.
 
 \begin{example}\label{ex:pascal-basis}
-    Let \( d = 2 \). We later claim that the following set of Pascal forms is a basis:
+    Let \( d = 2 \). We claim that the following set of Pascal forms is a basis:
     \begin{verbatim}
         0               0               1               
         0  0            1  1            0 -1           
         1  1  1,        0 -1 -2,        0  0  1.     
     \end{verbatim}
-    Note that the first column of each Pascal form is a unit vector in \( \mathbb{R}^3 \). We can also fix the first row of each Pascal form to be a unit vector in \( \mathbb{R}^3 \):
+    Note that the zeroth column of each Pascal form is a unit vector in \( \mathbb{R}^3 \). We can also fix the zeroth row of each Pascal form to be a unit vector in \( \mathbb{R}^3 \):
     \begin{verbatim}
         1              -2               1               
         1  0           -1  1            0 -1           
         1  0  0,        0  1  0,        0  0  1.
     \end{verbatim} 
-    We will denote the first set of Pascal forms by \( \left\{ \mathrm{col}(0), \mathrm{col}(1), \mathrm{col}(2) \right\} \) and the second set by \( \{ \mathrm{row}(0), \mathrm{row}(1), \mathrm{row}(2) \} \).
+    We denote the first set by \( \left\{ \mathrm{col}(0), \mathrm{col}(1), \mathrm{col}(2) \right\} \) and the second one by \( \{ \mathrm{row}(0), \mathrm{row}(1), \mathrm{row}(2) \} \).
 \end{example}
 
-To generalize the example to arbitrary \( d \in \mathbb{N} \) and to vectors beyond unit vectors, we claim that there exists a unique Pascal form whose first column is any chosen vector.
+We generalize this example.
 
 \begin{proposition}\label{prop:supsup-pascal}
     Let \( \mathbf{a} = (a_0, \dots, a_d) \) be any vector with integer entries. Then, the following two statements hold:
@@ -185,65 +184,45 @@ To generalize the example to arbitrary \( d \in \mathbb{N} \) and to vectors bey
     For the second statement, we set \( c_{\cdot,0} \coloneqq \mathbf a \). Define \( c_{i,j+1} \coloneqq c_{i,j} - c_{i+1,j}\) for all \( (i,j) \in V_d \) with \( j=0 \). Then, we use the same formula to define \( c_{i,j+1} \) for all \( (i,j) \in V_d \) with \( j=1 \). We repeat this process until we have defined all \( c_{i,j} \) for \( (i,j) \in V_d \).
 \end{proof}
 
-Let us define our first two Pascal form bases.
-
 \begin{definition}\label{def:row-col}
-    Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. 
-    \begin{itemize}
-        \item We define \( \mathrm{col}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{0,\cdot} = \mathbf e_k \).
-        \item We define \( \mathrm{row}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{\cdot,0} = \mathbf e_k \).
-    \end{itemize}
+    Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. We define \( \mathrm{col}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{0,\cdot} = \mathbf e_k \). We define \( \mathrm{row}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{\cdot,0} = \mathbf e_k \).
 \end{definition}
 
 \begin{example}
-    Consider the Pascal form \( \mathrm{col}(3) \) for \( d = 7 \). We visualize it as follows: 
+    Consider the Pascal forms \( \mathrm{col}(3) \) and \( \mathrm{row}(3) \) for \( d = 7 \). We visualize it as follows: 
     \begin{verbatim}
-        · 
-        ·   · 
-        ·   ·   · 
-        ·   ·   ·   · 
-        1   1   1   1   1 
-        ·  -1  -2  -3  -4  -5 
-        ·   ·   1   3   6  10  15 
-        ·   ·   ·  -1  -4 -10 -20 -35.
-    \end{verbatim}
-
-    The Pascal form \( \mathrm{row}(3) \) is visualized as follows:
-    \begin{verbatim}
-        -35 
-        -20  15 
-        -10  10  -4 
-        -4   6  -4   1 
-        -1   3  -3   1   . 
-         ·   1  -2   1   .   . 
-         ·   ·  -1   1   .   .   . 
-         ·   ·   ·   1   .   .   .   .
+·                               -35
+·   ·                           -20  15
+·   ·   ·                       -10  10  -4
+·   ·   ·   ·                    -4   6  -4   1 
+1   1   1   1   1                -1   3  -3   1   . 
+·  -1  -2  -3  -4  -5             ·   1  -2   1   .   . 
+·   ·   1   3   6  10  15         ·   ·  -1   1   .   .   . 
+·   ·   ·  -1  -4 -10 -20 -35.    ·   ·   ·   1   .   .   .   .
     \end{verbatim}
 \end{example}
 
+We set \( \binom{a}{b} = 0 \) for \( b < 0 \) or \( b > a \).
+
 \begin{proposition}\label{prop:pascal-formulas}
-    For all integers \( k = 0, \dots, d \) the following formulas hold:
+    For all integers \( k = 0, \dots, d \), the following formulas hold:
     \begin{gather*}
-        \mathrm{col}(k)  = (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \; \text{and} \;
+        \mathrm{col}(k)  = (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \quad \text{and} \quad
         \mathrm{row}(k) = (-1)^k \sum_{(i,j) \in V_d} (-1)^i \binom{j}{k-i} x_{i,j}.
     \end{gather*} 
-    Note that \( \binom{a}{b} = 0 \) for \( b < 0 \) or \( b > a \).
 \end{proposition}
 
 \begin{proof}
-    We claim that \( (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \) is a Pascal equation. To see that observe 
-    \begin{align*}
-        (-1)^j \binom{i+1}{k-j} + (-1)^{j+1} \binom{i}{k-j-1} &= (-1)^j \binom{i}{k-j}
-    \end{align*}
-    for all \( (i,j) \in V_{d} \) due to \(  \binom{a}{b+1} + \binom{a}{b} = \binom{a+1}{b+1} \) where we set \( a = i \) and \( b = k-j-1 \). Next, we see that \( (-1)^{k+j} \binom{0}{k-j} = \delta_{jk} \). Thus, \( (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \) is indeed \( \mathrm{col}(k) \).
+    We claim that \( (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} \) is a Pascal equation. For all \( (i,j) \in V_{d} \) we observe \( (-1)^j \binom{i+1}{k-j} + (-1)^{j+1} \binom{i}{k-j-1} = (-1)^j \binom{i}{k-j} \)
+     since we use \(  \binom{a}{b+1} + \binom{a}{b} = \binom{a+1}{b+1} \) with \( a \coloneqq i \) and \( b \coloneqq k-j-1 \). Next, we see that \( (-1)^{k+j} \binom{0}{k-j} = \delta_{jk} \). Thus, \( (-1)^k \sum_{(i,j) \in V_d} (-1)^j \binom{i}{k-j} x_{i,j} = \mathrm{col}(k) \) holds.
 
-    By symmetry of the binomial coefficients, we can use the same argument to show the second formula.
+     By symmetry, we can use the same argument to show the second formula.
 \end{proof}
 
-We now show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is indeed a basis for all Pascal forms on \( \mathbb{Z}^{V_d} \).
+Next, we show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is a basis for Pascal forms on \( \mathbb{Z}^{V_d} \).
 
 \begin{proposition}\label{prop:pascal-basis}
-    Let \( p \) be a Pascal form on \( \mathbb Z^{V_d} \). The following statements hold:
+    Let \( d \in \mathbb{N} \) and \( p \) be a Pascal form on \( \mathbb Z^{V_d} \). The following statements hold:
     \begin{enumerate}
         \item There exist unique coefficients \( \mu_0, \dots, \mu_d \in \mathbb{Z} \) such that 
         \( p = \mu_0 \mathrm{col}(0) + \dots + \mu_d \mathrm{col}(d) \).
@@ -254,7 +233,7 @@ We now show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is indeed a ba
 \end{proposition}
 
 \begin{proof}
-    Let \( p = \sum c_{i,j}x_{i,j}\) be a Pascal form on \( \mathbb{Z}^{V_d} \). If we try to solve the equation
+    Let \( p = \sum c_{i,j}x_{i,j}\) be a Pascal form on \( \mathbb{Z}^{V_d} \). If we solve the equation
     \begin{align}\label{eq:234324324}
         \sum_{(i,j) \in V_d} c_{i,j}x_{i,j} = \lambda_0 \mathrm{col}(0) + \dots + \lambda_d \mathrm{col}(d)
     \end{align}
@@ -263,23 +242,24 @@ We now show that \( \left\{ \mathrm{col}(k) \right\}_{k=0}^{d} \) is indeed a ba
         c_{i,j} &= \lambda_0 (-1)^{0+j} \binom{i}{0-j} + \lambda_1 (-1)^{1+j} \binom{i}{1-j} + \dots + \lambda_d (-1)^{d+j} \binom{i}{d-j} \\
         &= \lambda_j (-1)^{2j} \binom{i}{0} + \lambda_{j+1} (-1)^{2j+1} \binom{i}{1} + \dots + \lambda_{i+j} (-1)^{2j+i} \binom{i}{i}.
     \end{align*}
-    We see \(c_{0, \cdot} = (\lambda_0, \cdots, \lambda_d) \). Thus we set the coefficients \( \boldsymbol \mu \coloneqq c_{0, \cdot} \) and by Proposition \ref{prop:supsup-pascal} we see that \( \sum_{(i,j) \in V_d} c_{i,j}x_{i,j} = \mu_0 \mathrm{col}(0) + \dots + \mu_d \mathrm{col}(d) \). Moreover, the same proposition shows that the coefficients \( \lambda_0, \dots, \lambda_d \) in Equation \ref{eq:234324324} are uniquely determined. 
+
+    We see \(c_{0, \cdot} = (\lambda_0, \cdots, \lambda_d) \). Thus, we set \( \boldsymbol \mu \coloneqq c_{0, \cdot} \). We see that \( \sum_{(i,j) \in V_d} c_{i,j}x_{i,j} = \mu_0 \mathrm{col}(0) + \dots + \mu_d \mathrm{col}(d) \) by Proposition \ref{prop:supsup-pascal}. Moreover, the same proposition shows that the coefficients \( \lambda_0, \dots, \lambda_d \) in Equation \ref{eq:234324324} are uniquely determined. 
     
     For the second statement we use the same argument.
 \end{proof}
 
 \begin{corollary}\label{cor:pascal-basis-2323}
-    The set \( \left\{ \mathrm{col}(k) \right\}_{k=0}^d \) is a basis for all Pascal forms on \( \mathbb{Z}^{V_d} \). The same holds for \( \left\{ \mathrm{row}(k) \right\}_{k=0}^d \). 
+    The sets \( \left\{ \mathrm{col}(k) \right\}_{k=0}^d \) and \( \left\{ \mathrm{row}(k) \right\}_{k=0}^d \) are a basis for all Pascal forms on \( \mathbb{Z}^{V_d} \). 
 \end{corollary}
 
 \begin{proof}
     This follows from the previous proposition.
 \end{proof}
 
-Let us come back to Theorem \ref{thm:pascal-outcome}. We can now prove the other direction; namely that roots of all Pascal equations on \( \mathbb{Z}^{V_d} \) are outcomes.
+Let us come back to Theorem \ref{thm:pascal-outcome}. We now prove that roots of all Pascal equations on \( \mathbb{Z}^{V_d} \) are outcomes.
 
 \begin{proposition}\label{thm:pascal-outcome-converse}
-    Let \( \mathbf{w}\in \mathbb{Z}^{V_d} \) be a chip configuration. If for all Pascal equations \( p \) on \( \mathbb{Z}^{V_d} \) we have \( p(\mathbf w) = 0 \), then \( \mathbf{w} \) is an outcome.
+    Let \( d \in \mathbb{N} \) and \( \mathbf{w}\in \mathbb{Z}^{V_d} \) be a chip configuration. If for all Pascal equations \( p \) on \( \mathbb{Z}^{V_d} \), we have \( p(\mathbf w) = 0 \), then \( \mathbf{w} \) is an outcome.
 \end{proposition}
 
 \begin{proof}
@@ -288,57 +268,40 @@ Let us come back to Theorem \ref{thm:pascal-outcome}. We can now prove the other
     \begin{align}\label{eq:324324234324324}
         \mathrm{col}(\mathrm{deg}(\mathbf w))(\mathbf w) = 0.
     \end{align}
-    Note that by Proposition \ref{prop:pascal-formulas} for \( \mathrm{col}(\mathrm{deg}(\mathbf w)) = \sum c_{i,j} x_{i,j}\) we have \( c_{i,\mathrm{deg}(\mathbf w) - i} = (-1)^{i} \) for all \( i =0, \dots, \mathrm{deg}(\mathbf w) \). Moreover, we have 
+    Note that by Proposition \ref{prop:pascal-formulas} for \( \mathrm{col}(\mathrm{deg}(\mathbf w)) = \sum c_{i,j} x_{i,j}\), we have \( c_{i,\mathrm{deg}(\mathbf w) - i} = (-1)^{i} \) for all \( i =0, \dots, \mathrm{deg}(\mathbf w) \). Moreover, by Proposition \ref{prop:pascal-formulas} we have 
     \begin{align}\label{eq:34kl}
-        c_{i,j} = 0 \quad \text{for all \( i+j < \mathrm{deg}(\mathbf w) \)}
+        c_{i,j} = 0 \quad \text{for all \( i+j < \mathrm{deg}(\mathbf w) \)}.
     \end{align}
-     by Proposition \ref{prop:pascal-formulas}. Together with Equation \ref{eq:324324234324324} and \ref{eq:34kl} we obtain 
+      Together with Equation \ref{eq:324324234324324} and \ref{eq:34kl}, we obtain 
     \begin{align}\label{eq:2j2j1kjkj}
         \sum_{i=0}^{\mathrm{deg}(\mathbf w)}(-1)^i w_{i, \mathrm{deg}(\mathbf w) - i} = 0.
     \end{align}
-    Furthermore, we know that there exists a unique minimal set of splitting or unsplitting moves at vertices \( (i,j) \) of degree \( \mathrm{deg}(\mathbf w) - 1 \) such that when applied to \( \mathbf w \) we obtain a chip configuration \( \mathbf w' \) with \( w'_{i,j} = 0 \) for all \( i =0, ... , \mathrm{deg}(\mathbf w) \). We call applying these set of moves to \( \mathbf w \) \emph{retraction}.
+    Furthermore, we know that there exists a unique minimal set of splitting or unsplitting moves at vertices \( (i,j) \) of degree \( \mathrm{deg}(\mathbf w) - 1 \) such that, when applied to \( \mathbf w \), we obtain a chip configuration \( \mathbf w' \) with \( w'_{i,j} = 0 \) for all \( i =0, ... , \mathrm{deg}(\mathbf w) \). We call applying these set of moves to \( \mathbf w \) \emph{retraction}.
     
     \begin{verbatim}
-        .
-        .   .
-        .   .   .
-        *   .   .   .
-        *   *   .   .   .
-        *   *   *   .   .   .
-        *   *   *   *   .   .   .
-        *   *   *   *   *   .   .   .
-        *   *   *   *   *   *   .   .   .
-            |
-            |
-            | retraction of w of degree five
-            |
-            |
-            V
-        .
-        .   .
-        .   .   .
-        .   .   .   .
-        *   .   .   .   .
-        *   *   .   .   .   .
-        *   *   *   .   .   .   .
-        *   *   *   *   .   .   .   .
-        *   *   *   *   *   .   .   .   .
+.                                         .
+.   .                                     .   .
+*   .   .                                 .   .   .
+*   *   .   .           -------------->   *   .   .   . 
+*   *   *   .   .       retraction of w   *   *   .   .   .
+*   *   *   *   .   .                     *   *   *   .   .   .
+*   *   *   *   *   .   .                 *   *   *   *   .   .   .   
+*   *   *   *   *   *   .   .             *   *   *   *   *   .   .   .   
     \end{verbatim}
-    Thus, \( \mathbf w' \) has degree less than \( \mathrm{deg}(\mathbf w) \).
-    By Proposition \ref{prop:pascal-invariance} \( \mathbf w' \) is also a root of all Pascal equations. We repeat the retraction process \( \mathrm{deg}(\mathbf w) \) many times until we obtain some chip configuration of degree \( 0 \). This chip configuration is the initial configuration due to Equation \ref{eq:2j2j1kjkj}. Thus, \( \mathbf w \) is an outcome.
+    Thus, \( \mathrm{deg}(\mathbf w') < \mathrm{deg}(\mathbf w)  \).
+    By Proposition \ref{prop:pascal-invariance}, \( \mathbf w' \) is also a root of all Pascal equations. We retract \( \mathrm{deg}(\mathbf w) \)-many times until we obtain a chip configuration of degree zero, which is the initial configuration due to Equation \ref{eq:2j2j1kjkj}. Thus, \( \mathbf w \) is an outcome.
 \end{proof}
 
-We have shown Theorem \ref{thm:pascal-outcome}. Characterizing outcomes as roots of Pascal equations is a powerful tool to determine if a chip configuration is an outcome.
+We have successfully proved Theorem \ref{thm:pascal-outcome}. Characterizing outcomes as roots of Pascal equations is a powerful tool to determine if a chip configuration is an outcome.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Validating outcomes}\label{alg:pascal-equation-outcome}
     \begin{algorithmic}[1]
     \Require chipsplitting configuration \( \mathbf w \in \mathbb{Z}^{V_d} \)
     \Ensure \texttt{True} if \( \mathbf w \) is an outcome, \texttt{False} otherwise
 
-    \Function{isOutcome}{$A, n$}
-    \State initialize set \( S = \left\{ \mathrm{col}(0), \dots, \mathrm{col}(\mathrm{deg}(\mathbf w)) \right\} \)
-    \For{$p$ of $S$}
+    \Function{is\_outcome}{$A, n$}
+    \For{$p$ of $\left\{ \mathrm{col}(0), \dots, \mathrm{col}(\mathrm{deg}(\mathbf w)) \right\}$}
         \If{$p(\mathbf w) \neq 0$} 
         \State \Return \texttt{False}
         \EndIf
@@ -358,11 +321,9 @@ We have shown Theorem \ref{thm:pascal-outcome}. Characterizing outcomes as roots
 
 \section{Valid Outcomes and Reduced Statistical Models}
 
-In the previous sections, we have established that outcomes are roots of Pascal forms. Now, we will demonstrate that a subset of \emph{valid outcomes} are in one-to-one correspondence with reduced statistical models. Thus, we obtain not only a combinatorial characterization of reduced statistical models through chip-splitting games but also an algebraic characterization through Pascal equations. As before, statistical models mean one-dimensional discrete statistical models with rational maximum likelihood estimator.
+In the previous sections, we established that outcomes are roots of Pascal forms. Now, we will demonstrate that a subset of \emph{valid outcomes} are in one-to-one correspondence with reduced statistical models. Thus, we can characterize reduced models algebraically through Pascal equations.
 
-We remind that valid chipsplitting configurations are those where the negative support is empty or only contains the vertex \( (0,0) \). Hence, valid outcomes are roots of Pascal equations whose negative supports are empty or only contain the vertex \( (0,0) \). 
-
-The function \( \mathbf w(\mathcal{M}) \) maps reduced models \( \mathcal{M} = (w_k, i_k, j_k)^{n}_{k=0} \) to chip configurations \( \mathbf w(\mathcal{M}) = (w_{i,j})_{(i,j) \in V_\infty} \) by 
+The function \( \mathbf w(\cdot) \) maps reduced models \( \mathcal{M} = (w_k, i_k, j_k)^{n}_{k=0} \) to chip configurations \( \mathbf w(\mathcal{M}) = (w_{i,j})_{(i,j) \in V_\infty} \) by 
 \begin{align*}
     w_{i,j} \coloneqq \begin{cases}
         -1 & \text{if } (i,j) = (0,0), \\
@@ -371,10 +332,10 @@ The function \( \mathbf w(\mathcal{M}) \) maps reduced models \( \mathcal{M} = (
     \end{cases}
 \end{align*}
 
-Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitting games; the rules of the game are the same as for integer chipsplitting games.
+Note that \( \mathbf w(\mathcal{M}) \) is a \emph{real} chipsplitting game; the rules are exactly the same as for integer chipsplitting games.
 
 \begin{example}\label{ex:binomial-model-chip-three}
-    The binomial model \( ((1,3,0), (3,2,1), (3,1,2), (1,0,3)) \) with three trials is mapped to the chip configuration below:
+    The binomial model \( ((1,3,0), (3,2,1), (3,1,2), (1,0,3)) \) is mapped to
     \begin{verbatim}
         1
         ·   3  
@@ -384,7 +345,7 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
 \end{example}
 
 \begin{example}\label{ex:alpaca-andy}
-    Does the following valid real outcome from Example \ref{ex:dknfkdjsfnsdj} induce a reduced statistical model through the inverse map \( \mathbf w^{-1} \)?
+    Does the following valid outcome from Example \ref{ex:dknfkdjsfnsdj} induce a reduced statistical model via \( \mathbf w^{-1} \)?
     \begin{verbatim}
         · 
         ·   0.5 
@@ -394,11 +355,11 @@ Note that the map \( \mathbf w(\mathcal{M}) \) defines a \emph{real} chipsplitti
         ·     .     4     .     .     1 
        -1     ·     .     .     .     1     . 
     \end{verbatim} 
-    The outcome would correspond to the reduced model
+    The outcome would correspond to a reduced model in \( \Delta_9 \) represented by
     \begin{gather*}
         \mathcal{M} = ((0.5, 2, 0), (0.5, 4, 0), (2.5, 1,3), (0.5, 1, 5), (4, 2,1), (2.5, 2, 4),\\ (2.5, 3,2), (1, 3,3), (1, 5,0), (1,5,1))
     \end{gather*}
-    in the probability simplex \( \Delta_9 \). As it turns out \( \mathcal{M} \) is indeed a reduced statistical model by the next theorem.
+    As it turns out, \( \mathcal{M} \) is indeed a reduced model by the next theorem.
 \end{example}
 
 \begin{theorem}\label{thm:outcome-reduced-model}
