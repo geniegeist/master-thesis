@@ -243,20 +243,21 @@ It remains to show how to conquer all the sets \( S_1, \dots, S_l \) and \( E_1,
 
 \section{Symmetry}\label{sec:symmetry}
 
-With the Invertibility Criterion we can exclude certain supports from being the supports of valid outcomes. We will now show that the supports of valid outcomes are symmetric with respect to the main diagonal.
+With the Invertibility Criterion we exclude certain supports from being supports of valid outcomes. We now show that supports of valid outcomes are invariant under certain symmetries.
 
 \begin{proposition}\label{prop:symmetry}
-    Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a configuration in \( \mathbb{Z}^{V_d} \). Then \( \mathbf{w} \) is an outcome if and only if \(  \tilde{\mathbf{w}} \coloneqq (w_{j,i})_{(i,j) \in V_d} \) is an outcome.
+    Let \( \mathbf{w} = (w_{i,j})_{(i,j) \in V_d} \) be a configuration in \( \mathbb{Z}^{V_d} \). Then \( \mathbf{w} \) is an outcome if and only if  the configuration \(  \tilde{\mathbf{w}} \coloneqq (w_{j,i})_{(i,j) \in V_d} \) is an outcome.
 \end{proposition}
 
 \begin{proof}
+    Let \(  k = 0, \dots, d \) and \(\mathbf{w} \) be a valid outcome.
     Observe that
     \begin{align*}
         \mathrm{diag}(k)  = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}
         = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}
         = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} x_{i,j}.
     \end{align*}
-    Let \(  k = 0, \dots, d \) and \(\mathbf{w} \) be a valid outcome. Then, \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) holds. Thus, we have
+    Then, \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) holds. Thus, we have
     \begin{align*}
         \mathrm{diag}(k)(\tilde{\mathbf{w}}) = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-j} w_{j,i}
         = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-i} w_{j,i}
@@ -267,7 +268,7 @@ With the Invertibility Criterion we can exclude certain supports from being the 
 \end{proof}
 
 \begin{example}
-    We have established that the support on the left-hand side cannot correspond to a valid outcome. By symmetry, the support on the right-hand side also cannot correspond to a valid outcome.
+    We have established that the support on the left-hand side cannot correspond to a valid outcome. By symmetry, the support on the right-hand side also does not correspond to a valid outcome.
     \begin{verbatim}
 ·                      *
 · ·                    * ·
@@ -286,13 +287,13 @@ Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be
 \end{proposition}
 
 \begin{proof}
-    Let \( k = 0, \dots, d \). We have \( \mathrm{col}(k)(\hat{\mathbf w}) = (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} 
+    Let \( k = 0, \dots, d \). Then, we have \( \mathrm{col}(k)(\hat{\mathbf w}) = (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} 
     = (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} 
     = (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0 \).
 \end{proof}
 
-The symmetry just introduced can be interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by \( (12) \cdot \mathbf w = \tilde{\mathbf w}  \) and \( (123) \cdot \mathbf w = \hat{\mathbf w} \).
-The group actions \( (12) \), \( (13) \) and \( (23) \) can be depicted in Figure \ref{fig:group-action-s3}.
+The symmetry just introduced is interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by \( (12) \cdot \mathbf w = \tilde{\mathbf w}  \) and \( (123) \cdot \mathbf w = \hat{\mathbf w} \).
+The group actions \( (12) \), \( (13) \) and \( (23) \) can then be depicted in Figure \ref{fig:group-action-s3}.
 
 \begin{figure}[H]
     \centering
@@ -303,9 +304,7 @@ The group actions \( (12) \), \( (13) \) and \( (23) \) can be depicted in Figur
 
 \section{Impossible Supports}\label{sec:impossible-supports}
 
-Now, we show that specific supports cannot be the supports of valid integral outcomes. Hence, the title of this section \emph{Impossible Supports}. For instance, can we have an outcome whose support is only contained in \( S = \left\{ (0,0), (0,i) \right\} \) for some \( i \in \mathbb{N} \)? We will show that this is not possible.
-
-
+We show that certain supports cannot be the supports of valid outcomes. 
 
 \begin{proposition}\label{prop:impossible-support-23233243243423}
     Let \( d \in \mathbb{N} \), and \( i=0, \dots, d \). If \( S = \left\{ (0,i) \right\} \) and \( E = \left\{ 0 \right\} \), then \( A^{(d)}_{E,S} \) is invertible.
@@ -332,18 +331,15 @@ Now, we show that specific supports cannot be the supports of valid integral out
 \end{proposition}
 
 \begin{proof}
-    We have 
-    \begin{align*}
-        A^{(d)}_{E,S} = \begin{bmatrix}
-            \binom{d-i}{0} & \binom{d-j}{0} & \binom{d-k}{0} \\
-            \binom{d-i}{1} & \binom{d-j}{1} & \binom{d-k}{1} \\
-            \binom{d-i}{2} & \binom{d-j}{2} & \binom{d-k}{2}
-        \end{bmatrix} = \begin{bmatrix}
-            1 & 1 & 1 \\
-            d-i & d-j & d-k \\
-            \frac{(d-i)(d-i-1)}{2} & \frac{(d-j)(d-j-1)}{2} & \frac{(d-k)(d-k-1)}{2}
-        \end{bmatrix}.
-    \end{align*}
+    We have  \( A^{(d)}_{E,S} = \begin{bmatrix}
+        \binom{d-i}{0} & \binom{d-j}{0} & \binom{d-k}{0} \\
+        \binom{d-i}{1} & \binom{d-j}{1} & \binom{d-k}{1} \\
+        \binom{d-i}{2} & \binom{d-j}{2} & \binom{d-k}{2}
+    \end{bmatrix} = \begin{bmatrix}
+        1 & 1 & 1 \\
+        d-i & d-j & d-k \\
+        \frac{(d-i)(d-i-1)}{2} & \frac{(d-j)(d-j-1)}{2} & \frac{(d-k)(d-k-1)}{2}
+    \end{bmatrix} \).
     We set \( x = d-i, y = d-j \), and \( z = d-k \).
     Then, we see \( \begin{bmatrix}
         1 & 0 & 0 \\
@@ -354,11 +350,11 @@ Now, we show that specific supports cannot be the supports of valid integral out
         x & y & z \\
         x^2 & y^2 & z^2
     \end{bmatrix} \).
-    The matrix on the right-hand side is invertible because it is a Vandermonde matrix. Thus, the pairing matrix \( A^{(d)}_{E,S} \) is invertible.
+    The matrix on the right-hand side is invertible because it is a Vandermonde matrix. Thus, \( A^{(d)}_{E,S} \) is invertible.
 \end{proof}
 
 \begin{proposition}\label{prop:impossible-support-2324223423123123}
-    Let \( d \in \mathbb{N} \), \( i,j=0, \dots, d \) with \( i < j \), and \( k=0, \dots, d-1 \). If \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
+    Let \( d \in \mathbb{N} \), \( i,j=0, \dots, d \) with \( i < j \), and \( k=0, \dots, d-1 \). If we have \( S = \left\{ (0,i), (0,j), (1,k) \right\} \), \( E = \left\{ 0,1,2 \right\} \), and \( i+j \neq 2k + 1 \), then \( A^{(d)}_{E,S} \) is invertible.
 \end{proposition}
 
 \begin{proof}
@@ -402,35 +398,20 @@ Now, we show that specific supports cannot be the supports of valid integral out
 \end{proof}
 
 \begin{remark}\label{rem:generality-jfknwejn}
-    Without loss of generality, we may assume \(  S \subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\} \) and \( E = \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\} \)
+    We may assume \(  S \subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\} \) and \( E = \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\} \)
 because \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) holds for \( \rho \coloneqq \min \left\{ E \cup \left\{ i \mid (i,j) \in S \right\} \right\} \) and \( E - \rho \coloneqq \left\{ (i - \rho, j) \mid (i,j) \in E \right\} \). This allows us to apply the previous propositions to more general \( S \) and \( E \).
 \end{remark}
 
 \begin{example}
-    Assume we have a configuration with support \( S = \left\{ (0,i), (0,j), (0,k) \right\} \) for \( 0 \leq i < j< k \leq d \). By Proposition \ref{prop:impossible-support-2}, we know that no valid integral nonzero outcome can have this support.
-
-    Now, let us consider a configuration \( \mathbf{w} \) with support \( \mathrm{supp}(\mathbf{w}) \subset S \) such that \( S \) can be decomposed into \( S_1, \dots, S_l \) as described before. Let \( \ell = 1, \dots, l \). If \( S_\ell = \left\{ (x,i), (x,j), (x,k) \right\} \) for \( 0 \leq i < j< k \leq d \) and \( x \in \mathbb{N} \), then \( \mathbf{w} = \mathbf 0 \) by Proposition \ref{prop:impossible-support-2} and the previous comment on the generality of \( S \) and \( E \). 
-
-    For instance, this configuration is not an outcome
+    Assume we have a configuration with support \( S = \left\{ (0,i), (0,j), (0,k) \right\} \) for \( 0 \leq i < j< k \leq d \). By Proposition \ref{prop:impossible-support-2}, we know that no valid outcome has this support. Now, let us consider a configuration \( \mathbf{w} \) with support \( \mathrm{supp}(\mathbf{w}) \subset S \) such that \( S \) can be decomposed into \( S_1, \dots, S_l \) as described before. Let \( \ell = 1, \dots, l \). If \( S_\ell = \left\{ (x,i), (x,j), (x,k) \right\} \) for \( 0 \leq i < j< k \leq d \) and \( x \in \mathbb{N} \), then \( \mathbf{w} = \mathbf 0 \) by Proposition \ref{prop:impossible-support-2} and Remark \ref{rem:generality-jfknwejn}. Hence, the configuration below is not an outcome because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \).
     \begin{verbatim}
-*
-.  .
-.  .  *  
-.  .  .  .  
-.  .  .  *  .  
-.  .  .  .  .  .  
-.  .  .  *  .  .  .  
-*  .  .  *  .  .  .  .  
-    \end{verbatim}
-    because for \( \lambda = (3,3,1,1) \) we have \( S_2 = \left\{ (3,0), (3,1), (3,3) \right\} \). Similarly, these configurations are not outcomes
-    \begin{verbatim}
-*                          *
-.  .                       .  .
-.  .  *                    .  .  *  
-.  .  .  .                 .  .  .  . 
-.  .  .  .  .              .  .  .  .  .
-.  .  .  *  .  .           .  .  .  .  .  * 
-.  .  .  *  .  .  .        .  .  .  .  .  *  .  
-*  .  .  *  .  .  .  .     *  .  .  .  .  *  .  .  
+                            *
+                            .  .
+                            .  .  *  
+                            .  .  .  .  
+                            .  .  .  *  .  
+                            .  .  .  .  .  .  
+                            .  .  .  *  .  .  .  
+                            *  .  .  *  .  .  .  .  
     \end{verbatim}
 \end{example}
