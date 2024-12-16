@@ -1,76 +1,75 @@
 \chapter{Classification with Fundamental Models}
 
-In this chapter, we present the classification of one-dimensional discrete statistical models with a rational maximum likelihood estimator (MLE) using fundamental models. The classification is due to Arthur Bik and Orlando Marigliano~\cite{bik2022classifying}. 
-
-\begin{center}
-    \textbf{Problem statement:} Can we find a class of easy to understand models that serve as building blocks for all one-dimensional discrete statistical models with rational MLE?
-\end{center}
-The answer to this question are \emph{reduced} and \emph{fundamental models}.
+In this chapter, we introduce \emph{reduced} and \emph{fundamental models} to classify discrete statistical models with rational MLE; this classification is due to Bik and Marigliano \cite{bik2022classifying}. 
 
 \section{Parametrization}
 
-It turns out that one-dimensional discrete statistical models with rational MLE admit the following parametrization.
+First, we establish a parametrization for discrete statistical models with rational MLE, which is crucial for the classification of statistical models.
 
 \begin{proposition}\label{prop:parametrization}
-    Let \( \mathcal{M} \) be a one-dimensional discrete statistical models with rational maximum likelihood estimator. Then, there exists a map of the form
-    \begin{gather*}
-        p: [0,1] \to \Delta_n, \quad \theta \mapsto (w_k \theta^{i_k} (1-\theta)^{j_k})_{k=0}^n \\
-        i_k, j_k \in \mathbb{Z}_{\geq 0}, \;  w_k \in \mathbb{R}_{> 0} \quad \forall k = 0, \dots, n
-    \end{gather*}
-    such that \( \mathcal{M} = \mathrm{image}(p) \).
+    Let \( \mathcal{M} \) be a one-dimensional discrete statistical models with rational MLE. Then, there exists a map of the form \( p: [0,1] \to \Delta_n, \theta \mapsto (w_k \theta^{i_k} (1-\theta)^{j_k})_{k=0}^n \) with \( i_k, j_k \in \mathbb{Z}_{\geq 0} \), \( w_k \in \mathbb{R}_{> 0} \) such that \( \mathcal{M} = \mathrm{image}(p) \).
 \end{proposition}
 
 We introduce some notation to simplify the proof of Proposition \ref{prop:parametrization}.
-Let \( \mathcal{M} \subset \Delta_n \) be a one-dimensional discrete statistical model parametrized by rational functions \( p_0 =  \frac{g_0}{h_0}, \dots, p_n =  \frac{g_n}{h_n} \). Define \( b \) to be the least common multiple of \( h_0, \dots, h_n \) and \( a_i \coloneqq b p_i \). Since \( \sum p_k = 1 \), we can multiply by \( b \) to obtain \( \sum a_k = b \). We see that the polynomials \( a_0, \dots, a_n, b \) determine the statistical model \( \mathcal{M} \), and have no common factors. The log-likelihood function is then given by
-\( \ell(p) = \sum u_i \log p_i = \sum u_i \log \frac{a_i}{b} = \sum u_i \log a_i - \sum u_i \log b \).
-
-To find the maximum likelihood estimator, we need find all critical points of the log-likelihood function. This is equivalent to finding the roots of the gradient of the log-likelihood function
+Let \( \mathcal{M} \subset \Delta_n \) be a one-dimensional discrete statistical model parametrized by rational functions \( p_0 =  \frac{g_0}{h_0}, \dots, p_n =  \frac{g_n}{h_n} \). Define \( b \coloneqq \mathrm{lcm}(h_0, \dots, h_n) \) and \( a_i \coloneqq b p_i \). Then, we multiply \( \sum_{k=0}^n p_k = 1 \) by \( b \) to obtain \( \sum_{k=0}^n a_k = b \). We use these polynomials \( a_0, \dots, a_n \) and \( b \) to determine the statistical model \( \mathcal{M} \). The log-likelihood function then reads
+\begin{align*}
+    \ell(p) = \sum_{k=0}^n u_k \log p_k = \sum_{k=0}^n u_k \log \frac{a_k}{b} = \sum_{k=0}^n u_k \log a_k - \sum_{k=0}^n u_k \log b.
+\end{align*}
+To find the maximum likelihood estimator, we find all critical points of the log-likelihood function, which is equivalent to finding the critical points of
 \begin{align}\label{eq:score-equations}
-    \ell(p(\theta))' &= \sum u_k \frac{a_k'}{a_k} - \sum u_k \frac{b'}{b} = 0.
+    \ell(p(\theta))' &= \sum_{k=0}^n u_k \frac{a_k'}{a_k} - \sum_{k=0}^n u_k \frac{b'}{b} = 0.
 \end{align}
-These equations are called the \emph{score equations} in algebraic statistics, and the number of complex solutions to these equations for general data \( u \in \mathbb{C}^{n + 1} \) is called the \emph{maximum likelihood degree} of the statistical model. This ML degree has an important meaning in algebraic statistics, as it is an algebraic measure of the complexity of the maximum likelihood estimation of the model, see \cite{amendola2019maximum, catanese2006maximum, sullivant2023algebraic}.
+These equations are called the \emph{score equations} in algebraic statistics.
 
-We have the following relationship between the ML estimator and the ML degree.
+\begin{definition}
+    The number of complex solutions to the score equations for general data \( u \in \mathbb{C}^{n + 1} \) is called the \emph{maximum likelihood degree} (ML degree) of the statistical model. 
+\end{definition}
+
+
+This ML degree has an important meaning in algebraic statistics, as it is an algebraic measure of the complexity of the maximum likelihood estimation of the model \cite{amendola2019maximum, catanese2006maximum, sullivant2023algebraic}. We have the following relationship between MLE and ML degree.
 
 \begin{proposition}\label{prop:rational-mle}
-    Having rational maximum likelihood estimator can be expressed equivalently by saying that the maximum likelihood degree of the statistical model is one.
+    A statistical model has rational maximum likelihood estimator if and only if the maximum likelihood degree of the model is one.
 \end{proposition}
 
 \begin{proof}
    Refer to \cite{duarte2021discrete} for a proof.
 \end{proof}
 
-To prove Proposition \ref{prop:parametrization}, we need the following lemma.
+Next, we need the following lemma to prove Proposition \ref{prop:parametrization},
 
 \begin{lemma}\label{lem:two-complex-factors}
-    If \( \mathcal{M} \) has rational MLE, then there are exactly two distinct complex linear factors in \( a_0, \dots, a_n \), and \( b \).
+    Let \( \mathcal{M} \) be a one-dimensional discrete statistical models with rational MLE. Then, there exist exactly two distinct complex linear factors in \( a_0, \dots, a_n \), and \( b \).
 \end{lemma}
 
 \begin{proof}
     We prove the lemma in three steps:
     \begin{itemize}
-        \item Let \( f \) be the product of all distinct complex linear factors in \( a_0, \dots, a_n, b \).  If we multiply the score equations \eqref{eq:score-equations} by \( f \), we get \( f \cdot \ell(p(\theta))' = \sum u_k f \frac{a_k'}{a_k} - \sum u_k f \frac{b'}{b} = 0 \).
-        Note that every linear factor of \( a_k \) with multiplicity \( m \) occurs in \( a_k' \) with multiplicity \( m-1 \); thus every summand of \( \frac{a_k'}{a_k} \) is of the form \( \frac{\lambda}{(x-\xi)} \), where \( \lambda \in \mathbb{R} \) and \( x-\xi \) is some linear factor of \( a_k \); hence \( f \cdot  \frac{\lambda}{(x-\xi)}  \) is of degree \( \mathrm{deg}(f) - 1\), and therefore \( f \cdot \ell(p(\theta))' \) is of degree \( \mathrm{deg}(f) - 1\).
+        \item Let \( f \) be the product of all distinct complex linear factors in \( a_0, \dots, a_n\), and \( b \).  First, we multiply the score equations \eqref{eq:score-equations} by \( f \) to get \( f  \ell(p(\theta))' = \sum_{k=0}^n u_k f \frac{a_k'}{a_k} - \sum_{k=0}^n u_k f \frac{b'}{b} = 0 \).
+        Note that every linear factor of \( a_k \) with multiplicity \( m \) occurs in \( a_k' \) with multiplicity \( m-1 \). Thus, \( \frac{a_k'}{a_k} = \frac{\lambda}{(x-\xi)} \) holds, where \( \lambda \in \mathbb{R} \) and \( x-\xi \) is some linear factor of \( a_k \). Hence, \( f \cdot  \frac{\lambda}{(x-\xi)}  \) is of degree \( \mathrm{deg}(f) - 1\). Therefore, \( f \ell(p(\theta))' \) is of degree \( \mathrm{deg}(f) - 1\).
 
-        \item We claim that the roots of \( \ell(p(\theta))' \) are the same as the roots of \( f \cdot \ell(p(\theta))' \). Assume we have shown this claim.  By Proposition \ref{prop:rational-mle} the ML degree is one. So, \( \ell(p(\theta))' \) has one root. Thus, \( f \cdot \ell(p(\theta))' \) has one root, and therefore \( f \cdot \ell(p(\theta))' \) is of degree one. This implies that \( \mathrm{deg}(f) = 2 \) with the previous step. Thus, there are exactly two distinct complex linear factors in \( a_0, \dots, a_n \), and \( b \).
+        \item We claim that the roots of \( \ell(p(\theta))' \) are the same as the roots of \( f  \ell(p(\theta))' \). Assume that we have established this claim.  By Proposition \ref{prop:rational-mle}, the ML degree is one. So, \( \ell(p(\theta))' \) has one root. Thus, \( f  \ell(p(\theta))' \) has one root. Therefore, \( f  \ell(p(\theta))' \) is of degree one. This implies that \( \mathrm{deg}(f) = 2 \). Thus, there are exactly two distinct complex linear factors in \( a_0, \dots, a_n \), and \( b \).
         
-        \item It remains to show that the roots stay the same. Clearly, every root of \( \ell(p(\theta))' \) is a root of \( f \cdot \ell(p(\theta))' \). Conversely, we want to show that no new roots are introduced when multiplying by \( f \), i.e. roots of \( f \) are not roots of \(  f \cdot \ell(p(\theta))' \). To do so, we rewrite \( f \cdot \ell(p(\theta))' = \sum_{k=0}^n u_k f \frac{a_k'}{a_k} - \sum_{k=0}^n u_k f \frac{b'}{b} = \sum_{k=0}^{n + 1} v_k f \frac{c_k'}{c_k} \)
+        \item It remains to show that the roots of \( \ell(p(\theta))' \) are the same as the roots of \( f  \ell(p(\theta))' \). Clearly, every root of \( \ell(p(\theta))' \) is a root of \( f  \ell(p(\theta))' \). Conversely, we want to show that no new roots are introduced when multiplying by \( f \), i.e. roots of \( f \) are not roots of \(  f \cdot \ell(p(\theta))' \). Let us rewrite \( f  \ell(p(\theta))' = \sum_{k=0}^n u_k f \frac{a_k'}{a_k} - \sum_{k=0}^n u_k f \frac{b'}{b} = \sum_{k=0}^{n + 1} v_k f \frac{c_k'}{c_k} \)
         with \( v_k \coloneqq u_k, c_k \coloneqq a_k  \) for \( k=0, \dots,n \), and \(  v_{n+1} \coloneqq - \sum_{k=0}^n u_k \), \( c_{n+1} \coloneqq b \).
 
-        Let \( q \) be a complex linear factor of \( f \). We define polynomials \( r_0, \dots, r_{n+1} \) and \( r \) such that \( c_k = q^{l_k}r_k \), \( f = q r \), and \( r_0, \dots, r_{n+1}, r \) do not have \( q \) as a factor. Then, for \(  k = 0, \dots, n+1 \) we have
-        \( f \frac{c_k'}{c_k} = q r \cdot \frac{l_k q^{l_k - 1} q'r_k +  q^{l_k}r_k'}{q^{l_k}r_k} = q r\frac{l_k q' }{q} + q r\frac{r_k'}{r_k} \equiv rl_k q' \pmod q \).
+        Let \( q \) be a complex linear factor of \( f \). We define polynomials \( r_0, \dots, r_{n+1} \) and \( r \) such that \( c_k = q^{l_k}r_k \), \( f = q r \) hold, and \( r_0, \dots, r_{n+1}, r \) do not have \( q \) as a factor. Then, we have
+        \begin{align*}
+            f \frac{c_k'}{c_k} = q r \cdot \frac{l_k q^{l_k - 1} q'r_k +  q^{l_k}r_k'}{q^{l_k}r_k} = q r\frac{l_k q' }{q} + q r\frac{r_k'}{r_k} \equiv rl_k q' \pmod q
+        \end{align*}
+        for \(  k = 0, \dots, n+1 \).
         Thus, we obtain \( f \cdot \ell(p(\theta))' \equiv rq'\sum_{k=0}^{n + 1} v_k l_k \equiv rq' \sum_{k=0}^{n } v_k(l_k - l_{n+1}) \pmod q \).
-        Note that by definition of \( l_k \), a value of \( l_k = 0 \) means that \( q \) is not a factor of \( c_k \). By definition of \( f \), at least one \( l_k > 0 \). On the other hand, not all \( l_k \) can be positive since \( a_0, \dots, a_n, b \) share no common factors. Hence, not all \( l_k - l_{n+1} = 0 \) vanish. Hence, for generic data \( u \) we assume \( \sum_{k=0}^{n } v_k(l_k - l_{n+1}) \neq 0 \). This with \( q'r \not \equiv 0 \pmod q \) implies that \( q \) is not a complex linear factor of \( f \cdot \ell(p(\theta))' \). We showed that the roots of \( f \) are not roots of \( f \cdot \ell(p(\theta))' \).
+        Note that by definition of \( l_k \), a value of \( l_k = 0 \) means that \( q \) is not a factor of \( c_k \). By definition of \( f \), at least one \( l_k \) is strictly positive. On the other hand, not all \( l_k \) can be strictly positive since \( a_0, \dots, a_n\), and \(b \) share no common factors. Hence, not all \( l_k - l_{n+1} \) vanish. Hence, for generic data \( u \) we assume \( \sum_{k=0}^{n } v_k(l_k - l_{n+1}) \neq 0 \). This with \( q'r \not \equiv 0 \pmod q \) implies that \( q \) is not a complex linear factor of \( f  \ell(p(\theta))' \). We showed that the roots of \( f \) are not roots of \( f \cdot \ell(p(\theta))' \).
     \end{itemize}
 \end{proof}
 
-Equipped with the lemma, we can now prove Proposition \ref{prop:parametrization}.
+We now prove Proposition \ref{prop:parametrization}.
 
 \begin{proof}
-    First, we show that \( I \) is a single closed real interval and not a union of closed intervals. For the sake of contradiction assume that \( I = \bigcup_{k} I_k \) is a union of closed disjoint intervals. By definition of \( \mathcal{M} \) we know that \( p(\partial I) \subset \partial \Delta_n \). Thus, there exist \( \theta_1, \theta_2 \in \partial I_0 \) and \( \theta_3, \theta_4 \in \partial I_1 \) with \( p_i(\theta_1) = p_i(\theta_2) =  0 \) and \( p_j(\theta_3) = p_j(\theta_4) = 0 \) for some \( i,j = 0, \dots, n \). Note that \( \theta_1, \theta_2 \) are roots of \( \frac{a_i}{b} \) and  \( \theta_3, \theta_4 \) are roots of \( \frac{a_j}{b} \). By Lemma \ref{lem:two-complex-factors} exactly two distinct complex linear factors occur in \( a_0, \dots, a_n, b \). Hence, \( \theta_3 = \theta_1 \) or \( \theta_3 = \theta_2 \). Contradiction for \( I_0 \) and \( I_1 \) are disjoint.
+    First, we show that \( I \) is a single closed real interval and not a union of closed intervals. For the sake of contradiction, assume that \( I = \bigcup_{k} I_k \) is a union of closed disjoint intervals. By definition of \( \mathcal{M} \), we know that \( p(\partial I) \subset \partial \Delta_n \). Thus, there exist \( \theta_1, \theta_2 \in \partial I_0 \) and \( \theta_3, \theta_4 \in \partial I_1 \) with \( p_i(\theta_1) = p_i(\theta_2) =  0 \) and \( p_j(\theta_3) = p_j(\theta_4) = 0 \) for some \( i,j = 0, \dots, n \). Note that \( \theta_1 \) and \( \theta_2 \) are roots of \( \frac{a_i}{b} \); similarly,  \( \theta_3 \) and \( \theta_4 \) are roots of \( \frac{a_j}{b} \). By Lemma \ref{lem:two-complex-factors}, exactly two distinct complex linear factors occur in \( a_0, \dots, a_n \), and \( b \). Hence, \( \theta_3 = \theta_1 \) or \( \theta_3 = \theta_2 \) holds. We found a contradiction for \( I_0 \) and \( I_1 \) are disjoint.
 
-    The previous argument shows that \( I = [\alpha, \beta ]\) is a real single closed interval. Thus, the roots of \( a_0, \dots, a_n, b \) are real and take values in \( \partial I = \left\{ \alpha, \beta \right\} \). By a suitable parametrization, we can assume without loss of generality that \( I = [0,1] \). We can now write the polynomials \( a_0, \dots, a_n, b \) as \(  a_k(\theta) = w_k \theta^{i_k} (1-\theta)^{j_k} \), \( b(\theta) = w \theta^{i} (1-\theta)^{j} \)
-    with \( w_k, w \in \mathbb{R}_{>0} \), and \( i_k, j_k, i, j \in \mathbb{Z}_{\geq 0} \) for all \( k = 0, \dots, n \). Since \( a_0, \dots, a_n, b \) share no common factors, there exists some \( i_k = 0 \) if \( i > 0 \); however this would contradict \(0 < w_k \leq a_0(0) + \dots + a_n(0) = b(0) = 0\). So \( i = 0 \). Similarly, \( j = 0 \). Finally, we divide \( p \) by \( w \) to obtain \( b \equiv 1 \).
+    We established that \( I = [\alpha, \beta ]\) is a real single closed interval. Thus, the roots of \( a_0, \dots, a_n\), and \( b \) are real and take values in \( \partial I = \left\{ \alpha, \beta \right\} \). By a suitable parametrization, we assume \( I = [0,1] \). Next, we write the polynomials \( a_0, \dots, a_n\), and \( b \) as \(  a_k(\theta) = w_k \theta^{i_k} (1-\theta)^{j_k} \) and \( b(\theta) = w \theta^{i} (1-\theta)^{j} \)
+    with \( w_k, w \in \mathbb{R}_{>0} \), and \( i_k, j_k, i, j \in \mathbb{Z}_{\geq 0} \). Since \( a_0, \dots, a_n\), and \( b \) share no common factors, there exists some \( i_k = 0 \) if \( i > 0 \); however, this contradicts \(0 < w_k \leq a_0(0) + \dots + a_n(0) = b(0) = 0\). So, \( i = 0 \) holds. Similarly, we have \( j = 0 \). Finally, we divide \( p \) by \( w \) to obtain \( b \equiv 1 \).
 \end{proof}
 
 \begin{corollary}
@@ -100,17 +99,17 @@ This was our first step towards understanding the structure of one-dimensional d
 Models in this section refer to one-dimensional discrete statistical models with rational MLE.
 
 \begin{definition}
-    We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{reduced} if \( (i_k, j_k) \neq \mathbf 0 \) for all \( k = 0, \dots n \), and \( (i_k, j_k) \neq (i_l, j_l) \) for all \( k \neq l \).
+    We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{reduced} if \( (i_k, j_k) \neq \mathbf 0 \) for all \( k = 0, \dots, n \), and \( (i_k, j_k) \neq (i_l, j_l) \) for all \( k \neq l \).
 \end{definition}
 
-Due to \( (i_k, j_k) \neq (i_l, j_l) \), we can use functions to represent reduced models.
+We use functions to represent reduced models due to \( (i_k, j_k) \neq (i_l, j_l) \).
 
 \begin{remark}\label{rem:representation-of-models-by-functions}
-    A reduced model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) can also be identified by a function \( f: \mathbb{Z}^2 \to \mathbb{R}_{\geq 0}, (i, j) \mapsto w \), where \( w = w_k \) if \( (i_k, j_k) = (i, j) \) and \( w = 0 \) otherwise. The support of \( f \) is the set of all pairs \( (i, j) \) with \( f(i, j) > 0 \). It coincides with the support of \( \mathcal{M} \).
+    A reduced model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is identified by a function \( f: \mathbb{Z}^2 \to \mathbb{R}_{\geq 0}, (i, j) \mapsto w \), where \( w = w_k \) if \( (i_k, j_k) = (i, j) \) and \( w = 0 \) otherwise. The support of \( f \) is the set of all pairs \( (i, j) \) with \( f(i, j) > 0 \). It coincides with the support of \( \mathcal{M} \).
 \end{remark}
 
 
-Reduced models are our first building blocks for the classification of models. This statement is justified by the following two propositions. They show that every non-reduced model can be transformed into a reduced model by a sequence of linear embeddings.
+Reduced models are our first building blocks for the classification of statistical models because the following two propositions show that non-reduced models are transformed into a reduced model by a sequence of linear embeddings.
 
 \begin{proposition}\label{prop:linear-embedding-1}
     Let \( n \in \mathbb{N}_{>0} \).
