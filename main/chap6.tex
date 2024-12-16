@@ -1,6 +1,6 @@
 \chapter{Hyperfield Criterion}
 
-We introduce the \emph{Hyperfield Criterion}. This criterion can be interpreted as constraints on the support of valid outcomes. First, we define the {sign hyperfield}.
+We introduce the \emph{Hyperfield Criterion}. This criterion can be interpreted as constraints on the support of valid outcomes.
 
 \begin{definition}
     Let \( H \coloneqq \left\{ -1, 0, 1 \right\} \). We define the addition \( + : H \times H \to 2^H \setminus \left\{ \emptyset \right\} \) on \( H \) as follows: \( 0 + x = \left\{ x \right\},  1 + 1 = \left\{ 1 \right\},1 + (-1) = H \), and \( (-1) + (-1) = \left\{ -1 \right\} \) for all \( x \in H \).
@@ -10,7 +10,7 @@ We introduce the \emph{Hyperfield Criterion}. This criterion can be interpreted 
 For singleton sets \( \{ x \} \), we often write \( x \) instead of \( \{ x \} \); thus, \( 1 + 1 = 1 \) and \( (-1) + 0 = -1 \).
 
 \begin{remark}
-    The tuple \( (H, + , \cdot, 0, 1) \) is called a \emph{hyperfield}. For more details, see Section 6.1 of \cite{bik2022classifying} or \cite{baker2018matroids}. In summary, a hyperfield satisfies the following properties:
+    The tuple \( (H, + , \cdot, 0, 1) \) is called a \emph{hyperfield}. For more details, see \cite{baker2018matroids}. In summary, a hyperfield satisfies the following properties:
     \begin{enumerate}
         \item  The maps \( + \) and \( \cdot \) are symmetric;
         \item \( (H \setminus \left\{ 0 \right\}, \cdot, 1) \) is a group;
@@ -23,26 +23,26 @@ For singleton sets \( \{ x \} \), we often write \( x \) instead of \( \{ x \} \
 
 \begin{definition}
     A polynomial in \( n \) variables \( x_1, \dots, x_n \) over \( H \) is a formal sum \( f= \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \) with \( \lambda_{\mathbf{k}} \in H \),
-    where only a finite number of coefficients \( \lambda_{\mathbf{k}} \) are non-zero, and \( \mathbf{x}^{\mathbf{k}} = x_1^{k_1} \cdots x_n^{k_n} \). The set of all polynomials in \( n \) variables over \( H \) is denoted by \( H[x_1, \dots, x_n] \).
+    where only a finite number of coefficients \( \lambda_{\mathbf{k}} \) are non-zero, and \( \mathbf{x}^{\mathbf{k}} \coloneqq x_1^{k_1} \cdots x_n^{k_n} \). The set of all polynomials in \( n \) variables over \( H \) is denoted by \( H[x_1, \dots, x_n] \).
 \end{definition}
 
 \begin{definition}
-    Let \( \mathbf{x} \in H \). We define \( f(\mathbf{x}) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \subset H \).
+    Let \( \mathbf{x} \in H^n \). We define \( f(\mathbf{x}) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \subset H \).
 \end{definition}
 
 \begin{definition}
-    We say that \( f \) \emph{vanishes} at \( \mathbf{x} \in H \) if \( 0 \in f(\mathbf{x}) \). We call \( \mathbf{x} \) a \emph{hyperfield root} of \( f \) in this case
+    We say that \( f \) \emph{vanishes} at \( \mathbf{x} \in H^n \) if \( 0 \in f(\mathbf{x}) \), and call \( \mathbf{x} \) a \emph{hyperfield root} of \( f \).
 \end{definition}
 
 
-Any \emph{real} polynomial can be turned into a polynomial over the sign hyperfield by replacing the coefficients with elements of \( H \). We can then evaluate the polynomial at any point in \( H \).
+Any \emph{real} polynomial can be turned into a polynomial over the sign hyperfield by replacing the coefficients with their sign.
 
 \begin{definition}
-    Let \( f = \sum \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \in \mathbb{R}[\mathbf{x}] \) be a polynomial over \( \mathbb{R} \). We call \( \mathrm{sign}(f) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \mathrm{sign}(\lambda_{\mathbf{k}}) \mathbf{x}^{\mathbf{k}} \in H[\mathbf{x}] \)
+    Let \( f = \sum \lambda_{\mathbf{k}} \mathbf{x}^{\mathbf{k}} \in \mathbb{R}[\mathbf{x}] \). We call \( \mathrm{sign}(f) \coloneqq \sum_{\mathbf{k} \in \mathbb{Z}^n_{\geq 0}} \mathrm{sign}(\lambda_{\mathbf{k}}) \mathbf{x}^{\mathbf{k}} \in H[\mathbf{x}] \)
     the polynomial over \( H \) induced by \( f \).
 \end{definition}
 
-For sake of simplicity, we also write \(  \mathrm{sign}(\mathbf{w}) \coloneqq (\mathrm{sign}(w_1), \dots, \mathrm{sign}(w_n)) \) for any \( \mathbf{w} \in \mathbb{R}^n \).
+For sake of simplicity, we write \(  \mathrm{sign}(\mathbf{w}) \coloneqq (\mathrm{sign}(w_1), \dots, \mathrm{sign}(w_n)) \) for any \( \mathbf{w} \in \mathbb{R}^n \).
 
 \begin{definition}
     A hyperfield Pascal form is a polynomial over \( H \) induced by a Pascal form.
@@ -76,10 +76,10 @@ For sake of simplicity, we also write \(  \mathrm{sign}(\mathbf{w}) \coloneqq (\
 \end{example}
 
 
-The reason we introduced the sign hyperfield is that it allows us to neglect the concrete values of the coefficients of a polynomial and focus on their signs. This makes reasoning about roots easier, which is helpful since we saw in earlier chapters that chipsplitting outcomes are roots of Pascal forms.
+The sign hyperfield was introduced to disregard the specific numerical values of a Pascal form's coefficients and concentrate solely on their signs.
 
 \begin{proposition}\label{prop:sign-sikjsfnf}
-    Let \( f \in \mathbb{R}[\mathbf{x}] \) be a real polynomial. Let \( \mathbf{w} \in \mathbb{R}^n \) be a root of \( f \). Then, \( \mathrm{sign}(\mathbf{w}) \) is a root of \( \mathrm{sign}(f) \).
+    Let \( f \in \mathbb{R}[\mathbf{x}] \) be a real polynomial and \( \mathbf{w} \in \mathbb{R}^n \) be a root of \( f \). Then, \( \mathrm{sign}(\mathbf{w}) \) is a root of \( \mathrm{sign}(f) \).
 \end{proposition}
 
 \begin{proof}
@@ -88,17 +88,17 @@ The reason we introduced the sign hyperfield is that it allows us to neglect the
     Now, suppose that there exists some \( \mathbf{k} \in \mathbb{Z}^n_{\geq 0} \) such that \( \lambda_{\mathbf{k}} \mathbf{w}^{\mathbf{k}} \neq 0 \). Assume \(  \lambda_{\mathbf{k}} \mathbf{w}^{\mathbf{k}} > 0 \). Then, there also exists some \( \mathbf{j} \in \mathbb{Z}^n_{\geq 0} \) such that we have \( \lambda_{\mathbf{j}} \mathbf{w}^{\mathbf{j}} < 0 \); otherwise \( f(\mathbf{w}) > 0 \) which is a contradiction to \( \mathbf{w} \) being a root of \( f \). Thus, \( \mathrm{sign}(f)(\mathbf{s}) \) has summands of both signs, and hence \( \mathrm{sign}(f)(\mathbf{s}) = H \). So \( 0 \in  \mathrm{sign}(f)(\mathbf{s}) \) holds. Therefore, \( \mathbf{s} \) is a root of \( \mathrm{sign}(f) \).
 \end{proof}
 
-Taking the contrapositive of the above proposition, we get the \emph{Hyperfield Criterion} which was first presented by Bik and Marigliano in \cite{bik2022classifying}.
+Taking the contrapositive of the above proposition, we get the \emph{Hyperfield Criterion}.
 
 \begin{proposition}[Hyperfield Criterion]\label{prop:hyperfield-criterion}
-    Let \( \mathbf{s} = (s_{i,j})_{(i,j) \in V_d} \in H^{V_d} \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration with \( \mathrm{sign}(\mathbf{w}) = \mathbf{s} \). If \( \mathbf{s} \) is not a root of a hyperfield Pascal form, then \( \mathbf{w} \) is not a chipsplitting outcome.
+    Let \( \mathbf{s} = (s_{i,j})_{(i,j) \in V_d} \in H^{V_d} \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a configuration with \( \mathrm{sign}(\mathbf{w}) = \mathbf{s} \). If \( \mathbf{s} \) is not a root of a hyperfield Pascal form, then \( \mathbf{w} \) is not an outcome.
 \end{proposition}
 
 \begin{proof}
     Follows from Proposition \ref{prop:sign-sikjsfnf} and Theorem \ref{thm:pascal-outcome}.
 \end{proof}
 
-We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \emph{hyperfield configuration}. We state definitions for sign configurations \( \mathbf{s} \in H^{V_d} \) similar to those in Definition \ref{def:chip-terminology}.
+We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \emph{hyperfield configuration}. 
 
 \begin{definition}
     Let \( \mathbf{s} \in H^{V_d} \) be a sign configuration. We define:
@@ -112,19 +112,14 @@ We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \em
 \end{definition}
 
 \begin{lemma}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, we have:
-    \begin{enumerate}
-        \item \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \),
-        \item \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \),
-        \item \( \mathrm{deg}(\mathrm{sign}(\mathbf{w})) = \mathrm{deg}(\mathbf{w}) \).
-    \end{enumerate}
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, we have \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \), \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \), and  \( \mathrm{deg}(\mathrm{sign}(\mathbf{w})) = \mathrm{deg}(\mathbf{w}) \).
 \end{lemma}
 
 \begin{proof}
     Follows from the definitions.
 \end{proof}
 
-To make use of the Hyperfield Criterion, we investigate hyperfield forms induced by the Pascal forms \( \mathrm{col}(k), \mathrm{row}(k) \), and \( \mathrm{diag}(k) \).
+We investigate hyperfield forms induced by Pascal forms \( \mathrm{col}(k), \mathrm{row}(k) \), and \( \mathrm{diag}(k) \).
 
 \begin{proposition}\label{skdmldskfmksdej}
     Let \( k = 0, \dots, d \). Define 
