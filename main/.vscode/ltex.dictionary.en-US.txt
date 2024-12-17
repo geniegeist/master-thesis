@@ -17,3 +17,13 @@ subconfiguration
 Chipsplitting
 Duc
 Viet
+simplices
+unsplitting
+isoutcome
+codimension
+codimensions
+surjective
+a-priori
+Injectivity
+Surjectivity
+combinatorically

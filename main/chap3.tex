@@ -159,7 +159,7 @@ First, let us introduce a basis from which we generate all Pascal forms through 
         0  0            1  1            0 -1           
         1  1  1,        0 -1 -2,        0  0  1.     
     \end{verbatim}
-    Note that the zeroth column of each Pascal form is a unit vector in \( \mathbb{R}^3 \). We can also fix the zeroth row of each Pascal form to be a unit vector in \( \mathbb{R}^3 \):
+    Note that the zeroth column of each Pascal form is a unit vector in \( \mathbb{R}^3 \). Let us fix the zeroth row of each Pascal form to be a unit vector in \( \mathbb{R}^3 \):
     \begin{verbatim}
         1              -2               1               
         1  0           -1  1            0 -1           
@@ -366,15 +366,6 @@ Note that \( \mathbf w(\mathcal{M}) \) is a \emph{real} chipsplitting game; the 
     The map \( \mathcal{M} \mapsto w(\mathcal{M}) \) is a bijection between reduced statistical models and valid real outcomes \( \mathbf w \in \mathbb{R}^{V_\infty} \) with \( w_{0,0} = -1 \).
 \end{theorem}
 
-\begin{figure}[H]
-    \centering
-    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB12cYAPHYAE4woTAMbCABAFtoMBnAC+IBaXSZc+QigDM5KrUYs2nbn2D0GWKBIhMcoiFPhKF+4QHN4RUADMBjpABGahwIJDIQAAsYOig2HAB3CGjYhBC6LAY2SIgIAGtGHGUKBSA
-\begin{tikzcd}
-    \text{reduced models} &  &  & \text{valid outcomes} \arrow[lll, two heads, hook']
-    \end{tikzcd}
-    \caption{Bijection between reduced models and valid real outcomes \( \mathbf w \) with \( w_{0,0} = -1 \)}
-\end{figure}
-
 
 We first make some preparations. Let \( \mathbb{R}[\theta]_{\leq d} \) denote the vector space of polynomials in the variable \( \theta \) of degree at most \( d \) with real coefficients. Similarly, we define \( \mathbb{Z}[\theta]_{\leq d} \) and \( \mathbb{Q}[\theta]_{\leq d} \). Next, we introduce the linear map \( \alpha_{d}^{\mathbb R} \) that maps real chip configurations to real polynomials:
 \begin{align*}
@@ -399,11 +390,11 @@ We define the map \( \alpha_d^{\mathbb Z} \) and \( \alpha_d^{\mathbb Q} \) for 
 
     Let \( f(\theta) = \lambda_0 + \lambda_1 \theta + \dots + \lambda_d \theta^d  \) be a real polynomial of degree \( \leq d \). Define a chipsplitting configuration \( \mathbf{w} \) by \(  w_{i,j} \coloneqq \begin{cases}
         \lambda_i & \text{if } j=0, \\
-        0 & \text{otherwise}.
+        0 & \text{otherwise}
     \end{cases} \).
     Then, \( \alpha^\mathbb{R}_d(\mathbf w) = f \) holds, which shows that the map \( \alpha^{\mathbb R}_d \) is surjective. Hence, the kernel of \( \alpha^{\mathbb R}_d \) has codimension \( d+1 \); it has equal codimension as the space of outcomes. 
 
-    Finally, we show that the space of outcomes is contained in \( \mathrm{kernel}(\alpha^{\mathbb R}_d) \). Since their codimensions are equal, the two spaces coincide. Let \( \mathbf{w} \in \mathbb{R}^{V_d} \) be an outcome. The value of \( \alpha^{\mathbb R}_d(\mathbf w) \) remains the same if we apply splitting or unsplitting moves at arbitrary vertices \( (i,j) \in V_{d-1} \) because we have \( -\theta^i(1-\theta)^j + \theta^{i+1}(1-\theta)^j + \theta^i(1-\theta)^{j+1} = \theta^i(1-\theta)^j (-1 + \theta + (1 - \theta)) = 0 \).
+    Finally, we show that the space of outcomes is contained in \( \mathrm{kernel}(\alpha^{\mathbb R}_d) \). Since their codimensions coincide, the two spaces coincide. Let \( \mathbf{w} \in \mathbb{R}^{V_d} \) be an outcome. The value of \( \alpha^{\mathbb R}_d(\mathbf w) \) remains the same if we apply splitting or unsplitting moves at arbitrary vertices \( (i,j) \in V_{d-1} \) because we have \( -\theta^i(1-\theta)^j + \theta^{i+1}(1-\theta)^j + \theta^i(1-\theta)^{j+1} = \theta^i(1-\theta)^j (-1 + \theta + (1 - \theta)) = 0 \).
     The remaining claim follows from \( \alpha_d^{\mathbb{R}}(\mathbf 0) = 0 \).
 \end{proof}
 
@@ -481,8 +472,8 @@ We are ready to show Theorem \ref{thm:outcome-reduced-model}.
 Bik and Orlando established this theorem in \cite{bik2022classifying}. Whether the upper bound extends to cases with larger positive support sizes, \( |\mathrm{supp}^+(\mathbf w)| > 5 \) remains open. This theorem is of particular interest because it is equivalent to Theorem \ref{thm:degree-fundamental-models}.
 
 \begin{center}
-    degree of outcomes \( \mathbf{w} \) \( \longleftrightarrow \) degree of statistical models \( \mathcal{M} \) \\
-    \( \mathrm{supp}^+(\mathbf w) \) \( \longleftrightarrow \) dimension of \( \mathcal{M} \)
+    Degree of outcomes \( \mathbf{w} \) \( \longleftrightarrow \) Degree of statistical models \( \mathcal{M} \) \\
+    \( \mathrm{supp}^+(\mathbf w) \) \( \longleftrightarrow \) Dimension of \( \mathcal{M} \)
 \end{center}
 
 \begin{proposition}\label{prop:equivalence-degree-support-size}

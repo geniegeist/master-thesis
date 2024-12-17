@@ -24,3 +24,9 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QLine eleven ensures that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe matrix on the right-hand side is invertible because it is a Vandermonde matrix.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QWe have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for some \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"IF_IS","sentence":"^\\QIf \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q for \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, then there exist \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q such that \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, where we define \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"IF_IS","sentence":"^\\QA splitting move at \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, denoted by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, maps chip configurations \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q to chip configurations \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q defined by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q otherwise\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QThe following is an example of a sequence of chip configurations for \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q: When we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, we omit the value and write .\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qinstead.\\E$"}
+{"rule":"IF_IS","sentence":"^\\QThus, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q otherwise \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"PRP_JJ","sentence":"^\\QIndeed, we unsplit at vertex \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q to get the outcome on the right-hand side.\\E$"}

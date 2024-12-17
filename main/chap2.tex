@@ -92,19 +92,19 @@ We now prove Proposition \ref{prop:parametrization}.
     Let \( \mathcal{M} \) be a model represented by \( (w_k, i_k, j_k)_{k=0}^n \). The set of exponent pairs \( (i_k, j_k)_{k=0}^n \) is called the support of \( \mathcal{M} \), denoted by \( \mathrm{supp}(\mathcal{M}) \).
 \end{definition}
 
-We adopt the convention that, throughout the remainder of this thesis, models refer to one-dimensional discrete statistical models with a rational MLE.
+Throughout the remainder of this thesis, we adopt the convention that models refer to one-dimensional discrete statistical models with a rational MLE.
 
 
 \section{Reduced Models}
 
-We introduce reduced models -- the first building block for the classification of models.
+The first building block for the classification of models are \emph{reduced models}.
 
 
 \begin{definition}
     We call a model represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{reduced} if \( (i_k, j_k) \neq \mathbf 0 \) for all \( k = 0, \dots, n \), and \( (i_k, j_k) \neq (i_l, j_l) \) for all \( k \neq l \).
 \end{definition}
 
-We use functions to represent reduced models due to \( (i_k, j_k) \neq (i_l, j_l) \).
+Next, we use functions to represent reduced models due to \( (i_k, j_k) \neq (i_l, j_l) \).
 
 \begin{remark}\label{rem:representation-of-models-by-functions}
     A reduced model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is identified by a function \( f: \mathbb{Z}^2 \to \mathbb{R}_{\geq 0}, (i, j) \mapsto w \), where \( w = w_k \) if \( (i_k, j_k) = (i, j) \) and \( w = 0 \) otherwise. The support of \( f \) is the set of all pairs \( (i, j) \) with \( f(i, j) > 0 \). It coincides with the support of \( \mathcal{M} \).
@@ -116,7 +116,7 @@ Reduced models are our first building blocks for the classification of statistic
 \begin{proposition}\label{prop:linear-embedding-1}
     Let \( n \in \mathbb{N}_{>0} \) and \( \mathcal{M} \) be a statistical model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_l, j_l) = \mathbf{0} \) for some index \( l \in \mathbb{N} \), then there exist \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k \in \{ 0, \dots, n \} \) such that \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \), where \( \Psi_{\lambda, k}: \Delta_{n-1} \to \Delta_n \) is defined as \(  p_i \mapsto \begin{cases}
         \lambda p_i & \text{if } k \neq i, \\
-        1-\lambda & \text{otherwise }
+        1-\lambda & \text{otherwise}
     \end{cases} \).
 \end{proposition}
 
