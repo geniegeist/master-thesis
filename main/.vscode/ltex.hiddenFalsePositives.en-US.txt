@@ -30,3 +30,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qinstead.\\E$"}
 {"rule":"IF_IS","sentence":"^\\QThus, we have \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q if \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q otherwise \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"PRP_JJ","sentence":"^\\QIndeed, we unsplit at vertex \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q to get the outcome on the right-hand side.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q The function buildpairingmatrix constructs the pairing matrix \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q as defined in Definition \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}

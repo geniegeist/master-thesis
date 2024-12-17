@@ -88,7 +88,7 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
 
 \section{Proof \( d \geq 42 \)}
 
-We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\}  \)
+We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\}  \)
 using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{prop:jasndkjsnjsnkjs}, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
 
 
@@ -230,12 +230,12 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) using \
 \begin{proposition}\label{prop:iewjri3j3234212121112}
     Let \( d \geq 42 \), \( i,j \in \{ 0,1,2,3 \} \), and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with positive support size five and degree \( d \). Write \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \). Then, all the following conditions hold:
     \begin{enumerate}
-        \item We have \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( x_{i,j} \neq 0 \);
-        \item We have \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( y_{i,j} \neq 0 \);
-        \item We have \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( z_{i,j} \neq 0 \);
-        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if and only if \( b_i \neq 0 \);
-        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if and only if \( c_i \neq 0 \);
-        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if and only if \( f_i \neq 0 \).
+        \item \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( x_{i,j} \neq 0 \);
+        \item \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( y_{i,j} \neq 0 \);
+        \item \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( z_{i,j} \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if and only if \( b_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if and only if \( c_i \neq 0 \);
+        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if and only if \( f_i \neq 0 \).
     \end{enumerate}
 \end{proposition}
 
@@ -262,7 +262,6 @@ Relative coordinates help us to apply the Invertibility Criterion.
     
     We see \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
     for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \). So, we assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \). Hence, \( \mathbf{w} \) cannot be an outcome.
-
 \pagebreak
     \begin{small}
     \begin{verbatim}
@@ -294,7 +293,7 @@ Relative coordinates help us to apply the Invertibility Criterion.
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 \begin{proposition}
-    Let \( \mathbf{s}' \in \Lambda \). All the following conditions hold: \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \). Moreover, this immediately implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
+    Let \( \mathbf{s}' \in \Lambda \). All the following claims hold: \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \). Moreover, this implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
 \end{proposition}
 
 \begin{proof}
@@ -495,7 +494,7 @@ Let \( d \geq 42 \). We want to apply the Hexagon Criterion (Proposition \ref{pr
 First, we check that the requirements of the Hexagon Criterion are met: \( d' + \ell_1 + \ell_2  = 20 \leq 42 = d \). Next, we find all contracted configurations \( \mathbf{s}' \in \Lambda \) from the 348 cases whose support lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
 
 \begin{proposition}
-    Let \( d \geq 42 \), \( \mathbf{s}' \in H^{\Xi'} \), and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a configuration with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \). If \( \mathrm{supp}^+(\mathbf{s}') \cap \left\{ \mathbf{b}, \mathbf{c}, \mathbf{f} \right\} = \emptyset\), then \( \mathrm{supp}(\mathbf{w}) \) lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
+    Let \( d \geq 42 \), \( \mathbf{s}' \in H^{\Xi'} \), and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \). If \( \mathrm{supp}^+(\mathbf{s}') \cap \left\{ \mathbf{b}, \mathbf{c}, \mathbf{f} \right\} = \emptyset\), then \( \mathrm{supp}(\mathbf{w}) \) lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
 \end{proposition}
 
 \begin{proof}

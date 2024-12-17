@@ -114,7 +114,7 @@ We call a vector \( \mathbf{s} \in H^{V_d} \) a \emph{sign configuration} or \em
 \end{definition}
 
 \begin{lemma}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a chipsplitting configuration. Then, we have \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \), \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \), and  \( \mathrm{deg}(\mathrm{sign}(\mathbf{w})) = \mathrm{deg}(\mathbf{w}) \).
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a configuration. Then, we have \( \mathrm{supp}^+(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^+(\mathbf{w}) \), \( \mathrm{supp}^-(\mathrm{sign}(\mathbf{w})) = \mathrm{sign}^-(\mathbf{w}) \), and  \( \mathrm{deg}(\mathrm{sign}(\mathbf{w})) = \mathrm{deg}(\mathbf{w}) \).
 \end{lemma}
 
 \begin{proof}
@@ -551,7 +551,7 @@ As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the
 \end{definition}
 
 \begin{definition}
-    Let \( t \) be a formal variable. Define \( I = \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\} \). Let \( T \) be a formal linear combination of
+    Let \( t \) be a formal variable and \( I = \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\} \). Let \( T \) be a formal linear combination of
     \begin{align*}
         \left\{\mathrm{diag}(k), \mathrm{row}(k), \mathrm{col}(k) \right\}_{k \in I} \text{ or }\left\{\mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in I}.
     \end{align*}
@@ -599,7 +599,7 @@ As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the
 
 
 \begin{proposition}\label{prop:contracted-part-1}
-    Let \( T \in \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\}}\) be a formal form. Then, \( T \) is fixed-contractable starting from degree \( D = 11 \).
+    Let \( T \in \left\{ \mathrm{sign}(\mathrm{diag}(k)), \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{col}(k)) \right\}_{k \in \left\{ 0\dots,4,t-4,\dots,t \right\}}\) be a formal form. Then, \( T \) is fixed-contractable starting from degree \( D = 11 \).
 \end{proposition}
 
 \begin{proof}
@@ -632,7 +632,7 @@ As we can see, the vertices \( x_{0,4}, \dots, x_{0, d-4} \) are merged into the
 · · · · · · · · + + + +      · · · · · · · · · - - - -
 · · · · · · · · · - - - -    · · · · · · · · · · + + + +
     \end{verbatim}
-    For \( d = 12 \), we write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j} \). For \( d = 13 \) we write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
+    For \( d = 12 \), we can write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k - \sum^3_{i,j=0}(-1)^{j}z_{i,j} \). For \( d = 13 \), write \( \mathrm{sign}(\mathrm{col}(d-3)) = \sum^3_{i=0}\sum^i_{j=0} (-1)^{i+j}y_{i,j} - \sum^3_{k=0}(-1)^{k}d_k  + \sum^3_{k=0}(-1)^{k}e_k + \sum^3_{i,j=0}(-1)^{j}z_{i,j} \).
 \end{example}
 
 We have merged formal variables \( x_{i,j} \) indexed by vertices \( (i,j) \) in the areas \( B, C, D \) into contraction variables. We also see that our row, column, and diagonal Pascal forms can be expressed by contraction variables; even more, this contraction form is independent of the degree \( d \). Let us apply these contractions to concrete elements \( \mathbf{s} \in H^{V_d} \).
@@ -743,7 +743,7 @@ By Proposition \ref{prop:hyperfield-criterion}, valid chipsplitting outcomes of 
 \end{proof}
 
 \begin{corollary}\label{cor:validwunfwufneuiw}
-    Let \( d \geq 12 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, we have \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \).
+    Let \( d \geq 12 \) and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. Then, \( \mathrm{contr}_d(\mathrm{sign}(\mathbf{w})) \in \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) holds.
 \end{corollary}
 
 \begin{proof}
@@ -759,7 +759,7 @@ This corollary allows us to exclude certain supports as supports of valid outcom
 \begin{proof}
     Let \( d \geq 12 \). For computing \( \Gamma_d \) we could use Algorithm \ref{alg:hyperfield_criterion:efficient} for all \( d = 12, 13, 14, \dots \) and so on, which is not feasible since we would compute solutions sets for many infinitely many degrees \( d \). Instead, we show that \( \Gamma^{\mathrm{even}} \cup \Gamma^{\mathrm{odd}} \) is empty. By Proposition \ref{prop:sign-sikjsfnf3223423432}, \( \Gamma_d \) is empty as well for all \( d\geq 12 \).
 
-    To show that \(  \Gamma^{\mathrm{even}} \) is empty, we use Algorithm \ref{alg:hyperfield_criterion:efficient} and Remark \ref{rem:fiuhwiu3} with \(A \coloneqq \left\{ \hat p^{\mathrm{even}} \mid p \in \Phi \right\}\). Similarly, to compute that \( \Gamma^{\mathrm{odd}} \) is empty, we define \(A \coloneqq \left\{ \hat p^{\mathrm{odd}} \mid p \in \Phi \right\}\) and use Algorithm \ref{alg:hyperfield_criterion:efficient}. The implementation details are available on GitHub in the file \texttt{chapter05.ipynb} \cite{ducrepo}.
+    To show \(  \Gamma^{\mathrm{even}} = \emptyset \), we use Algorithm \ref{alg:hyperfield_criterion:efficient} and Remark \ref{rem:fiuhwiu3} with \(A \coloneqq \left\{ \hat p^{\mathrm{even}} \mid p \in \Phi \right\}\). Similarly, to show \( \Gamma^{\mathrm{odd}} = \emptyset \), we define \(A \coloneqq \left\{ \hat p^{\mathrm{odd}} \mid p \in \Phi \right\}\) and use Algorithm \ref{alg:hyperfield_criterion:efficient}. The implementation details are available on GitHub in the file \texttt{chapter05.ipynb} \cite{ducrepo}.
 \end{proof}
 
 \begin{theorem}\label{thm:main-result-32432432432nkdnjkfd}

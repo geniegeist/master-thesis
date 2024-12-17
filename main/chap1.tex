@@ -13,10 +13,7 @@ Say we have a binomial random variable \( X \) with \( n + 1 \) states, then \( 
 \end{figure}
 \end{example}
 
-Given a statistical model \( \mathcal{M} \subset \Delta_n \) and data \( u \in \mathbb{N}^{n+1} \), a common problem in statistics is determining the distribution within a statistical model that best fits the data. ``Best'' can mean a lot of things; in \emph{maximum likelihood estimation}, it refers to finding the distribution that maximizes the probability of observing the data. The mapping
-\[
-\Phi: \Delta_n \to \mathcal{M}, \quad u \mapsto \hat{p},
-\]
+Given a statistical model \( \mathcal{M} \subset \Delta_n \) and data \( u \in \mathbb{N}^{n+1} \), a common problem in statistics is determining the distribution within a statistical model that best fits the data. ``Best'' can mean a lot of things; in \emph{maximum likelihood estimation}, it refers to finding the distribution that maximizes the probability of observing the data. The mapping \( \Phi: \Delta_n \to \mathcal{M}, u \mapsto \hat{p}\)
 that assigns data \( u \) to a distribution \( \hat{p} \in \mathcal{M} \) in the best possible way, in the sense of maximum likelihood estimation, is called the \emph{maximum likelihood estimator (MLE)}. It is characterized by the property that \( \hat{p} \) maximizes for all \( p \in \mathcal{M} \) the log-likelihood function \( \ell(p) = \sum_{k=0}^n u_k \log p_k \).
 
 We focus on \textbf{{one-dimensional {discrete} {statistical} {models} with rational MLE}}. These are models \( \mathcal{M} \) satisfying 
@@ -34,7 +31,7 @@ The chapters are organized as follows:
     \item Chapter 2 provides tools to classify statistical models using fundamental models.
     \item Chapter 3 defines chipsplitting games and establishes the connection between fundamental statistical models and fundamental chipsplitting outcomes.
     \item Chapter 4 proves the finiteness of fundamental chipsplitting outcomes with positive support size \( n \leq 3 \) using the Invertibility Criterion.
-    \item Chapter 5 proves the case \( n = 4 \) using the \emph{Hyperfield Criterion} and the Invertibility Criterion.
+    \item Chapter 5 shows the case \( n = 4 \) using the \emph{Hyperfield Criterion} and the Invertibility Criterion.
     \item Chapter 6 introduces the final tool, the \emph{Hexagon Criterion}, to show the case \( n = 5 \).
     \item Chapter 7 presents novel techniques to reduce the number of cases that need to be analyzed for \( n = 6 \).
     \item Chapter 8 computes the number of fundamental models.

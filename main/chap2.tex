@@ -10,12 +10,9 @@ First, we establish a parametrization for discrete statistical models with ratio
     Let \( \mathcal{M} \) be a one-dimensional discrete statistical models with rational MLE. Then, there exists a map of the form \( p: [0,1] \to \Delta_n, \theta \mapsto (w_k \theta^{i_k} (1-\theta)^{j_k})_{k=0}^n \) with \( i_k, j_k \in \mathbb{Z}_{\geq 0} \), \( w_k \in \mathbb{R}_{> 0} \) such that \( \mathcal{M} = \mathrm{image}(p) \).
 \end{proposition}
 
-We introduce some notation to simplify the proof of Proposition \ref{prop:parametrization}.
-Let \( \mathcal{M} \subset \Delta_n \) be a one-dimensional discrete statistical model parametrized by rational functions \( p_0 =  \frac{g_0}{h_0}, \dots, p_n =  \frac{g_n}{h_n} \). Define \( b \coloneqq \mathrm{lcm}(h_0, \dots, h_n) \) and \( a_i \coloneqq b p_i \). Then, we multiply \( \sum_{k=0}^n p_k = 1 \) by \( b \) to obtain \( \sum_{k=0}^n a_k = b \). We use these polynomials \( a_0, \dots, a_n \) and \( b \) to determine the statistical model \( \mathcal{M} \). The log-likelihood function then reads
-\begin{align*}
-    \ell(p) = \sum_{k=0}^n u_k \log p_k = \sum_{k=0}^n u_k \log \frac{a_k}{b} = \sum_{k=0}^n u_k \log a_k - \sum_{k=0}^n u_k \log b.
-\end{align*}
-To find the maximum likelihood estimator, we find all critical points of the log-likelihood function, which is equivalent to finding the critical points of
+We introduce notation to simplify the proof.
+Let \( \mathcal{M} \subset \Delta_n \) be a one-dimensional discrete statistical model parametrized by rational functions \( p_0 =  \frac{g_0}{h_0}, \dots, p_n =  \frac{g_n}{h_n} \). Define \( b \coloneqq \mathrm{lcm}(h_0, \dots, h_n) \) and \( a_i \coloneqq b p_i \). Then, we multiply \( \sum_{k=0}^n p_k = 1 \) by \( b \) to obtain \( \sum_{k=0}^n a_k = b \). We use these polynomials \( a_0, \dots, a_n \) and \( b \) to determine the statistical model \( \mathcal{M} \). The log-likelihood reads \( \ell(p) = \sum_{k=0}^n u_k \log p_k = \sum_{k=0}^n u_k \log \frac{a_k}{b} = \sum_{k=0}^n u_k \log a_k - \sum_{k=0}^n u_k \log b \).
+To find the MLE, we determine all critical points of \( \ell(p) \), which is equivalent to finding the critical points of
 \begin{align}\label{eq:score-equations}
     \ell(p(\theta))' &= \sum_{k=0}^n u_k \frac{a_k'}{a_k} - \sum_{k=0}^n u_k \frac{b'}{b} = 0.
 \end{align}
@@ -26,7 +23,7 @@ These equations are called the \emph{score equations} in algebraic statistics.
 \end{definition}
 
 
-This ML degree has an important meaning in algebraic statistics, as it is an algebraic measure of the complexity of the maximum likelihood estimation of the model \cite{amendola2019maximum, catanese2006maximum, sullivant2023algebraic}. We have the following relationship between MLE and ML degree.
+The ML degree is an algebraic measure of the complexity of the maximum likelihood estimation of the model \cite{amendola2019maximum, catanese2006maximum, sullivant2023algebraic}. 
 
 \begin{proposition}\label{prop:rational-mle}
     A statistical model has rational maximum likelihood estimator if and only if the maximum likelihood degree of the model is one.
@@ -66,7 +63,7 @@ Next, we need the following lemma to prove Proposition \ref{prop:parametrization
 We now prove Proposition \ref{prop:parametrization}.
 
 \begin{proof}
-    First, we show that \( I \) is a single closed real interval and not a union of closed intervals. For the sake of contradiction, assume that \( I = \bigcup_{k} I_k \) is a union of closed disjoint intervals. By definition of \( \mathcal{M} \), we know that \( p(\partial I) \subset \partial \Delta_n \). Thus, there exist \( \theta_1, \theta_2 \in \partial I_0 \) and \( \theta_3, \theta_4 \in \partial I_1 \) with \( p_i(\theta_1) = p_i(\theta_2) =  0 \) and \( p_j(\theta_3) = p_j(\theta_4) = 0 \) for some \( i,j = 0, \dots, n \). Note that \( \theta_1 \) and \( \theta_2 \) are roots of \( \frac{a_i}{b} \); similarly,  \( \theta_3 \) and \( \theta_4 \) are roots of \( \frac{a_j}{b} \). By Lemma \ref{lem:two-complex-factors}, exactly two distinct complex linear factors occur in \( a_0, \dots, a_n \), and \( b \). Hence, \( \theta_3 = \theta_1 \) or \( \theta_3 = \theta_2 \) holds. We found a contradiction for \( I_0 \) and \( I_1 \) are disjoint.
+    First, we show that \( I \) is a single closed real interval. For the sake of contradiction, assume that \( I = \bigcup_{k} I_k \) is a union of closed disjoint intervals. By definition of \( \mathcal{M} \), we know that \( p(\partial I) \subset \partial \Delta_n \). Thus, there exist \( \theta_1, \theta_2 \in \partial I_0 \) and \( \theta_3, \theta_4 \in \partial I_1 \) with \( p_i(\theta_1) = p_i(\theta_2) =  0 \) and \( p_j(\theta_3) = p_j(\theta_4) = 0 \) for some \( i,j = 0, \dots, n \). Note that \( \theta_1 \) and \( \theta_2 \) are roots of \( \frac{a_i}{b} \); similarly,  \( \theta_3 \) and \( \theta_4 \) are roots of \( \frac{a_j}{b} \). By Lemma \ref{lem:two-complex-factors}, exactly two distinct complex linear factors occur in \( a_0, \dots, a_n \), and \( b \). Hence, \( \theta_3 = \theta_1 \) or \( \theta_3 = \theta_2 \) holds. We found a contradiction for \( I_0 \) and \( I_1 \) are disjoint.
 
     We established that \( I = [\alpha, \beta ]\) is a real single closed interval. Thus, the roots of \( a_0, \dots, a_n\), and \( b \) are real and take values in \( \partial I = \left\{ \alpha, \beta \right\} \). By a suitable parametrization, we assume \( I = [0,1] \). Next, we write the polynomials \( a_0, \dots, a_n\), and \( b \) as \(  a_k(\theta) = w_k \theta^{i_k} (1-\theta)^{j_k} \) and \( b(\theta) = w \theta^{i} (1-\theta)^{j} \)
     with \( w_k, w \in \mathbb{R}_{>0} \), and \( i_k, j_k, i, j \in \mathbb{Z}_{\geq 0} \). Since \( a_0, \dots, a_n\), and \( b \) share no common factors, there exists some \( i_k = 0 \) if \( i > 0 \); however, this contradicts \(0 < w_k \leq a_0(0) + \dots + a_n(0) = b(0) = 0\). So, \( i = 0 \) holds. Similarly, we have \( j = 0 \). Finally, we divide \( p \) by \( w \) to obtain \( b \equiv 1 \).
@@ -77,7 +74,7 @@ We now prove Proposition \ref{prop:parametrization}.
 \end{corollary}
 
 \begin{definition}
-    The \emph{degree} \( \mathrm{deg}(\mathcal{M}) \) of a one-dimensional discrete statistical models with rational MLE \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) is defined as \( \mathrm{max}\left\{ i_k + j_k : k = 0, \dots, n \right\} \).
+    Let \( \mathcal{M} \) be a one-dimensional discrete statistical model with rational MLE. The \emph{degree} \( \mathrm{deg}(\mathcal{M}) \) of \( \mathcal{M} \) is defined as \( \mathrm{max}\left\{ i_k + j_k \mid k = 0, \dots, n \right\} \), where \( (w_k, i_k, j_k)_{k=0}^n \) is a representation of \( \mathcal{M} \).
 \end{definition}
 
 \begin{remark}\label{rem:equivalent-models}
@@ -111,7 +108,7 @@ Next, we use functions to represent reduced models due to \( (i_k, j_k) \neq (i_
 \end{remark}
 
 
-Reduced models are our first building blocks for the classification of statistical models because the following two propositions show that non-reduced models are transformed into a reduced model by a sequence of linear embeddings.
+The next two propositions show that non-reduced models are transformed into a reduced model by a sequence of linear embeddings.
 
 \begin{proposition}\label{prop:linear-embedding-1}
     Let \( n \in \mathbb{N}_{>0} \) and \( \mathcal{M} \) be a statistical model represented by \( (w_k, i_k, j_k)_{k=0}^n \). If \( (i_l, j_l) = \mathbf{0} \) for some index \( l \in \mathbb{N} \), then there exist \( \mathcal{M}' \), \( \lambda \in [0,1] \) and \( k \in \{ 0, \dots, n \} \) such that \( \mathcal{M} = \Psi_{\lambda,k}(\mathcal{M}') \), where \( \Psi_{\lambda, k}: \Delta_{n-1} \to \Delta_n \) is defined as \(  p_i \mapsto \begin{cases}
@@ -150,7 +147,7 @@ Repeated application of these propositions transforms any model into a reduced m
 
 \section{Fundamental Models}
 
-We present \emph{fundamental models}, which are building blocks for reduced models.
+We present \emph{fundamental models}, which are building blocks of reduced models.
 
 \begin{definition}\label{def:fundamental-model}
     We call a model \( \mathcal{M} \) represented by \( (w_k, i_k, j_k)_{k=0}^n \) \emph{fundamental} if it is reduced and the equation \( \sum_{k=0}^n p_k  = \sum_{k=0}^n x_k \theta^{i_k} (1-\theta)^{j_k} = 1, \forall \theta \in [0,1] \) has a unique solution \( (x_k)_{k=0}^n \) with \( x_k = w_k \).
@@ -161,7 +158,7 @@ We present \emph{fundamental models}, which are building blocks for reduced mode
 \end{example}
 
 \begin{example}\label{ex:prob-simplex-0}
-    The probability simplex \( \Delta_0 \) only contains the model \( 1 \), which is fundamental.
+    The simplex \( \Delta_0 \) only contains the model \( 1 \), which is fundamental.
 \end{example}
 
 \begin{example}\label{ex:prob-simplex-1}
@@ -195,9 +192,7 @@ We use \emph{composition} to construct reduced models from fundamental models.
 \end{proposition}
 
 \begin{proof}
-    The simplices \( \Delta_0 \) and \( \Delta_1 \) contain only fundamental models by Example \ref{ex:prob-simplex-0} and \ref{ex:prob-simplex-1}. 
-    
-    Assume \( n \geq 2 \). Let \( \mathcal{M} \in \Delta_n \) be a model that is not fundamental. We aim to show that \( \mathcal{M} \) can be expressed as a composite of two models, \( \mathcal{M}' \) and \( \mathcal{M}'' \), whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Assume this is indeed the case. Then, by applying the same argument to \( \mathcal{M}' \) and \( \mathcal{M}'' \), we can recursively decompose each non-fundamental model into models with smaller supports. Since \( \mathrm{supp}(\mathcal{M}) \) is finite, this recursive decomposition eventually terminates, yielding a decomposition of \( \mathcal{M} \) into fundamental models. Thus, we have shown that any reduced model is the composite of a finite number of fundamental models. 
+    The simplices \( \Delta_0 \) and \( \Delta_1 \) contain only fundamental models by Example \ref{ex:prob-simplex-0} and \ref{ex:prob-simplex-1}. Assume \( n \geq 2 \). Let \( \mathcal{M} \in \Delta_n \) be a model that is not fundamental. We aim to show that \( \mathcal{M} \) can be expressed as a composite of two models, \( \mathcal{M}' \) and \( \mathcal{M}'' \), whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Assume this is indeed the case. Then, by applying the same argument to \( \mathcal{M}' \) and \( \mathcal{M}'' \), we can recursively decompose each non-fundamental model into models with smaller supports. Since \( \mathrm{supp}(\mathcal{M}) \) is finite, this recursive decomposition eventually terminates, yielding a decomposition of \( \mathcal{M} \) into fundamental models. Thus, we have shown that any reduced model is the composite of a finite number of fundamental models. 
 
     Let us prove that \( \mathcal{M} \) is the composite of two models whose supports are proper subsets of \( \mathrm{supp}(\mathcal{M}) \). Since \( \mathcal{M} \) is not fundamental, the equation \( p_0 + \dots + p_n = 1 \) has distinct solutions \( \mathbf w, \mathbf w' \in \mathbb{R}^{n+1}_{> 0} \). Define \( \mathbf v \coloneqq \mathbf w - \mathbf w' \neq \mathbf 0 \). Then, for all \( \theta \in (0,1) \) we have \( \sum_{k=0}^n v_k \theta^{i_k}(1-\theta)^{j_k} = 0  \).
     Observe that there are strictly positive and negative coefficients \( v_k \). 

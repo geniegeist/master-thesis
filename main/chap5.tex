@@ -2,7 +2,7 @@
 
 \section{Invertibility Criterion}
 
-In this section, we study the supports of valid outcomes; knowing that some supports cannot be the supports of valid outcomes will help us to prove Theorem \ref{thm:outcome-degree-support-size}. For instance, configurations that have support in the entries below marked with an \texttt{*} cannot be valid outcomes as we will see.
+In this section, we study the supports of valid outcomes; knowing that some supports cannot be the supports of valid outcomes helps us to prove Theorem \ref{thm:outcome-degree-support-size}. For instance, configurations that have support in the entries below are not valid outcomes as we will see.
 \begin{verbatim}
                         ·  
                         ·  · 
@@ -12,7 +12,7 @@ In this section, we study the supports of valid outcomes; knowing that some supp
                         ·  ·  ·  ·  *  · 
                         *  ·  *  ·  ·  *  *
 \end{verbatim}
-The most important tool in the study of supports of valid outcomes is the \emph{Invertibility Criterion}, which we will present in this chapter. It was first investigated in \cite{bik2022classifying}. 
+The most important tool in the study of supports of valid outcomes is the \emph{Invertibility Criterion}. It was first investigated in \cite{bik2022classifying}. 
 
 First, let us introduce a new basis for the space of Pascal forms.
 
@@ -84,7 +84,7 @@ We make the following observation: if the pairing matrix \( A^{(d)}_{E,S} \) is 
 Given a non-zero configuration \( \mathbf{w} \), we try to construct sets \( S \supset \mathrm{supp}(\mathbf w) \) and \( E \) such that the pairing matrix \( A_{E,S}^{(d)} \) is invertible. If we succeed, then \( \mathbf{w} \) is \emph{not} an outcome since the initial configuration is the only valid outcome with support in \( S \). 
 
 
-The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome in \( \mathbb{Z}^{V_d} \). It is later used in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
+The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome in \( \mathbb{Z}^{V_d} \). We use it in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
 
 
 \begin{algorithm}[H]
@@ -101,7 +101,7 @@ The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^
 
 \section{Divide and Conquer}\label{sec:divide-and-conquer}
 
-The Invertibility Criterion is a powerful tool to determine whether a configuration is an outcome. Unfortunately, it is not always easy to find suitable sets \( S \) and \( E \). We will now introduce a method to construct such sets.
+The Invertibility Criterion is a powerful tool to determine whether a configuration is an outcome. Unfortunately, it is not always easy to find suitable sets \( S \) and \( E \). We now introduce a method to construct such sets.
 
 \subsection*{Divide}\label{subsec:divide}
 
@@ -212,7 +212,7 @@ It remains to show how to conquer all the sets \( S_1, \dots, S_l \) and \( E_1,
 
 \begin{corollary}
     Let \( \mathbf{w} \) be an outcome with \( \mathrm{supp}(\mathbf w) \subset S \).
-    If the pairing matrices \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible, then \( \mathbf{w} = \mathbf 0 \).
+    If \( A^{(d)}_{E_1,S_1}, \dots,  A^{(d)}_{E_l,S_l} \) are invertible, then \( \mathbf{w} = \mathbf 0 \).
 \end{corollary}
 
 \begin{example}
@@ -244,16 +244,16 @@ With the Invertibility Criterion we exclude certain supports from being supports
     Let \(  k = 0, \dots, d \) and \(\mathbf{w} \) be a valid outcome.
     Observe that
     \begin{align*}
-        \mathrm{diag}(k)  = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j}
-        = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}
-        = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} x_{i,j}.
+        \mathrm{diag}(k)  = \sum\binom{d - i - j}{k-i} x_{i,j}
+        = \sum\binom{d - i - j}{d-i-j-(k-i)} x_{i,j}
+        = \sum\binom{d - i - j}{d-k-j} x_{i,j}.
     \end{align*}
     Then, \( \mathrm{diag}(k)(\mathbf{w}) = 0 \) holds. Thus, we have
     \begin{align*}
-        \mathrm{diag}(k)(\tilde{\mathbf{w}}) = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-j} w_{j,i}
-        = \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-i} w_{j,i}
-        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{d-k-j} w_{i,j} \\
-        &= \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} w_{i,j} \\
+        \mathrm{diag}(k)(\tilde{\mathbf{w}}) = \sum\binom{d - i - j}{k-j} w_{j,i}
+        = \sum\binom{d - i - j}{d-k-i} w_{j,i}
+        &= \sum\binom{d - i - j}{d-k-j} w_{i,j} \\
+        &= \sum\binom{d - i - j}{k-i} w_{i,j} \\
         &= \mathrm{diag}(k)(\mathbf w) = 0.
     \end{align*}
 \end{proof}
@@ -278,9 +278,9 @@ Next, we introduce another kind of symmetry. Let \( \mathbf{w} = (w_{i,j}) \) be
 \end{proposition}
 
 \begin{proof}
-    Let \( k = 0, \dots, d \). Then, we have \( \mathrm{col}(k)(\hat{\mathbf w}) = (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} 
+    Let \( k = 0, \dots, d \). Then, \( \mathrm{col}(k)(\hat{\mathbf w}) = (-1)^k \sum_{(i,j) \in V_d}(-1)^j \binom{i}{k-j}(-1)^{d-j}w_{j, d-i-j} 
     = (-1)^{d-k} \sum_{(i,j) \in V_d}\binom{d-i-j}{k-i}w_{i, j} 
-    = (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0 \).
+    = (-1)^{d-k} \mathrm{diag}(k)(\mathbf w) = 0 \) holds.
 \end{proof}
 
 The symmetry just introduced is interpreted in the following way: we define a group action of the symmetry group \( S_3 \) on \( \mathbb{Z}^{V_d} \) by \( (12) \cdot \mathbf w = \tilde{\mathbf w}  \) and \( (123) \cdot \mathbf w = \hat{\mathbf w} \).
@@ -389,8 +389,8 @@ We show that certain supports cannot be the supports of valid outcomes.
 \end{proof}
 
 \begin{remark}\label{rem:generality-jfknwejn}
-    We may assume \(  S \subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\} \) and \( E = \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\} \)
-because \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) holds for \( \rho \coloneqq \min \left\{ E \cup \left\{ i \mid (i,j) \in S \right\} \right\} \) and \( E - \rho \coloneqq \left\{ (i - \rho, j) \mid (i,j) \in E \right\} \). This allows us to apply the previous propositions to more general \( S \) and \( E \).
+    We assume \(  S \subset \left\{ (i,j) \in V_d \mid i < \lvert S \rvert \right\} \) and \( E = \left\{ 0,1, \dots, \lvert S \rvert - 1 \right\} \)
+as \( A^{(d)}_{E,S} = A^{(d-\rho)}_{E - \rho, S - \rho} \) holds for \( \rho \coloneqq \min \left\{ E \cup \left\{ i \mid (i,j) \in S \right\} \right\} \) and \( E - \rho \coloneqq \left\{ (i - \rho, j) \mid (i,j) \in E \right\} \). This allows us to apply the previous propositions to more general \( S \) and \( E \).
 \end{remark}
 
 \begin{example}
@@ -516,7 +516,7 @@ We apply the Invertibility Criterion to each possible support.
 \end{proof}
 
 \begin{proposition}\label{prop:symmetry-232lkmlksm}
-    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. If there exist \( e,f \in \{1 , \dots, d-1\} \) such that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \)  or  \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \), then \( d = 2 \) and \( e = f = 1 \) holds.
+    Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome. If there are \( e,f \in \{1 , \dots, d-1\} \) such that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (d,0), (0,e), (d-f,f) \right\} \)  or  \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (e,0), (d-f,f) \right\} \), then \( d = 2 \) and \( e = f = 1 \) hold.
 \end{proposition}
 
 \begin{proof}

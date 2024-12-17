@@ -1,6 +1,6 @@
 \chapter{Valid Outcomes of Positive Support Size Six}
 
-We want to prove that all valid outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) have \( \mathrm{deg}(\mathbf w) \leq 9 \). This thesis makes a contribution towards a proof by reducing the number of cases to check. In theory, we could use the same approach as in the previous chapters; specifically, we begin by computing 
+We want to prove that all valid outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) have \( \mathrm{deg}(\mathbf w) \leq 9 \). This thesis makes a contribution towards a proof by reducing the number of cases to check. We use the same approach as in the previous chapters; specifically, we begin by computing 
 \(
 \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
 \)
@@ -150,7 +150,7 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
     First, we see that \( q_{r, \cdot} \coloneqq (q_{r,j})_{j=0}^{d-r} = \lambda_r \cdot \mathbf{1} \) and \( q_{i,\cdot} =  \mathbf{0} \) for all \( i > r \). By the Pascal property, we have \( q_{r-1,d+1-(r-1)} = q_{r-1,d-(r-1)} - q_{r,d+1-r} = q_{r-1,d-(r-1)} - \lambda_r \).
     This shows \( q_{r-1,d+1-(r-1)} < q_{r-1,d-(r-1)} = p_{r-1,d-(r-1)} < 0 \), where the last inequality follows from the assumption $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$. Thus, we have \( \mathrm{sign}(q_{r-1,d+1-(r-1)}) = \mathrm{sign}(q_{r-1,d-(r-1)}) = \mathbf -1\). 
     
-    Next, use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). Note \( q_{r-2,d+1-(r-2)} > 0 \) as \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Hence, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We continue this argument for \( r-3, r-4, \dots, k \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
+    Next, use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). Note that we have \( q_{r-2,d+1-(r-2)} > 0 \) as \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Hence, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We continue this argument for \( r-3, r-4, \dots, k \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
 \end{proof}
 
 \begin{lemma}\label{lemma:same_sign_propagation_easy}
@@ -159,9 +159,9 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
 \end{lemma}
   
 \begin{proof}
-    Let \( i=k, \dots, r \). If we show \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \), then $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$ holds by assumption \( \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \). So, we can use Lemma \ref{lemma:sign_row_propagation} to prove the statement. 
+    Let \( i=k, \dots, r \). If we have \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \), then $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$ holds due to \( \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \). So, we can use Lemma \ref{lemma:sign_row_propagation} to prove the statement. 
     
-    We see that \( \mathrm{sign}(p_{r,d-r}) = \mathrm{sign}(p_{r,d-r-5}) \) since \( \mathrm{sign}(\mathrm{row}(r))_{c_r} = \mathrm{sign}(p)_{c_r} \) and \( \mathrm{sign}(r_{r,d-r}) = \mathrm{sign}(r_{r, d - r - 5}) \). For \( r - 1 \), we then use the Pascal property. We repeat this argument for \( r-2, r-3, \dots, k \). This shows that \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \) for all \( i = k, \dots, r \).
+    We see that \( \mathrm{sign}(p_{r,d-r}) = \mathrm{sign}(p_{r,d-r-5}) \) as \( \mathrm{sign}(\mathrm{row}(r))_{c_r} = \mathrm{sign}(p)_{c_r} \) and \( \mathrm{sign}(r_{r,d-r}) = \mathrm{sign}(r_{r, d - r - 5}) \). For \( r - 1 \), we then use the Pascal property. We repeat this argument for \( r-2, r-3, \dots, k \). This shows that \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \) for all \( i = k, \dots, r \).
 \end{proof}
 
 \begin{proposition}\label{prop:fixed-contraction-homo-row}
