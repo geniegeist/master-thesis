@@ -71,19 +71,12 @@ We state the Hexagon Criterion.
 
 
 
-Next, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 7 \). We use the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion to prove it.
+Next, we prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 5 \) we have \( \mathrm{deg}(\mathbf w) \leq 7 \). We use the Invertibility Criterion, Hyperfield Criterion, and the Hexagon Criterion.
 
 \section{Proof \( d = 8, \dots, 41 \)}
 
 First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \); this is similar to the proof of Proposition \ref{prop:jdngkjrenj3nw}.
 
-\begin{proposition}
-    Let $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$ for some degree \( d \in \mathbb{N} \). Let \( \mathbf{x} \in H^{V_d} \) be nonzero with \( \mathrm{supp}^-(\mathbf{x}) = \left\{ (0,0) \right\} \). Then, the number of solutions \( \lvert S_5(A) \rvert \) for \( d = 8, \dots, 41 \) is depicted in Table \ref{tab:solutions324324324}.
-\end{proposition}
-
-\begin{proof}
-    We compute the set of \( S_5(A) \) for \( d = 8, \dots, 40 \), and \( 41 \) using the implementation of Algorithm \ref{alg:solve} which is included in the appendix TODO.
-\end{proof}
 
 \begin{proposition}\label{prop:uiwuwinca}
     No outcome of degree \( d = 8, \dots, 41 \) exists with \( |\mathrm{supp}^+(\mathbf w)| = 5 \).
@@ -106,11 +99,7 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
 
 \section{Proof \( d \geq 42 \)}
 
-We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets 
-\begin{gather*}
-    \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \text{ and }
-    \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} 
-\end{gather*}
+We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\}  \).
 using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{prop:jasndkjsnjsnkjs}, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
 
 
@@ -146,9 +135,9 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
     \begin{align*}
         \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}).
     \end{align*}
-    The new coordinate system \( H^{\Xi'} \) is depicted in Figure \ref{fig:uhrui23h}.
+    The new coordinate system \( H^{\Xi'} \) is depicted below.
 
-\begin{figure}
+\begin{figure}[H]
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
             y_{0,3} & & & & & & & & & & & & \\
@@ -205,7 +194,7 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
 \section{Proof \( d \geq 42\) Continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Four}
 
 \begin{corollary}
-    From Proposition \ref{prop:ieshwu4rhui3w}, we see that \( \mathbf{s}' \in \Lambda \) has positive support size four if and only if \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) satisfies \( d_i = 1 \) and \( e_j = 1 \) for some \( i,j = 0, 1,2,3 \).
+    From Proposition \ref{prop:ieshwu4rhui3w}, we see that \( \mathbf{s}' \in \Lambda \) has positive support size four if and only if there exist \( i,j \in \{ 0, 1,2,3 \} \) such that \( \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \) satisfies \( d_i = 1 \) and \( e_j = 1 \).
 \end{corollary}
 
 \begin{corollary}
@@ -240,7 +229,7 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We wil
 
 \begin{definition}
     Let \( d \geq 42 \).
-    Let \( M \) be a sentinel value with no further significance. We use it to encode integers from \( 4, \dots, d-7 \). Define the map 
+    Let \( M \) be a sentinel value with no further significance other than to encode integers from \( 4, \dots, d-7 \). Define the map 
     \begin{align*}
         \mathrm{relcoord}: \left\{ 0, \dots, d \right\} \to \left\{ 0,1,2,3,d-6,d-5,d-4,d-3,d-2,d-1,d,M \right\}, \\
         x \mapsto \begin{cases}
@@ -256,14 +245,14 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We wil
 \end{definition}
 
 \begin{proposition}\label{prop:iewjri3j3234212121112}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with positive support size five and degree \( d \). Write \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \). Let \( i,j = 0,1,2,3 \). Then, all of the following conditions hold:
+    Let \( d \geq 42 \), \( i,j \in \{ 0,1,2,3 \} \), and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a valid outcome with positive support size five and degree \( d \). Write \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \). Then, all the following conditions hold:
     \begin{enumerate}
-        \item \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( x_{i,j} \neq 0 \);
-        \item \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( y_{i,j} \neq 0 \);
-        \item \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( z_{i,j} \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if and only if \( b_i \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if and only if \( c_i \neq 0 \);
-        \item \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if and only if \( f_i \neq 0 \).
+        \item We have \( (i,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( x_{i,j} \neq 0 \);
+        \item We have \( (i, d-3+j-i) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( y_{i,j} \neq 0 \);
+        \item We have \( (d-3+i-j,j) \in \mathrm{relset}(\mathbf{w}) \) if and only if \( z_{i,j} \neq 0 \);
+        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M,i), (d-6, i), \dots, (d-4-i, i) \right\} \neq \emptyset \) if and only if \( b_i \neq 0 \);
+        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (i,M), (i, d-6), \dots, (i,d-4-i) \right\} \neq \emptyset \) if and only if \( c_i \neq 0 \);
+        \item We have \( \mathrm{relset}(\mathbf{w}) \cap \left\{ (M, d-4-i), \dots, (M, d-6), (M,M), (d-6, M), \dots, (d-4-i, M) \right\} \neq \emptyset \) if and only if \( f_i \neq 0 \).
     \end{enumerate}
 \end{proposition}
 
@@ -278,9 +267,7 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We wil
 \end{proof}
 
 \begin{remark}
-    Given some \( \mathbf{s}' \in {H}^{\Xi'} \) we can compute all the relative supports \( \mathrm{relset}(\mathbf{w}) \) for all \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\). Proposition \ref{prop:iewjri3j3234212121112} gives us an easy way to compute this set of relative supports by interpreting all the six conditions \( (1), (2), (3), (4), (5) \) and \( (6) \) in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). 
-
-    For instance, if \( \mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \) satisfies \( b_0 \neq 0 \), then we know that corresponding outcomes \( \mathbf{w} \) satisfy has some nonzero \( w_{i,j} \) in  \( (i,j) \in \left\{ (M,0), (d-6, 0), \dots, (d-4, 0) \right\} \). This observation simplifies the computation of all outcomes corresponding to \( \mathbf{s}' \).
+    Given \( \mathbf{s}' \in {H}^{\Xi'} \), we compute all \( \mathrm{relset}(\mathbf{w}) \) for \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\) using Proposition \ref{prop:iewjri3j3234212121112}; we view all the six conditions \( (1), (2), (3), (4), (5) \) and \( (6) \) in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). For instance, if \( \mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \) satisfies \( b_0 \neq 0 \), then we know that corresponding outcomes \( \mathbf{w} \) satisfy \( w_{i,j} \neq 0 \) for some  \( (i,j) \in \left\{ (M,0), (d-6, 0), \dots, (d-4, 0) \right\} \).
 \end{remark}
 
 Relative coordinates help us to apply the Invertibility Criterion. 
@@ -308,23 +295,17 @@ Relative coordinates help us to apply the Invertibility Criterion.
     1    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
     0    X  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 
-        0  1  2  3  M  M  M  M  M  M  M  M d-6 d-5 d-4 d-3 d-2 d-1  d
+         0  1  2  3  M  M  M  M  M  M  M  M d-6 d-5 d-4 d-3 d-2 d-1 d
     \end{verbatim}
     \end{small}
-    We see that \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
+    We see \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
     for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \). So, we assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \). Hence, \( \mathbf{w} \) cannot be an outcome.
 \end{example}
 
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 \begin{proposition}
-    Let \( \mathbf{s}' \in \Lambda \). Then, we have 
-    \begin{itemize}
-        \item  \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \),
-        \item \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and
-        \item      \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).
-    \end{itemize}
-    This implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
+    Let \( \mathbf{s}' \in \Lambda \). All the following conditions hold: \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).Moreover, this immediately implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
 \end{proposition}
 
 \begin{proof}
@@ -344,7 +325,7 @@ Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 \end{proof}
 
 \begin{corollary}\label{cor:2uiniu2}
-    We may specialize to the case \( i = i' \) when \( (i,x), (i',y) \in \mathrm{supp}(\mathbf{w}) \) for \( i,i' = 4, \dots, d-7 \) and \( x \neq y \) occurs.     
+    In the divide step of the Invertibility Criterion, we may specialize to the case \( i = i' \) when \( (i,x), (i',y) \in \mathrm{supp}(\mathbf{w}) \) for \( i,i' = 4, \dots, d-7 \) and \( x \neq y \) occurs 
 \end{corollary}
 
 Similar statements hold for the case \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{w}) : y = M \right\} \rvert = 2 \).
@@ -359,7 +340,7 @@ Similar statements hold for the case \( \lvert \left\{ (x,y) \in \mathrm{relset}
 \end{corollary}
 
 \begin{proof}
-    Use Proposition \ref{prop:impossible-support-2324223423123123}. We just need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction.
+    Use Proposition \ref{prop:impossible-support-2324223423123123}; we only need to make sure that \( x + y \neq 2z + 1 \). Assume \( x + y = 2z + 1 \). Then, \( z = \frac{x+y -1}{2} \). The smallest value for \( z \) is \( \frac{d-6-1}{2} = 17.5 \), and the largest value is \( \frac{d+3-1}{2} = 22 \) for \( d = 42 \). Hence, \( z \) does map to \( M \) under relative coordinates for all \( d = 42 \) and for \( d > 42 \) we well. By assumption,  \( \mathrm{relcoord}(z) \neq M  \). This is a contradiction.
 \end{proof}
 
 We have the following rules for computing the midpoint in relative coordinates.
@@ -401,184 +382,112 @@ We have the following rules for computing the midpoint in relative coordinates.
     \end{enumerate}
 \end{proof}
 
-This proposition gives Algorithm \ref{alg:midpoint} to compute the midpoint of two points in relative coordinates. Next, we define the order in relative coordinates: \(     0 < 1 < 2 < 3 < M < d-6 < d-5 < d-4 < d-3 < d-2 < d-1 < d\).
-The \texttt{succ} function is defined as the successor in this order, see Algorithm \ref{alg:succ}. We now implement the conquer step of the divide and conquer approach of the Invertibility Criterion, see Algorithm \ref{alg:conquer}. This leads us to an implementation of the Invertibility Criterion for relative coordinates, see Algorithm \ref{alg:relcoord-inv-crit}.
 
-\begin{algorithm}
-\caption{Compute midpoint \( \frac{a + b -1}{2} \)}
-\label{alg:midpoint}
-\begin{algorithmic}[1]
-\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
-\Function{\texttt{midpoint}}{$a, b$}
-    \State $low, high \gets \min(a, b), \max(a, b)$
-    \If{$low > \texttt{SENTINEL\_M}$ \textbf{or} $high < \texttt{SENTINEL\_M}$}
-        \State \Return $\left\{ \frac{low + high - 1}{2} \right\}$
-    \ElsIf{$high = \texttt{SENTINEL\_M}$}
-        \If{$low \in \{0, 1\}$}
-            \State \Return $\{2, 3, \texttt{SENTINEL\_M}\}$
-        \ElsIf{$low \in \{2, 3\}$}
-            \State \Return $\{3, \texttt{SENTINEL\_M}\}$
-        \EndIf
-    \ElsIf{$low = \texttt{SENTINEL\_M}$}
-        \If{$high \in \{\texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5\}$}
-            \State \Return $\{\texttt{SENTINEL\_M}\}$
-        \ElsIf{$high \in \{\texttt{SENTINEL\_D} - 4, \texttt{SENTINEL\_D} - 3\}$}
-            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6\}$
-        \ElsIf{$high \in \{\texttt{SENTINEL\_D} - 2, \texttt{SENTINEL\_D} - 1\}$}
-            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5\}$
-        \ElsIf{$high = \texttt{SENTINEL\_D}$}
-            \State \Return $\{\texttt{SENTINEL\_M}, \texttt{SENTINEL\_D} - 6, \texttt{SENTINEL\_D} - 5, \texttt{SENTINEL\_D} - 4\}$
-        \EndIf
-    \EndIf
-    \State \Return $\{\texttt{SENTINEL\_M}\}$
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
 
-\begin{algorithm}
-\caption{Successor}
-\label{alg:succ}
-\begin{algorithmic}[1]
-\Require Constants: $\texttt{SENTINEL\_M} \gets 500$, $\texttt{SENTINEL\_D} \gets 1000$
-\Function{\texttt{succ}}{$x$}
-\If{$x = 3$}
-    \State \Return \texttt{SENTINEL\_M}
-\ElsIf{$x = \texttt{SENTINEL\_M}$}
-    \State \Return $\texttt{SENTINEL\_D} - 6$
-\Else
-    \State \Return $x + 1$
-\EndIf
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-\caption{Conquer Algorithm}
-\label{alg:conquer}
-\begin{algorithmic}[1]
-\Require support \texttt{relset} in relative coordinates
-\Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
-\Function{\texttt{conquer}}{$\texttt{relset}$}
-    \State \texttt{relset} $\gets \texttt{relset.sort\_by\_column()}$
-    \State $\texttt{length} \gets |\texttt{relset}|$
-    \If{$\texttt{length} \leq 2$}
-        \State \Return \texttt{True} \Comment{Proposition \ref{prop:impossible-support-23233243243423} and \ref{prop:impossible-support-232423}}
-    \ElsIf{$\texttt{length} = 3$}
-        \State $x, y, z \gets \texttt{relset}[0], \texttt{relset}[1], \texttt{relset}[2]$
-        \State $\texttt{same\_column} \gets (\texttt{col}(x) = \texttt{col}(y) = \texttt{col}(z))$
-        \If{$\texttt{same\_column}$} \Comment{Proposition \ref{prop:impossible-support-2}}
-            \State \Return \texttt{True}
-        \ElsIf{$\texttt{col}(x) = \texttt{col}(y)$ \textbf{and} $\texttt{succ}(\texttt{col}(x)) = \texttt{col}(z)$}
-            \If{$\texttt{row}(z) \notin \texttt{midpoint}(\texttt{row}(x), \texttt{row}(y))$} \Comment{Proposition \ref{prop:impossible-support-2324223423123123}}
-                \State \Return \texttt{True}
-            \EndIf
-        \EndIf
-        \State \Return \texttt{False}
-    \Else
-        \State \Return \texttt{False}
-    \EndIf
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}
+% \caption{Conquer Algorithm}
+% \label{alg:conquer}
+% \begin{algorithmic}[1]
+% \Require support \texttt{relset} in relative coordinates
+% \Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
+% \Function{\texttt{conquer}}{$\texttt{relset}$}
+%     \State \texttt{relset} $\gets \texttt{relset.sort\_by\_column()}$
+%     \State $\texttt{length} \gets |\texttt{relset}|$
+%     \If{$\texttt{length} \leq 2$}
+%         \State \Return \texttt{True} \Comment{Proposition \ref{prop:impossible-support-23233243243423} and \ref{prop:impossible-support-232423}}
+%     \ElsIf{$\texttt{length} = 3$}
+%         \State $x, y, z \gets \texttt{relset}[0], \texttt{relset}[1], \texttt{relset}[2]$
+%         \State $\texttt{same\_column} \gets (\texttt{col}(x) = \texttt{col}(y) = \texttt{col}(z))$
+%         \If{$\texttt{same\_column}$} \Comment{Proposition \ref{prop:impossible-support-2}}
+%             \State \Return \texttt{True}
+%         \ElsIf{$\texttt{col}(x) = \texttt{col}(y)$ \textbf{and} $\texttt{succ}(\texttt{col}(x)) = \texttt{col}(z)$}
+%             \If{$\texttt{row}(z) \notin \texttt{midpoint}(\texttt{row}(x), \texttt{row}(y))$} \Comment{Proposition \ref{prop:impossible-support-2324223423123123}}
+%                 \State \Return \texttt{True}
+%             \EndIf
+%         \EndIf
+%         \State \Return \texttt{False}
+%     \Else
+%         \State \Return \texttt{False}
+%     \EndIf
+% \EndFunction
+% \end{algorithmic}
+% \end{algorithm}
 
     
-\begin{algorithm}
-\caption{Invertibility Criterion for relative coordinates}
-\label{alg:relcoord-inv-crit}
-\begin{algorithmic}[1]
-\Require support \texttt{relset} in relative coordinates
-\Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
-\Function{\texttt{invertibility\_criterion}}{$\texttt{relset}$}
-    \State $L \gets \texttt{divide(relset)}$
-    \State \Return $\texttt{all\_is\_true}(\texttt{[conquer(s) for s in make\_subrelset(relset, L)]})$ 
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}
+% \caption{Invertibility Criterion for relative coordinates}
+% \label{alg:relcoord-inv-crit}
+% \begin{algorithmic}[1]
+% \Require support \texttt{relset} in relative coordinates
+% \Ensure \texttt{True} only if the Invertibility Criterion is successful; \texttt{False} if inconclusive
+% \Function{\texttt{invertibility\_criterion}}{$\texttt{relset}$}
+%     \State $L \gets \texttt{divide(relset)}$
+%     \State \Return $\texttt{all\_is\_true}(\texttt{[conquer(s) for s in make\_subrelset(relset, L)]})$ 
+% \EndFunction
+% \end{algorithmic}
+% \end{algorithm}
 
-\begin{algorithm}
-\caption{Make subrelset}
-\label{alg:subrelset}
-\begin{algorithmic}[1]
-\Function{\texttt{make\_subrelset}}{$\texttt{relset}, L$}
-    \State $\texttt{i} \gets 0$
-    \For{$n \in \{l \in L \mid l > 0\}$}
-        \State \textbf{yield} $\texttt{relset}[\texttt{i}:\texttt{i}+n]$
-        \State $\texttt{i} \gets \texttt{i} + n$
-    \EndFor
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}
+% \caption{Make subrelset}
+% \label{alg:subrelset}
+% \begin{algorithmic}[1]
+% \Function{\texttt{make\_subrelset}}{$\texttt{relset}, L$}
+%     \State $\texttt{i} \gets 0$
+%     \For{$n \in \{l \in L \mid l > 0\}$}
+%         \State \textbf{yield} $\texttt{relset}[\texttt{i}:\texttt{i}+n]$
+%         \State $\texttt{i} \gets \texttt{i} + n$
+%     \EndFor
+% \EndFunction
+% \end{algorithmic}
+% \end{algorithm}
 
-Let us apply the Invertibility Criterion for relative coordinates to all of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with a positive support size of five. We want to compute the set
-\begin{align*}
-    R(\mathbf{s}') \coloneqq \{ \mathrm{relset}(\mathbf{w}) \mid  \mathbf{w} \in \mathbb Z^{V_d} \text{ such that } \mathrm{contr}'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \}.
-\end{align*}
-Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \) using Proposition \ref{prop:iewjri3j3234212121112}, see Algorithm \ref{alg:relsets}. Now, we can apply the Invertibility Criterion for relative coordinates to all of \( \mathbf{m} \in R(\mathbf{s}') \). If all of these applications to \( \mathbf{m} \in R(\mathbf{s}') \) are successful, then \( \mathbf{s}' \) is impossible. Otherwise, we cannot exclude \( \mathbf{s}' \) as a possible outcome. 
-
-Of the 2289 cases of \( \mathbf{s}' \in \Lambda \) with positive support size five, we rule out 1182 cases by applying the Invertibility Criterion for relative coordinates using Algorithm \ref{alg:jwenkjdn2kj32}. The remaining 1107 cases are inconclusive. The details of the implementation can be found in the Appendix TODO.
+Let us apply the Invertibility Criterion to all the 2289 cases. First, we compute the set \(  R(\mathbf{s}') \coloneqq \{ \mathrm{relset}(\mathbf{w}) \mid  \mathbf{w} \in \mathbb Z^{V_d} \text{ such that } \mathrm{contr}'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \} \) for each \( \mathbf{s}' \in \Lambda \).
+Here is a simple depth first search algorithm to compute \( R(\mathbf{s}') \).
 
 \begin{algorithm}[H]
-\caption{Find Relative Coordinates}
-\label{alg:relsets}
-\begin{algorithmic}[1]
-\Require $\mathbf{s}' \in H^{\Xi}$
-\Ensure $R(\mathbf{s}')$
-\Function{\texttt{relsets}}{$\mathbf{s}'$}
-    \State $\texttt{constraints} \gets \texttt{[make\_rel\_constraints(t) for t in s' if t != 0]}$
-    \State $\texttt{accu} \gets \texttt{list()}$ 
-    \State $\texttt{res} \gets \texttt{list()}$ 
+    \caption{Compute \( R(\mathbf{s}')  \)}
+    \label{alg:relsets}
+    \begin{algorithmic}[1]
+    \Require $\mathbf{s}' \in H^{\Xi}$
+    \Ensure $R(\mathbf{s}')$
+    \Function{\texttt{compute\_relsets}}{$\mathbf{s}'$}
+        \State $\texttt{constraints} \gets$ build constraints as in Proposition \ref{prop:iewjri3j3234212121112}
+        \State $\texttt{accu} \gets \texttt{list()}$, $\texttt{res} \gets \texttt{list()}$ 
+        
+        \Function{\texttt{dfs}}{$\texttt{i}$}
+            \If{$\texttt{i} \geq |\texttt{constraints}|$}
+                \State $\texttt{res.append(accu.copy())}$
+                \State \Return
+            \EndIf
+            \For{$x \in \texttt{constraints}[\texttt{i}]$}
+                \State $\texttt{accu.append}(x)$
+                \State $\texttt{dfs}(\texttt{i} + 1)$
+                \State $\texttt{accu.pop()}$
+            \EndFor
+        \EndFunction
     
-    \Function{\texttt{dfs}}{$\texttt{i}$}
-        \If{$\texttt{i} \geq |\texttt{constraints}|$}
-            \State $\texttt{res.append(accu.copy())}$
-            \State \Return
-        \EndIf
-        \For{$x \in \texttt{constraints}[\texttt{i}]$}
-            \State $\texttt{accu.append}(x)$
-            \State $\texttt{dfs}(\texttt{i} + 1)$
-            \State $\texttt{accu.pop()}$
-        \EndFor
+        \State \texttt{dfs}(0)
+        \State \Return \texttt{res}
     \EndFunction
+    \end{algorithmic}
+    \end{algorithm}
+    
+    \begin{proof}[Proof of correctness]
+        Let \( \mathbf{s}' = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) \).
+        By Proposition \ref{prop:iewjri3j3234212121112}, \( \mathbf{m} \in R(\mathbf{s}') \) if and only if \( \mathbf{m} \cap C \neq \emptyset \) for all \( C \in \left\{ \texttt{make\_rel\_constraints(t)} \mid t \in \{x_{i,j}, y_{i,j}, z_{i,j}, b_i, c_i, f_i\}, t \neq 0 \right\} \). It just remains to show that \( \mathbf{m} \in \texttt{res} \) if and only if \( \mathbf{m} \) satisfies all of these constraints. First note that \( x \in \mathbf{m} \) if and only if \( x \in \mathrm{constraints[i]} \) for some \( i \) by line eleven. Since \( \mathbf{m} \in \texttt{res}  \) if and only if \( \mathbf{m} \) satisfies all constraints by line six, the algorithm is correct.
+    \end{proof}
 
-    \State \texttt{dfs}(0)
-    \State \Return \texttt{res}
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
 
-\begin{proof}[Proof of correctness]
-    Let \( \mathbf{s}' = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) \).
-    By Proposition \ref{prop:iewjri3j3234212121112}, \( \mathbf{m} \in R(\mathbf{s}') \) if and only if \( \mathbf{m} \cap C \neq \emptyset \) for all \( C \in \left\{ \texttt{make\_rel\_constraints(t)} \mid t \in \{x_{i,j}, y_{i,j}, z_{i,j}, b_i, c_i, f_i\}, t \neq 0 \right\} \).
-
-    It just remains to show that \( \mathbf{m} \in \texttt{res} \) if and only if \( \mathbf{m} \) satisfies all of these constraints. First note that \( x \in \mathbf{m} \) if and only if \( x \in \mathrm{constraints[i]} \) for some \( i \) by line eleven. Since \( \mathbf{m} \in \texttt{res}  \) if and only if \( \mathbf{m} \) satisfies all constraints by line six, the algorithm is correct.
-\end{proof}
-
-\begin{algorithm}
-\caption{Check Configurations Against Invertibility Criterion}
-\label{alg:jwenkjdn2kj32}
-\begin{algorithmic}[1]
-\Require $\Lambda$
-\Ensure $\texttt{left\_to\_check}$: supports not satisfying the Invertibility Criterion
-\State $\texttt{left\_to\_check} \gets \texttt{list()}$ 
-\For{each $\mathbf{s}' \in \Lambda$}
-    \State $\texttt{res} \gets [\texttt{invertibility\_criterion}(R) \text{ for } R \in \texttt{relsets}(\mathbf{s}')]$
-    \If{$\neg \texttt{all}(\texttt{res})$}
-        \State $\texttt{left\_to\_check.append}(\mathbf{s}')$
-    \EndIf
-\EndFor
-\State \Return $\texttt{left\_to\_check}$
-\end{algorithmic}
-\end{algorithm}
+For all \( \mathbf{m} \in R(\mathbf{s}') \) we apply the Invertibility Criterion as in Example \ref{ex:siuh438h89}. If each application of the Invertibility Criterion to \( \mathbf{m} \in R(\mathbf{s}') \) is successful, we exclude \( \mathbf{s}' \). After this procedure, we are left with 1107 cases of \( \mathbf{s}' \in \Lambda \), where the Invertibility Criterion was inconclusive. The implementation details are public in \cite{ducrepo} under the file name \texttt{chapter06.ipynb}.
 
 \subsection{Symmetry}
 
-It remains to consider 1107 cases thanks to the Invertibility Criterion for relative coordinates. We can use symmetry to reduce the number of cases further. Let \( \mathbf{s}' \in \Lambda \) be one of the 1107 cases. We can apply the following symmetries to \( \mathbf{s}' \) similar to the symmetries in Section \ref{sec:symmetry}:
+We use symmetry to reduce the number of cases further. Let \( \mathbf{s}' \in \Lambda \) be one of the 1107 cases. We apply the following symmetries to \( \mathbf{s}' \) similar to the symmetries in Section \ref{sec:symmetry}:
 \begin{align*}
     (12) \cdot (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) &\coloneqq ((x_{j,i})_{i,j=0}^3, (y_{j,i})_{i,j=0}^3, (z_{j,i})_{i,j=0}^3, \mathbf{c}, \mathbf{b}, \mathbf{f}), \\
     (13) \cdot (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{f}) &\coloneqq ((z_{3-i,j})_{i,j=0}^3, (y_{3-j,3-i})_{i,j=0}^3, (x_{3-i,j})_{i,j=0}^3, \mathbf{f}, \mathbf{c}, \mathbf{b}).
 \end{align*}
 Define the group \( S_3 \) generated by these two symmetries. For all weakly valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \), the actions \( \sigma \in S_3 \) satisfy \( \sigma \cdot \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathrm{contr}_d'(\mathrm{sign}(\sigma \cdot \mathbf{w})) \).
-We can use this symmetry to reduce the number of cases to consider.
 
 \begin{proposition}
     Let \( d \in \mathbb{N} \) and \( \mathbf{s}' \in H^{\Xi'} \). If there are no weakly valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) of degree \( d \) with \( \mathrm{contr}'_{d}(\mathrm{sign}(\mathbf{w})) = \sigma \mathbf{s}' \) for some \( \sigma \in S_3 \setminus \left\{ (1) \right\} \), then there are no weakly valid outcomes \( \mathbf{v} \in \mathbb{Z}^{V_d} \) of degree \( d \) with \( \mathrm{contr}'_{d}(\mathrm{sign}(\mathbf{v})) = \mathbf{s}' \).
