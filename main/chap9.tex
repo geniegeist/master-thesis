@@ -99,7 +99,7 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
 
 \section{Proof \( d \geq 42 \)}
 
-We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\}  \).
+We show that no valid outcome of degree \( d \geq 42 \) exists using contractions. As in Proposition \ref{prop:jasndkjsnjsnkjs}, we compute the sets \(  \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\} \) and \( \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert \leq 5 \right\}  \)
 using Algorithm \ref{alg:hyperfield_criterion:efficient}. By Proposition \ref{prop:jasndkjsnjsnkjs}, we just need to check the case \( \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 5 \).
 
 
@@ -305,7 +305,7 @@ Relative coordinates help us to apply the Invertibility Criterion.
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
 
 \begin{proposition}
-    Let \( \mathbf{s}' \in \Lambda \). All the following conditions hold: \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \).Moreover, this immediately implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
+    Let \( \mathbf{s}' \in \Lambda \). All the following conditions hold: \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ b_0,b_1,b_2,b_3 \right\} \rvert \leq 1 \), \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ c_0,c_1,c_2,c_3 \right\} \rvert \leq 1 \), and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{ f_0,f_1,f_2,f_3 \right\} \rvert \leq 1 \). Moreover, this immediately implies \( \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : x = M \right\} \rvert \leq 2 \) and \(  \lvert \left\{ (x,y) \in \mathrm{relset}(\mathbf{s}') : y = M \right\} \rvert \leq 2 \).
 \end{proposition}
 
 \begin{proof}
@@ -367,7 +367,7 @@ We have the following rules for computing the midpoint in relative coordinates.
 \begin{proof}
     Let \( d \geq 42 \).
     \begin{enumerate}
-        \item Let \( a = b = 3 \). Then \( \frac{6 - 1 }{2} = 2.5 \). Thus, for all \( a \leq b \leq 3 \) we have \( \frac{a + b - 1 }{2} \leq 2.5 \), so \(\mathrm{relcoord}( \frac{a + b - 1 }{2})  \neq M \). Let \( a = b = d - 6 \). Then \( \frac{a + b -1}{2} > d - 7 \). Thus, for all \( d-6 \leq a \leq b \leq d \) we have \( \mathrm{relcoord}(\frac{a + b - 1 }{2}) \neq M \).
+        \item Let \( a = b = 3 \). Then \( \frac{6 - 1 }{2} = 2.5 \). Thus, for all \( a \leq b \leq 3 \) we have \( \frac{a + b - 1 }{2} \leq 2.5 \). Therefore, \(\mathrm{relcoord}( \frac{a + b - 1 }{2})  \neq M \). Let \( a = b = d - 6 \). Then \( \frac{a + b -1}{2} > d - 7 \). Thus, for all \( d-6 \leq a \leq b \leq d \) we have \( \mathrm{relcoord}(\frac{a + b - 1 }{2}) \neq M \).
         \item Let \( b = 4, \dots, d-7 \).
         \begin{enumerate}
             \item For \( a = 0 \) and \( b  = 4 \) we obtain \( \frac{a + b -1}{2} > 1.5 \). So, \( \mathrm{relcoord}(\frac{a + b - 1}{2})  \notin \left\{ 0,1 \right\} \). For \( a = 1 \) and \( b  = d-7 \), we see that \( \frac{a + b -1}{2} = \frac{d-7}{2} \), which maps to \( M \) under relative coordinates for \( d \geq 42 \). So the midpoint maps to values between two and \( M \) under \( \mathrm{relcoord} \), i.e. \( \left\{ 2,3,M \right\} \). This shows the claim.
@@ -564,8 +564,8 @@ Hence, we apply the Hexagon Criterion showing that the degree of \( \mathbf{w} \
 
 We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. However, one case, \( \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \), cannot be ruled out by the Hexagon Criterion. We will handle this case separately and focus on the remaining eleven cases for now.
 
-First, we observe that all the eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) and \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
-Hence, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) we have \( \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\}  \)
+Note that all eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) as well as \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
+Therefore, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) we have \( \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\}  \)
 for some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \).
 
 \begin{proposition}\label{prop:nkjeai32huh3i2}

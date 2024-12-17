@@ -8,3 +8,12 @@ MLE
 Invertibility
 Fixed-Contractable
 Hyperfield
+fixed-contractables
+ipynb
+filtereven
+summands
+subconfigurations
+subconfiguration
+Chipsplitting
+Duc
+Viet

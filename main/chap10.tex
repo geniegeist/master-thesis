@@ -36,7 +36,7 @@ albeit with a slight modification to these sets. While we previously considered 
 From this point forward, when we refer to \( \mathbf{s} \in H^{\Xi} \), we will mean contractions of size five. We increase the contraction size to gain more information about potential supports, which we hope will prove useful when handling cases manually.
 
 \begin{definition}
-    We define \(  \Gamma^{\mathrm{even}}_6 \) and \( \Gamma^{\mathrm{odd}}_6 \) analogously to Definition \ref{def:sdjsndjknsdj} with 
+    Define \(  \Gamma^{\mathrm{even}}_6 \) and \( \Gamma^{\mathrm{odd}}_6 \) analogously to Definition \ref{def:sdjsndjknsdj} with 
     \begin{gather*}
         \Phi_1 = \left\{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i), \mathrm{diag}(d-i) \right\}_{i=0}^4 \text{ and } \Phi_2 = \left\{ \mathrm{col}(d-i), \mathrm{row}(d-i) \right\}_{i=0}^4.
     \end{gather*}
@@ -150,7 +150,7 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
     First, we see that \( q_{r, \cdot} \coloneqq (q_{r,j})_{j=0}^{d-r} = \lambda_r \cdot \mathbf{1} \) and \( q_{i,\cdot} =  \mathbf{0} \) for all \( i > r \). By the Pascal property, we have \( q_{r-1,d+1-(r-1)} = q_{r-1,d-(r-1)} - q_{r,d+1-r} = q_{r-1,d-(r-1)} - \lambda_r \).
     This shows \( q_{r-1,d+1-(r-1)} < q_{r-1,d-(r-1)} = p_{r-1,d-(r-1)} < 0 \), where the last inequality follows from the assumption $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$. Thus, we have \( \mathrm{sign}(q_{r-1,d+1-(r-1)}) = \mathrm{sign}(q_{r-1,d-(r-1)}) = \mathbf -1\). 
     
-    Next, we again use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). We see that \( q_{r-2,d+1-(r-2)} > 0 \) because \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Thus, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We can continue this argument for \( r-3, r-4, \dots, k \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
+    Next, use the Pascal property \( q_{r-2,d+1-(r-2)} = q_{r-2,d-(r-2)} - q_{r-1,d+1-(r-1)} \). Note \( q_{r-2,d+1-(r-2)} > 0 \) as \( q_{r-2,d-(r-2)} > 0 \) and \( q_{r-1,d+1-(r-1)} < 0 \). Hence, we have \( \mathrm{sign}(q_{r-2,d+1-(r-2)}) = \mathrm{sign}(q_{r-2,d-(r-2)}) = 1 \). We continue this argument for \( r-3, r-4, \dots, k \). This shows that \( \mathrm{sign}(q_{i,d+1-i}) = \mathrm{sign}(q_{i,d-i}) = \mathrm{sign}(p_{i,d-i}) \) for all \( i = k, \dots, r\).
 \end{proof}
 
 \begin{lemma}\label{lemma:same_sign_propagation_easy}
@@ -228,7 +228,7 @@ Not surprisingly, we have analogous propositions for \( \mathrm{diag}(\cdot) \) 
 \begin{proposition}\label{prop:fixed-contraction-homo-diag}
     Let \( d \in \mathbb{N}_{\geq 15} \). The following statements hold:
     \begin{enumerate}
-        \item  Assume \( r \leq 4 \). If there exists \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{diag}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
+        \item  Assume \( r \leq 4 \). If there is \( k \in \left\{ 0, \dots, r \right\} \) such that for all \( i = k, \dots, r\) we have \(  \mathrm{sign}(\mathrm{diag}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \),
         then  \( \mathrm{sign}(T) \) is fixed-contractable on \( c_i \) for all \( i = k, \dots, r \).
         \item Assume \( r \geq d-4 \).
         If there exists \( k \in \left\{ r, \dots, d \right\} \) such that for all \( i = r, \dots, d\) we have \(  \mathrm{sign}(\mathrm{diag}(r))_{b_i} = \mathrm{sign}(p)_{b_i} \),
@@ -317,7 +317,7 @@ We see that \( (\mathrm{col}(d))_{d_0} = -\mathbf 1 \) is a constant vector for 
 
 \section{An Extended Trivial System}
 
-To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi_1 \cup \Phi_2 \). We proved that this system is non-trivial. If we can find a system \( \Psi \) that is a superset of \( \Phi \) and is also nont-rivial, then we can reduce the number of cases to check. 
+To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi_1 \cup \Phi_2 \). We proved that this system is non-trivial. If we can find a system \( \Psi \) that is a superset of \( \Phi \) and is also non-trivial, then we can reduce the number of cases to check. 
 
 \begin{proposition}
     Define \( \Psi = \Phi \cup \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \), where 
@@ -336,7 +336,7 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
     
         If \( \mathbf{w} \) is a trivial root of \( p_d \), then it satisfies \( w_{0,k} = 0 \) for all \( k = 1, \dots, d \). Then, \( \mathrm{diag}(0)(\mathbf{w}) < 0 \); this is a contradiction because \( \mathbf{w} \) is supposed to be a root of \( \mathrm{diag}(0) \).
             
-            Let \( d \in \mathbb{N}_{\geq 15} \) be even and \( \mathbf{w} \) be a root of \( \Psi \). The realization \( p_d = \sum \lambda_{i,j}x_{i,j} \) satisfies \( \lambda_{i,d-i} \neq 0 \) if and only if \( i \in \left\{ 0, d \right\} \). If \( \mathbf{w} \) is a trivial solution of \( p_d \), the it satisfies \( w_{d,0} > 0 \) since it is a root of \( \mathrm{diag}(d) \). However, \( \mathrm{col}(d-1)(\mathbf{w}) < 0 \), which is a contradiction since \( \mathbf{w} \) is a root of \( \mathrm{col}(d-1) \).
+            Let \( d \in \mathbb{N}_{\geq 15} \) be even and \( \mathbf{w} \) be a root of \( \Psi \). The realization \( p_d = \sum \lambda_{i,j}x_{i,j} \) satisfies \( \lambda_{i,d-i} \neq 0 \) if and only if \( i \in \left\{ 0, d \right\} \). If \( \mathbf{w} \) is a trivial solution of \( p_d \), then it satisfies \( w_{d,0} > 0 \) since it is a root of \( \mathrm{diag}(d) \). However, \( \mathrm{col}(d-1)(\mathbf{w}) < 0 \), which is a contradiction since \( \mathbf{w} \) is a root of \( \mathrm{col}(d-1) \).
         
         \item In every other case, it is easy to see that the realization \( p = \sum \lambda_{i,j} x_{i,j} \coloneqq p_d \) of \( T \) satisfies \( \lambda_{0,0} \neq 0 \), \( \mathrm{supp}^+(p) \neq \emptyset \), and \( \mathrm{supp}^-(p) \neq \emptyset \) for any degree \( d \in \mathbb{N}_{\geq 15} \). Thus, any root \( \mathbf{w} \) of \( p \) satisfies \( \mathrm{supp}^+(p) \cap \mathrm{supp}^+(w) \neq \emptyset \) or \( \mathrm{supp}^-(p) \cap \mathrm{supp}^+(w) \neq \emptyset \).
     \end{itemize}
@@ -360,9 +360,8 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
 \end{definition}
 
 \begin{definition}
-    Define \( \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \). 
-    
-    Define \( \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \).
+    We define \( \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \). 
+    Additionally, let us define \( \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \).
 
 \end{definition}
 
