@@ -209,22 +209,19 @@ We exclude this one case from the 2290 cases in \( \Lambda \) with the following
 
 \section{Proof \( d \geq 42\) Continued: \( \mathbf{s}' \in \Lambda\) with Positive Support Size Five}
 
-It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We will show that they are invalid using \emph{relative coordinates}.
+It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \) using \emph{relative coordinates}.
 
 \subsection{Relative Coordinates and the Invertibility Criterion}
 
 \begin{definition}
     Let \( d \geq 42 \).
-    Let \( M \) be a sentinel value with no further significance other than to encode integers from \( 4, \dots, d-7 \). Define the map 
+    Let \( M \) be a sentinel value with no further significance other than to encode integers from \( 4, \dots, d-7 \). Define the maps 
     \begin{align*}
-        \mathrm{relcoord}: \left\{ 0, \dots, d \right\} \to \left\{ 0,1,2,3,d-6,d-5,d-4,d-3,d-2,d-1,d,M \right\}, \\
-        x \mapsto \begin{cases}
+        \mathrm{relcoord}: \left\{ 0, \dots, d \right\} &\to \left\{ 0,1,2,3,d-6,d-5,d-4,d-3,d-2,d-1,d,M \right\}, \\
+        x &\mapsto \begin{cases}
             x & \text{if } x \in \left\{ 0,1,2,3, d-6,d-5,d-4,d-3,d-2,d-1,d \right\}, \\
-            M& \text{if } x \in \left\{ 4, \dots, d-7 \right\}.
-        \end{cases}.
-    \end{align*}
-    Define the map \emph{relative set} as follows:
-    \begin{align*}
+            M& \text{if } x \in \left\{ 4, \dots, d-7 \right\},
+        \end{cases}\\
         \mathrm{relset}: \mathbb{Z}^{V_d} &\to 2^{\left\{ 0, \dots, 3, M, d-6, \dots, d \right\} \times \left\{ 0, \dots, 3, M, d-6, \dots, d \right\}}, \\
         \mathbf{w} &\mapsto \left\{ (\mathrm{relcoord}(i), \mathrm{relcoord}(j)) \mid (i,j) \in \mathrm{supp}(\mathbf{w}) \right\}.
     \end{align*}
@@ -253,13 +250,20 @@ It remains to show the other 2289 cases of \( \mathbf{s}' \in \Lambda \). We wil
 \end{proof}
 
 \begin{remark}
-    Given \( \mathbf{s}' \in {H}^{\Xi'} \), we compute all \( \mathrm{relset}(\mathbf{w}) \) for \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\) using Proposition \ref{prop:iewjri3j3234212121112}; we view all the six conditions \( (1), (2), (3), (4), (5) \) and \( (6) \) in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). For instance, if \( \mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \) satisfies \( b_0 \neq 0 \), then we know that corresponding outcomes \( \mathbf{w} \) satisfy \( w_{i,j} \neq 0 \) for some  \( (i,j) \in \left\{ (M,0), (d-6, 0), \dots, (d-4, 0) \right\} \).
+    Given \( \mathbf{s}' \in {H}^{\Xi'} \), we compute all \( \mathrm{relset}(\mathbf{w}) \) for \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}_d'(\mathrm{sign}(\mathbf{w})) = \mathbf{s}'\) using Proposition \ref{prop:iewjri3j3234212121112}; we view all the six conditions \( (1), (2), (3), (4), (5) \) and \( (6) \) in Proposition \ref{prop:iewjri3j3234212121112} as constraints on the relative support of \( \mathbf{w} \). 
+    
+    For instance, if \( \mathbf{s}' = (\mathbf{x},\mathbf{y},\mathbf{z},\mathbf{b},\mathbf{c},\mathbf{f} ) \) satisfies \( b_0 \neq 0 \), then we know that corresponding outcomes \( \mathbf{w} \) satisfy \( w_{i,j} \neq 0 \) for some  \( (i,j) \in \left\{ (M,0), (d-6, 0), \dots, (d-4, 0) \right\} \).
 \end{remark}
 
 Relative coordinates help us to apply the Invertibility Criterion. 
 
 \begin{example}\label{ex:siuh438h89}
-    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six and \( \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\} \). Can such a configuration exist?
+    Let \( d \geq 42 \). Let \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be some valid configuration with support size six and \( \mathrm{relset}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3), (M,2), (M, d-6), (d-5, M) \right\} \). Can such a configuration exist? 
+    
+    We see \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
+    for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \). So, we assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \). Hence, \( \mathbf{w} \) cannot be an outcome.
+
+\pagebreak
     \begin{small}
     \begin{verbatim}
     d    X
@@ -284,8 +288,7 @@ Relative coordinates help us to apply the Invertibility Criterion.
          0  1  2  3  M  M  M  M  M  M  M  M d-6 d-5 d-4 d-3 d-2 d-1 d
     \end{verbatim}
     \end{small}
-    We see \( \mathrm{supp}(\mathbf{w}) = \left\{ (0,0), (0,d), (1,3) \right\} \cup \left\{ (i,2), (j,d-6 ) \right\} \cup \left\{ (d-5,k ) \right\} \)
-    for \( i,j,k  = 4, \dots, d-7 \). When \( i = j \), we apply the Invertibility Criterion with \( \lambda = (3,1, \dots,1, 2, 1, \dots, 1) \). So, we assume \( i \neq j \). Then, we use \( \lambda = (3, 1, \dots, 1) \). Hence, \( \mathbf{w} \) cannot be an outcome.
+    
 \end{example}
 
 Let us generalize this example to elements \(  \mathbf{s}' \in \Lambda \).
@@ -484,12 +487,12 @@ Define the group \( S_3 \) generated by these two symmetries. For all weakly val
     Assume there is some valid outcome \( \mathbf{v} \in \mathbb{Z}^{V_d} \) of degree \( d \) such that \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{v})) = \mathbf{s}' \). Define \( \mathbf{w} \coloneqq \sigma \mathbf{v} \). Then, we have \( \mathrm{contr}_d'(\mathrm{sign}( \mathbf{w})) =  \sigma \cdot \mathrm{contr}_d'(\mathrm{sign}(\mathbf{v}))  = \sigma \mathbf{s}'\). Note that \( \mathbf{w} \) is weakly valid since the symmetry group \( S_3 \) preserves the weak validity of outcomes.
 \end{proof}
 
-We take the 1107 cases of \( \mathbf{s}' \in \Lambda \), apply the symmetry \( (12) \) to each case, and use the Invertibility Criterion. Then, the inconclusive cases are checked with the symmetry \( (13) \). We are left with 349 cases. Next, we consider the equivalence relation $\sim$ defined by $w \sim v \iff w = (12) v \text{ or } w = (13)v$. We compute the equivalence classes, and see there are 179 cases left. 
+We take the 1107 cases of \( \mathbf{s}' \in \Lambda \), apply the symmetry \( (12) \) to each case, and use the Invertibility Criterion. Then, the inconclusive cases are checked with the symmetry \( (13) \). We are left with 349 cases. Next, we consider the equivalence relation $\sim$ defined by $w \sim v \iff w = (12) v \text{ or } w = (13)v$. We compute the equivalence classes, and see there are 348 cases left. 
 
 \subsection{Hexagon Criterion}
 
-Let \( d \geq 42 \). We want to apply the Hexagon Criterion (Proposition \ref{prop:hexagon-criterion231312}) with \( \ell_1 = \ell_2 = 7, d' = 6 \) to the remaining 179 cases.
-First, we check that the requirements of the Hexagon Criterion are met: \( d' + \ell_1 + \ell_2  = 20 \leq 42 = d \). Next, we find all contracted configurations \( \mathbf{s}' \in \Lambda \) from the 179 cases whose support lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
+Let \( d \geq 42 \). We want to apply the Hexagon Criterion (Proposition \ref{prop:hexagon-criterion231312}) with \( \ell_1 = \ell_2 = 7, d' = 6 \) to the remaining 348 cases.
+First, we check that the requirements of the Hexagon Criterion are met: \( d' + \ell_1 + \ell_2  = 20 \leq 42 = d \). Next, we find all contracted configurations \( \mathbf{s}' \in \Lambda \) from the 348 cases whose support lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
 
 \begin{proposition}
     Let \( d \geq 42 \), \( \mathbf{s}' \in H^{\Xi'} \), and \( \mathbf{w} \in \mathbb{Z}^{V_d} \) be a configuration with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \). If \( \mathrm{supp}^+(\mathbf{s}') \cap \left\{ \mathbf{b}, \mathbf{c}, \mathbf{f} \right\} = \emptyset\), then \( \mathrm{supp}(\mathbf{w}) \) lies outside the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \).
@@ -499,28 +502,12 @@ First, we check that the requirements of the Hexagon Criterion are met: \( d' + 
     This follows immediately from the definition of the hexagon spanned by \( d', \ell_1 \) and \( \ell_2 \), and the definition of the map \( \mathrm{contr}'_d \).
 \end{proof}
 
-We compute that 166 cases satisfy the proposition above, so we apply the Hexagon Criterion. Let \( \mathbf{s}' \in \Lambda \) be one of these cases. By the Hexagon Criterion, valid outcomes \( \mathbf{w} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) have degree at most \( d' = 20 \); however, by assumption \( \mathrm{deg}(\mathbf{w}) = d \geq 42 \). 
+We compute that 325 cases satisfy the proposition above, so we apply the Hexagon Criterion. Let \( \mathbf{s}' \in \Lambda \) be one of these cases. By the Hexagon Criterion, valid outcomes \( \mathbf{w} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) have degree at most \( d' = 20 \); however, by assumption \( \mathrm{deg}(\mathbf{w}) = d \geq 42 \). 
 
-It remains to check thirteen cases; we apply the Hexagon Criterion one by one.
-\begin{gather*}
-\left\{ y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1 \right\}, 
- \left\{ y_{0,3}, y_{1,2}, y_{2,1}, z_{3,0}, b_1 \right\}, 
-\left\{ y_{0,3}, y_{1,1}, y_{1,3}, z_{2,0}, b_1 \right\}, 
-      \left\{ y_{0,3}, y_{1,3}, y_{2,2}, z_{2,0}, b_1 \right\}, \\
-      \left\{ x_{0,1}, x_{2,1}, y_{1,3}, z_{3,0}, d_1 \right\}, 
-  \left\{ y_{0,3}, z_{1,0}, z_{2,2}, z_{3,1}, c_1 \right\}, 
-  \left\{ y_{0,2}, y_{1,1}, y_{1,3}, z_{3,0}, b_1 \right\}, 
- \left\{ y_{0,3}, z_{2,2}, z_{3,0}, z_{3,1}, c_1 \right\}, \\
-  \left\{ y_{0,3}, z_{1,1}, z_{3,0}, z_{3,1}, c_1 \right\}, 
-  \left\{ x_{0,3}, x_{1,1}, x_{3,0}, z_{3,3}, d_0 \right\}, 
-  \left\{ x_{0,2}, x_{2,1}, y_{1,3}, z_{3,0}, d_1 \right\}, 
-  \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\}, \\
-  \left\{ x_{1,2}, x_{2,1}, y_{0,3}, z_{3,0}, d_1 \right\}.
-\end{gather*}
+It remains to check 23 cases; we apply the Hexagon Criterion one by one.
 
 \begin{example}\label{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw}
-    Consider the first case.
-    
+    The support \( ( y_{0,3}, z_{2,0}, z_{2,2}, z_{3,1}, c_1) \) belongs to one of the 23 cases. 
 \begin{verbatim}
 y03 z20 z22 z31 c1
 
@@ -548,9 +535,9 @@ To apply the Hexagon Criterion to configurations \( \mathbf{w} \) with support a
 Hence, we apply the Hexagon Criterion showing that the degree of \( \mathbf{w} \) is at most \( d' \leq \mathrm{floor}(\frac{d}{3}) \). However, we assume that \( \mathbf{w} \) is of degree \( d \).
 \end{example}
 
-We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining twelve cases. However, one case, \( \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \), cannot be ruled out by the Hexagon Criterion. We will handle this case separately and focus on the remaining eleven cases for now.
+We generalize Example \ref{ex:324jjhsdbvuysduyg2yrguy23hriuwfiueonw} to apply the Hexagon Criterion to the remaining 23 cases. However, one case, \( \left\{ y_{0,3}, z_{3,0}, b_1, c_1, d_1 \right\} \), cannot be ruled out by the Hexagon Criterion. We will handle this case separately and focus on the remaining 22 cases for now.
 
-Note that all eleven cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) as well as \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
+Note that all 22 cases satisfy \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_0, b_1, c_0, c_1, f_0, f_1 \right\} \rvert = 1 \) as well as \( \lvert \mathrm{supp}^+(\mathbf{s}') \cap \left\{b_2, c_2, f_2, b_3, c_3, f_3 \right\} \rvert = 0 \).
 Therefore, for all valid outcomes \( \mathbf{w} \in \mathbb{Z}^{V_d} \) with \( \mathrm{contr}'_d(\mathrm{sign}(\mathbf{w})) = \mathbf{s}' \) we have \( \mathrm{supp}(\mathbf{w}) \setminus \left\{ (a,b) \right\} \subset V_6 \cup \left\{ (i,j) \in V_d \mid j > d - 7 \right\}  \cup \left\{ (i,j) \in V_d \mid i > d - 7 \right\}  \)
 for some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + b \geq d-1 \).
 
@@ -563,11 +550,11 @@ for some vertex \( (a,b) \in V_d \) with \( a = 0,1 \) or \( b=0,1 \) or \( a + 
 \end{proof}
 
 \begin{proposition}
-    All the eleven cases are impossible.
+    All the 22 cases are impossible.
 \end{proposition}
 
 \begin{proof}
-    We see that all the eleven cases satisfy Proposition \ref{prop:nkjeai32huh3i2}. When the first condition holds, we let \( d' = \ell_1 = \ell_2 = \mathrm{floor}(\frac{d}{3}) \geq 14 > 6 \). When the second condition holds, we choose \( d' = 6, \ell_1 = 7 \) and \( \ell_2 = d + 1 - \mathrm{floor}(\frac{d}{3}) \). Note that \( d' + \ell_1 + \ell_2 \leq 42 \) since \( d \geq 42 \). When the third condition holds, we choose  \( d' = 6, \ell_2 = 7 \) and \( \ell_1 = d + 1 - \mathrm{floor}(\frac{d}{3}) \). Then, we apply the Hexagon Criterion with these choices of \( d', \ell_1 \) and \( \ell_2 \) to each of the eleven cases.
+    We see that all the 22 cases satisfy Proposition \ref{prop:nkjeai32huh3i2}. When the first condition holds, we let \( d' = \ell_1 = \ell_2 = \mathrm{floor}(\frac{d}{3}) \geq 14 > 6 \). When the second condition holds, we choose \( d' = 6, \ell_1 = 7 \) and \( \ell_2 = d + 1 - \mathrm{floor}(\frac{d}{3}) \). Note that \( d' + \ell_1 + \ell_2 \leq 42 \) since \( d \geq 42 \). When the third condition holds, we choose  \( d' = 6, \ell_2 = 7 \) and \( \ell_1 = d + 1 - \mathrm{floor}(\frac{d}{3}) \). Then, we apply the Hexagon Criterion with these choices of \( d', \ell_1 \) and \( \ell_2 \) to each of the 22 cases.
 \end{proof}
 
 

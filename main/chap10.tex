@@ -425,9 +425,7 @@ The final reduction step relies on using fixed-contractable forms as a filter.
     \end{gather*}  
     for all \( i_1, \dots, i_5 \in \left\{ 0,1,2,3,4,t-4,t-3,t-2,t-1,t \right\} \). 
 
-    \begin{remark}
-The choice of linear combinations in \( G \) is arbitrary; the more forms we include, the more cases we can exclude later. Common sense suggests not every formal linear combination in \( G \) is fixed-contractable; so we develop an algorithm to computationally prove that some forms are fixed-contractable. 
-\end{remark}
+The choice of linear combinations in \( G \) is arbitrary; the more forms we include, the more cases we can exclude later. We develop an algorithm to computationally prove that some forms in \( G \) are fixed-contractable. 
 
 \subsection*{Step 1: Realization}
 
@@ -507,14 +505,6 @@ The computations required three hours on a MacBook Pro equipped with an M3 chip.
 
 To finalize the proof, it is necessary to check the \( 15,437 \) cases. 
 One approach is to reduce the number of cases further by considering a larger set \( G \), 
-which, however, requires more computational power. 
+which requires more computational power. 
 Once the number of cases is sufficiently small, we can apply the techniques developed in previous chapters, 
-such as the Invertibility Criterion, the Hyperfield Criterion, and the Hexagon Criterion, to eliminate all remaining cases. Then, we deal with each case individually, i.e. applying the Invertibility Criterion with hand-picked \( \lambda \).
-If it is not possible to rule out a particular case \( \mathbf{s} \in H^{\Xi} \), 
-it may be necessary to develop a new technique to resolve it, or one may be on the right track to finding a counterexample.
-
-Due to time constraints, we were unable to complete the proof. 
-The next step would have been to apply the Invertibility Criterion, the Hyperfield Criterion, 
-and the Hexagon Criterion to the remaining cases exactly like in Chapter 9.
-Depending on how many cases remain after applying these criteria, 
-we might also need to compute an even larger set \( G \). 
+such as the Invertibility Criterion, the Hyperfield Criterion, and the Hexagon Criterion. Then, we deal with each case individually, i.e. applying the Invertibility Criterion with hand-picked \( \lambda \). Due to time constraints, we were unable to complete the proof. 
