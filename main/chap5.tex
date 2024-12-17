@@ -20,6 +20,17 @@ First, let us introduce a new basis for the space of Pascal forms.
     Let \( k = 0, \dots, d \) and \( \mathbf e_k \in \mathbb{R}^{d+1} \) be the \( k \)-th unit vector. We define \( \mathrm{diag}(k) \) to be the unique Pascal form \( \sum c_{i,j}x_{i,j} \) such that \( c_{k,d-k} = \mathbf e_k \).
 \end{definition}
 
+\begin{proposition}\label{prop:diagonal-basis-324324324231}
+    For all integers \( k = 0, \dots, d \) we have \( \mathrm{diag}(k)  = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j} \).
+\end{proposition}
+
+
+
+\begin{proof}
+    Note that for all \( (i,j) \in V_d \) with \( i+j = d \) we have \( \binom{d - i - j}{k-i} = 1 \) if and only if \( k= i \), and in all other cases \( k \neq i \) the binomial coefficient is zero. Thus, it remains to show that \( \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j} \) is a Pascal form. We have \(  \binom{d-i-j}{k-i} = \binom{d-i-1-j}{k-i-1} + \binom{d-i-j-1}{k-i} \)
+    for all \( (i,j) \in V_{d-1} \) because \( \binom{a+1}{b+1} = \binom{a}{b+1} + \binom{a}{b}\).
+\end{proof}
+
 \begin{example}
     Fix the degree \( d = 7 \). We visualize \( \mathrm{diag}(3) \) by
     \begin{verbatim}
@@ -33,15 +44,6 @@ First, let us introduce a new basis for the space of Pascal forms.
        35  15   5   1   .   .   .   .
     \end{verbatim}
 \end{example}
-
-\begin{proposition}\label{prop:diagonal-basis-324324324231}
-    For all integers \( k = 0, \dots, d \) we have \( \mathrm{diag}(k)  = \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j} \).
-\end{proposition}
-
-\begin{proof}
-    Note that for all \( (i,j) \in V_d \) with \( i+j = d \) we have \( \binom{d - i - j}{k-i} = 1 \) if and only if \( k= i \), and in all other cases \( k \neq i \) the binomial coefficient is zero. Thus, it remains to show that \( \sum_{(i,j) \in V_d}\binom{d - i - j}{k-i} x_{i,j} \) is a Pascal form. We have \(  \binom{d-i-j}{k-i} = \binom{d-i-1-j}{k-i-1} + \binom{d-i-j-1}{k-i} \)
-    for all \( (i,j) \in V_{d-1} \) because \( \binom{a+1}{b+1} = \binom{a}{b+1} + \binom{a}{b}\).
-\end{proof}
 
 \begin{proposition}
     Let \( p \) be a Pascal form on \( \mathbb Z^{V_d} \). There exist unique coefficients \( \mu_0, \dots, \mu_d \in \mathbb{Z} \) such that 
@@ -84,22 +86,9 @@ Given a non-zero configuration \( \mathbf{w} \), we try to construct sets \( S \
 
 The Invertibility Criterion inspires the following algorithm for determining if a set of indices \( S \subset V_d \) can actually be the support of some nonzero outcome in \( \mathbb{Z}^{V_d} \). It is later used in the proof of Theorem \ref{thm:main-result-32432432432nkdnjkfd} and Proposition \ref{prop:uiwuwinca}.
 
+
 \begin{algorithm}[H]
 \caption{Only Zero Outcome}\label{alg:hyperfield_criterion:is_zero}
-    \begin{algorithmic}[1]
-    \Require Support set $S \subset {V_d}$
-    \Ensure \texttt{True} only if \( \mathbf{0} \) is the only outcome \( \mathbf{w} \) with \( \mathrm{supp}(\mathbf{w}) \subset S \), \texttt{False} if inconclusive
-
-    \State $\texttt{E} \gets \{0, \dots, |{S}| - 1\}$
-    \State $\texttt{P} \gets \texttt{build\_pairing\_matrix}(d, \texttt{E}, S)$    
-    \State \Return $\texttt{rank}(\texttt{P}) = |S|$
-    \end{algorithmic}  
-\end{algorithm}
-
-The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^{(d)}_{E,S} \) as defined in Definition \ref{def:pairing-matrix}. If this algorithm is inconclusive, we try another set \( E \subset \left\{ 0, \dots, d \right\} \). This leads to the following generalization:
-
-\begin{algorithm}[H]
-\caption{Only Zero Outcome (Generalized)}\label{alg:hyperfield_criterion:is_zero_general}
     \begin{algorithmic}[1]
     \Require Support set $S \subset {V_d}$, set \( E \subset \left\{ 0, \dots, d \right\} \) with size \( \lvert S \vert \)
     \Ensure \texttt{True} only if \( \mathbf{0} \) is the only outcome \( \mathbf{w} \) with \( \mathrm{supp}(\mathbf{w}) \subset S \), \texttt{False} if inconclusive
@@ -108,7 +97,7 @@ The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^
     \State \Return $\texttt{rank}(\texttt{P}) = |S|$
     \end{algorithmic}  
 \end{algorithm}
-The first algorithm is clearly a special case of the second algorithm with \( E =  \{0, \dots, |{S}| - 1\}\).
+The function \texttt{build\_pairing\_matrix} constructs the pairing matrix \( A^{(d)}_{E,S} \) as defined in Definition \ref{def:pairing-matrix}.
 
 \section{Divide and Conquer}\label{sec:divide-and-conquer}
 

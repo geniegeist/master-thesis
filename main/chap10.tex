@@ -453,7 +453,7 @@ The first step of the algorithm is to realize all the forms in \( G \) at a fixe
 \end{algorithmic}
 \end{algorithm}
 
-Computing \( G' \) took around two hours on a MacBook Air with an M1 chip. The details can be found in the source code \cite{ducrepo} under the file \texttt{chapter10\_step1\_realize.ipynb}.
+Computing \( G' \) took around two hours on a MacBook Air with an M1 chip. The details can be found in the source code \cite{ducrepo} under the file \texttt{chapter07\_step1\_realize.ipynb}.
 
 \subsection*{Step 2: Automatic Proof of Fixed-Contractability}
 
@@ -476,7 +476,7 @@ The set \( G' \) contains formal linear combinations of Pascal forms whose reali
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
-The function \texttt{prove\_fixed\_contractable}($T$) just checks if Proposition \ref{prop:fixed-contraction-homo-row}, \ref{prop:i3jhr23h923h8}, \ref{prop:fixed-contraction-homo-col}, \ref{prop:23e232sdada2kmkl}, \ref{prop:fixed-contraction-homo-diag}, \ref{prop:row_homo_diag}, \ref{prop:row_homo_zero_diag}, or Proposition \ref{prop:col_homo_d_zero_diag} can be applied to \( T \); if they can, we proved that \( T \) is fixed-contractable. For details, we refer to the implementation found in \cite{ducrepo} under the file \texttt{chapter10\_step2\_prove.ipynb}. 
+The function \texttt{prove\_fixed\_contractable}($T$) just checks if Proposition \ref{prop:fixed-contraction-homo-row}, \ref{prop:i3jhr23h923h8}, \ref{prop:fixed-contraction-homo-col}, \ref{prop:23e232sdada2kmkl}, \ref{prop:fixed-contraction-homo-diag}, \ref{prop:row_homo_diag}, \ref{prop:row_homo_zero_diag}, or Proposition \ref{prop:col_homo_d_zero_diag} can be applied to \( T \); if they can, we proved that \( T \) is fixed-contractable. For details, we refer to the implementation found in \cite{ducrepo} under the file \texttt{chapter07\_step2\_prove.ipynb}. 
 
 
 \subsection*{Step 3: Filtering Invalid Cases}
@@ -500,7 +500,7 @@ Once the filter set \( G'' \) has been constructed, we proceed as follows: For e
 \end{algorithm}
 The process is also repeated for \( \mathbf{s} \in \Gamma^{\mathrm{odd}}_6 \) with \( D = 41 \), resulting in 8737 cases. 
 In total, this amounts to 15,437 cases. 
-The computations required three hours on a MacBook Pro equipped with an M3 chip. Further details can be found in the source code \cite{ducrepo} under the file \texttt{chapter10\_step3\_apply\_filter.ipynb}.
+The computations required three hours on a MacBook Pro equipped with an M3 chip. Further details can be found in the source code \cite{ducrepo} under the file \texttt{chapter07\_step3\_apply\_filter.ipynb}.
 
 
 \section{Carrying Out the Proof}

@@ -6,7 +6,7 @@ We introduce the \emph{Hexagon Criterion}, first presented in \cite{bik2022class
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/hexagon.png}
+    \includegraphics[width=0.5\textwidth]{assets/hexagon.png}
     \caption{A configuration's support lies outside the hexagon if it is contained in the yellow area spanned by parameters \( \ell_1, \ell_2 \), and \( d' \).}     \label{fig:hexagon}
 \end{figure}
 
@@ -83,18 +83,7 @@ First, we show that no outcome of degree \( d = 8, \dots, 41 \) exists with \( |
 \end{proposition}
 
 \begin{proof}
-    Let \( d = 8, \dots, 41 \). We define the system $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$. Then, we compute the set \( S_5(A) \) using Algorithm \ref{alg:solve}. Next, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero} to each \( \mathbf{s} \in S_5(A) \). After applying these algorithms for all \( d = 8, \dots, 41 \), we obtain eight cases where the Hyperfield Criterion and the Invertibility Criterion was inconclusive.
-    \begin{enumerate}
-        \item \( \left\{ (4, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \),
-        \item \( \left\{  (3, 0), (0, 4), (5, 1), (1, 7), (4, 4) \right\} \),
-        \item \( \left\{  (3, 0), (0, 5), (5, 1), (1, 7), (4, 4) \right\} \),
-        \item \( \left\{   (1, 1), (3, 0), (3, 4), (0, 8), (5, 3) \right\} \),
-        \item \( \left\{   (3, 0), (0, 6), (5, 1), (1, 7), (4, 4) \right\} \),
-        \item \( \left\{   (0, 3), (3, 0), (5, 1), (1, 7), (4, 4) \right\} \),
-        \item \( \left\{  (1, 1), (4, 0), (3, 4), (0, 8), (5, 3) \right\} \),
-        \item \( \left\{  (3, 1), (5, 0), (1, 6), (0, 8), (3, 5) \right\} \).
-    \end{enumerate}    
-    Finally, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero_general} to these eight cases with \( E \coloneqq \left\{ 3,4,5,6,7,8 \right\} \). The implementation is found in \cite{ducrepo} under \texttt{chapter06.ipynb}.
+    Let \( d = 8, \dots, 41 \). We define the system $A = \{ \mathrm{diag}(i) \}_{i=0}^d \cup \{ \mathrm{row}(i)\}^d_{i=0} \cup \{ \mathrm{col}(i) \}^d_{i=0}$. Then, we compute the set \( S_5(A) \) using Algorithm \ref{alg:solve}. Next, we apply Algorithm \ref{alg:hyperfield_criterion:is_zero} to each \( \mathbf{s} \in S_5(A) \). The implementation is found in \cite{ducrepo} under \texttt{chapter06.ipynb}.
 \end{proof}
 
 \section{Proof \( d \geq 42 \)}
@@ -131,10 +120,7 @@ For each \( \mathbf{s} \in \Gamma^{\mathrm{even}}_5 \cup \Gamma^{\mathrm{odd}}_5
     \begin{align*}
         \Xi' \coloneqq \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\}^2 \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} \sqcup \left\{ 0,1,2,3 \right\} 
     \end{align*}
-    with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by 
-    \begin{align*}
-        \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}).
-    \end{align*}
+    with the map \( \chi: H^\Xi \to H^{\Xi'}\) defined by \(  \mathbf{s} = (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \mathbf{d}, \mathbf{e}) \mapsto (\mathbf{x}, \mathbf{y}, \mathbf{z}, \mathbf{b}, \mathbf{c}, \underbracket{\mathbf{d} + \mathbf{e}}_{\coloneqq \mathbf{f}}) \).
     The new coordinate system \( H^{\Xi'} \) is depicted below.
 
 \begin{figure}[H]
