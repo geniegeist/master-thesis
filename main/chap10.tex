@@ -52,9 +52,9 @@ From this point forward, when we refer to \( \mathbf{s} \in H^{\Xi} \), we will 
 
 The number of cases to check has increased by a factor of hundred compared to the previous chapters. If we were able to reduce the cases, we could apply the same techniques as in the previous chapters. We will spend the remaining chapter to reduce the number of cases to check to around 12,000 cases in the hope to make the proof computationally feasible. Due to time constraints of this thesis, we were not able to attempt a complete proof.
 
-\section{Fixed-Contractable Pascal Forms}
+\section{Finding Fixed-Contractable Pascal Forms}
 
-To reduce the number of cases to check, we want to generate a set of hyperfield Pascal forms that are \emph{fixed-contractable}.
+To reduce the number of cases, we generate \emph{fixed-contractable} linear combinations of hyperfield Pascal forms.
 
 \begin{definition}
     Let \( d \in \mathbb{N}_{\geq 15} \), \( k = 0, \dots ,4 \), and \( p \) be a hyperfield linear form on \( H^{V_d} \). We say \( p \) is \emph{contractable} for \( d \) on \( b_k \) if we can write
@@ -75,7 +75,10 @@ To reduce the number of cases to check, we want to generate a set of hyperfield 
 
 
 \begin{proposition}\label{prop:nwfiewnfiuwneufni2un2}
-    Let \( d \in \mathbb{N}_{\geq 15} , i  = 0, \dots, 4\), and $T$ be a formal linear combination of \(  \{ \mathrm{sign}(\mathrm{row}(j)), \mathrm{sign}(\mathrm{col}(j)), \mathrm{sign}(\mathrm{diag}(j)) \mid j \in \{ 0, \dots, 4\} \cup \{ t-4, \dots, t \} \} \).
+    Let \( d \in \mathbb{N}_{\geq 15} , i \in \{ 0, \dots, 4 \} \), and $T$ be a formal linear combination of
+    \begin{align*}
+        \{ \mathrm{sign}(\mathrm{row}(j)), \mathrm{sign}(\mathrm{col}(j)), \mathrm{sign}(\mathrm{diag}(j)) \mid j \in \{ 0, \dots, 4\} \cup \{ t-4, \dots, t \} \}.
+    \end{align*}
 Then, the following statements hold for all realizations \( p_d \) of \( T \):
   \begin{enumerate}
   \item The $c$-column of $(p_d)_{c_i}$ only depends on $\{ \mathrm{sign}(\mathrm{row}(k)), \mathrm{sign}(\mathrm{diag}(k)) \}_{k = 0}^4$.
@@ -118,24 +121,23 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
 \end{lemma}
   
 \begin{proof}
-    Let \( d \in \mathbb{N} \), \( \ell = 0, \dots, 4,t-4,\dots,t \) and \(T_{\ell} =  \mathrm{row}(\ell) \). We denote its realizations in \( d \) and \( d + 1 \) by \( p_d^{(\ell)} = \sum p_{i,j}^{(\ell)}x_{i,j} \) and \( p_{d+1}^{(\ell)} = \sum q_{i,j}^{(\ell)}x_{i,j} \), respectively. By Proposition \ref{prop:pascal-formulas}, we see that \( p_{i,j}^{(\ell)} = q_{i,j}^{(\ell)} \) for all \( (i,j) \in V_d \).
-    
-    Next, assume \( T =  \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
+    Let \( d \in \mathbb{N} \), \( \ell = 0, \dots, 4,t-4,\dots,t \) and \(T_{\ell} =  \mathrm{row}(\ell) \). We denote its realizations in \( d \) and \( d + 1 \) by \( p_d^{(\ell)} = \sum p_{i,j}^{(\ell)}x_{i,j} \) and \( p_{d+1}^{(\ell)} = \sum q_{i,j}^{(\ell)}x_{i,j} \), respectively. By Proposition \ref{prop:pascal-formulas}, we see that \( p_{i,j}^{(\ell)} = q_{i,j}^{(\ell)} \) for all \( (i,j) \in V_d \). Next, assume \( T =  \sum_{i=0}^{4}  \lambda_{i} \mathrm{row}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{row}(t-i)  \). Then, \( p_{i,j} = \sum_{\ell} \lambda_\ell p_{i,j}^{(\ell)} = \sum_{\ell} \lambda_\ell q_{i,j}^{(\ell)} = q_{i,j} \) for all \( (i,j) \in V_d \).
 \end{proof}
   
+\pagebreak
 \begin{example}
     Let \( T = \mathrm{row}(3) + \mathrm{row}(2) \). We visualize \( p_8 \) and \( p_9 \):
     \begin{verbatim}
-                                     -48
--28                                  -28  20
--14  14                              -14  14  -6
- -5   9  -5                           -5   9  -5   1
-  .   5  -4   1                        .   5  -4   1   . 
-  2   2  -3   1   .                    2   2  -3   1   .   .
-  2   .  -2   1   .   .                2   .  -2   1   .   .   .
-  1  -1  -1   1   .   .   .            1  -1  -1   1   .   .   .   .
-  .  -1   .   1   .   .   .   .        .  -1   .   1   .   .   .   .   .
-  .   .   1   1   .   .   .   .   .    .   .   1   1   .   .   .   .   .   .
+                            -48
+-28                         -28 20
+-14 14                      -14 14 -6
+ -5  9 -5                    -5  9 -5  1
+  .  5 -4  1                  .  5 -4  1  . 
+  2  2 -3  1  .               2  2 -3  1  .  .
+  2  . -2  1  .  .            2  . -2  1  .  .  .
+  1 -1 -1  1  .  .  .         1 -1 -1  1  .  .  .  .
+  . -1  .  1  .  .  .  .      . -1  .  1  .  .  .  .  .
+  .  .  1  1  .  .  .  .  .   .  .  1  1  .  .  .  .  .  .
     \end{verbatim}
   \end{example}
   
@@ -157,9 +159,9 @@ Then, the following statements hold for all realizations \( p_d \) of \( T \):
 \end{lemma}
   
 \begin{proof}
-    Let \( i=k, \dots, r \). If we show \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \), then we have $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$ by assumption \( \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \). So, we can use Lemma \ref{lemma:sign_row_propagation} to prove the statement.
-
-    It is easy to see that \( \mathrm{sign}(p_{r,d-r}) = \mathrm{sign}(p_{r,d-r-5}) \) since \( \mathrm{sign}(\mathrm{row}(r))_{c_r} = \mathrm{sign}(p)_{c_r} \) and \( \mathrm{sign}(r_{r,d-r}) = \mathrm{sign}(r_{r, d - r - 5}) \). For \( r - 1 \), we then use the Pascal property. We repeat this argument for \( r-2, r-3, \dots, k \). This shows that \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \) for all \( i = k, \dots, r \).
+    Let \( i=k, \dots, r \). If we show \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \), then $\mathrm{sign}(r_{i,d-i}) = \mathrm{sign}(p_{i,d-i})$ holds by assumption \( \mathrm{sign}(\mathrm{row}(r))_{c_i} = \mathrm{sign}(p)_{c_i} \). So, we can use Lemma \ref{lemma:sign_row_propagation} to prove the statement. 
+    
+    We see that \( \mathrm{sign}(p_{r,d-r}) = \mathrm{sign}(p_{r,d-r-5}) \) since \( \mathrm{sign}(\mathrm{row}(r))_{c_r} = \mathrm{sign}(p)_{c_r} \) and \( \mathrm{sign}(r_{r,d-r}) = \mathrm{sign}(r_{r, d - r - 5}) \). For \( r - 1 \), we then use the Pascal property. We repeat this argument for \( r-2, r-3, \dots, k \). This shows that \( \mathrm{sign}(p_{i,d-i}) = \mathrm{sign}(p_{i,d-i-5}) \) for all \( i = k, \dots, r \).
 \end{proof}
 
 \begin{proposition}\label{prop:fixed-contraction-homo-row}
@@ -180,7 +182,7 @@ then  \( \mathrm{sign}(T) \) is fixed-contractable on \( d_i \) for all \( i = r
 \end{proposition}
 
 \begin{proof}
-    We can use the same proof as before, but now the sign of the entire diagonal $d_{i}$ changes whenever we increase the dimension by one. Fortunately, the contractability on $d_{i}$ is not affected by this. 
+    We use the same proof as before, but now the sign of the entire diagonal $d_{i}$ changes whenever we increase the dimension by one. Fortunately, the contractability on $d_{i}$ is not affected by this. 
 \end{proof}
 
 We state analogous propositions for \( \mathrm{col}(\cdot) \) of Proposition \ref{prop:fixed-contraction-homo-row} and \ref{prop:i3jhr23h923h8} but skip the proofs since they are similar. Let \(  T = \sum_{i=0}^{4}  \lambda_{i} \mathrm{col}(i) + \sum_{i=0}^{4}  \lambda_{t-i} \mathrm{col}(t-i) \).
@@ -208,16 +210,16 @@ Here is an analogous version of Lemma \ref{prop:row_extend_d} but for \( \mathrm
 \begin{example}
     Consider \( T = \mathrm{diag}(3) + \mathrm{diag}(2) \). Then, \( p_8 \) is represented by the triangle on the left and \( p_9 \) is represented by the triangle on the right.
     \begin{verbatim}
-  .                                    .  
-  .   .                                .   .  
-  1   1   1                            1   1   1   
-  4   3   2   1                        4   3   2   1   .
- 10   6   3   1   .                   10   6   3   1   .   .
- 20  10   4   1   .   .               20  10   4   1   .   .   .
- 35  15   5   1   .   .   .           35  15   5   1   .   .   .   .
- 56  21   6   1   .   .   .   .       56  21   6   1   .   .   .   .   .
- 84  28   7   1   .   .   .   .   .   84  28   7   1   .   .   .   .   .   .
-                                     120  36   8   1   .   .   .   .   .   .   . 
+  .                           .  
+  .  .                        .  .  
+  1  1  1                     1  1  1   
+  4  3  2  1                  4  3  2  1  .
+ 10  6  3  1  .              10  6  3  1  .  .
+ 20 10  4  1  .  .           20 10  4  1  .  .  .
+ 35 15  5  1  .  .  .        35 15  5  1  .  .  .  .
+ 56 21  6  1  .  .  .  .     56 21  6  1  .  .  .  .  .
+ 84 28  7  1  .  .  .  .  .  84 28  7  1  .  .  .  .  .  .
+                            120 36  8  1  .  .  .  .  .  .  . 
 \end{verbatim}
 \end{example}
 
@@ -358,7 +360,9 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
 \end{definition}
 
 \begin{definition}
-    Write \( \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \) and \( \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \).
+    Define \( \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \). 
+    
+    Define \( \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\} \).
 
 \end{definition}
 
