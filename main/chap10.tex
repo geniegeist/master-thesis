@@ -1,9 +1,6 @@
 \chapter{Valid Outcomes of Positive Support Size Six}
 
-We want to prove that for all valid integral outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) we have \( \mathrm{deg}(\mathbf w) \leq 9 \).
-The original paper by Bik and Marigliano \cite{bik2022classifying} does not provide a proof of this result. 
-
-This thesis makes a contribution towards proving it by reducing the number of cases to check, thereby making the problem computationally feasible. In principle, we could use the same approach as in the previous chapters to find all valid outcomes with positive support size six. Specifically, we begin by computing 
+We want to prove that all valid outcomes \( \mathbf w \) with \( |\mathrm{supp}^+(\mathbf w)| = 6 \) have \( \mathrm{deg}(\mathbf w) \leq 9 \). This thesis makes a contribution towards a proof by reducing the number of cases to check. In theory, we could use the same approach as in the previous chapters; specifically, we begin by computing 
 \(
 \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
 \)
@@ -11,9 +8,8 @@ and
 \(
 \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\},
 \)
-albeit with a slight modification to these sets. While we previously considered contractions of size four, here we consider contractions of size five. In other words, we now work with contraction variables as depicted in Figure \ref{fig:sjdnfkjewnjhwurhi3u2h}. From this point forward, when we refer to \( \mathbf{s} \in H^{\Xi} \), we will mean contractions of size five.
-
-\begin{figure}
+albeit with a slight modification to these sets. While we previously considered contractions of size four, we now consider contractions of size five, i.e. we work with contraction variables as depicted below. 
+\begin{figure}[H]
     \begin{align*}
         \begin{array}{cccccccccccccccccccc}
             y_{0,4} & & & & & & & & & & & & \\
@@ -36,45 +32,25 @@ albeit with a slight modification to these sets. While we previously considered 
             x_{0,0} & x_{1,0} & x_{2,0} & x_{3,0} & x_{4,0} & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & b_0 & z_{0,0} & z_{1,0} & z_{2,0} & z_{3,0} & z_{4,0}
         \end{array}
     \end{align*}  
-    \caption{This figure shows contraction variables for \( d = 16 \) of contraction size five.}\label{fig:sjdnfkjewnjhwurhi3u2h}
 \end{figure}
-
+From this point forward, when we refer to \( \mathbf{s} \in H^{\Xi} \), we will mean contractions of size five. We increase the contraction size to gain more information about potential supports, which we hope will prove useful when handling cases manually.
 
 \begin{definition}
-    We define 
+    We define \(  \Gamma^{\mathrm{even}}_6 \) and \( \Gamma^{\mathrm{odd}}_6 \) analogously to Definition \ref{def:sdjsndjknsdj} with 
     \begin{gather*}
-        \Gamma^{\mathrm{even}}_6 \coloneqq \Gamma^{\mathrm{even}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\}
-        \text{ and }
-        \Gamma^{\mathrm{odd}}_6 \coloneqq \Gamma^{\mathrm{odd}} \cap \left\{ \mathbf{s} \in H^{\Xi} : \lvert \mathrm{supp}^+(\mathbf{s}) \rvert = 6 \right\},
-    \end{gather*}
-    where \( \Gamma^{\mathrm{even}}  \) and \(  \Gamma^{\mathrm{odd}} \) are defined analogously to Definition \ref{def:sdjsndjknsdj}, but now they contain hyperfield configurations of contraction size five for 
-    \begin{gather*}
-        \Phi_1 \coloneqq \{ 
-            \mathrm{col}(1), \mathrm{col}(2), \mathrm{col}(3), \mathrm{col}(3), \mathrm{row}(1), \mathrm{row}(2), \mathrm{row}(3),  \mathrm{row}(4),\\
-             \mathrm{diag}(1), \mathrm{diag}(2), \mathrm{diag}(3), \mathrm{diag}(4), \mathrm{diag}(d-1), \mathrm{diag}(d-2), \mathrm{diag}(d-3), \mathrm{diag}(d-4) 
-         \},
-    \end{gather*}
-    and 
-    \begin{gather*}
-        \Phi_2 \coloneqq \{ 
-            \mathrm{col}(d), \mathrm{col}(d-1), \mathrm{col}(d-2), \mathrm{col}(d-3), \mathrm{col}(d-4), \\
-            \mathrm{row}(d), \mathrm{row}(d-1), \mathrm{row}(d-2), \mathrm{row}(d-3), \mathrm{row}(d-4) 
-         \}.
+        \Phi_1 = \left\{ \mathrm{col}(i), \mathrm{row}(i), \mathrm{diag}(i), \mathrm{diag}(d-i) \right\}_{i=0}^4 \text{ and } \Phi_2 = \left\{ \mathrm{col}(d-i), \mathrm{row}(d-i) \right\}_{i=0}^4.
     \end{gather*}
 \end{definition}
-
-
-We increased the contraction size to gain more information about potential supports, which we hope will prove useful when handling cases manually.
 
 \begin{proposition}
     We have \( \lvert \Gamma^{\mathrm{even}}_6 \rvert  = 150032\) and \( \lvert \Gamma^{\mathrm{odd}}_6 \rvert  = 154177\).
 \end{proposition}
 
 \begin{proof}
-    This is verified by a computer program, which is available on GitHub \cite{ducrepo}. 
+    This is verified by a computer program, which is available on GitHub \cite{ducrepo} under tile file \texttt{chapter07\_intro.ipynb}.
 \end{proof}
 
-The number of cases to check has increased by a factor of hundred compared to the previous chapters. If we would be able to reduce the cases immensely, we could in theory apply the same techniques as in the previous chapters to prove \( \mathrm{deg}(\mathbf w) \leq 9 \). We will spend the remaining part of this chapter to find a way to reduce the number of cases to check to around 10,000 cases; this is a reduction by a factor of 30. We hope that this reduction is sufficient to make the problem computationally feasible for future proofs. Due to time constraints of this thesis, we will not be able to prove \( \mathrm{deg}(\mathbf w) \leq 9 \) for all valid outcomes of positive support size six.
+The number of cases to check has increased by a factor of hundred compared to the previous chapters. If we were able to reduce the cases, we could apply the same techniques as in the previous chapters. We will spend the remaining chapter to reduce the number of cases to check to around 12,000 cases in the hope to make the proof computationally feasible. Due to time constraints of this thesis, we were not able to attempt a complete proof.
 
 \section{Fixed-Contractable Pascal Forms}
 
