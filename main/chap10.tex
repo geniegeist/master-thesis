@@ -317,15 +317,14 @@ We see that \( (\mathrm{col}(d))_{d_0} = -\mathbf 1 \) is a constant vector for 
 
 \section{An Extended Trivial System}
 
-To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi_1 \cup \Phi_2 \). We proved that this system is non-trivial. If we can find a system \( \Psi \) that is a superset of \( \Phi \) and is also non-trivial, then we can reduce the number of cases to check. 
+To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the non-trivial system \( \Phi = \Phi_1 \cup \Phi_2 \). If we find a system \( \Psi \) that is a superset of \( \Phi \) and is also non-trivial, then we can reduce the number of cases to check. 
 
 \begin{proposition}
-    Define \( \Psi = \Phi \cup \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \), where 
+    The system \( \Psi = \Phi \cup \left\{ \mathrm{diag}(i) - \mathrm{diag}(j) \mid (i,j) \in Z \right\} \) is non-trivial, where 
     \begin{gather*}
         Z \coloneqq \{ (0,1), (0,2), (0,3), (0,4), (0,d-1), (0,d-2), (0,d-3), (0,d-4),\\ (1,2), (1,3), (1, d), (1,d-4), (1,d-2), (1,d-3), (2,d), (2,d-1),\\ (2,d-3), (2, d-4), (3,d), (3,d-1), (3,d-2), (3, d-4)
         (d-4,d), (d-3,d),\\ (d-2,d), (d-2,d-1), (d-1,d-2), (d-1,d-3), (d-1,d), (1, d-1)\}.
     \end{gather*}
-    The system \( \Psi \) is non-trivial.
 \end{proposition}
 
 \begin{proof}
@@ -340,9 +339,6 @@ To compute \(  \Gamma^{\mathrm{even}}_6 \), we defined the system \( \Phi = \Phi
         
         \item In every other case, it is easy to see that the realization \( p = \sum \lambda_{i,j} x_{i,j} \coloneqq p_d \) of \( T \) satisfies \( \lambda_{0,0} \neq 0 \), \( \mathrm{supp}^+(p) \neq \emptyset \), and \( \mathrm{supp}^-(p) \neq \emptyset \) for any degree \( d \in \mathbb{N}_{\geq 15} \). Thus, any root \( \mathbf{w} \) of \( p \) satisfies \( \mathrm{supp}^+(p) \cap \mathrm{supp}^+(w) \neq \emptyset \) or \( \mathrm{supp}^-(p) \cap \mathrm{supp}^+(w) \neq \emptyset \).
     \end{itemize}
-    
-
-    
 \end{proof}
 
 \begin{proposition}

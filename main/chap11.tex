@@ -1,20 +1,21 @@
 \chapter{Computation of Fundamental Models}
 
-In the final chapter, we compute the number of fundamental models. The implementation details are publicly available in the repository \cite{ducrepo}. The results of these computations are summarized in the following table.
+In the final chapter, we compute the number of fundamental models. The implementation details are publicly available in the repository \cite{ducrepo} under the file \texttt{chapter08.ipynb}. The results of these computations are summarized in the following table.
 
 \begin{figure}[H]
     \centering
     \[
-    \begin{array}{|c|ccccccccccc|}
+    \begin{array}{|c|ccccccccccccc|}
     \hline
-    n \setminus d & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+    n \setminus d & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
     \hline
-    2 & 1 &   &   &   &   &    &    &    &    &     &     \\
-    3 &   & 3 & 1 &   &   &    &    &    &    &     &     \\
-    4 &   &   & 12 & 4 & 2 &    &    &    &    &     &     \\
-    5 &   &   &    & 82 & 38 & 10 & 4  &    &    &     &     \\
-    6 &   &   &    &    & 602 & 254 & 88 & 24 & 2  &     &     \\
-    7 &   &   &    &    &     & 6710 & 2421 & 643 & 198 & 32  & 4   \\
+    2 & 1 &   &   &   &   &    &    &    &    &     &  & &   \\
+    3 &   & 3 & 1 &   &   &    &    &    &    &     &   & &  \\
+    4 &   &   & 12 & 4 & 2 &    &    &    &    &     &  & &   \\
+    5 &   &   &    & 82 & 38 & 10 & 4  &    &    &     &  &&  \\
+    6 &   &   &    &    & 602 & 254 & 88 & 24 & 2  &     &  &&   \\
+    7 &   &   &    &    &     & 6710 & 2421 & 643 & 198 & 32  & 4 &? & ? \\
+    8 &   &   &    &    &     &  & 83906 & 23285 & 6445 & ?  & ? &?& ?\\
     \hline
     \end{array}
     \]
@@ -23,4 +24,4 @@ In the final chapter, we compute the number of fundamental models. The implement
     \end{figure}
 
 
-To construct this table, we employed the following methodology. First, we calculated the set of all supports of valid outcomes for a fixed degree \( d\in \mathbb{N} \) using Algorithm \ref{alg:hyperfield_criterion:efficient}. For each chipsplitting support generated, we mapped it back to a statistical model and computed the rank of the corresponding linear system to determine whether it yields a unique solution. If the system is of full rank, the associated statistical model is fundamental, as defined in Definition \ref{def:fundamental-model}. By using this approach, we computed all valid outcomes for positive support sizes \( n = 1, \dots, 7 \) and degree \( d \leq 11 \). This extends the results of \cite{bik2022classifying} for \( n =7 \).
+To construct this table, we employed the following methodology. First, we calculated a set of possible supports of valid outcomes for a fixed degree \( d\in \mathbb{N} \) using Algorithm \ref{alg:hyperfield_criterion:efficient}. For each chipsplitting support generated, we mapped it back to a statistical model and computed the rank of the corresponding linear system to determine whether it yields a unique solution. If the system is of full rank, the associated statistical model is fundamental, as defined in Definition \ref{def:fundamental-model}. By using this approach, we computed all valid outcomes for positive support sizes \( n = 2, \dots, 7 \) with degree \( d \leq 11 \), and \( n = 8 \) with \( d \leq 9 \). On a MacBook Pro with M3 chip, it took around 50 minutes to only compute the entry \( n = 8 \) and \( d = 9 \).
